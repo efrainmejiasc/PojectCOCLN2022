@@ -1,0 +1,32 @@
+<div class="col-sm-12 p-0 m-0">
+    <app-plantilla-uno-noticias-tendencias [template]="EditorTemplates" [closeActionByOutsideClickPattern]="closeActionByOutsideClick"
+        (templateReturn)="buildEditor($event)" [nameSection]="nameSection" [color]="colorBackground"
+        [index]="indexEvent" [builder]="builder" [pagination]="pagination" [pages]="pages"
+        [backgroundImage]="backgroundImg" *ngIf="templateOne">
+    </app-plantilla-uno-noticias-tendencias>
+    <app-plantilla-dos-noticias-tendencias [template]="EditorTemplates" [closeActionByOutsideClickPattern]="closeActionByOutsideClick"
+        (templateReturn)="buildEditor($event)" [nameSection]="nameSection" [color]="colorBackground"
+        [index]="indexEvent" [builder]="builder" [pagination]="pagination" [pages]="pages"
+        [backgroundImage]="backgroundImg" *ngIf="templateTwo">
+    </app-plantilla-dos-noticias-tendencias>
+    <app-plantilla-tres-noticias-tendencias [template]="EditorTemplates" [closeActionByOutsideClickPattern]="closeActionByOutsideClick"
+        (templateReturn)="buildEditor($event)" [nameSection]="nameSection" [color]="colorBackground"
+        [index]="indexEvent" [builder]="builder" [pagination]="pagination" [pages]="pages" *ngIf="templateThree"
+        (paginationData)="paginationDataFn($event)">
+    </app-plantilla-tres-noticias-tendencias>
+    <app-plantilla-cuatro-noticias-tendencias [template]="EditorTemplates" [closeActionByOutsideClickPattern]="closeActionByOutsideClick"
+        (templateReturn)="buildEditor($event)" [nameSection]="nameSection" [color]="colorBackground"
+        [index]="indexEvent" [builder]="builder" [pagination]="pagination" [pages]="pages"
+        [backgroundImage]="backgroundImg" *ngIf="templateFour">
+    </app-plantilla-cuatro-noticias-tendencias>
+    <app-plantilla-cinco-noticias-tendencias [template]="EditorTemplates" [closeActionByOutsideClickPattern]="closeActionByOutsideClick"
+        (templateReturn)="buildEditor($event)" [nameSection]="nameSection" [color]="colorBackground"
+        [index]="indexEvent" [builder]="builder" [pagination]="pagination" [pages]="pages"
+        [backgroundImage]="backgroundImg" (paginationData)="paginationDataFn($event)" *ngIf="templateFive">
+    </app-plantilla-cinco-noticias-tendencias>
+    <app-plantilla-seis-noticias-tendencias [template]="EditorTemplates" [closeActionByOutsideClickPattern]="closeActionByOutsideClick"
+        (templateReturn)="buildEditor($event)" [nameSection]="nameSection" [color]="colorBackground"
+        [index]="indexEvent" [builder]="builder" [pagination]="pagination" [pages]="pages"
+        [backgroundImage]="backgroundImg" (paginationData)="paginationDataFn($event)" *ngIf="templateSix">
+    </app-plantilla-seis-noticias-tendencias>
+</div>

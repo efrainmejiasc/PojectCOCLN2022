@@ -1,0 +1,97 @@
+
+<div>
+  <div *ngIf="activeLogin" class="fondo" id="fondo"></div>
+  <div *ngIf="activeLogin" [ngClass]="loginForAdmin ? 'background-popup-admin' : 'background-popup'" id="popup">
+      <div class="div-center">
+          <div class="div-forma-contenedor modal-content">
+              <div class="divX"><span (click)="palancaLogin()">x</span></div>
+              <div class="img-header-login">
+                  <img src="assets/imgs/login/ptp-login-logo.png" alt="">
+              </div>
+  
+              <section *ngIf="!recuperarPassword; else recuperarSection">
+                  <div id="texto-top">
+                      <p>Inicia sesión en Compra lo nuestro</p>
+                  </div>
+                  <!-- <div id="divInvalido" *ngIf="!usuario.autenticado && formularioEnviado">
+                      Credenciales inválidas
+                  </div>  -->
+                  <div id="iframe-container">
+                    <iframe
+                      #loginIFrame
+                      [src]="iFrameUrl"
+                      id="login-iframe"
+                      frameborder="0"
+                      width="100%"
+                      height="100%"
+                      style="overflow: hidden"
+                      allow="fullscreen">
+                    </iframe>
+                  </div>
+  
+  
+                  <div id="recuperacion">
+                    <div>
+                        <div>
+                          <a (click)="onRecuperarPassword()">¿Olvidaste tu contraseña? </a>
+                        </div>
+                        <div>
+                          <span>¿No tienes una cuenta? </span>
+                          <a href="https://compralonuestro.co/register" target="_blank" rel="noreferrer">Regístrate aquí</a>
+                        </div>
+                    </div>
+                  </div>
+                </section>
+  
+              <ng-template #recuperarSection>
+                <section class="recuperar-section">
+                  <div *ngIf="mostrarMensajeSatisfactorio">
+                    <p>El mensaje ha sido enviado a {{recuperarForm.value.email}}.
+                      Siga las instrucciones que
+                      allí se prestan para crear una nueva contraseña
+                    </p>
+                    <p>¿No ha recibido el e-Mail?</p>
+                    <div class="recuperar-section-btn-container">
+                      <button class="boton-azul" (click)="palancaLogin()">Regresar</button>
+                      <button (click)="onVolverAEnviar()" class="boton-azul">Reenviar e-mail</button>
+                    </div>
+                    <div *ngIf="showTimerMessage" class="mensaje-invalido">
+                      <p>Sólo puede solicitar un restablecimiento de contraseña una vez cada 10 segundos</p>
+                    </div>
+                  </div>
+                  <div *ngIf="!mostrarMensajeSatisfactorio">
+                    <p>Recuperar contraseña</p>
+                    <form [formGroup]="recuperarForm" (ngSubmit)="onClickRecuperar()">
+                      <div>
+                        <input
+                          class="recuperar-input"
+                          type="text"
+                          id="email"
+                          placeholder="Email"
+                          formControlName = "email">
+                        <span
+                          *ngIf="!recuperarForm.get('email').valid && recuperarForm.get('email').touched">
+                          Por favor entre un email válido
+                        </span>
+                      </div>
+                      <button
+                        [disabled]="!recuperarForm.valid"
+                        class="boton-disabled"
+                        [ngClass]="{'boton-azul' : recuperarForm.valid}"
+                        type="submit">Recuperar
+                      </button>
+                    </form>
+                    <div *ngIf="showUsuarioInvalido" class="mensaje-invalido">
+                      <p>Usuario inválido</p>
+                    </div>
+                  </div>
+                </section>
+              </ng-template>
+  
+          </div>
+      </div>
+  </div>
+</div>
+
+
+

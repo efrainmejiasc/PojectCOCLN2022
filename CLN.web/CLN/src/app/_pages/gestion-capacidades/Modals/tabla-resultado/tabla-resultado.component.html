@@ -1,0 +1,28 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-fall" [fullScreen]="true">
+    <p style="color: white">Cargando...</p>
+</ngx-spinner>
+<div class="container container-relative d-flex flex-column justify-content-center align-items-center" *ngIf="onLoad">
+    <div class="resultado-content d-flex flex-column justify-content-start align-items-start mt-4">
+        <div class="title-data d-flex justify-content-center align-items-center border-top border-light">
+            <div class="afirmationContent d-flex justify-content-center align-items-center">Capacidades</div>
+            <div class="downloadContent d-flex flex-column justify-content-center align-items-center"
+                *ngFor="let results of listaResultado[0].resultados" (click)="downloadResult(results)">
+                <span class="date">{{results.fecha}}</span>
+                <span class="action">
+                    <button>Descargar</button>
+                </span>
+            </div>
+        </div>
+        <div class="content-data d-flex justify-content-center align-items-center"
+            *ngFor="let results of listaResultado">
+            <div class="afirmationContent d-flex justify-content-center align-items-center">
+                <span class="result-first-word background-gris-claro mr-4">{{results.abreviatura}}</span>
+                <p class="p-0 m-0">{{results.afirmacion}}</p>
+            </div>
+            <div class="calificationContent d-flex justify-content-center align-items-center"
+                *ngFor="let calification of results.resultados">
+                {{calification.calificacion}}
+            </div>
+        </div>
+    </div>
+</div>

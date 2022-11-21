@@ -1,0 +1,353 @@
+$base-contenedor-margin-left: 15%;
+$base-contenedor-width: 70%;
+
+
+.ocultar{
+  display: none;
+}
+
+.consultar-planes-section{
+  min-height: 500px;
+}
+
+.input-contenedor{
+  margin-top: 1em;
+}
+
+.agregar-productos{
+ img {
+    width: 30%;
+  }
+}
+
+
+
+.info-ayuda-contenedor{
+  margin-left: $base-contenedor-margin-left;
+  width: $base-contenedor-width;
+
+  & .img-info-ayuda {
+    height: 2em;
+    // margin: 0;
+    // position: relative;
+    // top: 50%;
+    // left: 50%;
+    // -ms-transform: translate(-50%, -50%);
+    // transform: translate(-50%, -50%);
+  }
+
+  & span {
+    font-size: 16px;
+  }
+
+  label{
+    color: #333333;
+    font-family: 'opensans_semibold';
+    font-size: 16px;
+  }
+}
+
+.imgAyuda{
+  width: 20px;
+}
+.descriptionField{
+  color: #757575;
+  font-family: 'opensans_regular';
+  margin-left: 0.25em;
+}
+.recuperar-input{
+  width:100%;
+  border: 0px;
+  background-color: #ececec;
+  font-family: 'opensans_italic', Arial;
+}
+.recuperar-input2{
+  width:96%;
+  border: 0px;
+  background-color: #ececec;
+}
+.centeringBtnImg{
+  justify-content: center;
+  display: flex;
+  // margin-top: 2em;
+  // margin-bottom: 2em;
+}
+.centeringBtnImgDown {
+  justify-content: center;
+  text-align: center;
+  // display: flex;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  & div {
+    margin: 0;
+  }
+
+  & img{
+    width: 3.5em;
+    cursor: pointer;
+  }
+  & span{
+    color: #3366ff;
+    font-family: opensans_semibold;
+    font-size: 13px;
+    cursor: pointer;
+  }
+}
+.contador{
+  background: #d4d4d4;
+  width: 40px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+.mat-icon-button{
+  border: 1px solid red;
+}
+.centeringBtn{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+.btn-submit-wine {
+  background-color: #839AC4;
+  width: 100%;
+  color: #ffffff;
+  cursor: pointer;
+  max-width: 230px;
+  font-size: 12px;
+  border-radius: 6mm;
+  border-style: none;
+  height: 40px;
+  margin-top: 0em !important;
+  font-family: opensans_semibold;
+}
+.btn-submit-wine2 {
+  background-color: #003595;
+  width: 100%;
+  color: #ffffff;
+  cursor: pointer;
+  max-width: 230px;
+  font-size: 12px;
+  border-radius: 6mm;
+  border-style: none;
+  height: 40px;
+  margin-top: 0em !important;
+  font-family: opensans_semibold;
+}
+.info-ayuda{
+  background-color:#f1f1f1;
+  border-left: 5px solid #3366ff;
+  text-align: justify;
+  padding: 12px;
+  width:100%;
+  font-size: 19px;
+  color:#757575;
+  font-family: opensans_regular;
+  & span{
+    font-family: opensans_semibold;
+  }
+}
+
+.info-ayuda{
+  background-color:#f1f1f1;
+  border-left: 5px solid #3366ff;
+  text-align: justify;
+  padding: 4px 12px;
+  width:100%;
+  font-size: 16px;
+  color:#7d7d7d;
+}
+
+.conponente-search{
+  width: 100%;
+}
+
+.card-contenedor {
+  margin-left: $base-contenedor-margin-left;
+  width: $base-contenedor-width;
+
+  & .card-contenido {
+    margin: 2em 0.5em 0.5em 0.5em;
+    width: 22%;
+    display: -webkit-box;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+
+  }
+  
+  & .card-titulo{
+    background-color: #f5f5f5;
+    font-size: 13px;
+    color: #3366ff;
+    font-family: 'opensans_semibold';
+    padding: 0.2em 1em;
+  }
+
+  & .card-subtitulo-entidad{
+    color: #b2b2b2; 
+    font-family: 'Open Sans Italic', arial;
+    font-size: 13px;
+  }
+  & .card-subtitulo {
+    color: #b2b2b2;
+    font-family: 'Open Sans Italic', arial;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  & .card-productos-correo {
+    color: #515151;
+    font-family: opensans_regular;
+    font-size: 12px;
+    word-break: break-word;
+  }
+
+  & .card-contenido-regular16{
+    font-size: 16px;
+    color: #333333;
+    text-align: center;
+    font-family: opensans_regular;
+    word-break: break-word;
+  }
+
+  & .card-bottom{
+    width: 100%;
+  }
+
+  & .card-municipio-pais{
+    border-top: 0.5mm solid #686868;
+    margin: 1em 0;
+    & img{
+      margin-right: 0.5em;
+      height: 14px;
+    }
+    & span{
+      font-size: 15px;
+      color: #333333;
+      font-family: opensans_semibold;
+      // margin-left: 0.5em;
+    }
+  }
+}
+
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.grid-card{
+  // display: -ms-flexbox;
+  // display: -webkit-box; 
+  justify-content: center;
+}
+
+table {
+  border-collapse: initial;
+  width: 100%;
+  border-spacing: initial;
+
+  & .td-izquierda{
+    border: 1px solid #222;
+    border-radius: 0.3em 0 0 0.3em;
+    border-style: solid none solid solid;
+  }
+  & .td-derecha{
+    border: 1px solid #222;
+    border-radius: 0 0.3em 0.3em 0;
+    border-style: solid;
+    text-align: left;
+  }
+}
+
+.plan-adquisicion-modal{
+
+  padding: 1em 2em 2em 2em;
+  // width: 70%;
+  height: auto;
+
+  & .plan-adquisicion-title{
+    color: #4169af;
+    font-family: 'opensans_bold';
+    font-size: 19px;
+  }
+
+  & .plan-adquisicion-subtitle{
+    color: #333333;
+    font-family: 'opensans_semibold';
+    font-size: 16px;
+  }
+
+  & .plan-adquisicion-descripcion{
+    color: #757575;
+    font-family: 'opensans_regular';
+    font-size: 15px;
+  }
+
+  & .plan-adquisicion-descripcion-textarea{
+    border: 1px solid #222;
+    color: #757575;
+    font-family: 'opensans_regular';
+    font-size: 15px;
+    width: 100%;
+  }
+
+  & .plan-adquisicion-contacto{
+
+    & span {text-align: left;}
+
+    & .plan-adquisicion-left{
+      justify-content: left;
+      align-items: center;
+      display: flex;
+    }
+
+    & .plan-adquisicion-texto-left {
+
+      & div{
+        justify-content: left;
+        // align-items: center;
+        // display: flex;
+        & span {
+          display: inline;
+        }
+      }
+    }
+
+    & .plan-adquisicion-ubicacion-izquierda{
+      padding: 0.5em 1em;
+      width: 30%;
+
+      & img{
+          margin-right: 0.5em;
+          height: 16px;
+        }
+
+      & div{
+        justify-content: left;
+      }
+    }
+    & .plan-adquisicion-ubicacion-derecha {
+      padding: 0.5em 1em;
+
+      & .plan-adquisicion-subtitle-contacto{
+        color: #b2b2b2;
+        font-family: 'opensans_regular';
+        font-size: 13px;
+      }
+    }
+  }
+}
+::ng-deep {
+  mat-paginator .mat-paginator-container {
+    justify-content: center;
+  }
+}

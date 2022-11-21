@@ -1,0 +1,79 @@
+<div class="wrapper">
+    <div class="input-contenedor">
+        <b>Fecha de inicio proceso de contratación *</b>
+        <div style="display: flex;">
+            <div class="input-group">
+                <input 
+                    matInput 
+                    id="fechaInicioProceso" 
+                    [matDatepicker]="fechaInicio"
+                    class="recuperar-input" 
+                    (click)="fechaInicio.open()"
+                    [(ngModel)]="desde"
+                    (ngModelChange)="asignarValor()"
+                    [min]="todaysdate"
+                >
+                <mat-datepicker #fechaInicio></mat-datepicker>
+            </div>
+            <span class="arrow-right" (click)="fechaInicio.open()">
+                <img src="assets/imgs/iconos/calendario.svg" style="width: 15px;">
+            </span>
+        </div>
+    </div>
+
+    <div class="input-contenedor">
+        <b>Hora de publicación *</b>
+        <div style="display: flex;">
+            <div class="input-group">
+                <div class="recuperar-input time">
+                    <input 
+                        id="hora" 
+                        [(ngModel)]="value.hora" 
+                        class="recuperar-input" 
+                        type="number" 
+                        min="0" 
+                        max="23" 
+                        placeholder="23"
+                        (ngModelChange)="asignarValor()">:
+                    <input 
+                        id="minuto" 
+                        [(ngModel)]="value.minuto" 
+                        class="recuperar-input" 
+                        type="number" 
+                        min="0" 
+                        max="59" 
+                        placeholder="00"
+                        (ngModelChange)="asignarValor()">
+                </div>
+            </div>
+            <span class="arrow-right" (click)="fechaFin.open()">
+                <img src="assets/imgs/iconos/reloj.svg" style="width: 15px;">
+            </span>
+        </div>
+    </div>
+
+    <div class="input-contenedor">
+        <b>Hasta {{ !disabledHasta ? '*' : '' }}</b>
+        <div style="display: flex;">
+            <div class="input-group">
+                <input 
+                    matInput 
+                    id="fechaFinProceso" 
+                    [matDatepicker]="fechaFin"
+                    class="recuperar-input" 
+                    (click)="fechaFin.open()"
+                    [(ngModel)]="hasta"
+                    [disabled]="disabledHasta || !desde"
+                    (ngModelChange)="asignarValor()"
+                    [min]="desde"
+                    [value]="disabledHasta ? borrar() : hasta"
+                >
+                <mat-datepicker #fechaFin></mat-datepicker>
+            </div>
+            <span class="arrow-right" (click)="fechaFin.open()">
+                <img src="assets/imgs/iconos/calendario.svg" style="width: 15px;">
+            </span>
+        </div>
+    </div>
+
+</div>

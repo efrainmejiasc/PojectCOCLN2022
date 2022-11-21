@@ -1,0 +1,16 @@
+<div class="d-flex position" dropdown >
+  <button type="button" [ngClass]="{'dropdown-invalid': invalid, 'rounded-pill': color == 'blanco' || color == 'success' }" [disabled]="disableDrop"
+    class="form-control flex-grow-1">{{ SelectedDRItem ?  SelectedDRItem.name : placeholder }}</button>
+  <button type="button" dropdownToggle class="btn btn-desplegar dropdown-toggle dropdown-toggle-split"
+    aria-controls="dropdown-split" [ngClass]="{'btn-invalid': invalid, 'blanco': color == 'blanco', 'alternative': color == 'alternative', 'primary': color == 'primary', 'success': color == 'success'}">
+    <span class="caret"></span>
+    <span class="sr-only">Split button!</span>
+  </button>
+  <ul *dropdownMenu class="dropdown-menu scroll-azul" role="menu" aria-labelledby="button-split">
+    <li role="menuitem"><label class="dropdown-item" *ngFor="let item of itemList"><input type="radio"
+          [value]="item.value" [disabled]="disableDrop" name="dropRadio" (change)="onItemChange(item)">
+        <span class="checkmark"></span>
+        {{item.name}}
+      </label></li>
+  </ul>
+</div>

@@ -1,0 +1,137 @@
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h2 class="font_pb text-color-red">
+                Solicitar asistencia técnica integral
+            </h2>
+        </div>
+        <br><br>
+        <div class="offset-md-1 col-md-10 d-flex justify-content-center align-items-center">
+            <span class="title_decorator_dynamic" [style.height]="heightText">
+                <div class="boxTop"></div>
+                <div class="boxDown"></div>
+            </span>
+            <p class="text-color-gray m-0 ml-2 p-0" id="contentText" #contentText>
+                Aquí podrás solicitar asistencia técnica integral al Ministerio de Educación. Recuerda que solo podrás
+                acceder a esta
+                opción si has <b> Terminado </b>
+                de diligenciar el autodiagnóstico. Si aún no has iniciado o finalizado su autodiagnóstico puedes
+                ingresar
+                a <b> Diagnóstico de
+                    capacidades de nuestra Secretaría </b> y culminar con esta etapa para solicitar la asistencia
+                técnica integral al Ministerio.<br>
+                A continuación, podrás seleccionar las capacidades sobre las cuales requieres asistencia técnica
+                integral del Ministerio.
+            </p>
+        </div>
+
+    </div>
+    <br>
+    <br>
+
+    <div class="row" *ngIf="autodiagnosticoTerminado && newlistCapacidades">
+        <div class="offset-md-1 col-md-10font_p">
+            <div class="form-group">
+                <label class="font_worksans_ligth" style="margin: 0;" for=""><b>Tipo de capacidad </b> </label>
+                <div class="select">
+                    <select name="" class='combox container-checkbox' (change)="onSelectCategoria();"
+                        [(ngModel)]="idCategoria">
+                        <option value="" disabled> Seleccione </option>
+                        <option *ngFor="let item of showNewlistCapacidades;  let i = index " [value]="item.idValor">
+                            {{item.nombre}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="font_worksans_ligth" for=""><b>Capacidad</b></label>
+                <div>
+                    <ng-multiselect-dropdown style="border: 0px solid #3366cc !important;"
+                        [placeholder]="'Selecciona una o varias capacidades'" [data]="Capacidades"
+                        [(ngModel)]="idAfirmacion2" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+                        (onDeSelect)="onItemDeSelect($event)" (ngModelChange)="checkEnvioAsistencia()">
+                    </ng-multiselect-dropdown>
+                </div>
+                <div class="form-group mt-4">
+                    <ul>
+                        <li *ngFor="let item of idAfirmacion2"> {{item.nombre}}</li>
+
+                    </ul>
+                </div>
+                <br>
+                <hr class="hr_">
+                <br>
+
+            </div>
+            <div class="form-group">
+                <label class="font_pb" for="">
+                    <b>Descripción de la asistencia técnica</b> (detalla cuál es tu necesidad de asistencia por parte
+                    del Ministerio) | <span style="color: #ff3466;">
+                        <span *ngIf="solicitud==null">800</span>
+                        <span *ngIf="solicitud!=null">{{800 - (solicitud.length)}}</span>
+                    </span></label>
+                <textarea (keyup)="checkEnvioAsistencia()" class="form-control font_p required" [(ngModel)]="solicitud"
+                    rows="3"></textarea>
+            </div>
+            <!--<div class="form-group">
+                <label class="font_pb" for="">Secretaría de Eduación </label>
+                <div class="select">
+                    <select name="" class='combox container-checkbox' [(ngModel)]="idSecretaria">
+                        <option value="seleccione">Seleccione </option>
+                        <option *ngFor="let item of secretarias" value="{{item.idSecretaria}}">
+                            {{item.entidadTerritorial}}
+                        </option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label class="font_pb" for="">Correo electrónico</label>
+                <input type="email" style="text-align: center;text-align-last: center;" class="form-control font_p"
+                    [(ngModel)]="email" placeholder="">
+
+            </div>-->
+            <br>
+            <br>
+            <div class="form-group text-center">
+                <a *ngIf="!is_loading" [className]="enviarAsistenciaEnabled ? 'btn_primary' : 'btn-disable btn_primary'"
+                    (click)="enviarAsistenciaEnabled && do_SendAsistencia()"> Enviar</a>
+                <div *ngIf="is_loading" class="spinner-border text-primary"></div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row" *ngIf="!autodiagnosticoTerminado">
+        <div class="col-lg-12 text-center">
+            <label class="font_pb">
+                Debes realizar el autodiagnóstico para poder solicitar la asistencia técnica
+            </label>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<ng-template #content id="modal" let-c="close" let-d="dismiss">
+
+
+    <div class="modal-body">
+
+        <div class="col-12 text-center font_p_worksans">
+            Se ha enviado su solicitud al Ministerio, pronto recibirá su
+            respuesta.
+            <br>
+        </div>
+
+        <div class="mod_modal-footer">
+
+            <div class="col text-center">
+                <span style="cursor:pointer" class="btn_third"
+                    (click)="enviarAsistenciaEnabled && closeModal()">Cerrar</span>
+            </div>
+        </div>
+    </div>
+</ng-template>

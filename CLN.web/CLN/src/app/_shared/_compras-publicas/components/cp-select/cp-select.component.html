@@ -1,0 +1,17 @@
+
+<div class="wrapper" [ngClass]="wrapperActive ? 'active' : 'inactive'">
+  <div class="select-btn" (click)="showOptions()">
+    <p>{{itemS.name}}</p>
+    <div class="arrow-right">
+      <img src="assets/imgs/iconos/arrow-down.svg" />
+    </div>
+  </div>
+  <div class="content">
+    <ul class="options">
+      <li *ngFor="let item of lista" (click)="selectChangeHandler(item.id)"
+          [ngClass]="item.id === itemS.id ? 'selected' : 'normalopt'">
+        {{item.name}}
+      </li>
+    </ul>
+  </div>
+</div>

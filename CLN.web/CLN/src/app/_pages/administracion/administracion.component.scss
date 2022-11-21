@@ -1,0 +1,108 @@
+.navbar {
+  padding: 0 !important;
+  background-color: #f2f2f2 !important;
+}
+
+.li_border {
+  border-right: 1px solid #3366cc;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-light .navbar-nav .active > .nav-link,
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .show > .nav-link {
+  color: #6699ff !important;
+}
+.navbar-expand-lg .navbar-nav .nav-link {
+  color: #6699ff !important;
+}
+
+/* .title_decorator {
+  display: block;
+  position: absolute;
+  height: 100%;
+  background-size: auto;
+  margin-left: -10px;
+} */
+
+.title_decorator {
+  display: block;
+  position: relative;
+  background-size: auto;
+  margin-left: -10px;
+  height: 70px;
+
+  @media screen and (max-width: 767px) {
+    margin-right: 0.5em;
+    margin-left: 0;
+    background-size: cover;
+    height: 100%;
+  }
+}
+.font_p {
+  display: block;
+  margin: auto;
+}
+
+.btn_secundary_allwith {
+  padding: 8px 6px;
+  font-size: 20px;
+}
+
+.select {
+  width: 100%;
+  border: 1px solid #3366cc;
+}
+
+.multiselect-dropdown .dropdown-btn {
+  border: 1px solid #3366cc !important;
+}
+.multiselect-dropdown.dropdown-btn {
+  display: inline-block;
+  border: 1px solid #3366cc !important;
+}
+
+.form-control-file,
+.form-control-range {
+  border: 1px solid #3366cc;
+  border-radius: 8px;
+}
+textarea {
+  color: #3366cc;
+}
+table th:first-child {
+  border-radius: 40px 0 0 0px;
+}
+
+table th:last-child {
+  border-radius: 0 40px 0px 0;
+}
+.result_table {
+  overflow: hidden;
+}
+.btn_secundary_allwith {
+  font-size: 20px !important;
+  text-align: center !important;
+}
+
+.btn_secundary_actived {
+  background-color: #3366cc;
+  color: white !important;
+}
+
+.btn_third_disabled {
+  background-color: #99bbff;
+  cursor: no-drop;
+  padding: 10px 30px;
+  display: inline-block;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  color: white;
+}
+.nav-link{
+  color: #3366cc;
+}

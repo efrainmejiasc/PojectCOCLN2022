@@ -1,0 +1,151 @@
+<div class="container containerTemplateFive col-sm-12 d-flex flex-column justify-content-center align-items-center py-2"
+    [style.background]="background">
+    <div [ngClass]="{'col-sm-12': builder , 'col-sm-10': !builder}"
+        class="d-flex flex-column justify-content-center align-items-center p-0"
+        style="padding-bottom: 40px !important;">
+        <div [ngClass]="{'container-dash':builder}"
+            class="col-sm-7 d-flex justify-content-center align-items-center position-relative mb-4 p-0 title contentTitle"
+            [ngStyle]="{'z-index':7}">
+            <app-action-attribute [configAction]="configTitleEditor"
+                [closeActionByOutsideClick]="closeActionByOutsideClick" [index]="indexTemplate + '2011'"
+                (text)="setData($event,3,0)" *ngIf="builder" [effectType]="textDataMaster.titleEffect"
+                [textData]="textDataMaster" (effect)="setData($event,4,0)">
+            </app-action-attribute>
+            <h4 class="title contentTitle p-0" [innerHTML]="textDataMaster.title | safeHtml"
+                [ngClass]="{'fade-right':textDataMaster.titleEffect == 'fdr' , 'fade-left':textDataMaster.titleEffect == 'fdl' , 'fade-top':textDataMaster.titleEffect == 'fdt' , 'fade-bottom':textDataMaster.titleEffect == 'fdb' , 'fade-in':textDataMaster.titleEffect == 'fdi'}">
+            </h4>
+        </div>
+        <div class="col-sm-12 d-flex justify-content-between align-items-start mt-2 p-0 ">
+            <div class="col-sm-4 d-flex flex-column justify-content-center align-items-center p-0"
+                style="width: 300px;max-width: 300px;">
+                <div [ngClass]="{'container-dash':builder}" class="imageSectionDos position-relative"
+                    [ngStyle]="{'z-index':6}">
+                    <app-action-attribute [closeActionByOutsideClick]="closeActionByOutsideClick"
+                        [configAction]="configMediaEditor" [index]="indexTemplate + '2012'"
+                        (fileReturn)="setData($event,1,1)" [effectType]="textDataMaster.mediaEffect"
+                        (effect)="setData($event,6,1)" [textData]="textDataMaster" (vinculo)="setData($event,7,1)"
+                        *ngIf="builder">
+                    </app-action-attribute>
+                    <p class="p-2" *ngIf="(!textDataMaster.mediaUrl || !viewImage) && builder">Inserte una imagen tamaño
+                        del icono
+                        350 px
+                        X 230 px</p>
+                    <a class="imageContainer cursorPointer" *ngIf="textDataMaster.mediaUrl && viewImage"
+                        (click)="hreFunction(textDataMaster.enlace)" target="_blank"
+                        [ngClass]="{'fade-right':textDataMaster.mediaEffect == 'fdr' , 'fade-left':textDataMaster.mediaEffect == 'fdl' , 'fade-top':textDataMaster.mediaEffect == 'fdt' , 'fade-bottom':textDataMaster.mediaEffect == 'fdb' , 'fade-in':textDataMaster.mediaEffect == 'fdi'}">
+                        <img [src]="sanitizeImageUrl(textDataMaster.mediaUrl)" class="image" />
+                        <div class="loadingMedia p-2 d-flex justify-content-center align-items-center"
+                            *ngIf="textDataMaster.uploadStatus == 'uploading'">
+                            <span class="text-light text-align">Estamos cargando tu imagen</span>
+                        </div>
+                    </a>
+                </div>
+                <div [ngClass]="{'container-dash':builder}"
+                    class="referencia position-relative mt-2 contentParagraphDad" [ngStyle]="{'z-index':5}">
+                    <app-action-attribute [configAction]="configTextEditor"
+                        [closeActionByOutsideClick]="closeActionByOutsideClick" [index]="indexTemplate + '2014'"
+                        (text)="setData($event,2,1)" [effectType]="textDataMaster.textEffect"
+                        [textData]="textDataMaster" (effect)="setData($event,5,1)" *ngIf="builder">
+                    </app-action-attribute>
+                    <span class="p-2 contentParagraph" [innerHTML]="textDataMaster.text | safeHtml"
+                        [ngClass]="{'fade-right':textDataMaster.textEffect == 'fdr' , 'fade-left':textDataMaster.textEffect == 'fdl' , 'fade-top':textDataMaster.textEffect == 'fdt' , 'fade-bottom':textDataMaster.textEffect == 'fdb' , 'fade-in':textDataMaster.textEffect == 'fdi'}">
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-4 d-flex flex-column justify-content-center align-items-center p-0"
+                style="width: 300px;max-width: 300px;">
+                <div [ngClass]=" {'container-dash':builder}" class="imageSectionDos position-relative"
+                    [ngStyle]="{'z-index':4}">
+                    <app-action-attribute [closeActionByOutsideClick]="closeActionByOutsideClick"
+                        [configAction]="configMediaEditor" [index]="indexTemplate + '2017'"
+                        (fileReturn)="setData($event,1,2)" [effectType]="textDataMasterTwo.mediaEffect"
+                        (effect)="setData($event,6,2)" [textData]="textDataMasterTwo" (vinculo)="setData($event,7,2)"
+                        *ngIf="builder">
+                    </app-action-attribute>
+                    <p class="p-2" *ngIf="(!textDataMasterTwo.mediaUrl || !viewImageTwo) && builder">Inserte una imagen
+                        tamaño del
+                        icono
+                        350 px
+                        X 230 px</p>
+                    <a class="imageContainer cursorPointer" *ngIf="textDataMasterTwo.mediaUrl && viewImageTwo"
+                        (click)="hreFunction(textDataMasterTwo.enlace)" target="_blank"
+                        [ngClass]="{'fade-right':textDataMasterTwo.mediaEffect == 'fdr' , 'fade-left':textDataMasterTwo.mediaEffect == 'fdl' , 'fade-top':textDataMasterTwo.mediaEffect == 'fdt' , 'fade-bottom':textDataMasterTwo.mediaEffect == 'fdb' , 'fade-in':textDataMasterTwo.mediaEffect == 'fdi'}">
+                        <img [src]="sanitizeImageUrl(textDataMasterTwo.mediaUrl)" class="image" />
+                        <div class="loadingMedia p-2 d-flex justify-content-center align-items-center"
+                            *ngIf="textDataMasterTwo.uploadStatus == 'uploading'">
+                            <p class="text-light text-align">Estamos cargando tu imagen</p>
+                        </div>
+                    </a>
+                </div>
+                <div [ngClass]="{'container-dash':builder}"
+                    class="referencia position-relative mt-2 contentParagraphDad" [ngStyle]="{'z-index':3}">
+                    <app-action-attribute [configAction]="configTextEditor"
+                        [closeActionByOutsideClick]="closeActionByOutsideClick" [index]="indexTemplate + '2015'"
+                        (text)="setData($event,2,2)" [effectType]="textDataMasterTwo.textEffect"
+                        (effect)="setData($event,5,2)" [textData]="textDataMasterTwo" *ngIf="builder">
+                    </app-action-attribute>
+                    <span class="p-2 contentParagraph" [innerHTML]="textDataMasterTwo.text | safeHtml"
+                        [ngClass]="{'fade-right':textDataMasterTwo.textEffect == 'fdr' , 'fade-left':textDataMasterTwo.textEffect == 'fdl' , 'fade-top':textDataMasterTwo.textEffect == 'fdt' , 'fade-bottom':textDataMasterTwo.textEffect == 'fdb' , 'fade-in':textDataMasterTwo.textEffect == 'fdi'}">
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-4 d-flex flex-column justify-content-center align-items-center p-0"
+                style="width: 300px;max-width: 300px;">
+                <div [ngClass]="{'container-dash':builder}" class="imageSectionDos position-relative"
+                    [ngStyle]="{'z-index':2}">
+                    <app-action-attribute [closeActionByOutsideClick]="closeActionByOutsideClick"
+                        [configAction]="configMediaEditor" [index]="indexTemplate + '2013'"
+                        (fileReturn)="setData($event,1,3)" [effectType]="textDataMasterThree.mediaEffect"
+                        (effect)="setData($event,6,3)" [textData]="textDataMasterThree" (vinculo)="setData($event,7,3)"
+                        *ngIf="builder">
+                    </app-action-attribute>
+                    <p class="p-2" *ngIf="(!textDataMasterThree.mediaUrl || !viewImageThree) && builder">Inserte una
+                        imagen tamaño
+                        del
+                        icono
+                        350 px
+                        X 230 px</p>
+                    <a class="imageContainer cursorPointer" *ngIf="textDataMasterThree.mediaUrl && viewImageThree"
+                        (click)="hreFunction(textDataMasterThree.enlace)" target="_blank"
+                        [ngClass]="{'fade-right':textDataMasterThree.mediaEffect == 'fdr' , 'fade-left':textDataMasterThree.mediaEffect == 'fdl' , 'fade-top':textDataMasterThree.mediaEffect == 'fdt' , 'fade-bottom':textDataMasterThree.mediaEffect == 'fdb' , 'fade-in':textDataMasterThree.mediaEffect == 'fdi'}">
+                        <img [src]="sanitizeImageUrl(textDataMasterThree.mediaUrl)" class="image" />
+                        <div class="loadingMedia p-2 d-flex justify-content-center align-items-center"
+                            *ngIf="textDataMasterThree.uploadStatus == 'uploading'">
+                            <p class="text-light text-align">Estamos cargando tu imagen</p>
+                        </div>
+                    </a>
+                </div>
+                <div [ngClass]="{'container-dash':builder}"
+                    class="referencia position-relative mt-2 contentParagraphDad" [ngStyle]="{'z-index':1}">
+                    <app-action-attribute [configAction]="configTextEditor"
+                        [closeActionByOutsideClick]="closeActionByOutsideClick" [index]="indexTemplate + '2019'"
+                        (text)="setData($event,2,3)" [effectType]="textDataMasterThree.textEffect"
+                        (effect)="setData($event,5,3)" [textData]="textDataMasterThree" *ngIf="builder">
+                    </app-action-attribute>
+                    <span class="p-2 contentParagraph" #cuerpoScroll [innerHTML]="textDataMasterThree.text | safeHtml"
+                        [ngClass]="{'fade-right':textDataMasterThree.textEffect == 'fdr' , 'fade-left':textDataMasterThree.textEffect == 'fdl' , 'fade-top':textDataMasterThree.textEffect == 'fdt' , 'fade-bottom':textDataMasterThree.textEffect == 'fdb' , 'fade-in':textDataMasterThree.textEffect == 'fdi'}">
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navigation-point d-flex justify-content-center align-items-center">
+        <div *ngFor="let point of arrayPage; let i = index" class="point"
+            [ngClass]="{'navigation-inactive': (i+1) != indexCarrouselEditor , 'navigation-active': (i+1) == indexCarrouselEditor}"
+            (click)="changeEditorByPage(i)"></div>
+    </div>
+    <div class="editorNavigation" *ngIf="builder">
+        <div class="paginator-actions">
+            <div class="pages">
+                <!--button [ngClass]="{'page-active':page == (pageActive + 1),'page-inactive' : page != (pageActive + 1)}"></button-->
+                <button *ngFor="let a of arrayPage; let i = index"
+                    [ngClass]="{'page-active': (i + 1) == indexCarrouselEditor ,'page-inactive': (i + 1) != indexCarrouselEditor}"
+                    (click)="changeEditorByPage(i)">{{i + 1}}</button>
+            </div>
+            <!--button
+               [ngClass]="{'action-inactive':(pageActive + 1) == paginatorPrint.length, 'action-active': (pageActive + 1) < paginatorPrint.length }"
+               (click)="navigatePaginator(2)">Siguiente</button-->
+            <button class="action-active" (click)="next()">Siguiente</button>
+        </div>
+    </div>
+</div>

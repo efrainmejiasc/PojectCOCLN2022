@@ -1,0 +1,56 @@
+<section>
+    <!-- <app-regresar (click)="mensajeConsole('componente-regresar')"></app-regresar>] -->
+    <div class="regresar" (click)="regresar()">
+        <img src="assets/imgs/compartidas/regresar.svg" />
+        <span class="regresar-span">Regresar</span>
+    </div>
+    <app-top-section [titulo]="titulo" [icono]="icono" [alertaIcono]="alertaIcono" [infoAyuda]="infoAyuda"
+        style="margin-bottom: 15px;">
+    </app-top-section>
+
+    <div class="componente-contenedor">
+        <div *ngFor="let item of formularioConclusiones; index as i;" style="width: 100%;">
+            <div style="display: flex;">
+                <div class="componente-concluciones">
+                    <app-conclusions-form [formularioConclusiones]="item" [index]="i+1"
+                        [objetoFormularioConclusiones]="formularioConclusiones"
+                        [idPreguntaEliminada]="idPreguntaEliminada">
+                    </app-conclusions-form>
+                </div>
+                <div class="eliminar-pregunta">
+                    <img src="assets/imgs/iconos/caneca.svg" alt="-" (click)="eliminarPregunta(i)"
+                        [ngClass]="i==0 || !item.isToShow?'desactivado':'click'">
+                </div>
+            </div>
+            <div class="añadir-pregunta">
+                <div class="añadir-contenedor-derecha click" (click)="addPregunta(i+1)"
+                    [ngClass]="formularioConclusiones.length<10 && verficarCamposObligatoriosDeTodoElFormulario()?'click':'desactivado'">
+                    <!-- [ngClass]="formularioConclusiones.length<10 && verficarCamposObligatoriosObjetoPregunta(item)?'click':'desactivado'"> -->
+                    <!-- *ngIf="formularioConclusiones.length<10 && verficarCamposObligatoriosObjetoPregunta(item)" -->
+                    <img src="assets/imgs/iconos/add.svg" alt="+">
+                    <span>Añadir pregunta</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="guardar-publicar">
+        <div class="centeringBtn" style="width: 50%;">
+            <app-button text="GUARDAR" width="180px"
+                [disabled]="!(verficarCamposObligatoriosDeTodoElFormulario() && !verficarFormulariosGuardados())"
+                (click)="guardar()">
+            </app-button>
+        </div>
+        <div class="centeringBtn" style="width: 50%;">
+            <app-button text="PUBLICAR FORMULARIO" width="180px" 
+                [disabled]="((verficarFormularioPublicar()) || !verficarFormulariosGuardados() || 
+                (verficarCamposObligatoriosDeTodoElFormulario() && !verficarFormulariosGuardados()))"
+                (click)="publicar()">
+            </app-button>
+        </div>
+    </div>
+    <app-popup-cambios *ngIf="isPopupCambios" [message]="mensajePopupCambios" (close)="closePopupCambios($event)">
+    </app-popup-cambios>
+    <app-popup-confirmation *ngIf="isPopupConfirmacion" [message]="mensajePopupConfirmacion"
+        (close)="closePopupConfimacion($event)">
+    </app-popup-confirmation>
+</section>

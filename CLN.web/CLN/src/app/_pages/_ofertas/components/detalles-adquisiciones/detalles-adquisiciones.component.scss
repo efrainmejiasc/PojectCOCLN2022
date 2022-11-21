@@ -1,0 +1,22 @@
+.btn-container{
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .general-btn{
+    background-color: #003595;
+    border: 0px;
+    border-radius: 16px;
+    padding: 4px 16px;
+    margin: 0px 20px;
+    color:#fff;
+    cursor:pointer;
+  };
+
+  td span {
+    text-align: left; 
+    display: block;
+    color: #00040c;
+    font-size: 20px;
+}

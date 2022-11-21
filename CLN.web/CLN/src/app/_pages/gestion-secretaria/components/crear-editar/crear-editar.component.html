@@ -1,0 +1,153 @@
+<div class="modal-body">
+    <!-- Titulo -->
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h2 class="modal-title font_title text-center">{{ id == '0' ? 'Cargar' : 'Editar' }} Secretaría</h2>
+    <!-- Fin Titulo-->
+
+    <form novalidate [formGroup]="form" (ngSubmit)="save($event)">
+        <div class="form-row justify-content-center">
+            <div class="col-6">
+                <label class="label"> Seleccione el departamento </label>
+                <div class="input-container pr-4">
+                    <select class="col-sm-8 px-2" 
+                        [ngClass]="{'selectInvalid': form.get('departamento').invalid && activeValidator, 'select': !form.get('departamento').invalid || !activeValidator}"
+                        (change)="SelectedDepartamento($event)" formControlName="departamento" #departamento>
+                        <option value="" disabled>Seleccione una opción</option>
+                        <option *ngFor="let departamento of departamentos" 
+                            [value]="departamento.id"
+                            [label]="departamento.nombre">
+                        </option>
+                    </select>
+                    <span class="asterisk-red">*</span>
+                    <span class="arrow-down-red"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row mt-1 justify-content-center mb-4">
+            <div class="col-6">
+                <label class="label">Seleccione el municipio</label>
+                <div class="input-container pr-4">
+                    <select class="select px-2" formControlName="municipio" name="municipio">
+                        <option [value]="0">Seleccione una opción</option>
+                        <option *ngFor="let municipio of municipios" 
+                            [value]="municipio.id" 
+                            [label]="municipio.nombre">
+                        </option>
+                    </select>
+                    <span class="asterisk-red"></span>
+                    <span class="arrow-down-red"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row mx-2">
+            <label class="label">
+                Nombres y apellidos secretaria/o |
+                <span class="text-color-red">
+                    {{ secretario.value | conteoCaracteres: formProperties.secretario.maxCaracteres }}
+                </span>
+            </label>
+            <div class="content-asterisk">
+                <input class="input-asterisk px-2" 
+                    [ngClass]="{'inputInvalid': form.get('secretario').invalid && activeValidator}"
+                    formControlName="secretario" id="secretario" #secretario 
+                    [maxlength]="formProperties.secretario.maxCaracteres"
+                    (keypress)="patternValidation($event)" (paste)="patternValidationPaste($event)"
+                    autocomplete="off" />
+                <span class="asterisk" [ngClass]="{'asteriskInvalid': form.get('secretario').invalid  && activeValidator}">*</span>
+            </div>
+        </div>
+        <div class="form-group row mx-2">
+            <label class="label">
+                Dirección física |
+                <span class="text-color-red">
+                    {{ direccion.value | conteoCaracteres: formProperties.direccion.maxCaracteres }}
+                </span>
+            </label>
+            <div class="content-asterisk">
+                <input class="input-asterisk px-2" #direccion 
+                    formControlName="direccion" name="direccion" type="text"
+                    [maxlength]="formProperties.direccion.maxCaracteres" autocomplete="off"
+                    [ngClass]="[ validarCampo('direccion') ? 'is-invalid' : '' ]"/>
+                <span class="asterisk" [ngClass]="{'asteriskInvalid': nameInvalid}"></span>
+            </div>
+            <span *ngIf="validarCampo('direccion')" class="invalid-feedback">
+                {{ validar("direccion") }}
+            </span>
+        </div>
+        <div class="form-group row mx-2">
+            <label class="label">
+                Teléfono |
+                <span class="text-color-red">
+                    {{ telefonoContacto.value | conteoCaracteres: formProperties.telefonoContacto.maxCaracteres }}
+                </span>
+            </label>
+            <div class="content-asterisk">
+                <input class="input-asterisk px-2" #telefonoContacto
+                    (keypress)="numberValidate($event)"
+                    formControlName="telefonoContacto" name="telefonoContacto" type="text" 
+                    [maxlength]="formProperties.telefonoContacto.maxCaracteres" 
+                    [ngClass]="[ validarCampo('telefonoContacto') ? 'is-invalid' : '' ]"/>
+            </div>
+            <span *ngIf="validarCampo('telefonoContacto')" class="invalid-feedback">
+                {{ validar("telefonoContacto") }}
+            </span>
+        </div>
+        <div class="form-group row mx-2">
+            <label class="label">
+                Correo electrónico |
+                <span class="text-color-red">
+                    {{ correoInstitucional.value | conteoCaracteres: formProperties.correoInstitucional.maxCaracteres }}
+                </span>
+            </label>
+            <div class="content-asterisk">
+                <input class="input-asterisk px-2" #correoInstitucional (input)="emailValidator($event)"
+                    formControlName="correoInstitucional" name="correoInstitucional" type="email" 
+                    [maxlength]="formProperties.correoInstitucional.maxCaracteres" 
+                    [ngClass]="[ form.get('correoInstitucional').invalid ? 'is-invalid' : '' ]"/>
+                <span class="asterisk" [ngClass]="{'asteriskInvalid': nameInvalid}"></span>
+            </div>
+            <h5 *ngIf="form.get('correoInstitucional').invalid" class="label-error">
+                Por favor ingrese un correo válido
+            </h5>
+        </div>
+        <div class="form-group row mx-2">
+            <label class="label">
+                URL de la secretaría |
+                <span class="text-color-red">
+                    {{ url.value | conteoCaracteres: formProperties.url.maxCaracteres }}
+                </span>
+            </label>
+            <div class="content-asterisk">
+                <input class="input-asterisk px-2" #url formControlName="url" name="url" type="text" 
+                    [maxlength]="formProperties.url.maxCaracteres" 
+                    [ngClass]="[ validarCampo('url') ? 'is-invalid' : '' ]" />
+                <span class="asterisk" [ngClass]="{'asteriskInvalid': nameInvalid}"></span>
+            </div>
+            <span *ngIf="validarCampo('url')" class="invalid-feedback">
+                {{ validar("url") }}
+            </span>
+        </div>
+
+        <div class="row mx-0">
+            <div class="col-12 form-group text-center pt-3">
+                <a href="javascript:void(0)" (click)="teambuild()">
+                    <div class="buttonSvg nuevo-integrante"></div>
+                    <div class="col-12 py-0 gestiona-integrantes">
+                        {{ getNombreBoton() }}
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="row mx-0">
+            <div class="col-12 form-group text-center pt-3">
+                <button class="submitbutton" [ngClass]="{disabled: form.invalid }" type="submit">
+                  Guardar
+                </button>
+              </div>
+        </div>
+    </form>
+</div>

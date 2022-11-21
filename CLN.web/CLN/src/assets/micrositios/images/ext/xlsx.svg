@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26.888" height="29.881" viewBox="0 0 26.888 29.881">
+  <g id="xls" transform="translate(0.25 0.79)">
+    <g id="Grupo_37" data-name="Grupo 37" transform="translate(-105.423 -338.589)">
+      <path id="Trazado_88" data-name="Trazado 88" d="M124.322,338.7l-14.08-.112a2.621,2.621,0,0,0-2.642,2.624l.022,23.113a2.622,2.622,0,0,0,2.612,2.619L126.9,367a2.62,2.62,0,0,0,2.63-2.612l.066-20.452" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.356"/>
+      <path id="Trazado_89" data-name="Trazado 89" d="M124.637,338.758l5,5h-5.01v-5" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.356"/>
+    </g>
+    <rect id="Rectángulo_10" data-name="Rectángulo 10" width="26.388" height="8.627" rx="2.159" transform="translate(0 15.658)" fill="#fff" stroke="#36c" stroke-miterlimit="10" stroke-width="0.5"/>
+    <text id="XLS-2" data-name="XLS" transform="translate(13.195 23.392)" fill="#36c" font-size="10.382" font-family="AntipastoPro, Antipasto Pro"><tspan x="-7.717" y="0">XLS</tspan></text>
+    <rect id="Rectángulo_11" data-name="Rectángulo 11" width="2.214" height="7.223" rx="1.107" transform="translate(11.229 6.543)" fill="#36c"/>
+    <rect id="Rectángulo_12" data-name="Rectángulo 12" width="2.214" height="4.931" rx="0.914" transform="translate(7.764 8.836)" fill="#36c"/>
+    <rect id="Rectángulo_13" data-name="Rectángulo 13" width="2.214" height="9.066" rx="1.107" transform="translate(15.132 4.7)" fill="#36c"/>
+  </g>
+</svg>

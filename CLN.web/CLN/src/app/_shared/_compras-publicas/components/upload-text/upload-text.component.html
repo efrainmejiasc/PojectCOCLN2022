@@ -1,0 +1,36 @@
+
+<div [id]="idEditor">
+    <div class="containerActions" id="selectLoop{{indexInput}}" #selectLoop{{indexInput}}>
+        <button class="edit" (click)="opcion.onClick(opcion.editor)"></button>
+    </div>
+    <div class="textEditor shadow p-4 d-flex flex-column justify-content-center align-items-center fade-in" 
+            id="windowtext{{indexInput}}" 
+            #windowtext{{indexInput}} 
+            *ngIf="opcion.mostrar" 
+            style="font-size: 16px">
+        Propiedades
+        <form class="col-sm-12 d-flex flex-column justify-content-center">
+            <div class="form-input mt-2">
+                <label class="label">
+                    <span class="label px-4 d-flex justify-content-start align-items-center" style="font-size: 16px">
+                        Cuerpo texto |
+                        <span class="ml-2 text-count">
+                            {{ maxLength - caracteres.length < 0 ? 0 : maxLength - caracteres.length }}
+                        </span>
+                    </span>
+                </label>
+                
+                <angular-editor 
+                    id="editor"
+                    [placeholder]="''" 
+                    [(ngModel)]="html"
+                    [config]="editorConfig"
+                    (ngModelChange)="changeEventText()"
+                    [ngModelOptions]="{standalone: true}">
+                </angular-editor>
+                
+                
+            </div>
+        </form>
+    </div>
+</div>

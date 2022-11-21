@@ -1,0 +1,11 @@
+<svg id="cargar_contenido" data-name="cargar contenido" xmlns="http://www.w3.org/2000/svg" width="101" height="49.811" viewBox="0 0 101 49.811">
+  <g id="Grupo_6" data-name="Grupo 6" transform="translate(-585.253 -376.614)">
+    <g id="Grupo_4" data-name="Grupo 4">
+      <path id="Trazado_3" data-name="Trazado 3" d="M635.616,407.51a15.448,15.448,0,1,1,15.448-15.448A15.465,15.465,0,0,1,635.616,407.51Zm0-29.92a14.472,14.472,0,1,0,14.473,14.472A14.488,14.488,0,0,0,635.616,377.59Z" fill="#36c"/>
+    </g>
+    <g id="Grupo_5" data-name="Grupo 5">
+      <path id="Trazado_4" data-name="Trazado 4" d="M643.714,390.348v3.4h-16.2v-3.4Zm-6.236-6.727V400.5h-3.69V383.621Z" fill="#36c"/>
+    </g>
+  </g>
+  <text id="Cargar_contenido-2" data-name="Cargar contenido" transform="translate(0 46.811)" fill="#36c" font-size="12" font-family="WorkSans-Regular, Work Sans"><tspan x="0" y="0">Cargar contenido</tspan></text>
+</svg>

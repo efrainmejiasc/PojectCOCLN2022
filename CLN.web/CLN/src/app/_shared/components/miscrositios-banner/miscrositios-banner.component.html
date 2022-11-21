@@ -1,0 +1,21 @@
+<div class="row relative background-image" *ngIf="micrositios !== null && micrositios.length > 0">
+    <div class="enlaces">
+        <div class="grid-content" *ngFor='let indice of slideMicrositiosInicialNumberToShow'>
+            <a *ngIf="micrositios[indice]" class="text-center link-micrositio"
+                [routerLink]="['./publicaciones', micrositios[indice].idMicrositio]" target="_blank">
+                {{indice + 1}}. {{ micrositios[indice].nombre }}
+            </a>
+        </div>
+        <div  *ngIf="micrositios.length > slideMicrositiosInicialNumberToShow.length" class="navigation">
+            <div class="navigation-micrositios-button" (click)="goback(slideMicrositiosInicialNumberToShow[0])"><span
+                    class="iconarrow">
+                    <mat-icon>arrow_back</mat-icon>
+                </span></div>
+            <div class="navigation-micrositios-button" (click)="goforward(slideMicrositiosInicialNumberToShow[5])">
+                <span class="iconarrow">
+                    <mat-icon>arrow_forward</mat-icon>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

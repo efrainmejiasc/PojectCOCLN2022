@@ -1,0 +1,58 @@
+$color-blanco: rgba(255, 255, 255, 1);
+$color-blue: #003595;
+$color-red: #f42f63;
+$color-red-oscuro: #d6184b;
+$color-gray-font: rgba(0, 0, 0, 0.7);
+$line-height-paragraph: 18px;
+$font-size-paragraph: 16px;
+$font-family-light: workSans_ligth;
+$font-family-medium: worksans_medium;
+$font-family-bold: workSans_bold;
+.cargando-Spinner {
+    width: 50px;
+    height: 50px;
+}
+
+.menu-item {
+    margin: 8px 0px;
+    background: $color-blue;
+    color: $color-blanco;
+    display: block;
+    width: calc(100% - 5em);
+    max-width: 600px;
+    text-align: center;
+    border-radius: 1em;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 4px;
+    -webkit-transition: background 0.5s ease, color 0.5s ease;
+    -moz-transition: background 0.5s ease, color 0.5s ease;
+    -ms-transition: background 0.5s ease, color 0.5s ease;
+    transition: background 0.5s ease, color 0.5s ease;
+}
+.menu-item:hover {
+    background: hsla(0,0%,0%,10%);;
+    color: $color-blue;
+}
+
+.nivelMenu {
+    display: inline-block;
+    cursor: pointer;
+    &::before {
+        content: ">";
+        margin: 0px 2px;
+        font-weight: bold;
+        color: gray;
+    }
+    &:hover {
+        color: red;
+        text-decoration: underline;
+    }
+}
+.navbar-usuario {
+    background: #e5e5e5 !important;
+}
+
+div#navbarResponsive ul a.nav-item a.nav-link {
+    color: #6699ff !important;
+}

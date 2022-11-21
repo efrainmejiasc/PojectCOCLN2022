@@ -1,0 +1,17 @@
+<div class="modal-header">    
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body text-center">
+    <p [innerHtml]="text"></p>
+    <div class="row" *ngIf="!sioNoBoton">
+        <div class="col-12 form-group text-center">
+            <button type="button" class="btn_third" (click)="activeModal.close('Close click')">Aceptar</button>
+        </div>
+    </div>
+    <div *ngIf="sioNoBoton">
+        <span type="button" class="btn_third" style="margin: 2em;" (click)="no()">No</span>
+        <span type="button" class="btn_third" style="margin: 2em;" (click)="si()">Si</span>
+    </div>
+</div>

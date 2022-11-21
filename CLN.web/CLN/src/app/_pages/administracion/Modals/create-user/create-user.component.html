@@ -1,0 +1,244 @@
+<div class="modal-header d-flex justify-content-center align-items-center">
+    <h2 class="modal-title font_title p-0 m-0">{{adminText}} usuario</h2>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-fall" [fullScreen]="true">
+    <p style="color: white">Cargando...</p>
+</ngx-spinner>
+<div class="modal-body pt-4 d-flex flex-column justify-content-center align-items-center border-top-0">
+    <form [formGroup]="form" (ngSubmit)="save($event)" [autocomplete]="nope">
+        <div class="form-input d-flex justify-content-center align-items-center">
+            <div class="contentForm py-4 d-flex flex-wrap">
+                <label class="label col-sm-6">
+                    <!-- [ngClass]="{ 'label-incorrecto': form['titulo'] }" -->
+                    <span class="label px-4">
+                        Primer nombre |
+                        <span class="text-color-red">
+                            {{ form.get("firstName").value | conteoCaracteres: formProperties.validarone.maxCaracteres }}
+                        </span>
+                    </span>
+
+                    <div class="content-asterisk pr-4">
+                        <input type="text" autocomplete="off" class="input-asterisk px-2" id="firstname" #firstname
+                            [ngClass]="{'inputInvalid': form.get('firstName').invalid == true && activeValidator == true}"
+                            maxlength="50" formControlName="firstName" (keypress)="patternValidation($event)"
+                            (paste)="patternValidationPaste($event)" />
+                        <span class="asterisk"
+                            [ngClass]="{'asteriskInvalid': form.get('firstName').invalid == true && activeValidator == true}">*</span>
+                    </div>
+                </label>
+                <label class="label col-sm-6">
+                    <!-- [ngClass]="{ 'label-incorrecto': form['titulo'] }" -->
+                    <span class="label px-4">
+                        Segundo nombre |
+                        <span class="text-color-red">
+                            {{
+                        form.get("secondName").value
+                          | conteoCaracteres: formProperties.validarone.maxCaracteres
+                      }}
+                        </span>
+                    </span>
+
+                    <div class="content pr-4">
+                        <input type="text" autocomplete="off" class="input rounded px-2" maxlength="50"
+                            formControlName="secondName" (keypress)="patternValidation($event)"
+                            (paste)="patternValidationPaste($event)" />
+                    </div>
+                </label>
+                <label class="label col-sm-6 mt-4">
+                    <!-- [ngClass]="{ 'label-incorrecto': form['titulo'] }" -->
+                    <span class="label px-4">
+                        Primer apellido |
+                        <span class="text-color-red">
+                            {{
+                        form.get("firstLastName").value
+                          | conteoCaracteres: formProperties.validarone.maxCaracteres
+                      }}
+                        </span>
+                    </span>
+
+                    <div class="content-asterisk pr-4">
+                        <input type="text" autocomplete="off" class="input-asterisk px-2" id="firstLastname"
+                            #firstLastname
+                            [ngClass]="{'inputInvalid': form.get('firstLastName').invalid == true && activeValidator == true}"
+                            maxlength="50" formControlName="firstLastName" (keypress)="patternValidation($event)"
+                            (paste)="patternValidationPaste($event)" />
+                        <span class="asterisk"
+                            [ngClass]="{'asteriskInvalid':  form.get('firstLastName').invalid == true && activeValidator == true}">*</span>
+                    </div>
+                </label>
+                <label class="label col-sm-6 mt-4">
+                    <!-- [ngClass]="{ 'label-incorrecto': form['titulo'] }" -->
+                    <span class="label px-4">
+                        Segundo apellido |
+                        <span class="text-color-red">
+                            {{
+                        form.get("secondLastName").value
+                          | conteoCaracteres: formProperties.validarone.maxCaracteres
+                      }}
+                        </span>
+                    </span>
+
+                    <div class="content pr-4">
+                        <input type="text" autocomplete="off" class="input rounded px-2" maxlength="50"
+                            formControlName="secondLastName" (keypress)="patternValidation($event)"
+                            (paste)="patternValidationPaste($event)" />
+                    </div>
+                </label>
+                <label class="label col-sm-6 mt-4">
+                    <span class="label px-4"> Tipo de documento | </span>
+                    <div class="input-container pr-4">
+                        <select class="col-sm-8 px-2"
+                            [ngClass]="{'selectInvalid': form.get('documentType').invalid == true && activeValidator == true , 'select': form.get('documentType').invalid == false || activeValidator == false}"
+                            formControlName="documentType" id="group" #group>
+                            <option value="" disabled>Seleccione una opción</option>
+                            <option [value]="1">Cédula de ciudadanía</option>
+                            <option [value]="2">Cédula de extranjería</option>
+                        </select>
+                        <span class="asterisk-red">*</span>
+                        <span class="arrow-down-red"></span>
+                    </div>
+                </label>
+                <label class="label col-sm-6 mt-4">
+                    <!-- [ngClass]="{ 'label-incorrecto': form['titulo'] }" -->
+                    <span class="label px-4">
+                        Número de identificación |
+                        <span class="text-color-red">
+                            {{
+                        form.get("identify").value
+                          | conteoCaracteres: formProperties.validartwo.maxCaracteres
+                      }}
+                        </span>
+                    </span>
+                    <div class="content-asterisk pr-4">
+                        <input type="text" autocomplete="off" class="input-asterisk px-2" id="identifyNumber"
+                            #identifyNumber
+                            [ngClass]="{'inputInvalid': form.get('identify').invalid == true && activeValidator == true}"
+                            maxlength="10" formControlName="identify" (keypress)="numberValidate($event)"
+                            (paste)="numberValidate($event)" />
+                        <span class="asterisk"
+                            [ngClass]="{'asteriskInvalid': form.get('identify').invalid == true && activeValidator == true}">*</span>
+                    </div>
+                </label>
+                <label class="label col-sm-6 mt-4">
+                    <span class="label px-4"> Genero | </span>
+                    <div class="input-container pr-4">
+                        <select class="select col-sm-8 px-2"
+                            [ngClass]="{'selectInvalid': form.get('sex').invalid == true && activeValidator == true}"
+                            formControlName="sex" id="group" #group>
+                            <option value="" disabled>Seleccione una opción</option>
+                            <option [value]="1">Masculino</option>
+                            <option [value]="2">Femenino</option>
+                            <option [value]="3">Otro</option>
+                        </select>
+                        <span class="asterisk-red">*</span>
+                        <span class="arrow-down-red"></span>
+                    </div>
+                </label>
+                <label class="label col-sm-6 mt-4">
+                    <!-- [ngClass]="{ 'label-incorrecto': form['titulo'] }" -->
+                    <span class="label px-4">
+                        Teléfono |
+                        <span class="text-color-red">
+                            {{
+                        form.get("phone").value
+                          | conteoCaracteres: formProperties.validartwo.maxCaracteres
+                      }}
+                        </span>
+                    </span>
+                    <div class="content-asterisk pr-4">
+                        <input type="text" autocomplete="off" class="input-asterisk px-2" id="phoneNumber" #phoneNumber
+                            [ngClass]="{'inputInvalid': form.get('phone').invalid == true && activeValidator == true}"
+                            maxlength="10" formControlName="phone" (keypress)="numberValidate($event)"
+                            (paste)="numberValidate($event)" />
+                        <span class="asterisk"
+                            [ngClass]="{'asteriskInvalid': form.get('phone').invalid == true && activeValidator == true}">*</span>
+                    </div>
+                </label>
+                <label class="label col-sm-6 mt-4">
+                    <span class="label px-4 d-flex"> Rol |
+                        <a class="link d-flex justify-content-start align-items-center ml-2" (click)="openDialog()">
+                            <img class="iconView" src="../../../../../assets/iconos/GestionarUsuarios/ver rol.svg" />
+                            <span class="text-color-red font-view ml-2">Ver permisos del rol</span>
+                        </a>
+                    </span>
+                    <div class="input-container pr-4">
+                        <select class="select col-sm-8 px-2"
+                            [ngClass]="{'selectInvalid': form.get('rol').invalid == true && activeValidator == true}"
+                            formControlName="rol" id="group" #group (change)="validateEntityRol()">
+                            <option value="" disabled>Seleccione una opción</option>
+                            <option *ngFor="let rolData of masterFilter" [value]="rolData.idRol">{{rolData.nombre}}
+                            </option>
+                        </select>
+                        <span class="asterisk-red">*</span>
+                        <span class="arrow-down-red"></span>
+                    </div>
+                </label>
+                <label class="label col-sm-6 mt-4">
+                    <!-- [ngClass]="{ 'label-incorrecto': form['titulo'] }" -->
+                    <span class="label px-4">
+                        Correo electrónico |
+                        <span class="text-color-red">
+                            {{
+                            form.get("email").value
+                                  | conteoCaracteres: formProperties.validarone.maxCaracteres
+                            }}
+                        </span>
+                    </span>
+                    <div class="content-asterisk pr-4">
+                        <input type="text" autocomplete="off" class="input-asterisk px-2" id="email" #email
+                            [ngClass]="{'inputInvalid': form.get('email').invalid == true && activeValidator == true}"
+                            maxlength="50" formControlName="email" />
+                        <span class="asterisk"
+                            [ngClass]="{'asteriskInvalid': form.get('email').invalid == true && activeValidator == true}">*</span>
+                    </div>
+                    <h5 *ngIf="form.get('email').invalid == true && activeValidator == true" class="label-error">
+                        Por favor ingrese un correo válido
+                    </h5>
+                </label>
+                <label class="label col-sm-6 mt-4">
+                    <!-- [ngClass]="{ 'label-incorrecto': form['titulo'] }" -->
+                    <span class="label px-4">
+                        Cargo |
+                        <span class="text-color-red">
+                            {{
+                        form.get("cargo").value
+                          | conteoCaracteres: formProperties.validarone.maxCaracteres
+                      }}
+                        </span>
+                    </span>
+                    <div class="content-asterisk pr-4">
+                        <input type="text" autocomplete="off" class="input-asterisk px-2" id="cargo" #cargo
+                            [ngClass]="{'inputInvalid': form.get('cargo').invalid == true && activeValidator == true}"
+                            maxlength="50" formControlName="cargo" (keypress)="patternValidation($event)"
+                            (paste)="patternValidationPaste($event)" />
+                        <span class="asterisk"
+                            [ngClass]="{'asteriskInvalid': form.get('cargo').invalid == true && activeValidator == true}">*</span>
+                    </div>
+                </label>
+                <label class="label col-sm-6 mt-4" *ngIf="canEditSecretarias">
+                    <span class="label px-4"> Entidad | </span>
+                    <div class="input-container pr-4">
+                        <select class="select col-sm-8 px-2"
+                            [ngClass]="{'selectInvalid': form.get('sex').invalid == true && activeValidator == true}"
+                            formControlName="secretaria" id="group" #group (change)="validateEntityRol()">
+                            <option value="" disabled>Seleccione una opción</option>
+                            <option *ngFor="let secretaria of secretariasList" [value]="secretaria.idSecretaria">
+                                {{secretaria.entidadTerritorial}}</option>
+                        </select>
+                        <span class="asterisk-red">*</span>
+                        <span class="arrow-down-red"></span>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="form-group text-center submit-rol-button" *ngIf="!adminView">
+            <!-- [disabled]="form.invalid" [ngClass]="{ disabled: form.invalid }" -->
+            <button class="btn_third" [ngClass]="{ disabled: disabledButton }" type=" submit">
+                Guardar
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,56 @@
+.popup{
+  border-radius: 4px;
+  left: 50%;
+  padding: 1px 0px 1px 0px;
+  width: 50em;
+  
+}
+.bodyPopup{
+  display: flex;
+  align-items: flex-end;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.treeDesing{
+  width: 100%;
+}
+
+.tableDesing{
+  width: 100%;
+
+}
+
+.positionBtn {
+  text-align: center;
+  margin: 1em 1em 1em 1em;
+  .desingbtn{
+    border: none;
+    text-align: center;
+    border-radius: 20px;
+    color: #fff;
+    background-color: #003595;
+  }
+}
+
+table{
+  width: 95%;
+  border: 1px #757575 solid;
+  ng-container{
+    border: 1px #757575 solid;
+  }
+  th{
+    background-color: #959595;
+    color: #000;
+    text-align: center;
+  }
+  td{
+    text-align: center;
+  }
+}
+.titlePopup{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+

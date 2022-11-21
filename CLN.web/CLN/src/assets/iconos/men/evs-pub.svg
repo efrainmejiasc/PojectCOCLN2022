@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26.888" height="29.794" viewBox="0 0 26.888 29.794">
+  <g id="pub" transform="translate(0.25 0.703)">
+    <path id="Trazado_112" data-name="Trazado 112" d="M66.493,288.7l5,5h-5.01v-5" transform="translate(-47.299 -288.448)" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.356"/>
+    <path id="Trazado_113" data-name="Trazado 113" d="M61.746,294.408l-2.278-1.367v1.3" transform="translate(-47.299 -288.448)" fill="#f2f2f2" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5"/>
+    <g id="Grupo_57" data-name="Grupo 57" transform="translate(-47.299 -288.448)">
+      <path id="Trazado_114" data-name="Trazado 114" d="M66.217,288.56l-14.081-.112a2.62,2.62,0,0,0-2.642,2.623l.022,23.113a2.621,2.621,0,0,0,2.612,2.619l16.667.058a2.621,2.621,0,0,0,2.63-2.613l.067-20.451" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.356"/>
+      <rect id="Rectángulo_33" data-name="Rectángulo 33" width="26.388" height="8.627" rx="2.159" transform="translate(47.299 304.193)" fill="#e6effd" stroke="#36c" stroke-miterlimit="10" stroke-width="0.5"/>
+      <text id="PUB-2" data-name="PUB" transform="translate(60.493 311.926)" fill="#36c" font-size="10.382" font-family="AntipastoPro, Antipasto Pro"><tspan x="-7.898" y="0">PUB</tspan></text>
+      <path id="Trazado_115" data-name="Trazado 115" d="M59.624,293l3.447-.489a.217.217,0,0,1,.248.22l-.022,8.711c0,.058-.2.125-.25.155l-1.207.225" fill="#fff" stroke="#36c" stroke-linecap="round" stroke-miterlimit="10" stroke-width="0.5"/>
+      <rect id="Rectángulo_34" data-name="Rectángulo 34" width="4.133" height="8.331" rx="0.304" transform="translate(57.884 294.461)" fill="#fff" stroke="#36c" stroke-miterlimit="10" stroke-width="0.5"/>
+      <line id="Línea_20" data-name="Línea 20" x2="2.318" transform="translate(58.76 298.911)" fill="#f2f2f2" stroke="#36c" stroke-linecap="round" stroke-miterlimit="10" stroke-width="0.5"/>
+      <line id="Línea_21" data-name="Línea 21" x2="2.318" transform="translate(58.76 299.663)" fill="#f2f2f2" stroke="#36c" stroke-linecap="round" stroke-miterlimit="10" stroke-width="0.5"/>
+      <line id="Línea_22" data-name="Línea 22" x2="2.318" transform="translate(58.76 300.465)" fill="#f2f2f2" stroke="#36c" stroke-linecap="round" stroke-miterlimit="10" stroke-width="0.5"/>
+      <line id="Línea_23" data-name="Línea 23" x2="2.318" transform="translate(58.76 301.501)" fill="#f2f2f2" stroke="#36c" stroke-linecap="round" stroke-miterlimit="10" stroke-width="0.5"/>
+      <rect id="Rectángulo_35" data-name="Rectángulo 35" width="1.199" height="1.262" rx="0.238" transform="translate(58.673 297.033)" fill="#36c"/>
+      <line id="Línea_24" data-name="Línea 24" x2="0.639" transform="translate(62.017 295.557)" fill="#f2f2f2" stroke="#36c" stroke-linecap="round" stroke-miterlimit="10" stroke-width="0.5"/>
+      <line id="Línea_25" data-name="Línea 25" x2="0.639" transform="translate(62.017 296.309)" fill="#f2f2f2" stroke="#36c" stroke-linecap="round" stroke-miterlimit="10" stroke-width="0.5"/>
+      <line id="Línea_26" data-name="Línea 26" x2="0.639" transform="translate(62.017 297)" fill="#f2f2f2" stroke="#36c" stroke-linecap="round" stroke-miterlimit="10" stroke-width="0.5"/>
+      <line id="Línea_27" data-name="Línea 27" x2="0.639" transform="translate(62.017 297.764)" fill="#f2f2f2" stroke="#36c" stroke-linecap="round" stroke-miterlimit="10" stroke-width="0.5"/>
+    </g>
+  </g>
+</svg>

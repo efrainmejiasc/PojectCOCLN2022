@@ -1,0 +1,52 @@
+@import '../../../../_shared/styles/variables.scss';
+input:focus {
+    outline: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+select:focus {
+    outline: none;
+}
+
+.table-body-lastchild button:last-child {
+    border-bottom: 1px solid transparent;
+}
+
+.table-body-lastchild button {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0px 10px;
+    background-color: transparent !important;
+    border: none;
+    border-bottom: 1px solid #36c;
+    font-weight: 700;
+    color: $color-blue !important;
+}
+
+table.dataTable tbody tr:first-child .table-body-lastchild span:first-child {
+    border-top: none;
+}
+
+.table-body-lastchild {
+    display: grid;
+    height: 100%;
+    width: 100% !important;
+    border: none;
+    border-top: 1px solid #36c;
+}
+.table-body-lastchild:first-child {
+    border-top: 1px solid transparent;
+}
+.name {
+    width: 15%;
+    text-align: center;
+    border-right: none !important;
+}
+.description {
+    width: 70%;
+    text-align: center;
+    border-right: none !important;
+}

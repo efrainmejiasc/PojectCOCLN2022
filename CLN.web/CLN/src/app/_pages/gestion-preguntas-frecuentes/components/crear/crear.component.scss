@@ -1,0 +1,76 @@
+.input{
+  display: block;
+  position: relative;
+  z-index: 10;
+  background-color: transparent;
+  width: 100%;
+  color: #36c;
+  border: 1px solid #36c !important;
+  border-radius: 20px;
+&.disabled{
+  border: 1px solid #999 !important;
+}
+}
+.input-container{
+  position: relative;
+  }
+.arrow-down{
+  position: absolute;
+  top: 0.35em;
+  right: 1.5em;
+  width: 1em;
+  height: 1em;
+  background: #f42f63;
+  -webkit-clip-path: polygon(50% 100%, 0 0, 100% 0);
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  z-index: 8;
+}
+
+.btn_third { 
+  margin: 0.5em;
+  font-weight: unset;
+}
+.font_title { 
+  margin-left: auto;
+}
+/*.close
+{
+    right: 1em;
+    width: 1em;
+    height: 1em;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: #36c;
+    color: white;
+    float: right;
+    position: absolute;
+    padding: 0;
+    top: 1em;
+}*/
+
+.tablautilidad
+{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  border: #36c 1px solid;
+}
+
+.tablautilidad td
+{
+  border:none;
+  padding: 0.5em;
+}
+.tablautilidad td img
+{
+  margin: 0.5em;
+}
+
+.tablautilidad tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+.tablautilidad tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}

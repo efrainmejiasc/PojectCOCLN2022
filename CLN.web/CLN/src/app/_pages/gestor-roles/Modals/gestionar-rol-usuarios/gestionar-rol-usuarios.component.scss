@@ -1,0 +1,84 @@
+$color-blue: #36c;
+$color-red: #f42f63;
+.modal-body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.modal-body .input_container {
+    width: 200px !important;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.modal-body .input_container .actionCheck {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.modal-body .input_container .actionCheck .bodyPermitsBold {
+    padding: 3px 0px 0px 0px;
+    height: 20px;
+    color: $color_blue;
+    font-family: workSans_ligth;
+    font-size: 15px !important;
+    font-weight: 500;
+    margin: 0px 0px 0px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: -1px;
+}
+.modal-body .input_container .actionCheck input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.modal-body .input_container .actionCheck .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+    border-radius: 3px;
+    border: solid 1px $color_blue;
+}
+.modal-body .input_container .actionCheck:hover input ~ .checkmark {
+}
+.modal-body .input_container .actionCheck input:checked ~ .checkmark {
+    background-color: #fff;
+    border-radius: 3px;
+    border: solid 1px $color_blue;
+}
+.modal-body .input_container .actionCheck .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.modal-body .input_container .actionCheck input:checked ~ .checkmark:after {
+    display: block;
+}
+.modal-body .input_container .actionCheck .checkmark:after {
+    left: 9px;
+    bottom: 5px;
+    width: 7px;
+    height: 20px;
+    border: solid $color-blue;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

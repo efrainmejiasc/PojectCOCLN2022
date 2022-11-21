@@ -1,0 +1,48 @@
+<section class="cifras-section" [ngStyle]="selectedOption.url ? { 'margin-bottom': '80%' } : { 'margin-bottom': '40%' }">
+  <!-- titulo de la pagina -->
+  <app-top-section 
+      [titulo]="titulo" 
+      [icono]="icono" 
+      [alertaIcono]="alertaIcono" 
+      [buttonText]="buttonText"
+      [infoAyuda]="infoAyuda"
+  >
+  </app-top-section>
+  <!-- Fin titulo de la pagina -->
+  <div class="info-ayuda-contenedor" style="margin-bottom: 10px;">
+    <p class="info-ayuda">
+      La información disponible corresponde a los Procesos de Contratación Pública abiertos en los últimos 4 meses de acuerdo con la información de Datos Abiertos del Sistema Electrónico para la Contratación Pública -SECOP-. Es por esta razón que los filtros y los resultados son actualizados con base en los datos allí contenidos.
+    </p>
+  </div>
+  <div>
+    <mat-grid-list class="gridWidth" cols="2" rowHeight="5:1">
+      <mat-grid-tile 
+        *ngFor="let option of menu" 
+        (click)="selectOption( option )" 
+        style="cursor: pointer;  font-size: calc(.5em + .5vw)" 
+        [ngStyle]="selectedOption.name === option.name ? {'background-color': '#4169af', 'color': '#fff'} : {}">
+          <b>{{ option.name }}</b>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div style="text-align:center;" *ngIf="selectedOption.url">
+    <iframe 
+      title="Dashboard 1.1 FFIE" 
+      width="1240" 
+      height="600" 
+      [src]="selectedOption.url | safe" 
+      frameborder="0" 
+      allowFullScreen="true"
+    ></iframe>
+  </div>
+  <div class="positionBtn" *ngIf="selectedOption.url" [ngStyle]="selectedOption.url ? { 'margin-top': '5%' } : { }">
+    <button mat-button (click)="openDialog()" class="desingbtn"> 
+      <span *ngIf="selectedOption.id === 1 || selectedOption.id === 3">
+        VER CONSOLIDADO POR PRODUCTOS Y SERVICIOS DE NACIONES UNIDAS UNSPSC
+      </span>
+      <span *ngIf="selectedOption.id === 2 || selectedOption.id === 4">
+        VER CONSOLIDADO DE LOS SECTORES PRODUCTIVOS 
+      </span>
+    </button>
+  </div>
+</section>

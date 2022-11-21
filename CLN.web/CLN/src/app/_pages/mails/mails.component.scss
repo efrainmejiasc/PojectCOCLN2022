@@ -1,0 +1,82 @@
+body {
+    background-color: #f7f7f7
+}
+
+.title {
+    background-color: #013593;
+    color: #fff;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-bottom: 30px;
+    height: 60px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.img-container {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    
+}
+
+.responsive {
+    width: 100%;
+    height: auto;
+}
+
+.banner-img {
+    max-height: 400px;
+    padding-top: 30px;
+}
+
+.container {
+    margin-top: 15px;
+    padding-top: 20px;
+    padding-right: 15px;
+    padding-left: 15px;
+    // margin-right: auto;
+    // margin-left: auto;
+}
+
+// Movil
+// @media screen and (min-width: 40em) and (max-width: 63.9em){
+//     .card--grid{
+//         display: grid;
+//         grid-template-columns: repeat(2, 1fr);
+//         grid-gap: 15px;
+//         padding-top: 10px;
+//     }
+// }
+
+// web
+// @media screen and (min-width: 64em){
+//     .card--grid{
+//         display: grid;
+//         grid-template-columns: repeat(2, 1fr);
+//         grid-gap: 15px;
+//         padding-top: 10px;
+//     }
+// }
+
+// @media screen and (max-width: 64em) {
+//     h1 {
+//         font-size: 2em;
+//         text-align: center;
+//       }
+// }
+    
+// @media screen and (max-width: 50em) {
+//     h1 {
+//         font-size: 1.5em;
+//         text-align: center;
+//       }
+//     }
+    
+//     @media screen and (max-width: 30em){
+//     h1 {
+//         font-size: 1em;
+//         text-align: center;
+//     }
+//     }

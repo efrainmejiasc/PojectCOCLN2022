@@ -1,0 +1,12 @@
+<div class="container-max contenedor" (click)="identifyClickOutSide($event)">
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-fall" [fullScreen]="true">
+        <p style="color: white">Cargando...</p>
+    </ngx-spinner>
+    <div class="container"  [hidden]="loadComplet">
+        <app-contenidos-titulo-capacidades (show)="showCapacidad($event)" [titulo]="titulo" [filesData]="filesData" [permitsUser]="permitsUser" [capacidadesClose]="capacidadesClose">
+        </app-contenidos-titulo-capacidades>
+        <app-content-capacidades [showContent]="showContent" [capacidadesList]="capacidadesList" (evento)="reloadtable($event)" (closeCapacidades)="closeCapacidades($event)"></app-content-capacidades>        
+        <app-content-notifications></app-content-notifications>
+        <app-autodiagnostico-evaluacion [configuration]="configEvaluacion" [closeActionByOutsideClickPattern]="closeActionByOutsideClick"></app-autodiagnostico-evaluacion>
+    </div>    
+</div>

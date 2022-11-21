@@ -1,0 +1,93 @@
+<div class="modal-header d-flex justify-content-center align-items-center" (click)="identifyClickOutSide($event)">
+    <h2 class="modal-title font_title p-0 m-0">{{ sendedData }}</h2>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-fall" [fullScreen]="true">
+    <p style="color: white">Cargando...</p>
+</ngx-spinner>
+<div class="modal-body" (click)="identifyClickOutSide($event)">
+    <form novalidate [formGroup]="form" (ngSubmit)="save($event)">
+        <div class="container d-flex flex-column justify-content-center align-items-center">
+            <label class="label col-sm-6">
+                <span class="label px-4"> Seleccione el tipo de capacidad</span>
+                <div class="input-container">
+                    <select class="select px-2"
+                        [ngClass]="{'selectInvalid': form.get('capacidad').invalid && activeValidator}"
+                        formControlName="capacidad" id="capacidad" #capacidad (change)="validationCapacidad()">
+                        <option value="0" disabled>Seleccione una opción</option>
+                        <option *ngFor="let capacidades of listCapacidades" [label]="capacidades.tipoCapacidad"
+                            [ngValue]="capacidades.id">
+                        </option>
+                    </select>
+                    <span class="arrow-down"></span>
+                    <span class="asterisk-down">*</span>
+                </div>
+            </label>
+            <label class="label col-sm-6" style="z-index:250;">
+                <span class="label px-4">
+                    Seleccione la capacidad {{valueTextCapacidad}}
+                </span>
+                <div class="input-container">
+                    <app-select-loop-dynamic (buildAction)="actionCapacidad($event)" #selectLoop
+                        [listCapacidadesPadre]="listCapacidadesPadre" [idPadre]="idPadre"
+                        [closeActionByOutsideClick]=closeActionByOutsideClick></app-select-loop-dynamic>
+                    <span class="asterisk-down">*</span>
+                </div>
+            </label>
+
+            <div class="form-input" style="z-index:10;">
+                <label class="label">
+                    <!-- [ngClass]="{ 'label-incorrecto': form['titulo'] }" -->
+                    <span class="label px-4">
+                        Capacidad |
+                        <span class="text-color-red">
+                            {{
+                            form.get("capacidadescripcion").value
+                            | conteoCaracteres: formProperties.capacidad.maxCaracteres
+                            }}
+                        </span>
+                    </span>
+                    <div class="content-asterisk">
+                        <textarea class="textarea-asterisk px-2"
+                            [ngClass]="{'inputInvalid': form.get('capacidadescripcion').invalid == true && activeValidator == true}"
+                            formControlName="capacidadescripcion" id="report" #report maxlength="200"></textarea>
+                        <span class="asterisk-textarea"
+                            [ngClass]="{'asterisk-textarea-invalid': form.get('capacidadescripcion').invalid == true && activeValidator == true}">*</span>
+                    </div>
+                </label>
+            </div>
+
+            <div class="form-input" style="z-index:20;">
+                <label class="label">
+                    <!-- [ngClass]="{ 'label-incorrecto': form['titulo'] }" -->
+                    <span class="label px-4">
+                        Afirmación |
+                        <span class="text-color-red">
+                            {{
+                            form.get("afirmacion").value
+                            | conteoCaracteres: formProperties.afirmacion.maxCaracteres
+                            }}
+                        </span>
+                    </span>
+                    <div class="content-asterisk">
+                        <textarea class="textarea-asterisk px-2"
+                            [ngClass]="{'inputInvalid': form.get('afirmacion').invalid == true && activeValidator == true}"
+                            formControlName="afirmacion" id="report" #report maxlength="300"
+                            (paste)="patternValidationBasicPaste($event)"></textarea>
+                        <span class="asterisk-textarea"
+                            [ngClass]="{'asterisk-textarea-invalid': form.get('afirmacion').invalid == true && activeValidator == true}">*</span>
+                    </div>
+                </label>
+            </div>
+
+            <div class="form-group text-center submit-rol-button" *ngIf="!adminView">
+                <!-- [disabled]="form.invalid" [ngClass]="{ disabled: form.invalid }" -->
+                <button class="btn_third" [ngClass]="{ disabled: !form.valid }" type="submit">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

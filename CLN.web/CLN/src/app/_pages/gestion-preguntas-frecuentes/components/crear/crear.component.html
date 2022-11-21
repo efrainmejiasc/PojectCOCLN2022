@@ -1,0 +1,80 @@
+<div class="modal-header d-flex justify-content-center align-items-center">
+    <h2 class="modal-title font_title p-0 m-0">{{ titulo }}</h2>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container" id="preguntasFrequentes">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <p class="font_worksans_ligth" style="margin: 0;">
+                        <b> Pregunta | <span style="color: #ff3466;">
+                                <span *ngIf="pregunta==null">300</span>
+                                <span *ngIf="pregunta != null "> {{300-(pregunta.length)}}</span>
+
+                            </span> </b>
+                    </p>
+                    <textarea name="" class="rounded" [(ngModel)]="pregunta" id="" maxlength="300" cols="100" style=" width: 100%"
+                        rows="5"></textarea>
+                </div>
+                <div class="form-group">
+                    <p class="font_worksans_ligth" style="margin: 0;">
+                        <b> Respuesta | <span style="color: #ff3466;">
+                                <span *ngIf="respuesta==null">500</span>
+                                <span *ngIf="respuesta != null "> {{500-(respuesta.length)}}</span>
+
+                            </span> </b>
+                    </p>
+                    <textarea name="" class="rounded" [(ngModel)]="respuesta" id="" maxlength="500" cols="100" style=" width: 100%"
+                        rows="5"></textarea>
+                </div>
+                <div class="form-group">
+                    <p class="font_worksans_ligth" style="margin: 0;">
+                        <b> Publicar en los micrositios</b>
+                    </p>
+                    <ng-multiselect-dropdown [ngModelOptions]="{standalone: true}" [placeholder]="'Selección multiple'"
+                        [data]="micrositios" [(ngModel)]="micrositio" [settings]="ddTemasSettings">
+                    </ng-multiselect-dropdown>
+                </div>
+
+
+                <div class="form-group">
+                    <p class="font_worksans_ligth" style="margin: 0;">
+                        <b> Seleccione el tema</b>
+                    </p>
+                    <div class="input-container">
+                        <select class="input rounded" name="tema" id="tema" [(ngModel)]="tema">
+                            <option value="0">Seleccione una opción</option>
+                            <option *ngFor="let tema of temas" [label]="tema.descripcion" [value]="tema.idTema">
+                        </select>
+                        <span class="arrow-down"></span>
+                    </div>
+                </div>
+
+
+                <br><br>
+                <div class="form-group text-center">
+                    <span class="btn_third " (click)="savePreguntasFrecuentes()">
+                        {{boton}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #modaldos id="modaldos" let-c="close" let-d="dismiss">
+    <div class="modal-body">
+        <div class="form-group text-center">
+            <p>
+                La pregunta frecuente ha sido {{accion}} correctamente y<br>
+                habilitada en/los micrositios seleccionado/s
+            </p>
+        </div>
+        <div class="col text-center">
+            <span style="cursor:pointer" class="btn_third" (click)="closeModal()">Cerrar</span>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,74 @@
+<div class="container content_sectionFour col-sm-12 p-0 d-flex justify-content-center align-items-center"
+    [style.background]="textDataMaster.background">
+    <div [ngClass]="{'col-sm-12': builder , 'col-sm-10': !builder}"
+        class="p-0 d-flex justify-content-center align-items-center">
+        <div class="col-sm-6 d-flex justify-content-center align-items-center p-0"
+            [ngStyle]="{'z-index':indexAction[0]}">
+            <span [ngClass]="{'container-dashFour':builder}"
+                class="col-sm-12 p-0 d-flex justify-content-center align-items-center position-relative contentImageFather">
+                <div class="loadingMedia p-2 d-flex justify-content-center align-items-center" *ngIf="mediaActivated">
+                    <h3 class="text-light text-align">Estamos cargando tu imagen</h3>
+                </div>
+                <app-action-attribute [closeActionByOutsideClick]="closeActionByOutsideClick"
+                    [configAction]="configMediaEditor" [index]="indexTemplate + '1001'" (fileReturn)="setData($event,5)"
+                    [effectType]="textDataMaster.mediaEffect" (effect)="setData($event,8)"
+                    (imageSizeReturn)="setData($event,14)" (isMediaEditor)="updateIndex($event,0)"
+                    (isTextEditor)="updateIndex($event,0)" *ngIf="builder"></app-action-attribute>
+                <div class="d-flex justify-content-center align-items-center overflow-hidden contentImageFour"
+                    [ngClass]="{'fade-right':textDataMaster.mediaEffect == 'fdr' , 'fade-left':textDataMaster.mediaEffect == 'fdl' , 'fade-top':textDataMaster.mediaEffect == 'fdt' , 'fade-bottom':textDataMaster.mediaEffect == 'fdb' , 'fade-in':textDataMaster.mediaEffect == 'fdi'}">
+                    <img [ngClass]="{'bigImage': textDataMaster.mediaImageSize == 'big', 'mediumImage': textDataMaster.mediaImageSize == 'medium', 'smallImage': textDataMaster.mediaImageSize == 'small'}"
+                        [src]="textDataMaster.mediaUrl" *ngIf="textDataMaster.mediaUrl" class="imageFour">
+                </div>
+            </span>
+        </div>
+        <div class="col-sm-6 p-0 d-flex justify-content-center align-items-center" style="flex: 1; margin-left:70px;">
+            <section class="col-sm-12 p-0 d-flex flex-column justify-content-center align-items-center">
+                <span [ngClass]="{'container-dashFour':builder}" [ngStyle]="{'z-index':indexAction[1]}"
+                    class="col-sm-12 p-0 d-flex justify-content-center align-items-center position-relative container_title">
+                    <app-action-attribute [closeActionByOutsideClick]="closeActionByOutsideClick"
+                        [configAction]="configTitleEditor" [index]="indexTemplate + '1002'" (text)="setData($event,1)"
+                        [textData]="textDataMaster" (isTextEditor)="updateIndex($event,1)"
+                        [effectType]="textDataMaster.titleEffect" (effect)="setData($event,9)" *ngIf="builder">
+                    </app-action-attribute>
+                    <h3 class="col-sm-12 container_title p-0" [innerHTML]="textDataMaster.title | safeHtml"
+                        [ngClass]="{'fade-right':textDataMaster.titleEffect == 'fdr' , 'fade-left':textDataMaster.titleEffect == 'fdl' , 'fade-top':textDataMaster.titleEffect == 'fdt' , 'fade-bottom':textDataMaster.titleEffect == 'fdb' , 'fade-in':textDataMaster.titleEffect == 'fdi'}">
+                    </h3>
+                </span>
+                <span [ngClass]="{'container-dashFour':builder}" [ngStyle]="{'z-index':indexAction[2]}"
+                    class="col-sm-12 p-0 d-flex justify-content-start align-items-start position-relative mt-4 container_paragraph">
+                    <app-action-attribute [closeActionByOutsideClick]="closeActionByOutsideClick"
+                        [configAction]="configTextEditor" [index]="indexTemplate + '1003'" (text)="setData($event,2)"
+                        [textData]="textDataMaster" [effectType]="textDataMaster.textEffect"
+                        (effect)="setData($event,10)" (isTextEditor)="updateIndex($event,2)" *ngIf="builder">
+                    </app-action-attribute>
+                    <div class="cuerpoContent" id="cuerpo" [innerHTML]="textDataMaster.text | safeHtml"
+                        [ngClass]="{'fade-right':textDataMaster.textEffect == 'fdr' , 'fade-left':textDataMaster.textEffect == 'fdl' , 'fade-top':textDataMaster.textEffect == 'fdt' , 'fade-bottom':textDataMaster.textEffect == 'fdb' , 'fade-in':textDataMaster.textEffect == 'fdi'}">
+                    </div>
+                </span>
+                <span [ngClass]="{'container-dashFour':builder}" [ngStyle]="{'z-index':indexAction[3]}"
+                    class="col-sm-12 p-0 d-flex justify-content-center align-items-center position-relative mt-4 container_link">
+                    <app-action-attribute [closeActionByOutsideClick]="closeActionByOutsideClick"
+                        [configAction]="configLinkEditor" [index]="indexTemplate + '1004'" (vinculo)="setData($event,4)"
+                        (text)="setData($event,3)" [textData]="textDataMaster"
+                        [effectType]="textDataMaster.enlaceEffect" (effect)="setData($event,11)"
+                        (text_roll)="setData($event,13)" (linkType)="setData($event,12)"
+                        (isTextEditor)="updateIndex($event,3)" *ngIf="builder">
+                    </app-action-attribute>
+                    <div class="col-sm-12 p-0 d-flex justify-content-center align-items-center position-relative linkContent"
+                        (mouseover)="fourSection=true" (mouseout)="fourSection=false"
+                        [ngClass]="{'fade-right':textDataMaster.enlaceEffect == 'fdr' , 'fade-left':textDataMaster.enlaceEffect == 'fdl' , 'fade-top':textDataMaster.enlaceEffect == 'fdt' , 'fade-bottom':textDataMaster.enlaceEffect == 'fdb' , 'fade-in':textDataMaster.enlaceEffect == 'fdi'}">
+                        <a *ngIf="textDataMaster.typelink == 'link'" (click)="hreFunction(textDataMaster.link)"
+                            target="_blank" class="text-left linkVinculo"
+                            [innerHTML]="textDataMaster.enlace | safeHtml">
+                        </a>
+                        <button *ngIf="textDataMaster.typelink == 'btn'" (click)="hreFunction(textDataMaster.link)"
+                            class="text-left linkButton" [innerHTML]="textDataMaster.enlace | safeHtml">
+                        </button>
+                        <span class="tooltipAct" *ngIf="fourSection && textDataMaster.text_roll"
+                            [innerHTML]="textDataMaster.text_roll | safeHtml"></span>
+                    </div>
+                </span>
+            </section>
+        </div>
+    </div>
+</div>

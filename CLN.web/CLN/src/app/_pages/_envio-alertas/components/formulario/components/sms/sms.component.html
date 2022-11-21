@@ -1,0 +1,33 @@
+<div style="margin-top: 20px; padding: 2em; border: 1px solid #7d7d7d; height: auto; border-radius: 0.5em;">
+    <div class="grid-container">
+        <div style="margin-top: 20px;">
+            <b>Texto de SMS (Mensaje de texto) *</b>
+            <div style="margin-top: 1em;">
+                <app-custom-text-area
+                    (setText)="setSms($event)"
+                    [text]='sms'
+                    placeholder="Ingrese SMS"
+                    [textIcon]="longitud"
+                    [maxLength]="maxLength"
+                    [link]="vinculo"
+                    [textoVinculo]="textoSms"
+                >
+                </app-custom-text-area>
+            </div>
+        </div>
+        <div style="margin-left: 20px;">
+            <div style="margin-top: 20px;">
+                <b>Ingresa el link</b>
+                <div style="margin-top: 1em;">
+                    <app-custom-input
+                        (setText)="setVinculo($event)"
+                        [text]='vinculo'
+                        textIcon=""
+                        [maxLength]="160 - sms.length"
+                    >
+                    </app-custom-input>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

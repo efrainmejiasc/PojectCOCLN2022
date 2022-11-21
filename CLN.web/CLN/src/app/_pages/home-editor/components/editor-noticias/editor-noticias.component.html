@@ -1,0 +1,365 @@
+<div class="card" style="border: 0">
+    <div class="card-body" style="padding: 0.25rem;">
+
+        <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-fall" [fullScreen]="true">
+            <p style="color: white">Cargando...</p>
+        </ngx-spinner>
+        
+        <div class="c-general col-sm-12 p-0 pb-4 d-flex justify-content-center align-items-start overflow-hidden"
+            (click)="identifyClickOutSide($event)">
+        
+            <div class="editor-content col-sm-9 p-0 d-flex flex-column justify-content-start align-items-start"
+                cdkDropListGroup>
+                <!-- <app-top-section [titulo]="titulo" subtitulo="COMPRAS PÚBLICAS" [icono]="icono" [alertaIcono]="alertaIcono"
+                    [infoAyuda]="infoAyuda" [buttonText]="buttonText" style="margin-bottom: 15px;">
+                </app-top-section> -->
+                <div class="editor-top col-sm-12 p-0 d-flex flex-column">
+                    <div>
+                        <img (click)= "palancaInfoOculta()" src="assets/imgs/home-editor/alerta.svg" />
+                        <span class="bienvenido">GESTIONAR MICROSITIO DE NOTICIAS Y TENDENCIAS</span>
+                    </div>
+                    <!-- <h2>COMPRAS PÚBLICAS</h2> -->
+                    <div *ngIf="mostrarInfoOculta" class="info-editor">
+                        <div class="info-close"><span (click)="palancaInfoOculta()">X</span></div>
+                        <p style="padding: 12px;">
+                            Acá podrás habilitar o inhabilitar secciones en el micrositio de noticias y tendencias, 
+                            también podrás cambiar plantillas de contenido y actualizar la información que deseas mostrar.
+                        </p>
+                    </div>
+                </div>
+                
+                <!--Seccion 1-->
+                <!-- <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start"
+                    [ngStyle]="{'z-index':'14'}">
+                    <div class="col-sm-12 p-0 d-flex justify-content-start align-items-center head-name">
+                        <span class="section-title">SECCIÓN FIJA</span>
+                    </div>
+                    <div class="banner-container">
+                        <div class="banner-bg">
+                            <div class="banner-elements">
+                                <h2>Noticias y tendencias</h2>
+                                <h3>
+                                    En Compra Lo Nuestro encuentras las noticias y tendencias que pueden apoyarte en el crecimiento de tu empresa.
+                                </h3>
+                                <!-- 
+                                <div class="banner-elements">
+                                        <div>
+                                        <img src="assets/imgs/home-editor/flecha2.png" alt="" />
+                                        <span (click)="goToCifras()" class="banner-btn">VER CONSOLIDADO</span>
+                                        <img src="assets/imgs/home-editor/flecha1.png" alt="" />
+                                    </div> 
+                                -- >
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start" 
+                    [ngStyle]="{'z-index':'20'}">
+                    <div class="col-sm-12 p-0 d-flex justify-content-start align-items-center head-name">
+                        <span class="section-title">SECCIÓN 1</span>
+                        <button *ngIf="sectionOne.length > 0" class="ml-4"
+                            [ngClass]="{'button-red': this.sectionsStatus[0] , 'button-blue': this.sectionsStatus[0]}"
+                            (click)="statusSection('Seccion1', 0)">
+                            <span *ngIf="this.sectionsStatus[0] == null || this.sectionsStatus[0] == true">INHABILITAR</span>
+                            <span *ngIf="this.sectionsStatus[0] != null && this.sectionsStatus[0] == false">HABILITAR</span>
+                        </button>
+                        <app-action-attribute *ngIf="sectionOne.length > 0" [configAction]="configEditorComponent"
+                            [closeActionByOutsideClick]="closeActionByOutsideClick" [index]="101"
+                            [pageConfig]="paginationNumberData[0]" (deleteSelected)="removeData($event , 1)"
+                            (text)="setData($event,2)" [templateId]="sectionOne" (pagination)="setData($event,10)"
+                            (fileReturn)="setData($event,26)" (pages)="setData($event,11)">
+                        </app-action-attribute>
+                    </div>
+                    <div class="editor-section-content col-sm-12 p-0 d-flex justify-content-center align-items-center"
+                        cdkDropList (cdkDropListDropped)="drop($event,null,25)" #sectionOneList="cdkDropList"
+                        [cdkDropListData]="sectionOne" cdkDropListSortingDisabled>
+                        <span class="col-sm-12 p-0 d-flex flex-column justify-content-center align-items-center"
+                            *ngFor="let template of sectionOne">
+                            <app-template-switch-news-trends class="col-sm-12 p-0" (paginationDataExp)="paginationData($event,0)"
+                                [closeActionByOutsideClickPattern]="closeActionByOutsideClick" [template]="EditorTemplates"
+                                [index]="101" [templateSelected]="template" [nameSection]="'Seccion1'"
+                                (templateReturn)="buildEditor($event)" 
+                                [color]="attributeSet[1]" [pagination]="attributeSet[9]" [pages]="attributeSet[10]" 
+                                [backgroundImage]="attributeSet[25]" 
+                                *ngIf="this.sectionsStatus[0] != false" [builder]="builder">
+                            </app-template-switch-news-trends>
+                        </span>
+                    </div>
+                </div>
+                <!--Seccion 2-->
+                <!-- <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start" 
+                    [ngStyle]="{'z-index':'16'}">
+                    <div class="col-sm-12 p-0 d-flex justify-content-start align-items-center head-name">
+                        <span class="section-title">SECCIÓN 2</span>
+                        <button *ngIf="sectionTwo.length > 0" class="ml-4"
+                            [ngClass]="{'button-red': this.sectionsStatus[1] , 'button-blue': this.sectionsStatus[1]}"
+                            (click)="statusSection('Seccion2', 1)">
+                            <span *ngIf="this.sectionsStatus[1] == null || this.sectionsStatus[1] == true">INHABILITAR</span>
+                            <span *ngIf="this.sectionsStatus[1] != null && this.sectionsStatus[1] == false">HABILITAR</span>
+                        </button>
+                        <app-action-attribute *ngIf="sectionTwo.length > 0" [configAction]="configEditorComponent"
+                            [closeActionByOutsideClick]="closeActionByOutsideClick" [index]="200"
+                            [pageConfig]="paginationNumberData[1]" (deleteSelected)="removeData($event , 2)"
+                            (text)="setData($event,2)" [templateId]="sectionTwo" (pagination)="setData($event,10)"
+                            (fileReturn)="setData($event,26)" (pages)="setData($event,11)">
+                        </app-action-attribute>
+                    </div>
+                    <div class="editor-section-content col-sm-12 p-0 d-flex justify-content-center align-items-center"
+                        cdkDropList (cdkDropListDropped)="drop($event)" #sectionTwoList="cdkDropList"
+                        [cdkDropListData]="sectionTwo" cdkDropListSortingDisabled>
+                        <span class="col-sm-12 p-0 d-flex flex-column justify-content-center align-items-center"
+                            *ngFor="let template of sectionTwo">
+                            <app-template-switch-news-trends class="col-sm-12 p-0" (paginationDataExp)="paginationData($event,2)"
+                                [closeActionByOutsideClickPattern]="closeActionByOutsideClick" [template]="EditorTemplates"
+                                [index]="200" [templateSelected]="template" [nameSection]="'Seccion2'"
+                                (templateReturn)="buildEditor($event)" 
+                                [color]="attributeSet[2]" [pagination]="attributeSet[11]" [pages]="attributeSet[12]" 
+                                [backgroundImage]="attributeSet[26]" 
+                                *ngIf="this.sectionsStatus[1] != false" [builder]="builder">
+                            </app-template-switch-news-trends>
+                        </span>
+                    </div>
+                </div> -->
+                
+                <!--Seccion 4 es 2-->
+                <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start"
+                    [ngStyle]="{'z-index':'15'}">
+                    <div class="col-sm-12 p-0 d-flex justify-content-start align-items-center head-name">
+                        <span class="section-title">SECCIÓN 2</span>
+                        <button *ngIf="sectionFour.length > 0" class="ml-4"
+                            [ngClass]="{'button-red': sectionsStatus[3] , 'button-blue': sectionsStatus[3]}"
+                            (click)="statusSection('Seccion4', 3)">
+                            <span *ngIf="sectionsStatus[3] == null || sectionsStatus[3] == true">INHABILITAR</span>
+                            <span *ngIf="sectionsStatus[3] != null && sectionsStatus[3] == false">HABILITAR</span>
+                        </button>
+                        <app-action-attribute *ngIf="sectionFour.length > 0" [configAction]="configEditorComponent"
+                            [closeActionByOutsideClick]="closeActionByOutsideClick" [index]="400" [pageConfig]="paginationNumberData[1]"
+                            (deleteSelected)="removeData($event , 4)" (text)="setData($event,5)" [templateId]="sectionFour"
+                            (pagination)="setData($event,16)" (pages)="setData($event,17)" (fileReturn)="setData($event,28)">
+                        </app-action-attribute>
+                    </div>
+                    <div class="editor-section-content col-sm-12 p-0 d-flex flex-column justify-content-center align-items-center"
+                        cdkDropList (cdkDropListDropped)="drop($event,null,27)" #sectionFourList="cdkDropList" [cdkDropListData]="sectionFour"
+                        cdkDropListSortingDisabled>
+                        <span class="col-sm-12 p-0 d-flex justify-content-center align-items-center"
+                            *ngFor="let template of sectionFour">
+                            <app-template-switch-news-trends class="col-sm-12 p-0" (paginationDataExp)="paginationData($event,1)"
+                                [closeActionByOutsideClickPattern]="closeActionByOutsideClick" [template]="EditorTemplates"
+                                [index]="400" [templateSelected]="template" [nameSection]="'Seccion4'"
+                                (templateReturn)="buildEditor($event)" [color]="attributeSet[4]" [pagination]="attributeSet[15]"
+                                [pages]="attributeSet[16]" *ngIf="sectionsStatus[3] != false" [backgroundImage]="attributeSet[27]"
+                                [builder]="builder">
+                            </app-template-switch-news-trends>
+                        </span>
+                    </div>
+                </div>
+
+                <!--Seccion 3-->
+                <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start"
+                    [ngStyle]="{'z-index':'14'}">
+                    <div class="col-sm-12 p-0 d-flex justify-content-start align-items-center head-name">
+                        <span class="section-title">SECCIÓN FIJA</span>
+                    </div>
+                    <div class="seccion-fija-noticias-tendencias">
+                        <h2>TENDENCIAS</h2>
+                    </div>
+                </div>
+                <!-- <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start" [ngStyle]="{'z-index':'13'}">
+                    <div class="col-sm-12 p-0 d-flex justify-content-start align-items-center head-name">
+                        <span class="section-title">SECCIÓN 3</span>
+                        <button *ngIf="sectionThree.length > 0" class="ml-4"
+                            [ngClass]="{'button-red': sectionsStatus[2] , 'button-blue': sectionsStatus[2]}"
+                            (click)="statusSection('Seccion3', 2)">
+                            <span *ngIf="sectionsStatus[2] == null || sectionsStatus[2] == true">INHABILITAR</span>
+                            <span *ngIf="sectionsStatus[2] != null && sectionsStatus[2] == false">HABILITAR</span>
+                        </button>
+                        <app-action-attribute *ngIf="sectionThree.length > 0" [configAction]="configEditorComponent"
+                            [closeActionByOutsideClick]="closeActionByOutsideClick" [index]="300"
+                            [pageConfig]="paginationNumberData[1]" (deleteSelected)="removeData($event , 3)"
+                            (text)="setData($event,4)" [templateId]="sectionThree" (pagination)="setData($event,14)"
+                            (pages)="setData($event,15)" (fileReturn)="setData($event,27)">
+                        </app-action-attribute>
+                    </div>
+                    <div class="editor-section-content col-sm-12 p-0 d-flex flex-column justify-content-center align-items-center"
+                        cdkDropList (cdkDropListDropped)="drop($event)" #sectionThreeList="cdkDropList"
+                        [cdkDropListData]="sectionThree" cdkDropListSortingDisabled>
+                        <span class="col-sm-12 p-0 d-flex justify-content-center align-items-center"
+                            *ngFor="let template of sectionThree">
+                            <app-template-switch-news-trends class="col-sm-12 p-0" (paginationDataExp)="paginationData($event,1)"
+                                [closeActionByOutsideClickPattern]="closeActionByOutsideClick" [template]="EditorTemplates"
+                                [index]="300" [templateSelected]="template" [nameSection]="'Seccion3'"
+                                (templateReturn)="buildEditor($event)" [color]="attributeSet[3]" [pagination]="attributeSet[13]"
+                                [pages]="attributeSet[14]" *ngIf="sectionsStatus[2] != false"
+                                [backgroundImage]="attributeSet[26]" [builder]="builder">
+                            </app-template-switch-news-trends>
+                        </span>
+                    </div>
+                </div> -->
+                <!--Seccion 4-->
+                <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start"
+                    [ngStyle]="{'z-index':'14'}">
+                    <div class="col-sm-12 p-0 d-flex justify-content-start align-items-center head-name">
+                        <span class="section-title">SECCIÓN FIJA</span>
+                    </div>
+                    <div class="seccion-fija-noticias-tendencias">
+                        <h2>PRODUCTOS Y SERVICIOS MÁS BUSCADOS EN LA WEB</h2>
+                    </div>
+                </div>
+                <!-- <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start" [ngStyle]="{'z-index':'12'}">
+                    <div class="col-sm-12 p-0 d-flex justify-content-start align-items-center head-name">
+                        <span class="section-title">SECCIÓN 4</span>
+                        <button *ngIf="sectionFour.length > 0" class="ml-4"
+                            [ngClass]="{'button-red': sectionsStatus[3] , 'button-blue': sectionsStatus[3]}"
+                            (click)="statusSection('Seccion4', 3)">
+                            <span *ngIf="sectionsStatus[3] == null || sectionsStatus[3] == true">INHABILITAR</span>
+                            <span *ngIf="sectionsStatus[3] != null && sectionsStatus[3] == false">HABILITAR</span>
+                        </button>
+                        <app-action-attribute *ngIf="sectionFour.length > 0" [configAction]="configEditorComponent"
+                            [closeActionByOutsideClick]="closeActionByOutsideClick" [index]="400"
+                            [pageConfig]="paginationNumberData[2]" (deleteSelected)="removeData($event , 4)"
+                            (text)="setData($event,5)" [templateId]="sectionFour" (pagination)="setData($event,16)"
+                            (pages)="setData($event,17)" (fileReturn)="setData($event,28)">
+                        </app-action-attribute>
+                    </div>
+                    <div class="editor-section-content col-sm-12 p-0 d-flex flex-column justify-content-center align-items-center"
+                        cdkDropList (cdkDropListDropped)="drop($event)" #sectionFourList="cdkDropList"
+                        [cdkDropListData]="sectionFour" cdkDropListSortingDisabled>
+                        <span class="col-sm-12 p-0 d-flex justify-content-center align-items-center"
+                            *ngFor="let template of sectionFour">
+                            <app-template-switch-news-trends class="col-sm-12 p-0" (paginationDataExp)="paginationData($event,2)"
+                                [closeActionByOutsideClickPattern]="closeActionByOutsideClick" [template]="EditorTemplates"
+                                [index]="400" [templateSelected]="template" [nameSection]="'Seccion4'"
+                                (templateReturn)="buildEditor($event)" [color]="attributeSet[4]" [pagination]="attributeSet[15]"
+                                [pages]="attributeSet[16]" *ngIf="sectionsStatus[3] != false"
+                                [backgroundImage]="attributeSet[27]" [builder]="builder">
+                            </app-template-switch-news-trends>
+                        </span>
+                    </div>
+                </div> -->
+                <!--Seccion 5-->
+                <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start" 
+                    [ngStyle]="{'z-index':'10'}">
+                    <div class="col-sm-12 p-0 d-flex justify-content-start align-items-center head-name">
+                        <span class="section-title">SECCIÓN 5</span>
+                        <button *ngIf="sectionFive.length > 0" class="ml-4"
+                            [ngClass]="{'button-red': sectionsStatus[4] , 'button-blue': sectionsStatus[4]}"
+                            (click)="statusSection('Seccion5', 4)">
+                            <span *ngIf="sectionsStatus[4] == null || sectionsStatus[4] == true">INHABILITAR</span>
+                            <span *ngIf="sectionsStatus[4] != null && sectionsStatus[4] == false">HABILITAR</span>
+                        </button>
+                        <app-action-attribute *ngIf="sectionFive.length > 0" [configAction]="configEditorComponent"
+                            [closeActionByOutsideClick]="closeActionByOutsideClick" [index]="600"
+                            [pageConfig]="paginationNumberData[2]" (deleteSelected)="removeData($event, 5)"
+                            (text)="setData($event,7)" [templateId]="sectionFive" (pagination)="setData($event,20)"
+                            (pages)="setData($event,21)" (fileReturn)="setData($event,29)">
+                        </app-action-attribute>
+                    </div>
+                    <div class="editor-section-content col-sm-12 p-0 d-flex flex-column justify-content-center align-items-center"
+                        cdkDropList (cdkDropListDropped)="drop($event,null,29)" #sectionFiveList="cdkDropList"
+                        [cdkDropListData]="sectionFive" cdkDropListSortingDisabled>
+                        <span class="col-sm-12 p-0 d-flex justify-content-center align-items-center"
+                            *ngFor="let template of sectionFive">
+                            <app-template-switch-news-trends class="col-sm-12 p-0" (paginationDataExp)="paginationData($event,2)"
+                                [closeActionByOutsideClickPattern]="closeActionByOutsideClick" [template]="EditorTemplates"
+                                [index]="600" [templateSelected]="template" [nameSection]="'Seccion5'"
+                                (templateReturn)="buildEditor($event)" 
+                                [color]="attributeSet[6]" [pagination]="attributeSet[19]"
+                                [pages]="attributeSet[20]" [backgroundImage]="attributeSet[28]" 
+                                *ngIf="sectionsStatus[4] != false"
+                                [builder]="builder">
+                            </app-template-switch-news-trends>
+                        </span>
+                    </div>
+                </div>
+                <!--Seccion 6-->
+                <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start" 
+                    [ngStyle]="{'z-index':'9'}">
+                    <div class="col-sm-12 p-0 d-flex justify-content-start align-items-center head-name">
+                        <span class="section-title">SECCIÓN 6</span>
+                        <button *ngIf="sectionSix.length > 0" class="ml-4"
+                            [ngClass]="{'button-red': sectionsStatus[5] , 'button-blue': sectionsStatus[5]}"
+                            (click)="statusSection('Seccion6', 5)">
+                            <span *ngIf="sectionsStatus[5] == null || sectionsStatus[5] == true">INHABILITAR</span>
+                            <span *ngIf="sectionsStatus[5] != null && sectionsStatus[5] == false">HABILITAR</span>
+                        </button>
+                        <app-action-attribute *ngIf="sectionSix.length > 0" [configAction]="configEditorComponent"
+                            [closeActionByOutsideClick]="closeActionByOutsideClick" [index]="700"
+                            [pageConfig]="paginationNumberData[3]" (deleteSelected)="removeData($event , 6)"
+                            (text)="setData($event,8)" [templateId]="sectionSix" (pagination)="setData($event,22)"
+                            (pages)="setData($event,23)" (fileReturn)="setData($event,30)">
+                        </app-action-attribute>
+                    </div>
+                    <div class="editor-section-content col-sm-12 p-0 d-flex flex-column justify-content-center align-items-center "
+                        cdkDropList (cdkDropListDropped)="drop($event,null,30)" #sectionSixList="cdkDropList"
+                        [cdkDropListData]="sectionSix" cdkDropListSortingDisabled>
+                        <span class="col-sm-12 p-0 d-flex justify-content-center align-items-center"
+                            *ngFor="let template of sectionSix">
+                            <app-template-switch-news-trends class="col-sm-12 p-0" (paginationDataExp)="paginationData($event,3)"
+                                [closeActionByOutsideClickPattern]="closeActionByOutsideClick" [template]="EditorTemplates"
+                                [index]="700" [templateSelected]="template" [nameSection]="'Seccion6'"
+                                (templateReturn)="buildEditor($event)" [color]="attributeSet[7]" [pagination]="attributeSet[21]"
+                                [pages]="attributeSet[22]" *ngIf="sectionsStatus[5] != false"
+                                [backgroundImage]="attributeSet[29]" [builder]="builder">
+                            </app-template-switch-news-trends>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start content-footer" 
+                    [ngStyle]="{'z-index':'8'}">
+                    <div class="col-sm-12 p-0 d-flex justify-content-start align-items-center head-name">
+                        <!-- <span class="section-title">Pie</span> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 p-0 editor-flags d-flex flex-column justify-content-start align-items-center">
+                <div class="accordion d-flex flex-column justify-content-center align-items-center">
+                    <span class="action-accordion d-flex justify-content-start align-items-center"
+                        (click)="(rightOne) ? rightOne = false : rightOne = true;"> 
+                        <span class="arrow-down-editor mr-4"></span>
+                        GUARDAR CAMBIOS
+                    </span>
+                    <div class="content-accordion d-flex flex-column justify-content-center align-items-center"
+                        *ngIf="rightOne">
+                        <p class="text-acordion">
+                            Recuerde que... Una vez termine de realizar las modificaciones requeridas debe dar clic en el boton guardar cambios
+                        </p>
+                        <button class="button" (click)="saveTemplates()">GUARDAR CAMBIOS</button>
+                    </div>
+                </div>
+                <div class="accordion d-flex flex-column justify-content-center align-items-center">
+                    <span class="action-accordion d-flex justify-content-start align-items-center"
+                        (click)="(rightTwo) ? rightTwo = false : rightTwo = true;">
+                        <span class="arrow-down-editor mr-4"></span>
+                        PUBLICAR MICROSITIO
+                    </span>
+                    <div class="content-accordion d-flex flex-column justify-content-center align-items-center"
+                        *ngIf="rightTwo">
+                        <span class="buttonSvg button-Agregar"></span>
+                        <p class="text-acordion">
+                            Una vez termine de realizar todas las modificaciones requeridas, haga clic en el boton publicar los cambios en el micrositio de noticias y tendencias.
+                        </p>
+                        <button class="button" (click)="postTemplate()">PUBLICAR MICROSITIO</button>
+                    </div>
+                </div>
+                <div class="accordion d-flex flex-column justify-content-center align-items-center">
+                    <span class="action-accordion d-flex justify-content-start align-items-center"
+                        (click)="(rightThree) ? rightThree = false : rightThree = true;">
+                        <span class="arrow-down-editor mr-4"></span>
+                        PLANTILLAS
+                    </span>
+                    <div class="content-accordion d-flex flex-column justify-content-center align-items-center"
+                        *ngIf="rightThree">
+                        <div class="plantilla d-flex flex-wrap justify-content-center align-items-center" cdkDropList
+                            (cdkDropListDropped)="drop($event)" #templateList="cdkDropList" [cdkDropListData]="templates"
+                            [cdkDropListConnectedTo]="[sectionOneList,sectionFourList,sectionFiveList,sectionSixList]"
+                            cdkDropListSortingDisabled>
+                            <span *ngFor="let template of templates" class="buttonSvgGray mb-2"
+                                [ngClass]="'plantilla-' + template" cdkDrag (cdkDragEnded)="dragEnd($event)"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

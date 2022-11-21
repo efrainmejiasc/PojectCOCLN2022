@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <h3 class="modal-title-secundary text-color-red">{{message[0]}} <strong><i>{{message[1]}}</i></strong> {{message[2]}}</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">      
+        <div class="row">
+            <div class="col-12 d-flex justify-content-around">
+                <div *ngFor="let button of buttons">
+                    <button class="{{button.class}}" (click)=action(button.action)>{{button.messsage}}</button>
+                </div>
+            </div>
+        </div>
+  </div>

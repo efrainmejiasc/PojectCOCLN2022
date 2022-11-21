@@ -1,0 +1,110 @@
+section{
+    margin: auto;
+    width:100%;
+  }
+
+  h2{
+    text-align: center;
+    color:#4169af;
+    font-size: 26px;
+    font-weight: bold;
+    margin: 20px 0px;
+  }
+
+
+  h3{
+    text-align: center;
+    color:#4169af;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 20px 0px;
+  }
+
+  p{
+    color:#757575;
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .card{
+    padding: 15px 30px;
+  }
+
+  .list-item{
+    font-weight: bold;
+  }
+
+  .indication{
+    color:#757575;
+  }
+
+  .alert-container{
+    display: flex;
+  }
+
+  .alert-container img{
+    width:15px;
+    margin-right: 6px;
+  }
+
+  .row-checkbox{
+    display:flex;
+    padding: 10px 0px;
+  }
+
+  .row-checkbox input{
+    margin: 6px 6px 0px 0px;
+  }
+
+  .frecuencia{
+    display: flex;
+    justify-content: center;
+  }
+
+  .frecuencia>p{
+    padding: 0px;
+    margin: 0px;
+    font-weight: bold;
+    color:#333;
+    font-size: 16px;
+  }
+
+  .row-checkbox-frecuencia{
+    display:flex;
+    padding: 0px 12px;
+  }
+
+  .row-checkbox-frecuencia input{
+    margin: 6px 6px 0px 0px;
+  }
+
+  .btn-container{
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .general-btn{
+    background-color: #003595;
+    border: 0px;
+    border-radius: 16px;
+    padding: 4px 16px;
+    margin: 0px 20px;
+    color:#fff;
+    cursor:pointer;
+  };
+
+  .guardar-on{
+    cursor: pointer;
+    opacity:1;
+  }
+
+  .guardar-off{
+    cursor:not-allowed;
+    opacity:0.3;
+  }
+
+  .guardar-off button{
+    cursor:not-allowed;
+  }

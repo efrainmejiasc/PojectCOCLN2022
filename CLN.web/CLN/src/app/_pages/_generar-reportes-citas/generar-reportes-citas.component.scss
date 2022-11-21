@@ -1,0 +1,36 @@
+.consultar-planes-section{
+    min-height: 500px;
+}
+.info-ayuda-contenedor{
+    width: 60%;
+    margin-left: 20%;
+}
+.recuperar-input{
+    width:100%;
+    border: 0px;
+    background-color: #ececec;
+    font-family: 'opensans_italic', Arial;
+}
+.contador{
+    background: #d4d4d4;
+    width: 40px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}
+.div-reportes {
+    overflow: auto;
+    // width: 100%;
+    border-radius: 2px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 0px 2px 0px, rgb(0 0 0 / 24%) 0px 2px 2px 0px;
+    margin-bottom: 1rem;
+}
+.title-components{
+    color: #4b68ae;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: sans-serif;
+    margin-bottom: 1rem;
+}

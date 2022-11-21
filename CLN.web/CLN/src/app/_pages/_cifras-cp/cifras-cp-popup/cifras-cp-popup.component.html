@@ -1,0 +1,35 @@
+<section class="popup">
+  <div mat-dialog-content>
+    <div class="titlePopup"><b>Productos y servicios UNSPSC</b></div>
+    <div class="bodyPopup">
+      <div class="treeDesing">
+        aquí va un arbol
+      </div>
+      <div class="tableDesing">
+        <table mat-table [dataSource]="dataSource" class="">
+
+          <ng-container matColumnDef="code">
+            <th mat-header-cell *matHeaderCellDef> Código </th>
+            <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="value">
+            <th mat-header-cell *matHeaderCellDef> Valor de contrato </th>
+            <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef> Cantidad de contratos </th>
+            <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="positionBtn">
+    <button mat-button class="desingbtn"> ACEPTAR </button>
+  </div>
+</section>

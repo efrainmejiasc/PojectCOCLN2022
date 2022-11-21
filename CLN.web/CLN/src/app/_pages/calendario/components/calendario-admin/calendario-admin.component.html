@@ -1,0 +1,38 @@
+<div class="container contenedor">
+
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-fall" [fullScreen]="true">
+    <p style="color: white">Cargando...</p>
+  </ngx-spinner>
+
+  <!-- Encabezado -->
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h2 class="font_title text-color-red">Gestionar calendarios de eventos</h2>
+      <br />
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="offset-1 col-lg-10 offset-1 my-3 d-flex justify-content-center align-items-center">
+        <span class="title_decorator"></span>
+        <p class="font_p text-center text-color-gray py-4">
+          Aquí podrá crear, actualizar, visualizar y eliminar eventos del
+          calendario.
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- Fin Encabezado -->
+  <div class="row" *ngIf="permitsUser.canCreate">
+    <div class="col-md-12 text-center">
+      <div class="form-group text-center">
+        <div class="btn_third" (click)="addEvent()">
+          Crear evento +
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <app-calendario [events]="events" [actions]="actions" [evento]="evento">
+  </app-calendario>
+</div>

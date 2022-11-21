@@ -1,0 +1,152 @@
+.carouselclass {
+  height: 480px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.container {
+  margin: 0 !important;
+}
+
+@media screen and (min-width: 768px) {
+  .video_secretaria {
+    margin: auto;
+    display: block;
+    height: 320px;
+    width: 480px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .iframe-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+
+    > .video_secretaria {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  }
+
+  .banner_principal .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .entidadTerritorial,
+  .entidadTerritorial + .row {
+    display: none;
+  }
+}
+
+.carousel-indicators {
+  display: none !important;
+}
+
+.carousel-control-next-icon {
+  display: none;
+}
+.carousel-indicators {
+  display: none;
+}
+
+.entidadTerritorial {
+  position: relative;
+  height: 245px;
+
+  > span {
+    position: absolute;
+    width: 50vw;
+    right: -8px;
+    top: 6.3em;
+  }
+}
+
+.banner-responsive {
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+  @media screen and (max-width: 767px) {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    color: #fff;
+
+    .tutulo_banner,
+    .felicitaA,
+    [class^="bannet_text_responsive"] {
+      display: flex;
+      flex-direction: column;
+      margin-left: auto;
+      margin-right: auto;
+      width: fit-content;
+    }
+
+    .tutulo_banner,
+    [class^="bannet_text_responsive"] {
+      font-family: worksans_medium;
+    }
+
+    .tutulo_banner {
+      line-height: 0.8;
+      margin-top: 1.5em;
+      margin-bottom: 1em;
+
+      > span:nth-child(1) {
+        font-size: 1em;
+      }
+      > span:nth-child(2) {
+        font-size: 0.95em;
+      }
+      > span:nth-child(3) {
+        // font-family: worksans_semibold;
+        font-size: 2em;
+      }
+    }
+
+    .bannet_text_responsive-1 {
+      line-height: 1.2;
+      > span:nth-child(1) {
+        font-size: 1.27em;
+      }
+      > span:nth-child(2) {
+        font-size: 1.07em;
+      }
+    }
+
+    .felicitaA {
+      font-family: worksans_ligth;
+      background-color: #f42f63;
+      // margin: 0.5em 0;
+      margin-top: .2em;
+      padding: 0.2em .5em 0.1em;
+      text-align: center;
+      width: 100%;
+      display: block;
+    }
+
+    .bannet_text_responsive-2 {
+      line-height: 1.2;
+      > span:nth-child(1) {
+        font-size: 1.23em;
+      }
+      > span:nth-child(2) {
+        font-size: 1.49em;
+      }
+    }
+
+    .btn_four.font_pb {
+      padding: .25em 2em;
+      border: none;
+    }
+  }
+}

@@ -1,0 +1,71 @@
+<!--div class="row header header-blank">
+    <div class="trianguloazulresponsive"></div>
+    <div class="col-12 col-md-6 " (click)="goHome()">
+        <div class="row row-image">
+            <div class="col-12 col-md-6 image-container" (click)="goHome()">
+                <img class="image" src="../../../assets/img/logo_men.png" alt="">
+            </div>
+            <div class="col-12 col-md-6 image-container" (click)="goHome()">
+                <img class="image" src="../../../assets/img/logo_bn.svg" alt="">
+            </div>
+
+        </div>
+    </div>
+    <div class="col-12 col-md-6 header-content">
+        Estrategia de fortalecimiento territorial
+        <br> sector educativo <br>
+    </div>
+</div-->
+<header class="row header d-flex justify-content-center align-items-center px-2"
+    [style.background-color]="headerConfiguration.background">
+    <div class="col-sm-3 " (click)="goHome()">
+        <div class="row row-image d-flex justify-content-end align-items-center">
+            <div class="col-sm-11 image-container" (click)="goHome()">
+                <img *ngIf="textDataMaster.mediaUrl" class="image cursor-pointer" [src]="sanitizeImageUrl(textDataMaster.mediaUrl)"
+                    alt="">
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 d-flex justify-content-between align-items-center">
+        <a class="btn col-sm-3 d-flex flex-column justify-content-center align-items-center"
+            (mouseover)="firstSection=true" (mouseout)="firstSection=false" [routerLink]="['/quiero_info_contenido']">
+            <span class="buttonSvg button-informarme"></span>
+            <span class="header-nav text-color-blue" *ngIf="headerConfiguration[1]"
+                [innerHTML]="textDataMaster.text | safeHtml"></span>
+            <span class="tooltipAct" *ngIf="firstSection && textDataMaster.text_roll"
+                [innerHTML]="textDataMaster.text_roll | safeHtml"></span>
+        </a>
+        <a class="btn col-sm-3 d-flex flex-column justify-content-center align-items-center"
+            (mouseover)="secondSection=true" (mouseout)="secondSection=false" [routerLink]="['/quiero_aprender']">
+            <span class="buttonSvg button-aprender"></span>
+            <span class="header-nav text-color-blue" *ngIf="headerConfiguration[3]"
+                [innerHTML]="textDataMasterTwo.text | safeHtml"></span>
+            <span class="tooltipAct" *ngIf="secondSection && textDataMasterTwo.text_roll"
+                [innerHTML]="textDataMasterTwo.text_roll | safeHtml"></span>
+        </a>
+        <a class="btn col-sm-3 d-flex flex-column justify-content-center align-items-center"
+            (mouseover)="thirdSection=true" (mouseout)="thirdSection=false" [routerLink]="['/quiero/contactar']">
+            <span class="buttonSvg button-contactar"></span>
+            <span class="header-nav text-color-blue" *ngIf="headerConfiguration[5]"
+                [innerHTML]="textDataMasterThree.text | safeHtml"></span>
+            <span class="tooltipAct" *ngIf="thirdSection && textDataMasterThree.text_roll"
+                [innerHTML]="textDataMasterThree.text_roll | safeHtml"></span>
+        </a>
+        <a class="btn col-sm-3 p-1 d-flex flex-column justify-content-center align-items-center"
+            (mouseover)="fourSection=true" (mouseout)="fourSection=false" [routerLink]="['/quiero-conectarme']">
+            <span class="buttonSvg button-compartir"></span>
+            <span class="header-nav text-color-blue" *ngIf="headerConfiguration[7]"
+                [innerHTML]="textDataMasterFour.text | safeHtml"></span>
+            <span class="tooltipAct" *ngIf="fourSection && textDataMasterFour.text_roll"
+                [innerHTML]="textDataMasterFour.text_roll | safeHtml"></span>
+        </a>
+    </div>
+    <div class="col-sm-3 " (click)="goHome()">
+        <div class="row row-image d-flex justify-content-end align-items-center">
+            <div class="col-sm-10 image-container" (click)="goHome()">
+                <img *ngIf="textDataMasterFour.mediaUrl" class="image"
+                    [src]="sanitizeImageUrl(textDataMasterFour.mediaUrl)" alt="">
+            </div>
+        </div>
+    </div>
+</header>

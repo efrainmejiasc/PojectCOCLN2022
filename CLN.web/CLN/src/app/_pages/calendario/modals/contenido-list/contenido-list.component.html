@@ -1,0 +1,64 @@
+<div class="modal-body">
+  <!-- Titulo -->
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h2 class="modal-title font_title text-center">Ver/editar contenidos</h2>
+  <!-- Fin Titulo -->
+  <br />
+  <div class="container">
+    <!-- Encabezado -->
+    <div class="row">
+      <div class="col-md-12 text-center" style="display: flex">
+        <span class="title_decorator"></span>
+        <div class="subTitulo">
+          <p>Aquí podrá definir el orden en el que se presentarán en el calendario
+          los contenidos asociados al evento. </p>
+          <p>Esta acción la puede realizar deslizando cada uno de los registros hacia arriba
+          o hacia abajo de acuerdo con el orden que requiera.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Fin Encabezado -->
+    <br />
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <!-- Tabla de contenidos -->
+        <div cdkDropListGroup>
+          <div class="example-container">
+            <table class="table-table">
+              <thead class="table-head">
+                <tr>
+                  <th class="w20p">Contenido</th>
+                  <th class="w10p">Acción</th>
+                </tr>
+              </thead>
+            </table>
+            <div cdkDropList [cdkDropListData]="contenidosResult" class="example-list" (cdkDropListDropped)="drop($event)">
+              <div class="example-box" *ngFor="let contenido of contenidosResult; index as i" cdkDrag>
+                <table class="table-table">
+                  <tbody class="table-body" style="border:none" (cdkDropListDropped)="drop($event)">
+                    <tr>
+                      <td class="w20p">{{ contenido.nombre }}</td>
+                      <td class="table-body-lastchild w10p">
+                        <a href="javascript:void(0)" (click)="eliminar(contenido)">Eliminar</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Fin Tabla de contenidos-->
+
+        <br><br>
+        <div class="form-group text-center">
+          <div class="btn_third" (click)="save()">
+            Guardar
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

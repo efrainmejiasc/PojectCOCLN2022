@@ -1,0 +1,35 @@
+<section *ngIf="titulo">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h2 class="font_title text-color-red">Gestionar {{ titulo[0] }}</h2>
+      <br />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center" style="display: flex">
+      <span class="title_decorator"></span>
+      <div class="subTitulo">
+        <p class="text-color-gray" [innerHtml]="titulo[2]"></p>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="permitsUser.canCreate">
+    <div class="col-12 d-flex flex-column align-items-center" style="text-align: center">
+      <a class="cargar-contenido-link text-color-blue" (click)="openDialog(titulo[1])">
+        <div class="buttonSvg" [ngClass]="titulo[3]"></div>
+        <div class="col-12 py-0 text-color-blue">
+          {{ titulo[1] }}
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="row" *ngIf="titulo[4] != undefined && titulo[4].buttons != undefined">
+    <div *ngFor="let button of titulo[4].buttons" class="buttons-flex-group">
+      <button class="buttons-flex-item" [ngClass]="button.class" (click)="actionRouterButton(button.action)">
+        <!-- routerLink="./{{button.action}}" -->
+        {{ button.messsage }}
+      </button>
+    </div>
+  </div>
+</section>
+<hr class="RedLine" />

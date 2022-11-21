@@ -1,0 +1,21 @@
+<div class="modal-title p-0 pt-4 col-sm-12 d-flex justify-content-center align-items-center">
+    <h5 class="text-center text-color-red p-0 m-0">{{ sendedData[0] }}</h5>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body d-flex flex-column justify-content-center align-items-center">
+    <p class="text-color-blue p-0 m-0">{{ sendedData[1] }}</p>
+    <div class="row content-permits pt-0">
+        <div class="box-parent">
+            <div class="content-grid" *ngFor="let permits of permitsContent">
+                <div class="input_container">
+                    <span class="master">{{permits.nombre}}</span>
+                    <ul>
+                        <li *ngFor="let childs of permits.hijos">{{childs.nombre}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

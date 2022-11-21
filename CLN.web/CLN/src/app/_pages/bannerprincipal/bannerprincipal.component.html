@@ -1,0 +1,80 @@
+<div [ngClass]="{banner_principal: is_bannerAcknow,
+                banner_principal_2: !is_bannerAcknow}">
+    <div class='container-fluid'>
+        <ngb-carousel class="carouselclass" *ngIf="is_bannerAcknow">
+
+            <ng-template class="template" ngbSlide *ngFor="let item of secretarias">
+                <div class="entidadTerritorial">
+                    <span class="text-center text-white" style="font-size: 31px;">
+                        {{item.entidadTerritorial}}
+                    </span>
+                </div>
+                <div class="row" style="margin:0px; height: 168px;">
+                    <div style="margin-top: auto; " class=" offset-6 col text-center align-center align-self-auto ">
+                        <span class="btn_four font_pb"
+                            (click)="openModal(item.videoReconocimiento, item.motivoReconocimiento)">
+                            Ver más
+                        </span>
+                    </div>
+                </div>
+
+                <div class="banner-responsive">
+                    <h1 class="tutulo_banner">
+                        <span>¡Todos hacemos</span>
+                        <span>parte del</span>
+                        <span>cambio!</span>
+                    </h1>
+
+                    <div class="bannet_text_responsive-1">
+                        <span>La Estrategia de Fortalecimiento Territorial</span>
+                        <span>felicita a la Secretaría de Educación de</span>
+                    </div>
+
+                    <h3 class="felicitaA">
+                        {{item.entidadTerritorial}}
+                    </h3>
+
+                    <div class="bannet_text_responsive-2">
+                        <span>por su compromiso con la gestión</span>
+                        <span>integral educativa en el país</span>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button class="btn_four font_pb" (click)="openModal(item.videoReconocimiento, item.motivoReconocimiento)">Ver más</button>
+                    </div>
+                </div>
+            </ng-template>
+
+        </ngb-carousel>
+
+    </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <br>
+    <br>
+
+    <div class="modal-header text-center" style="background-color: #ff3466; color: white;display: block; ">
+        <h4 style="color: white !important;" class="modal-title font_worksans_ligth">
+            Reconocimiento de la Secretaría de Educación
+        </h4>
+    </div>
+    <div class="modal-body">
+        <div class="iframe-container">
+            <iframe *ngIf="video != undefined" class="video_secretaria" [src]="video" frameborder="0"
+                allowfullscreen></iframe>
+        </div>
+        <br>
+        <div class="col" *ngIf="textreconocimiento != null ">
+            <p class="font_p"> {{textreconocimiento}} </p>
+        </div>
+        <div class="col text-center" *ngIf="textreconocimiento == null ">
+            <p class="font_p">No hay contenido de reconocimiento </p>
+        </div>
+    </div>
+
+    <div class="col text-center">
+        <span style="cursor:pointer" class="btn_third" (click)="closeModal()">Cerrar</span>
+    </div>
+    <br>
+</ng-template>

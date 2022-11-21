@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="23.637" height="26.324" viewBox="0 0 23.637 26.324">
+  <g id="txt" transform="translate(0.25 0.734)">
+    <path id="Trazado_150" data-name="Trazado 150" d="M89.872,549.2l-12.345-.1a2.3,2.3,0,0,0-2.317,2.3l.02,20.265a2.3,2.3,0,0,0,2.29,2.3l14.613.051a2.3,2.3,0,0,0,2.306-2.291l.058-17.931" transform="translate(-73.285 -549.101)" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.356"/>
+    <path id="Trazado_151" data-name="Trazado 151" d="M90.115,549.326l4.382,4.383H90.1v-4.383" transform="translate(-73.285 -549.101)" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.356"/>
+    <rect id="Rectángulo_67" data-name="Rectángulo 67" width="23.137" height="7.564" rx="1.893" transform="translate(0 13.805)" fill="#fff" stroke="#36c" stroke-miterlimit="10" stroke-width="0.5"/>
+    <text id="TXT-2" data-name="TXT" transform="translate(11.569 20.586)" fill="#36c" font-size="9.103" font-family="AntipastoPro, Antipasto Pro"><tspan x="-6.823" y="0">TXT</tspan></text>
+    <path id="Trazado_152" data-name="Trazado 152" d="M80.053,562.747v-6.481a.9.9,0,0,1,.9-.9h7.8a.9.9,0,0,1,.9.9v6.481" transform="translate(-73.285 -549.101)" fill="#f2f2f2" stroke="#36c" stroke-miterlimit="10" stroke-width="0.5"/>
+    <line id="Línea_52" data-name="Línea 52" x2="6.788" transform="translate(8.175 8.244)" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.356"/>
+    <line id="Línea_53" data-name="Línea 53" x2="6.788" transform="translate(8.175 10.069)" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.356"/>
+    <line id="Línea_54" data-name="Línea 54" x2="6.788" transform="translate(8.175 12.112)" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.356"/>
+  </g>
+</svg>

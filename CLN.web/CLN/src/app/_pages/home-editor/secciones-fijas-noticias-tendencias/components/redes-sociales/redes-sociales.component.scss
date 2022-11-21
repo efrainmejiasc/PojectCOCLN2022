@@ -1,0 +1,96 @@
+.title-components {
+  color: #4b68ae;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: sans-serif;
+  margin-bottom: 1rem;
+}
+
+.div-trends {
+  width: 100%;
+}
+
+.centeringBtn {
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  // margin-top: 2em;
+  // margin-bottom: 2em;
+}
+
+.contenedor-iconos-redsocial {
+  background-color: #003595;
+  border-radius: 1rem;
+  display: flex;
+  margin-bottom: 1rem;
+  padding: 0rem 0.6rem;
+
+  span{
+    margin: 0.6rem 0.6rem;
+    display: flex;
+  }
+  .icono-red-social {
+    width: 45px;
+    // height: 45px;
+  }
+  .red-social-activa{
+    color: #ffffff;
+    border-bottom: 1px solid;
+  }
+}
+
+// .btn-submit-wine2 {
+//   background-color: #003595;
+//   border-radius: 6mm;
+//   border-style: none;
+//   color: #ffffff;
+//   cursor: pointer;
+//   font-family: opensans_semibold;
+//   font-size: 12px;
+//   height: 40px;
+//   margin-top: 0em !important;
+//   //   max-width: 230px;
+//   width: 100%;
+// }
+
+.contenedor-redes-sociales {
+  align-items: center;
+
+  & .contenedor-redes-sociales-overflow {
+    background-color: #f0f4f7;
+    border-radius: 5px;
+    display: flex;
+    height: 500px;
+    justify-content: center;
+    overflow: auto;
+    width: 800px;
+
+    & .contenedor-redes-sociales-if{
+      background-color: #f0f4f7;
+      padding: 1rem;
+      width: 100%;
+    }
+  }
+}
+
+.item-imagen {
+  margin-bottom: 10px;
+}
+
+.img-instagram {
+  width: 100%;
+}
+
+.modal-redes {
+  padding: 1em 1em 1em 1em;
+  // width: 70%;
+  height: auto;
+  text-align: center;
+}
+.card-title{
+  text-align: justify;
+}
+
+.cursor-click {
+  cursor: pointer;
+}

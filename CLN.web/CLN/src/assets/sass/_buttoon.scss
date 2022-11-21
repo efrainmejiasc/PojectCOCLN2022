@@ -1,0 +1,19 @@
+// .mat-flat-button.mat-primary,
+// .mat-raised-button.mat-primary,
+// .mat-fab.mat-primary,
+// .mat-mini-fab.mat-primary {
+//   background-color: var(--mainColor);
+// }
+
+button.mat-rounded-5em {
+  border-radius: 5em;
+  padding: 0 2.5em;
+
+  &.p-1-2em {
+    padding: 0 1.2em;
+  }
+}
+.mat-mini-fab.mat-primary[disabled],
+.mat-mini-fab[disabled][disabled] {
+  background-color: #9FB0D5;
+}

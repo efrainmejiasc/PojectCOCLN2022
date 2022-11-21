@@ -1,0 +1,26 @@
+<section class="">
+    <div class="col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start">
+        <div class="" style="width: 100%;display: flex;">
+            <h2 class="title-components" style="margin: 1em 1em 1em 0;">Google trends</h2>
+        </div>
+    </div>
+    <div class="col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start">
+        <div class="div-trends" id="div-trends">
+        </div>
+    </div>
+    <div class="col-sm-12 p-0 m-0 d-flex flex-column justify-content-start align-items-start">
+        <div style="margin-top: 1em; margin-bottom: 1em; position: absolute;"
+            *ngIf="isBtnVisualiza">
+            <app-button-editor class="centeringBtn" text="VISUALIZA LAS TENDENCIAS" width="200px" [disabled]="false"
+                (onClick)="cargarTendencias()">
+            </app-button-editor>
+        </div>
+        <div class="ubicacionBtn" style="margin-top: 1em; margin-bottom: 1em;">
+            <a [href]="data.moreTrendsUrl" rel="noopener noreferrer" target="_blank">
+                <app-button-editor class="centeringBtn" text="CONOCE MÁS TENDENCIAS" 
+                    width="200px" [disabled]="false">
+                </app-button-editor>
+            </a>
+        </div>
+    </div>
+</section>

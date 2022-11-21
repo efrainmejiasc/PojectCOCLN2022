@@ -1,0 +1,43 @@
+.AnimatedDown,
+.collapse.show {
+  animation-name: AnimatedDown;
+  animation-duration: 0.3s;
+
+  transform-origin: top;
+}
+.AnimateMoveDown {
+  animation-name: AnimateMoveDown;
+  animation-duration: 0.3s;
+
+  transform-origin: top;
+}
+
+@keyframes AnimatedDown {
+  from {
+    transform: scaleY(0);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes Animatedopacity {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes AnimateMoveDown {
+  from {
+    transform: translateY(-1em);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}

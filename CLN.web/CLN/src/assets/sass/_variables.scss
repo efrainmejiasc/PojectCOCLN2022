@@ -1,0 +1,18 @@
+@import "~@angular/material/theming";
+
+@include mat-core();
+
+// $primaryColor: mat-palette($mat-indigo);
+$mainColor: #3c64b0;
+
+// $mainColor: #3c64b0;
+// $mainColor: mat-color($primaryColor);
+// $secondaryColor: #fff;
+// $tertiaryColor: #fff;
+
+:root {
+  // --mainColor: #3c64b0;
+  --mainColor: mat-color($mainColor);
+  // --secondaryColor: #fff;
+  // --tertiaryColor: #fff;
+}

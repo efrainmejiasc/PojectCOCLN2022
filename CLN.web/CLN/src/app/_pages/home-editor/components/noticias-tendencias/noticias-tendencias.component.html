@@ -1,0 +1,139 @@
+<div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start"
+    [ngStyle]="{'z-index':'14'}" style="position: initial; margin-bottom: -50px;">
+    <div class="banner-container">
+        <div class="banner-bg">
+            <div class="banner-elements">
+                <h2>Noticias y tendencias</h2>
+                <h3>
+                    En Compra Lo Nuestro encuentra noticias y tendencias de interés para tu negocio.
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container card" style="border: 0; margin-bottom: 1rem;"> <!--margin-top: 5em; -->
+    <div class="card-body" style="padding: 0.25rem; box-shadow: 0px 2px 14px #00000021;
+    border-radius: 8px; -webkit-border-radius: 8px;">
+
+        <div class="col-sm-12 p-0 d-flex justify-content-center align-items-start overflow-hidden">
+            <div class="editor-content col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start">
+                <!--Seccion 1-->
+                <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start"
+                    [ngStyle]="{'z-index':'15'}" *ngIf="sectionOne.length > 0 && findStatusSection('Seccion1') == true">
+                    <div class="editor-section-content col-sm-12 p-0 d-flex justify-content-center align-items-center">
+                        <span class="col-sm-12 p-0 d-flex flex-column justify-content-center align-items-center"
+                            *ngFor="let template of sectionOne">
+                            <app-template-switch-news-trends class="col-sm-12 p-0" [template]="EditorTemplates" [index]="101"
+                                [templateSelected]="template" [nameSection]="'Seccion1'"
+                                *ngIf=" findStatusSection('Seccion1') != false" [builder]="builder">
+                            </app-template-switch-news-trends>
+                        </span>
+                    </div>
+                </div>
+
+                <!--Seccion 2-->
+                <!-- <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start"
+                    [ngStyle]="{'z-index':'14'}" *ngIf="sectionTwo.length > 0 && findStatusSection('Seccion2')">
+                    <div class="editor-section-content col-sm-12 p-0 d-flex flex-column justify-content-center align-items-center"
+                        cdkDropList (cdkDropListDropped)="drop($event)" #sectionTwoList="cdkDropList"
+                        [cdkDropListData]="sectionTwo" cdkDropListSortingDisabled>
+                        <span class="col-sm-12 p-0 d-flex justify-content-center align-items-center"
+                            *ngFor="let template of sectionTwo">
+                            <app-template-switch-news-trends class="col-sm-12 p-0"
+                                [closeActionByOutsideClickPattern]="closeActionByOutsideClick"
+                                [template]="EditorTemplates" [index]="200" [templateSelected]="template"
+                                [nameSection]="'Seccion2'" [color]="colorTwo" [builder]="builder">
+                            </app-template-switch-news-trends>
+                        </span>
+                    </div>
+                </div> -->
+                <!--Seccion 4 es la seccion 2-->
+                <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start"
+                    [ngStyle]="{'z-index':'12'}" *ngIf="sectionFour.length > 0 && findStatusSection('Seccion4')">
+                    <div class="editor-section-content col-sm-12 p-0 d-flex flex-column justify-content-center align-items-center"
+                        cdkDropList (cdkDropListDropped)="drop($event)" #sectionFourList="cdkDropList" [cdkDropListData]="sectionFour"
+                        cdkDropListSortingDisabled>
+                        <span class="col-sm-12 p-0 d-flex justify-content-center align-items-center"
+                            *ngFor="let template of sectionFour">
+                            <app-template-switch class="col-sm-12 p-0" [closeActionByOutsideClickPattern]="closeActionByOutsideClick"
+                                [template]="EditorTemplates" [index]="400" [templateSelected]="template" [nameSection]="'Seccion4'"
+                                [color]="colorFour" [builder]="builder">
+                            </app-template-switch>
+                        </span>
+                    </div>
+                </div>
+
+                <!--Seccion 3-->
+                <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start"
+                    [ngStyle]="{'z-index':'12'}">
+                    <!-- *ngIf="findStatusSection('Seccion3')" -->
+                    <div class="editor-section-content col-sm-12 d-flex flex-column justify-content-center align-items-center"
+                        style="padding: 1rem 3rem 0 3rem;">
+                        <app-reportes-tendencias style="width: 100%;"></app-reportes-tendencias>
+                    </div>
+                </div>
+                <!--Seccion 4-->
+                <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start"
+                    [ngStyle]="{'z-index':'11'}">
+                    <!-- <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/2884_RC01/embed_loader.js"></script> -->
+                    <!-- <script type="text/javascript">
+                        trends.embed.renderExploreWidget("RELATED_QUERIES", { "comparisonItem": [{ "keyword": "digital signage", "geo": "", "time": "2021-04-29 2022-04-29" }], "category": 0, "property": "" }, { "exploreQuery": "q=digital%20signage&date=today 12-m", "guestPath": "https://trends.google.com:443/trends/embed/" });
+                    </script> -->
+
+                    <!-- *ngIf="findStatusSection('Seccion4')" -->
+                    <div class="editor-section-content col-sm-12 p-0 d-flex flex-column justify-content-center align-items-center">
+                            <app-productos-servicios style="width: 100%;"></app-productos-servicios>
+                            <!-- <h2>SECCIÓN FIJA Productos y servicios</h2> -->
+                            <!-- <script type="text/javascript">
+                                trends.embed.renderExploreWidget("RELATED_TOPICS", { "comparisonItem": [{ "keyword": "/m/04zjj11", "geo": "CO", "time": "today 12-m" }], 
+                                "category": 0, "property": "" }, { "exploreQuery": "q=%2Fm%2F04zjj11&geo=CO&date=today 12-m", "guestPath": "https://trends.google.es:443/trends/embed/" });
+                            </script> -->
+                    </div>
+                </div>
+
+                <!--Seccion 5-->
+                <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start"
+                    [ngStyle]="{'z-index':'10'}" *ngIf="sectionFive.length > 0 && findStatusSection('Seccion5')">
+                    <div class="editor-section-content col-sm-12 p-0 d-flex flex-column justify-content-center align-items-center"
+                        cdkDropList (cdkDropListDropped)="drop($event)" #sectionFiveList="cdkDropList"
+                        [cdkDropListData]="sectionFive" cdkDropListSortingDisabled>
+                        <span class="col-sm-12 p-0 d-flex justify-content-center align-items-center"
+                            *ngFor="let template of sectionFive">
+                            <app-template-switch-news-trends class="col-sm-12 p-0"
+                                [closeActionByOutsideClickPattern]="closeActionByOutsideClick"
+                                [template]="EditorTemplates" [index]="500" [templateSelected]="template"
+                                [nameSection]="'Seccion5'" [color]="colorFive" [builder]="builder">
+                            </app-template-switch-news-trends>
+                        </span>
+                    </div>
+                </div>
+                <!--Seccion 6-->
+                <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start"
+                    [ngStyle]="{'z-index':'9'}" *ngIf="sectionSix.length > 0 && findStatusSection('Seccion6')">
+                    <div class="editor-section-content col-sm-12 p-0 d-flex flex-column justify-content-center align-items-center"
+                        cdkDropList (cdkDropListDropped)="drop($event)" #sectionSixList="cdkDropList"
+                        [cdkDropListData]="sectionSix" cdkDropListSortingDisabled>
+                        <span class="col-sm-12 p-0 d-flex justify-content-center align-items-center"
+                            *ngFor="let template of sectionSix">
+                            <app-template-switch-news-trends class="col-sm-12 p-0"
+                                [closeActionByOutsideClickPattern]="closeActionByOutsideClick"
+                                [template]="EditorTemplates" [index]="600" [templateSelected]="template"
+                                [nameSection]="'Seccion6'" [color]="colorSix" [builder]="builder">
+                            </app-template-switch-news-trends>
+                        </span>
+                    </div>
+                </div>
+                <!-- <div class="col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start content-footer"
+                    [ngStyle]="{'z-index':'8'}">
+                    <div class="col-sm-12 p-0 d-flex justify-content-start align-items-center head-name">
+                        <!-- <span >Pie</span> -- >
+                    </div>
+                </div> -->
+            </div>
+            <button class="goTop" (click)="toTop()">
+                <span class="icon-goTop"></span>
+            </button>
+        </div>
+    </div>
+</div>

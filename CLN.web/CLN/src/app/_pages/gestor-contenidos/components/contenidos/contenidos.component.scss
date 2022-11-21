@@ -1,0 +1,37 @@
+.table-body-lastchild {
+  width: 90px;
+}
+.table-body-lastchild span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 49.5%;
+}
+.table-body-lastchild span:first-of-type {
+  border-bottom: 1px solid #999999;
+}
+
+.table-body-tema {
+  border-bottom: 1px solid hsla(230, 100%, 87%, 0.5);
+}
+#cargar_contenido {
+  scale: 1.2;
+}
+.nobr {
+  white-space: nowrap;
+  border: none !important;
+  background-color: transparent !important;
+}
+
+table.dataTable tbody th,
+table.dataTable tbody td {
+  padding: 8px 10px;
+  overflow-x: auto;
+  max-width: 15vw;
+}
+
+table.table-table thead tr th,
+table.table-table tbody tr td {
+  max-width: 20vw;
+}

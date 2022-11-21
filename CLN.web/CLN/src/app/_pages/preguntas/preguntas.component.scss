@@ -1,0 +1,74 @@
+.fit{
+    max-width: calc(100vw - 32px);
+    margin-left: 0px;
+    margin-top: 0px;
+}
+
+.card-header{
+    background-color: #e6effdff;
+}
+
+.card-body{
+    text-align: center;
+}
+
+::ng-deep div.card-header:hover {
+    background-color: white;
+}
+
+::ng-deep div.card-header {
+    /*counter-reset: section;*/
+    background-color:#e6effdff;    
+}
+/*::ng-deep div > div > .accordion .card-header {
+    background-color:black;
+    counter-increment: section;    
+}
+/*::ng-deep div > div > .accordion .card-header::after {
+  content: "";
+}
+    
+::ng-deep div.card-header button::after{
+    
+    content: counter(section);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 4px;
+
+    background: #fff;
+    border: 2px solid #0056b3;
+    color: #0056b3;
+    text-align: center;
+    margin-left: 1em;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+}
+::ng-deep div.card-header.accordion>.card .card-header{
+    
+}
+::ng-deep div.accordion { 
+    counter-reset: section
+}
+*/
+
+::ng-deep div.card-body {
+    background-color: white;
+}
+.circulo{
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 4px;
+
+    background: #fff;
+    border: 2px solid #0056b3;
+    color: #0056b3;
+    text-align: center;
+    margin-left: 1em;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+}
+
+
+

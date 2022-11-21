@@ -1,0 +1,55 @@
+<div class="fake-body mt-4 pt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="font_pb text-color-red">
+                    Consultar preguntas frecuentes
+                </h2>
+            </div>
+            <br>
+            <br>
+            <div class="offset-md-1 col-md-10">
+                <span class="title_decorator"></span>
+                <p class="font_p text-color-gray" style="margin: calc(2%);">
+                    Aquí podrás encontrar las preguntas y respuestas más frecuentes relacionadas con la
+                    Estratégia de Fortalecimiento Territorial para una gestión integral educativa.
+                </p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <hr class="hr_">
+    <app-preguntas></app-preguntas>
+
+
+    <br>
+    <br>
+    <ng-template #content id="modal" let-c="close" let-d="dismiss">
+
+
+        <div class="modal-body">
+
+            <div class="col-12 text-center">
+                <h5 class="font_pb">
+                    Planeación administrativa del año 2019-2020 de la Secretaría de Educación de Calí
+                    <br>
+                    <br>
+                    <br>
+                    <iframe style="margin-left: 25px;" class="videoEscuelas" width="640"
+                        src="//www.youtube.com/embed/qh89f2afAFU?rel=0&showinfo=0&controls=1&autoplay=0&start=120"
+                        frameborder="0" allowfullscreen></iframe>
+                </h5>
+                <br>
+            </div>
+
+            <div class="mod_modal-footer">
+
+                <div class="col text-center">
+                    <span style="cursor:pointer" class="btn_third" (click)="closeModal()">Cerrar</span>
+
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>

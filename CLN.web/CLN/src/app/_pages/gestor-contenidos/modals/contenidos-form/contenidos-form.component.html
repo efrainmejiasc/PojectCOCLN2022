@@ -1,0 +1,238 @@
+<div class="modal-header">
+  <h2 class="modal-title font_title m-0 p-0 text-color-red">Cargar contenido</h2>
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div>
+    <form novalidate [formGroup]="form" (ngSubmit)="save($event)">
+      <div class="container d-flex flex-column align-items-center justify-content-center">
+        <!-- campos seleccionables -->
+        <label class="label col-sm-6">
+          <span class="label p-0 m-0 text-color-blue"> Seleccione la biblioteca </span>
+          <div class="input-container position-relative">
+            <select class="select px-2"
+              [ngClass]="{'selectInvalid': form.get('bibliotecas').invalid && activeValidator }" name="bibliotecas"
+              id="bibliotecas" formControlName="bibliotecas" (change)="ChangeSelectedBiblioteca($event.target)">
+              <option [ngValue]="null" disabled>Seleccione una opción</option>
+              <option *ngFor="let biblioteca of bibliotecas" [label]="biblioteca.nombre"
+                attr.data-bibliotecavalue="{{ biblioteca.idBiblioteca }}" [ngValue]="biblioteca.idTipo"></option>
+            </select>
+            <span class="arrow-down"></span>
+          </div>
+        </label>
+
+        <div class="col-sm-6" *ngIf="canView">
+          <div class="form-group">
+            <label class="campo p-0 m-0 text-color-blue">Seleccione el/los temas</label>
+            <div class="dropdown-asterisk">
+              <ng-multiselect-dropdown name="Temas" style="width:100%;"
+                [ngClass]="{'multiselect-error': form.get('temas').invalid && activeValidator}"
+                [placeholder]="'Selección múltiple'" [data]="ddTemasList" [(ngModel)]="selectedTemasItems"
+                [settings]="ddTemasSettings" formControlName="temas">
+              </ng-multiselect-dropdown>
+              <span class="asterisk" [ngClass]="{'asterisk-red': form.get('temas').invalid && activeValidator}">*</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6" *ngIf="canView">
+          <div class="form-group">
+            <label class="campo p-0 m-0 text-color-blue">Seleccione el /los Micrositios</label>
+            <div class="dropdown-asterisk">
+              <ng-multiselect-dropdown name="micrositios" style="width:100%;"
+                [ngClass]="{'multiselect-error': form.get('micrositios').invalid && activeValidator}"
+                [placeholder]="'Selección múltiple'" [data]="ddMicrositiosList" [(ngModel)]="selectedMicrositiosItems"
+                [settings]="ddMicrositiosSettings" formControlName="micrositios">
+              </ng-multiselect-dropdown>
+              <span class="asterisk"
+                [ngClass]="{'asterisk-red': form.get('micrositios').invalid && activeValidator}">*</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Campo nombre -->
+        <div class="form-input">
+          <label class="label">
+            <!-- [ngClass]="{ 'label-incorrecto': form['titulo'] }" -->
+            <span class="label p-0 m-0">
+              Ingrese el nombre del contenido |
+              <span class="text-color-red">
+                {{
+                form.get("titulo").value
+                | conteoCaracteres: formProperties.titulo.maxCaracteres
+                }}
+              </span>
+            </span>
+            <div class="content-asterisk">
+              <input class="input-asterisk px-2"
+                [ngClass]="{'inputInvalid': form.get('titulo').invalid && activeValidator}" maxlength="150" id="titulo"
+                #titulo formControlName="titulo" autocomplete="off" />
+              <span class="asterisk"
+                [ngClass]="{'asteriskInvalid': form.get('titulo').invalid && activeValidator}">*</span>
+            </div>
+          </label>
+        </div>
+
+        <!-- Campo contenido -->
+        <div class="form-input">
+          <label class="label input-container p-0 m-0">
+            Ingrese la descripción del contenido |
+            <span class="text-color-red">
+              {{ descripcionlenght }}
+            </span>
+          </label>
+        </div>
+        <quill-editor style="width:100%;" id="descripcion" [modules]="modules" formControlName="descripcion"
+          style="width:100%;z-index: 10;" (onContentChanged)="maxlengthdescripcion($event)">
+        </quill-editor>
+        <div *ngFor="let error of formProperties.descripcion.validationMessages" class="formerror">
+          <div class="text-color-red" *ngIf="error.state == true">
+            {{ error.message }}
+          </div>
+        </div>
+        <!-- Cargar archivo -->
+        <div class="row col-sm-12 p-0" style="z-index: 1;">
+          <div class="col-sm-12 p-0">
+            <span class="label relative rounded-0" [ngClass]="{ disabled: !file.fileenabled && file.firstloadfile }">
+              Cargar archivo
+              <span class="input-file-borrar" *ngIf="file.fileenabled && file.firstloadfile"
+                (click)="file.eliminarArchivo('file')">
+                <span class="equis equis-borrar-input"> &#10006; </span>
+                Eliminar Archivo
+              </span>
+            </span>
+
+            <label class="cargarArchivos input rounded col-sm-12" (click)="file.active('file')"
+              [ngClass]="{ disabled: !file.fileenabled && file.firstloadfile }">
+              <input type="file" name="file" id="file" (change)="handleFileInput($event.target.files)"
+                [disabled]="!file.fileenabled && file.firstloadfile" />
+              <span class="name-file" *ngIf="file.namesfiles != ''">{{
+                file.namesfiles
+                }}</span>
+
+              <span class="label-file">
+                Cargar archivo
+                <span class="tooltip-label-file">
+                  Podrá cargar
+                  <span *ngFor="let kind of file.acceptedFiles">
+                    <strong>{{kind.kind}}</strong>
+                    <span *ngFor="let exts of kind.exts">
+                      {{exts}},
+                    </span>
+                    máximo hasta
+                    <strong>
+                      {{kind.maxSize}} MB.
+                    </strong>
+                  </span>
+                </span>
+              </span>
+            </label>
+
+            <div class="formerror text-color-red" *ngIf="file.FileNotAllow">
+              {{ file.errorMessage }}
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div id="progress-Bar" class="progress-Bar hidden"></div>
+          <span id="progress-Bar-number" class="quantity_load"></span>
+        </div>
+
+        <div class="row col-sm-12 p-0">
+          <div class="col-sm-12 p-0">
+            <span class="label relative" [ngClass]="{ disabled: file.fileenabled && file.firstloadfile }">Cargar enlace
+              <span class="input-file-borrar" *ngIf="!file.fileenabled && file.firstloadfile"
+                (click)="file.eliminarArchivo('link')">
+                <span class="equis equis-borrar-input"> &#10006; </span>
+                Eliminar enlace
+              </span>
+            </span>
+            <label class="cargarUrl rounded" (click)="file.active('link')"
+              [ngClass]="{ disabled: file.fileenabled && file.firstloadfile }">
+              <input class="inputUrl" type="url" id="link" [disabled]="file.fileenabled && file.firstloadfile" />
+              <span class="label-file url">Cargar enlace</span>
+            </label>
+          </div>
+        </div>
+        <!-- ngIf cuando se carga una biblioteca especial -->
+
+        <!-- cuando se carga Capacidades -->
+        <div class="row col-sm-12" *ngIf="form.value.bibliotecas == '2071'">
+          <div class="col-sm-6">
+            <label class="label col-sm-12">
+              Seleccione el tipo de capacidad |
+              <div class="input-container">
+                <select class="select px-2" (change)="ChangeCapacidadesAsociadas($event.target.value)"
+                  formControlName="tipoCapacidad">
+                  <option [value]="null" disabled>Seleccione una opción</option>
+                  <option *ngFor="let Capacidad of contenidoAsociadoCapacidades" [label]="Capacidad.nombre"
+                    [value]="Capacidad.idValor"></option>
+                </select>
+                <span class="arrow-down"></span>
+              </div>
+            </label>
+          </div>
+
+          <div class="col-sm-6" *ngIf="contenidosAsociadosSeleccionados; else NoSeHaSeleccionado">
+            <label class="label col-sm-12">
+              Seleccione la capacidad |
+              <div class="input-container">
+                <select class="select px-2" formControlName="clasificacionContenido">
+                  <option [value]="0" disabled>Seleccione una opción</option>
+                  <option *ngFor="
+                    let contenidoAsociado of contenidosAsociadosSeleccionados
+                  " [label]="contenidoAsociado.nombre" [value]="contenidoAsociado.idValor"></option>
+                </select>
+
+                <span class="arrow-down"></span>
+              </div>
+            </label>
+          </div>
+
+          <ng-template #NoSeHaSeleccionado>
+            <div class="col-12 col-md-6">
+              Por favor seleccione una capacidad para habilitar el campo
+            </div>
+          </ng-template>
+        </div>
+
+        <!-- cuando se carga Inducción -->
+        <div class="row col-sm-12 d-flex justify-content-center align-items-center"
+          *ngIf="form.value.bibliotecas == '2072'">
+          <div class="col-sm-6">
+            <label class="label">
+              Seleccione una afirmación |
+              <div class="input-container">
+                <select class="select px-2" formControlName="clasificacionContenido"
+                  *ngIf="contenidosAsociadosInduccion">
+                  <option [value]="0" disabled>Seleccione una opción</option>
+                  <option *ngFor="let contenidoAsociado of contenidosAsociadosInduccion"
+                    [label]="contenidoAsociado.nombre" [value]="contenidoAsociado.idValor"></option>
+                </select>
+                <span class="arrow-down"></span>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group text-center">
+        <button class="submitbutton" [ngClass]="{
+          disabled: form.invalid || !file.firstloadfile }" type="submit">
+          Guardar
+        </button>
+      </div>
+    </form>
+  </div>
+  <!--ng-template #enviando>
+    <div class="d-flex flex-column align-items-center">
+      <h1>Enviando, por favor no recarge la página</h1>
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </ng-template-->
+
+</div>

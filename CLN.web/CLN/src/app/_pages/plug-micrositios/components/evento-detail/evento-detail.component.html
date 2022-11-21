@@ -1,0 +1,60 @@
+<div class="detail">
+  <div *ngIf="!evento.privado">
+    <h1 class="title-primary">Nombre del evento</h1>
+    <h2 class="title-secondary">{{ evento.nombre }}</h2>
+  </div>
+
+  <section>
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="title-primary">Descripción del evento</h1>
+        <p class="paragraph">
+          {{ evento.descripcion }}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div *ngIf="!evento.privado">
+    <h3 class="title-third">Hora del evento</h3>
+    <section>
+        <p class="paragraph">{{ evento.horaInicio + ' - ' + evento.horaFin }}</p>
+    </section>
+    <div class="row">
+        <div class="col-10">
+            <h3 class="title-third">
+                Enlace para la conexión del evento / Dirección física
+            </h3>
+        </div>
+        <div class="col-2">X</div>
+    </div>
+    <div class="paragraph link">
+      <p [innerHTML]="(evento.direccion | urlify)"></p>
+    </div>
+    <!-- Temas -->
+    <section *ngIf="evento.EventoTemas != null && evento.EventoTemas.length > 0">
+      <h3 class="title-third">Temas del evento</h3>
+      <ul class="list">
+        <li class="paragraph" *ngFor="let tema of evento.EventoTemas">{{ tema.descripcion }}</li>
+      </ul>
+    </section>
+    <!-- Fin Temas -->
+    <!-- Contenidos -->
+    <section *ngIf="evento.EventoContenidos != null && evento.EventoContenidos.length > 0">
+      <h3 class="title-third">Contenidos del evento</h3>
+      <div class="grid-layout-Contenidos" *ngFor="let contenido of evento.EventoContenidos">
+          <div  class="paragraph grid-content-contenidos">
+              <img [src]="['assets/img/Tipos_De_Archivos/' + (contenido.ruta | extensionArchivo) + '.svg']" [alt]="(contenido.ruta | extensionArchivo)">
+          </div>
+          <div class="paragraph grid-content-contenidos">{{contenido.titulo}}</div>
+          <div class="paragraph grid-content-contenidos">
+            <a [href]="[url + contenido.ruta]" target="_blank">
+              <img [src]="['assets/iconos/men/' + (contenido.tipoContenido === 'ARCHIVO' ? 'evs-descargar.svg' : 'evs-enlace web.svg')]"
+                [alt]="[(contenido.tipo == 'descargar')]">
+            </a>
+          </div>
+      </div>
+    </section>
+    <!-- Fin Contenidos -->
+  </div>
+</div>

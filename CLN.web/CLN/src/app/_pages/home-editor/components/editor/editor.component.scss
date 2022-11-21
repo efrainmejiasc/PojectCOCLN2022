@@ -1,0 +1,346 @@
+@import "../../../../_shared/styles/variables.scss";
+
+.c-general{
+  background-color: #eef1f0;
+  padding-bottom: 0px !important;
+}
+
+.editor-content {
+    min-height: calc(100vh - 190px);
+    z-index: 15;
+    background-color: #fff;
+}
+.editor-section {
+    border-bottom:1px solid rgba(0, 0, 0, 0.3);
+    min-height: 140px;
+}
+.content-footer {
+    min-height: 140px !important;
+    margin-top: 55px;
+}
+.head-name {
+    height: 40px;
+    position: relative;
+    z-index: 17;
+}
+.heightprobe {
+    height: 500px !important;
+}
+.editor-section-content {
+    min-height: 100px;
+    padding: 20px;
+}
+
+.editor-flags {
+    z-index: 11 !important;
+}
+
+.section-title {
+    width: 130px;
+    background-color: #003595;
+    color:#fff;
+    font-size: 14px;
+    padding: 5px 15px;
+}
+.save {
+    width: 150px;
+    border: none;
+    background-color: transparent !important;
+    border-radius: 20px;
+    color: $color-blue;
+}
+.saveText {
+    background-color: transparent !important;
+    color: $color-blue !important;
+}
+.buttonSvgGray {
+    width: 200px;
+    height: 170px;
+    background-color: transparent;
+    border: none;
+    cursor: move;
+}
+.buttonSvgBlue {
+    width: 40px;
+    height: 40px;
+    background-color: $color-blue;
+    display: block;
+    -webkit-mask-position: center;
+    mask-position: center;
+    border: none;
+}
+.buttonSvgRedSmall {
+    width: 100%;
+    height: 30px;
+    background-color: $color-red;
+    display: block;
+    -webkit-mask-position: center;
+    mask-position: center;
+    border: none;
+}
+.buttonSvg {
+    margin-top:20px;
+    width: 100%;
+    height: 30px;
+    background-color: #3366ff!important;
+    border-radius: 100%;
+    display: block;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+.button-Agregar {
+    width: 30px;
+    height: 30px;
+    background-image: url(src\assets\imgs\home-editor\alerta.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.button-save {
+    -webkit-mask: url(src\assets\iconos\edit_home\guardar.svg) no-repeat center;
+    mask: url(src\assets\iconos\edit_home\guardar.svg) no-repeat center !important;
+}
+.button-post {
+    -webkit-mask: url(src\assets\iconos\edit_home\alerta_publicar.svg) no-repeat center;
+    mask: url(src\assets\iconos\edit_home\alerta_publicar.svg) no-repeat center !important;
+}
+.plantilla-1 {
+    background-image: url(src\assets\iconos\edit_home\plantilla.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 298px;
+    height: 200px;
+    margin-top: 10px;
+}
+.plantilla-2 {
+    background-image: url(src\assets\iconos\edit_home\plantilla2.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 298px;
+    height: 200px;
+    margin-top: 10px;
+}
+.plantilla-3{
+    background-image: url(src\assets\iconos\edit_home\plantilla3.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 298px;
+    height: 200px;
+    margin-top: 10px;
+}
+.plantilla-4 {
+    background-image: url(src\assets\iconos\edit_home\plantilla4.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 298px;
+    height: 200px;
+    margin-top: 10px;
+}
+.plantilla-5 {
+    background-image: url(src\assets\iconos\edit_home\plantilla5.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 298px;
+    height: 200px;
+    margin-top: 10px;
+}
+
+.accordion {
+    width: 100%;
+}
+
+.action-accordion {
+    width: 100%;
+    height: 40px;
+    background-color: #d8d8d8;
+    border: solid 1px rgba(0, 0, 0, 0.3);
+    position: relative;
+    padding: 0px 0px 0px 15px;
+    cursor: pointer;
+    color:#333!important;
+    font-weight: bold;
+    font-size:15px;
+    text-transform: uppercase;
+}
+
+.arrow-down-editor {
+    width: 0.7em;
+    height: 0.7em;
+    background: #333;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+
+.text-acordion{
+    color:#7d7d7d;
+    font-size:15px;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: left;
+    margin-top: 15px;
+}
+
+button{
+    background-color:#a8a9aa;
+    background-color: #3366ff;
+    color:white;
+    border-radius: 16px;
+    border:0px solid transparent;
+    padding:4px 24px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.editor-top{
+  text-align: center;
+  padding-top: 40px!important;
+  padding-bottom: 40px!important;
+  border-bottom:1px solid rgba(0, 0, 0, 0.3);
+}
+
+.editor-top img{
+  width:22px;
+  margin-top: -10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+#info-editor{
+  background-color:#f1f1f1;
+  border-left: 5px solid #3366ff;
+  text-align: justify;
+  padding: 4px 12px;
+  width: 70%;
+  margin-left: 15%;
+}
+
+.bienvenido{
+  color:#4169af;
+  font-size: 26px;
+  font-weight: 800;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.content-accordion {
+    width: 100%;
+    padding: 10px 20px;
+}
+
+.plantilla {
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button-red {
+    width: 150px !important;
+    padding: 3px 0px;
+    border-radius: 10px;
+    border-radius: 16px;
+    border: none;
+    background-color: greenyellow;
+    color: $color-blanco;
+    font-family: $font-family-light;
+}
+.button-blue {
+    width: 150px !important;
+    padding: 3px 0px;
+    border-radius: 10px;
+    border-radius: 16px;
+    background-color: #3366ff;
+
+    color: $color-blanco;
+    font-family: $font-family-light;
+}
+.overflow-hidden {
+    overflow: hidden;
+}
+
+// Estilos Compras públicas
+
+
+#gestionar-info{
+    text-align: center;
+    padding-top: 60px;
+    width:100%;
+}
+
+#gestionar-info img{
+    width:20px;
+    margin-right: 8px;
+    margin-top: -8px;
+    cursor: pointer;
+}
+
+.titulo-azul{
+    color:#4169af;
+    font-size: 22px;
+    font-weight: 800;
+    border-bottom: 1px solid #666;
+}
+
+h2{
+    color:#111;
+    font-weight:400;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+p{
+    color:#999;
+    font-size: 14px;
+    margin-top: 30px;
+}
+
+#info-oculta{
+    text-align: center!important;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+}
+
+#info-oculta>div:nth-child(1){
+    position:relative;
+    width:580px;
+    height: 20px;
+    margin-top: -20px;
+}
+
+#info-oculta>div:nth-child(1) span{
+    position:absolute;
+    color: #999;
+    right:0px;
+    top:0px;
+    cursor:pointer;
+    padding: 4px 4px 6px;
+    border-radius:4px;
+    line-height: 12px;
+    background-color: #ebebeb;
+}
+
+#info-oculta>div:nth-child(1) span:hover{
+    background-color: #d1cece;
+    color:#666;
+}
+
+#info-oculta>div:nth-child(2){
+    background-color: #ebebeb;
+    width:580px;
+    padding: 12px;
+    border-left: 6px solid #4169af;
+}
+
+#info-oculta>div:nth-child(2){
+    font-size: 12px;
+    line-height: 14px;
+    color:#7d7d7d;
+    margin-top: 4px;
+    margin-bottom: 10px;
+}
+
+

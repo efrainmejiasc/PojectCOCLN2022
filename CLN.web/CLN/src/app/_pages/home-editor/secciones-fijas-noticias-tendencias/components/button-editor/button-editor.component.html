@@ -1,0 +1,4 @@
+<button class="btn-submit-wine" (click)="handleClick($event)" [disabled]="disabled"
+    [ngStyle]="!disabled ? { 'background-color': '#0d3b8f', 'width': width  } : { 'width': width }">
+    {{ text }}
+</button>

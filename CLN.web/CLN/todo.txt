@@ -1,0 +1,10 @@
+
+* cambiar modal envio diagnostico.
+- poner astericos a los inputs
+- validar formularios campo vacios
+* reestablecer contraseña
+- habilitar caracteres especiales en inputs
+- selecionar menu
+- gestion contenido induccion arreglar "editar/eliminar" para admin secretarias
+* gestion usuario arreglar "ver/editar" -falta traer el numero de ID, revisar q no esta guardando el segundo nombre
+* descargar reporte 

@@ -1,0 +1,303 @@
+<div style="margin-top: 20px; padding: 2em; border: 1px solid #7d7d7d; height: auto; border-radius: 0.5em;">
+    <div style="text-align: center;">
+        <mat-radio-group name="plantilla" [(ngModel)]="plantilla" (ngModelChange)="setPlantilla()" style="display: grid; grid-template-columns: auto auto auto;">
+            <div *ngFor="let op of [
+            {
+              img: 'assets/imgs/iconos/plantilla_1.svg',
+              value: '1',
+              title: 'Plantilla 1'
+            },
+            {
+              img: 'assets/imgs/iconos/plantilla_2.svg',
+              value: '2',
+              title: 'Plantilla 2'
+            },
+            {
+              img: 'assets/imgs/iconos/plantilla_3.svg',
+              value: '3',
+              title: 'Plantilla 3'
+            }
+          ]" style="padding: 20px;">
+                <div>
+                    <img src="{{ op.img }}" style="margin-bottom: 10px;">
+                    <mat-radio-button name="plantilla" [value]="op.value" style="margin: 10px; font-weight: 600;">
+                        {{ op.title }}
+                    </mat-radio-button>
+                </div>
+            </div>
+        </mat-radio-group> 
+    </div>
+    <div style="text-align: center;">
+        <mat-checkbox class="example-margin"
+            [checked]="textoSugerido"
+            [color]="'primary'"
+            (change)="selecccionar()">
+            Mostrar texto sugerido 
+        </mat-checkbox>
+    </div>
+</div>
+
+<!-- plantillas  padding: 2em;-->
+<div *ngIf="plantilla" style="margin-top: 20px; border: 1px solid #7d7d7d; height: auto; border-radius: 0.5em;">
+
+    <div style="word-spacing:normal;background-color:#ffffff;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0">
+        <div style="background-color:#ffffff">
+            
+            <!-- banner -->
+            <div *ngIf="plantilla != '3'">
+                <div style="margin-top:0px;margin-bottom:0px;margin-right:auto;margin-left:auto">
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
+                        style="width:100%;border-collapse:collapse">
+                        <tbody>
+                            <tr>
+                                <td style="border-collapse:collapse;padding: 0;position: relative;">
+                                    <div style="  width: 100%;
+                                    height: 25px;
+                                    top: 0;
+                                    left: 0;"
+                                    [ngStyle]="imgURL ? { 'position': 'absolute' } : {}"
+                                    >
+                                        <app-upload-image 
+                                            (onClick)="showImg($event)"
+                                            [imgURL]="imgURL"
+                                            [enlace]="enlace"
+                                            (asignarEnlace)="asignarEnlace($event)">
+                                        </app-upload-image>
+                                    </div>
+                                    <div style="width: 100%; height: 200px;">
+                                        <a [href]="enlace" target="_blank">
+                                            <img [src]="imgURL || imagen" *ngIf="imgURL" style="width: 100%; max-width: 100%; height: 200px; max-height: 200px;">
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- end banner -->
+
+            <!-- text -->
+            <div *ngIf="plantilla == '1'">
+                <div style="margin-top:0px;margin-bottom:0px;margin-right:auto;margin-left:auto;max-width:100%">
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
+                        style="border: none;width:100%;border-collapse:collapse">
+                        <tbody style="border: none;">
+                            <tr style="border:none">
+                                <td style="max-width: 100%; width: 100%;border: 1px solid #7d7d7d;width: 50%;background-color: #ffffff;direction:ltr;padding-top:0px;padding-bottom:0px;padding-right:0px;padding-left:0px;text-align:center;border-collapse:collapse">
+                                    <div style="margin-right: auto; margin-left: auto; text-align: justify;word-break: break-word;">
+                                        <div>
+                                            <app-upload-text
+                                                (setText)="agregarTextoPOne($event)"
+                                                [html]="primerTexto"
+                                                [tipoNotificacion]="tipoNotificacion"
+                                                [opcion]="opciones[0]"
+                                            >
+                                            </app-upload-text>
+                                        </div>
+                                        <div style="padding-right: 10px; padding-left: 10px;">
+                                            <div style="padding: 10px;width: 100%; max-width: 100%; word-break: break-word;" 
+                                            [innerHTML]="setText(primerTextoI) | safeHtml" 
+                                            [style]="primerTexto === undefined ? { 'font-size': '0px' } : {}"></div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div *ngIf="plantilla == '2'">
+                <div style="margin-top:0px;margin-bottom:0px;margin-right:auto;margin-left:auto;max-width:100%">
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
+                        style="border: none;width:100%;border-collapse:collapse">
+                        <tbody style="border: none;">
+                            <tr style="border:none">
+                                <td style="width: 100%; max-width: 100%; border-bottom: none;width: 50%;background-color: #ffffff;direction:ltr;padding-top:0px;padding-bottom:0px;padding-right:0px;padding-left:0px;text-align:center;border-collapse:collapse">
+                                    <div>
+                                        <app-upload-text
+                                            (setText)="agregarTextoPTwo($event)"
+                                            [html]="primerTexto"
+                                            [tipoNotificacion]="tipoNotificacion"
+                                            [idEditor]="'container-editor-1'"
+                                            [opcion]="opciones[0]"
+                                        >
+                                        </app-upload-text>
+                                    </div>
+                                </td>
+                                <td style="width: 100%; max-width: 100%; border-bottom: none;width: 50%;background-color: #ffffff;direction:ltr;padding-top:0px;padding-bottom:0px;padding-right:0px;padding-left:0px;text-align:center;border-collapse:collapse">
+                                    <div>
+                                        <app-upload-text
+                                            (setText)="agregarSegundoTexto($event)"
+                                            [html]="segundoTexto"
+                                            [tipoNotificacion]="tipoNotificacion"
+                                            [idEditor]="'container-editor-2'"
+                                            [opcion]="opciones[1]"
+                                        >
+                                        </app-upload-text>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="border:none">
+                                <td style="width: 100%; max-width: 100%; border-top: none;width: 50%;background-color: #ffffff;direction:ltr;padding-top:0px;padding-bottom:0px;padding-right:0px;padding-left:0px;text-align:center;border-collapse:collapse">
+                                    <div style="margin-right: auto; margin-left: auto; text-align: justify;word-break: break-word;">
+                                        <div style="margin-right: auto; margin-left: auto;">
+                                            <div style="padding-right: 10px; padding-left: 10px;">
+                                                <div style="width: 100%; max-width: 100%; padding: 10px;max-width: 770px;word-break: break-word;" [innerHTML]="setText(primerTextoI) | safeHtml" [style]="primerTextoTwo === undefined ? { 'font-size': '0px' } : {}"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="width: 100%; max-width: 100%; border-top: none;width: 50%;background-color: #ffffff;direction:ltr;padding-top:0px;padding-bottom:0px;padding-right:0px;padding-left:0px;text-align:center;border-collapse:collapse">
+                                    <div style="margin-right: auto; margin-left: auto; text-align: justify;word-break: break-word;">
+                                        <div style="margin-right: auto; margin-left: auto;">
+                    
+                                            <div style="padding-right: 10px; padding-left: 10px;">
+                                                <div style="padding: 10px;width: 100%; max-width: 100%; word-break: break-word;" [innerHTML]="setText(segundoTextoI) | safeHtml" [style]="segundoTexto === undefined ? { 'font-size': '0px' } : {}"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div *ngIf="plantilla === '3'">
+                <div style="margin-top:0px;margin-bottom:0px;margin-right:auto;margin-left:auto;max-width:100%">
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
+                        style="border: none;width:100%;border-collapse:collapse">
+                        <tbody style="border: none;">
+                            <tr style="border:none">
+                                <td style="border-bottom:none;width: 100%; max-width: 100%; border-bottom: none;width: 50%;background-color: #ffffff;direction:ltr;padding-top:0px;padding-bottom:0px;padding-right:0px;padding-left:0px;text-align:center;border-collapse:collapse">
+                                    <div>
+                                        <app-upload-image 
+                                            (onClick)="showImg($event)"
+                                            [imgURL]="imgURL"
+                                            [enlace]="enlace"
+                                            (asignarEnlace)="asignarEnlace($event)"
+                                            >
+                                        </app-upload-image>
+                                    </div>
+                                </td>
+                                <td style="width: 100%; max-width: 100%; border-bottom: none;width: 50%;background-color: #ffffff;direction:ltr;padding-top:0px;padding-bottom:0px;padding-right:0px;padding-left:0px;text-align:center;border-collapse:collapse">
+                                    <div>
+                                        <app-upload-text
+                                            (setText)="agregarPrimerTexto($event)"
+                                            [html]="primerTexto"
+                                            [tipoNotificacion]="tipoNotificacion"
+                                            [opcion]="opciones[0]"
+                                        >
+                                        </app-upload-text>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="border:none">
+                                <td style="border-top: none; border-top: none;width:600px;border-collapse:collapse;padding: 0;position: relative;">
+                                    
+                                    <div style="width: 100%;height: 400px;">
+                                        <img [src]="imgURL || imagen" *ngIf="imgURL" style="width: 100%;height: 400px;">
+                                    </div>
+                                </td>
+                                <td style="border-top: none;width: 100%; max-width: 100%; width: 50%;background-color: #ffffff;direction:ltr;padding-top:0px;padding-bottom:0px;padding-right:0px;padding-left:0px;text-align:center;border-collapse:collapse">
+                                    <div style="margin-right: auto; margin-left: auto; text-align: justify;">
+                                        <div style="margin-right: auto; margin-left: auto;">
+                                            
+                                            <div style="padding-right: 10px; padding-left: 10px;width: 100%;height: 100%;">
+                                                <div style="padding: 10px;width: 100%; max-width: 100%; word-break: break-word;" [innerHTML]="setText(primerTextoI) | safeHtml" [style]="primerTexto3 === undefined ? { 'font-size': '0px' } : {}"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- end text -->
+    
+             <!-- footer -->
+            <div style="padding-bottom:20px;">
+                <!-- footer image -->
+                <div style="padding-top:20px;background-image:none;background-repeat:repeat;background-position:top left;margin-top:0px;margin-bottom:0px;margin-right:auto;margin-left:auto;max-width:900px">
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border: none;background-image:none;background-repeat:repeat;background-position:top left;width:100%;border-collapse:collapse">
+                        <tbody style="border: none;">
+                            <tr style="border: none;">
+                                <td style="border: none;background-color: #ffffff;direction:ltr;font-size:0px;padding-top:20px;padding-bottom:20px;padding-right:0;padding-left:0;text-align:center;border-collapse:collapse">
+                                    <img style="padding-right: 40px; width: 90%; height: 90%;" src="assets/img/mails/logomincomercio.svg">
+                                </td>
+                                <td style="border: none;background-color: #ffffff;direction:ltr;font-size:0px;padding-top:20px;padding-bottom:20px;padding-right:0;padding-left:0;text-align:center;border-collapse:collapse">
+                                    <img style="padding-right: 40px; width: 90%; height: 90%;" src="assets/img/mails/logocolombiaproductiva.svg">
+                                </td>
+                                <td style="border: none;background-color: #ffffff;direction:ltr;font-size:0px;padding-top:20px;padding-bottom:20px;padding-right:0;padding-left:0;text-align:center;border-collapse:collapse">
+                                    <img style="padding-right: 40px; width: 90%; height: 90%;" src="assets/img/mails/compralonuestro.svg">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- end footer image -->
+
+                <!-- links -->
+                <div style="margin-top:0px;margin-bottom:0px;margin-right:auto;margin-left:auto;max-width:900px">
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border: none;width:100%;border-collapse:collapse">
+                        <tbody style="border: none;">
+                            <tr style="border: none;">
+                                <td style="border: none;background-color: #ffffff;direction:ltr;font-size:0px;padding-top:0px;padding-bottom:0px;padding-right:0px;padding-left:0px;text-align:center;border-collapse:collapse">
+                                    <a href="" style="text-decoration:none;">
+                                        <label style="padding-left:10px; font-family: 'Open Sans'; font-weight: regular; color: #757575; font-size: 14px;">
+                                            <img style="width: 25px; height: 25px;" src="assets/imgs/iconos/facebook.svg">
+                                            @Col_Productiva
+                                        </label>
+                                    </a>
+                                </td>
+                                <td style="border: none;background-color: #ffffff;direction:ltr;font-size:0px;padding-top:0px;padding-bottom:0px;padding-right:0px;padding-left:0px;text-align:center;border-collapse:collapse">
+                                    <a href="" style="text-decoration:none;">
+                                        <label style="padding-left:10px; font-family: 'Open Sans'; font-weight: regular; color: #757575; font-size: 14px;">
+                                            <img style="width: 25px; height: 25px;" src="assets/imgs/iconos/twiter.svg">
+                                            @ColombiaProductiva
+                                        </label>
+                                    </a>
+                                </td>
+                                <td style="border: none;background-color: #ffffff;direction:ltr;font-size:0px;padding-top:0px;padding-bottom:0px;padding-right:0px;padding-left:0px;text-align:center;border-collapse:collapse">
+                                    <a href="" style="text-decoration:none;">
+                                        <label style="font-family: 'Open Sans'; font-weight: regular; color: #757575; font-size: 14px;">
+                                            <a href="https://www.colombiaproductiva.com/" target="_blank" style="color: #757575">
+                                                <img style="width: 25px; height: 25px;" src="assets/img/mails/enlace.svg">
+                                                www.colombiaproductiva.com
+                                            </a>
+                                        </label>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- end links -->
+
+                <!-- derechos -->
+                <div style="border: none;margin-top:0px;margin-bottom:0px;margin-right:auto;margin-left:auto;max-width:900px;">
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
+                        style="border: none;width:100%;border-collapse:collapse">
+                        <tbody style="border: none;">
+                            <tr style="border: none;">
+                                <td style="border: none;background-color: #ffffff; direction:ltr;padding-top:0px;padding-bottom:0px;padding-right:0px;padding-left:0px;text-align:center;border-collapse:collapse">
+                                    <div style="margin-top:10px;margin-bottom:10px;left: 0; bottom: 0; width: 100%; background-color: #ffffff; color: #757575; text-align: center;">
+                                        <p style="margin: 0; font-family: 'Open Sans';">© 2022, <i>Todos los derechos reservados.</i> </p>
+                                        <p style="margin: 0; font-family: 'Open Sans';">Colombia Productiva.</p>
+                                        <p style="margin: 0; font-family: 'Open Sans';">Calle 28 # 13a-15 piso 21 · Bogotá: (+571) 7491 000 · Colombia</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- end derechos -->
+            </div>
+             <!-- end footer -->
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,24 @@
+<form class="content-loop" (click)="identifyClickOutSide($event)">
+    <button class="select-loop" (click)="openBox()" id="selectLoop" #selectLoop>{{select}}
+        <span class="arrow-down"></span>
+    </button>
+    <div class="loop-body" *ngIf="loopStatus &&  idPadreSelected == null" id="loop" #loop>
+        <span *ngIf="CapacidadesPadre.length == 0">{{emptyMessage}}</span>
+        <div class="lopp-body-inside" *ngIf="CapacidadesPadre.length > 0">
+            <div class="box-loop-active" *ngFor="let loopB of CapacidadesPadre ; let i = index"
+                (mouseover)="activeMoreInfo(1,i)" (mouseout)="activeMoreInfo(0,i)" id="loopAction{{i}}" #loopAction{{i}}
+                (click)="selectLoopItem(loopB)">
+                <button>{{loopB.nombre}}</button>
+            </div>
+        </div>
+        <div class="lopp-body-outside bg-danger" *ngIf="CapacidadesPadre.length > 0">
+            <div class="box-loop-active" *ngFor="let loop of CapacidadesPadre ; let i = index" id="loop{{i}}"
+                #loop{{i}}>
+                <div class="overContent">
+                    <div class="triangle"></div>
+                    <div class="overBody">{{loop.nombre}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

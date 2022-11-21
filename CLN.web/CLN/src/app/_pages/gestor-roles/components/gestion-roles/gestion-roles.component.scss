@@ -1,0 +1,30 @@
+@import '../../../../_shared/styles/variables.scss';
+input:focus {
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+select:focus {
+  outline: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+.table-internal-filter-select {
+  width: 90%;
+  background-color: #224284 !important;
+  color: rgb(255, 255, 255);
+}
+
+.th-sorter {
+  position: relative;
+}
+
+.paginatornative {
+  width: 100%;
+}

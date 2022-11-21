@@ -1,0 +1,36 @@
+<nav *ngIf="userlogged != null" class="navbar navbar-expand-lg navbar-light bg-light text-center col-sm-12">
+    <div style="width: 100%;" class=" text-center">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="navbarResponsive" class="text-center">
+
+            <ul class="navbar-nav ml-auto mx-auto" style="line-height: 18px;">
+                <a class="nav-item col-lg-4 active li_border">
+                    <a class="nav-link" *ngIf="userlogged">{{ userlogged.rol }}</a>
+                    <span class="icon_menu que_es"></span>
+                </a>
+                <a class="nav-item col-lg-4 li_border">
+                    <a class="nav-link" *ngIf="userlogged">{{userlogged.primerNombre  }}
+                        {{userlogged.primerApellido}} </a>
+                    <span class="icon_menu diagnostico"></span>
+
+                </a>
+                <a class="nav-item col-lg-2 li_border">
+                    <a class="nav-link" style="cursor: pointer;" (click)="toHome()">Volver al Inicio</a>
+                    <span class="icon_menu q_info"></span>
+
+                </a>
+                <a class="nav-item col-lg-2 ">
+                    <a class="nav-link" style="cursor: pointer;" [routerLink]="['/changepassword']">Cambiar
+                        Contraseña</a>
+                    <span class="icon_menu q_aprender"></span>
+                </a>
+
+            </ul>
+
+        </div>
+    </div>
+</nav>

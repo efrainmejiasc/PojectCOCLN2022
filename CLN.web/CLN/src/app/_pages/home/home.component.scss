@@ -1,0 +1,42 @@
+@import '../../_shared/styles/variables.scss';
+.quiero_parent {
+  display: flex;
+  position: relative;
+}
+
+.q_info {
+  position: relative;
+  display: contents;
+  width: 100%;
+}
+.q_apren {
+  position: relative;
+  display: contents;
+  width: 100%;
+}
+
+.navbar_mod {
+  padding: 0 !important;
+  background-color: #f2f2f2 !important;
+}
+.li_border_mod {
+  border-right: 1px solid #3366cc;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-light_mod .navbar-nav_mod .active > .nav-link,
+.navbar-light_mod .navbar-nav_mod .nav-link.active,
+.navbar-light_mod .navbar-nav_mod .nav-link.show,
+.navbar-light_mod .navbar-nav_mod .show > .nav-link {
+  color: #6699ff !important;
+}
+.navbar-expand-lg .navbar-nav_mod .nav-link_mod {
+  color: #6699ff !important;
+}
+
+
+.micrositios{
+  background-image: url("src/assets/img/banner_micrositios/Banner3_Mesa de trabajo 1.png");
+  height: 285px;
+}

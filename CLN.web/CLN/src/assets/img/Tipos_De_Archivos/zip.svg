@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26.888" height="29.794" viewBox="0 0 26.888 29.794">
+  <g id="zip" transform="translate(0.25 0.702)">
+    <g id="Grupo_48" data-name="Grupo 48" transform="translate(-105.423 -238.306)">
+      <path id="Trazado_100" data-name="Trazado 100" d="M124.341,238.418l-14.08-.112a2.621,2.621,0,0,0-2.642,2.624l.022,23.113a2.622,2.622,0,0,0,2.612,2.619l16.667.057a2.621,2.621,0,0,0,2.63-2.612l.066-20.452" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.356"/>
+      <path id="Trazado_101" data-name="Trazado 101" d="M124.618,238.562l5,5h-5.01v-5" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.356"/>
+    </g>
+    <rect id="Rectángulo_16" data-name="Rectángulo 16" width="26.388" height="8.627" rx="2.159" transform="translate(0 15.746)" fill="#fff" stroke="#36c" stroke-miterlimit="10" stroke-width="0.5"/>
+    <text id="ZIP-2" data-name="ZIP" transform="translate(13.194 23.479)" fill="#36c" font-size="10.382" font-family="AntipastoPro, Antipasto Pro"><tspan x="-6.473" y="0">ZIP</tspan></text>
+    <g id="Grupo_49" data-name="Grupo 49" transform="translate(-105.423 -238.306)">
+      <rect id="Rectángulo_17" data-name="Rectángulo 17" width="1.583" height="0.775" transform="translate(117.223 241.63)" fill="#36c"/>
+      <rect id="Rectángulo_18" data-name="Rectángulo 18" width="1.583" height="0.775" transform="translate(118.752 242.386)" fill="#36c"/>
+      <rect id="Rectángulo_19" data-name="Rectángulo 19" width="1.583" height="0.775" transform="translate(117.168 243.173)" fill="#36c"/>
+      <rect id="Rectángulo_20" data-name="Rectángulo 20" width="1.583" height="0.775" transform="translate(118.752 243.948)" fill="#36c"/>
+      <rect id="Rectángulo_21" data-name="Rectángulo 21" width="1.583" height="0.775" transform="translate(117.168 244.736)" fill="#36c"/>
+      <rect id="Rectángulo_22" data-name="Rectángulo 22" width="1.583" height="0.775" transform="translate(118.752 245.482)" fill="#36c"/>
+      <rect id="Rectángulo_23" data-name="Rectángulo 23" width="1.583" height="0.775" transform="translate(117.168 246.27)" fill="#36c"/>
+      <rect id="Rectángulo_24" data-name="Rectángulo 24" width="1.583" height="0.775" transform="translate(118.752 247.044)" fill="#36c"/>
+      <rect id="Rectángulo_25" data-name="Rectángulo 25" width="1.583" height="0.775" transform="translate(117.168 247.832)" fill="#36c"/>
+      <rect id="Rectángulo_26" data-name="Rectángulo 26" width="1.583" height="0.775" transform="translate(118.752 248.588)" fill="#36c"/>
+      <rect id="Rectángulo_27" data-name="Rectángulo 27" width="1.583" height="0.775" transform="translate(117.168 249.375)" fill="#36c"/>
+      <rect id="Rectángulo_28" data-name="Rectángulo 28" width="1.583" height="0.775" transform="translate(118.752 250.15)" fill="#36c"/>
+      <rect id="Rectángulo_29" data-name="Rectángulo 29" width="1.583" height="0.775" transform="translate(117.168 250.937)" fill="#36c"/>
+      <path id="Trazado_102" data-name="Trazado 102" d="M118.609,241.557a13.169,13.169,0,0,0-.91,1.129c-.272.393-.874,1-.328,1.423a1.586,1.586,0,0,0,.653.327.508.508,0,0,0,.609-.425c.187-.9.57-2.106.57-2.106l-.6-.354" fill="#f2f2f2" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5"/>
+      <line id="Línea_16" data-name="Línea 16" x2="0.767" y2="0.407" transform="translate(118.117 242.326)" fill="#f2f2f2" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5"/>
+    </g>
+  </g>
+</svg>

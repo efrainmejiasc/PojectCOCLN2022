@@ -1,0 +1,96 @@
+<div class="col-sm-12 p-0 d-flex justify-content-center align-items-start overflow-hidden">
+    <div class="editor-content col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start">
+        <!--Seccion 1-->
+        <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start"
+            [ngStyle]="{'z-index':'15'}" *ngIf="sectionOne.length > 0 && findStatusSection('Seccion1') == true">
+            <div class="editor-section-content col-sm-12 p-0 d-flex justify-content-center align-items-center">
+                <span class="col-sm-12 p-0 d-flex flex-column justify-content-center align-items-center"
+                    *ngFor="let template of sectionOne">
+                    <app-template-switch class="col-sm-12 p-0" [template]="EditorTemplates" [index]="101"
+                        [templateSelected]="template" [nameSection]="'Seccion1'"
+                        *ngIf=" findStatusSection('Seccion1') != false" [builder]="builder">
+                    </app-template-switch>
+                </span>
+            </div>
+        </div>
+        <!--Seccion 2-->
+        <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start"
+            [ngStyle]="{'z-index':'14'}"
+            *ngIf="findStatusSection('Seccion2')"
+            >
+            <div
+                class="editor-section-content col-sm-12 p-0 d-flex flex-column justify-content-center align-items-center">
+                <app-seccion-fija></app-seccion-fija>
+            </div>
+        </div>
+        <!--Seccion 3-->
+        <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start"
+            [ngStyle]="{'z-index':'13'}" *ngIf="sectionThree.length > 0 && findStatusSection('Seccion3')">
+            <div
+                class="editor-section-content col-sm-12 p-0 d-flex flex-column justify-content-center align-items-center">
+                <span class="col-sm-12 p-0 d-flex justify-content-center align-items-center"
+                    *ngFor="let template of sectionThree">
+                    <app-template-switch class="col-sm-12 p-0" [template]="EditorTemplates" [index]="300"
+                        [templateSelected]="template" [nameSection]="'Seccion3'" [builder]="builder">
+                    </app-template-switch>
+                </span>
+            </div>
+        </div>
+        <!--Seccion 4-->
+        <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start"
+            [ngStyle]="{'z-index':'12'}" *ngIf="sectionFour.length > 0 && findStatusSection('Seccion4')">
+            <div class="editor-section-content col-sm-12 p-0 d-flex flex-column justify-content-center align-items-center"
+                cdkDropList (cdkDropListDropped)="drop($event)" #sectionFourList="cdkDropList"
+                [cdkDropListData]="sectionFour" cdkDropListSortingDisabled>
+                <span class="col-sm-12 p-0 d-flex justify-content-center align-items-center"
+                    *ngFor="let template of sectionFour">
+                    <app-template-switch class="col-sm-12 p-0"
+                        [closeActionByOutsideClickPattern]="closeActionByOutsideClick" [template]="EditorTemplates"
+                        [index]="400" [templateSelected]="template" [nameSection]="'Seccion4'" [color]="colorFour"
+                        [builder]="builder">
+                    </app-template-switch>
+                </span>
+            </div>
+        </div>
+        <!--Seccion 5-->
+        <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start"
+            [ngStyle]="{'z-index':'10'}" *ngIf="sectionFive.length > 0 && findStatusSection('Seccion5')">
+            <div class="editor-section-content col-sm-12 p-0 d-flex flex-column justify-content-center align-items-center"
+                cdkDropList (cdkDropListDropped)="drop($event)" #sectionFiveList="cdkDropList"
+                [cdkDropListData]="sectionFive" cdkDropListSortingDisabled>
+                <span class="col-sm-12 p-0 d-flex justify-content-center align-items-center"
+                    *ngFor="let template of sectionFive">
+                    <app-template-switch class="col-sm-12 p-0"
+                        [closeActionByOutsideClickPattern]="closeActionByOutsideClick" [template]="EditorTemplates"
+                        [index]="600" [templateSelected]="template" [nameSection]="'Seccion5'" [color]="colorFive"
+                        [builder]="builder">
+                    </app-template-switch>
+                </span>
+            </div>
+        </div>
+        <!--Seccion 6-->
+        <div class="editor-section col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start"
+            [ngStyle]="{'z-index':'9'}" *ngIf="sectionSix.length > 0 && findStatusSection('Seccion6')">
+            <div class="editor-section-content col-sm-12 p-0 d-flex flex-column justify-content-center align-items-center"
+                cdkDropList (cdkDropListDropped)="drop($event)" #sectionSixList="cdkDropList"
+                [cdkDropListData]="sectionSix" cdkDropListSortingDisabled>
+                <span class="col-sm-12 p-0 d-flex justify-content-center align-items-center"
+                    *ngFor="let template of sectionSix">
+                    <app-template-switch class="col-sm-12 p-0"
+                        [closeActionByOutsideClickPattern]="closeActionByOutsideClick" [template]="EditorTemplates"
+                        [index]="600" [templateSelected]="template" [nameSection]="'Seccion6'" [color]="colorSix"
+                        [builder]="builder">
+                    </app-template-switch>
+                </span>
+            </div>
+        </div>
+        <div class="col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start content-footer" [ngStyle]="{'z-index':'8'}">
+            <div class="col-sm-12 p-0 d-flex justify-content-start align-items-center head-name">
+                <!-- <span >Pie</span> -->
+            </div>
+        </div>
+    </div>
+    <button class="goTop" (click)="toTop()">
+        <span class="icon-goTop"></span>
+    </button>
+</div>

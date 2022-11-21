@@ -1,0 +1,22 @@
+<div>
+
+    <app-offer-options
+        [opciones]="opciones" 
+        [selectedOption]="selectedOption">
+    </app-offer-options>
+
+    <div style="margin-top: 2rem;" *ngIf="infoEmpresa">
+        <app-citas-anfitrion 
+            *ngIf="selectedOption === opciones[0].title"
+            [nitEmpresa]="infoEmpresa.companyIdentifier"
+            [nameEmpresa]="infoEmpresa.companyName"
+            >
+        </app-citas-anfitrion>
+        <app-citas-invitado 
+            *ngIf="selectedOption === opciones[1].title"
+            [nitEmpresa]="infoEmpresa"
+            >
+        </app-citas-invitado>
+    </div>
+
+</div>

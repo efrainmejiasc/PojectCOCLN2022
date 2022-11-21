@@ -1,0 +1,115 @@
+
+.table-labels {
+  position: absolute;
+  top: -1.2em;
+  right: 1em;
+  text-align: right;
+  color: #999999 !important;
+  background-color: #00000000 !important;
+  font-family: "Work Sans", sans-serif;
+  font-weight: lighter;
+  font-size: 12pt;
+  margin: auto 0px;
+  display: inline-block;
+  width: 300px;
+  height: 1em !important;
+}
+
+.table-head-lastchild{
+  position: relative
+}
+
+.table-circle-green, .table-circle-red {
+  display: inline-block;
+  width: 0.7em;
+  height: 0.7em;
+  border-radius: 0.35em !important;
+  margin: 0px 5px 0px 20px;
+}
+
+.table-circle-green {
+  background-color: rgb(86, 188, 89) !important;
+  max-height: 0.7em;
+}
+
+.table-circle-red {
+  background-color: #f42f63 !important;
+  max-height: 0.7em;
+}
+
+.whitespace {
+  display: block;
+  width: 100%;
+  height: 107px;
+}
+
+.table-table {
+  width: 100%;
+  height: 6em;
+  text-align: center;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.table-head tr :nth-child(n) {
+  background-color: #36c;
+  color: #f2f2f2;
+  border-left: 1px solid #f2f2f2;
+  height: 3em;
+}
+
+.table-head tr :first-child {
+  border-left: none;
+  border-top-left-radius: 30px
+}
+
+.table-head tr :last-child {
+  border-top-right-radius: 30px;
+}
+
+.table-body tr td:nth-of-type() {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  border: 1px solid #36c;
+  font-size: 13pt;
+  background-color: #e6effd;
+  color: #606060;
+}
+
+.table-body-lastchild :nth-child(n):hover {
+  color: #f42f63;
+  transition: 0.2s ease all;
+  cursor: pointer;
+}
+.table-body-lastchild{
+  padding: 0;
+  margin: 0;
+}
+.table-body-lastchild span{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-body-tema{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.table-body-lastchild span {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  
+  outline: 1px solid #36c;
+  margin: 0;
+  height: 67%;
+  width: 23.2%;
+  font-size: 0.6em;
+  padding: 1em;
+}
+
+.dataTables_wrapper {  
+  margin-top: 2em;
+}

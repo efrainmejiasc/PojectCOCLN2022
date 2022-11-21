@@ -1,0 +1,95 @@
+<div class="wrapper">
+  <div class="alert-info"*ngIf="showAlertInfo"> Selecciona una o varias opción(es)</div>
+  <img
+    (mouseover) = "handleAlertInfo()"
+    (mouseout) = "closeAlertInfo()"
+    *ngIf="showAlert"
+    class = "alert-img"
+    src="assets/imgs/iconos/alerta.svg" />
+  <div class="select-btn" [ngClass]="{'alert': showAlert}">
+    <div class="content-box">
+      <ul>
+        <li *ngFor="let item of selectedItems">
+           <p>{{item.value}}</p>
+           <span (click)="addOrDelete(item)">X</span>
+        </li>
+       </ul>
+    </div>
+  </div>
+
+  <div class="products-buttom" (click)="toogleModal()">
+    <div>
+      <img src="assets/imgs/iconos/producto.svg" />
+    </div>
+    <p>AGREGAR PRODUCTOS</p>
+  </div>
+</div>
+
+<div id="modal" class="products-modal">
+  <div class="products-modal-content">
+    <p>Productos y/o servicios de la Clasificación de Naciones Unidas-UNSPSC</p>
+    <div class="select-btn-modal">
+      <div class="content-box-modal">
+        <ul>
+         <li *ngFor="let item of selectedItems">
+            <p>{{item.value}}</p>
+         </li>
+        </ul>
+      </div>
+    </div>
+    <div id="results" class="products-modal-results">
+
+      <div *ngFor="let zeroNivel of arbol; let index0=index;">
+        <div style="float: left; margin-right: 5px; cursor:pointer" (click)="mostrar(1, zeroNivel)">
+            <img style="width: 18px; margin-left: 5px;" src="{{ zeroNivel.show ? 'assets/imgs/iconos/carpeta-open.svg' : 'assets/imgs/iconos/carpeta.svg' }}">
+        </div>
+        <div style="padding-top: 2px;width: 90rem;">
+            <label>{{zeroNivel.value}}</label>
+        </div>
+          <div *ngIf="zeroNivel.show">
+            <div *ngFor="let primerNivel of zeroNivel.nivel; let index1=index;" style="margin-left: 20px;">
+              <div style="float: left; margin-right: 5px; cursor:pointer" (click)="mostrar(2, primerNivel)">
+                <img style="width: 18px; margin-left: 5px;" src="{{ primerNivel.show ? 'assets/imgs/iconos/carpeta-open.svg' : 'assets/imgs/iconos/carpeta.svg' }}">
+              </div>
+              <div style="padding-top: 2px;width: 90rem;">
+                <label>{{primerNivel.code}} {{primerNivel.value}}</label>
+              </div>
+                <div *ngIf="primerNivel.show">
+                  <div *ngFor="let segundoNivel of primerNivel.nivel; let index2=index;" style="margin-left: 20px;">
+                    <div style="float: left; margin-right: 5px; cursor:pointer" (click)="mostrar(3, segundoNivel)">
+                      <img style="width: 18px; margin-left: 5px;" src="{{ segundoNivel.show ? 'assets/imgs/iconos/carpeta-open.svg' : 'assets/imgs/iconos/carpeta.svg' }}">
+                    </div>
+                    <div style="padding-top: 2px;width: 90rem;">
+                      <label>{{segundoNivel.code}} {{segundoNivel.value}}</label>
+                    </div>
+                      <div *ngIf="segundoNivel.show">
+                        <div *ngFor="let tercerNivel of segundoNivel.nivel; let index3=index;" style="margin-left: 20px;">
+                          <div style="float: left; margin-right: 5px; cursor:pointer" (click)="mostrar(4, tercerNivel)">
+                            <img style="width: 18px; margin-left: 5px;" src="{{ tercerNivel.show ? 'assets/imgs/iconos/carpeta-open.svg' : 'assets/imgs/iconos/carpeta.svg' }}">
+                          </div>
+                          <div style="padding-top: 2px;width: 90rem;">
+                            <input type="checkbox" [checked]="tercerNivel.checked" id="{{tercerNivel.code}}" style="margin-right: 5px" (click)="addOrDelete(tercerNivel)">
+                            <label>{{tercerNivel.code}} {{tercerNivel.value}}</label>
+                          </div>
+                            <div *ngIf="tercerNivel.show">
+                              <div *ngFor="let cuartoNivel of tercerNivel.nivel; let index4=index;" style="margin-left: 20px;">
+                                <div style="padding-top: 2px;width: 90rem;">
+                                  <input type="checkbox" [checked]="cuartoNivel.checked" id="{{cuartoNivel.code}}" style="margin-right: 5px" (click)="addOrDelete(cuartoNivel, tercerNivel)">
+                                  <label>{{cuartoNivel.code}} {{cuartoNivel.value}}</label>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+    </div>
+    <div class="modal-btn-container">
+      <button class="modal-btn" (click)="closeModal()">CERRAR</button>
+    </div>
+</div>

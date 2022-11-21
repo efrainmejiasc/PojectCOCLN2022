@@ -1,0 +1,99 @@
+<div class="container">
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h2 class="font_title">Resultado autodiagnóstico</h2>
+        </div>
+
+        <div class="col-lg-12  text-center" style="display: inline-flex;place-items: center;">
+            <span class="title_decorator" style="margin-left: 0px; display: flex;position: absolute;"></span>
+            <h4 class="font_p" style="display: block;  margin-left: auto; margin-right: auto;">
+                Aquí podrá visualizar el historial de los resultados obtenidos en cada uno de los
+                autodiagnósticos realizados hasta la fecha.
+            </h4>
+
+        </div>
+        <hr>
+        <div class="col-lg-12 text-center">
+            <div class="result_table">
+                <div class="row mt-5" style="margin-bottom: 30px;">
+                    <div class="col-lg-4">
+                        <span class="cap_es">E</span> <span class="font_worksans_ligth"> Capacidades Estratégicas
+                        </span>
+                    </div>
+                    <div class="col-lg-4">
+                        <span class="cap_tec">T</span> <span class="font_worksans_ligth"> Capacidades Técnicas
+                        </span>
+                    </div>
+                    <div class="col-lg-4">
+                        <span class="cap_per">P</span> <span class="font_worksans_ligth"> Capacidades Personales
+                        </span>
+                    </div>
+                </div>
+                <div class="force-overflow">
+                    <div class="table-responsive">
+                        <table class="" style="margin:1rem; width: 865px !important;">
+                            <thead class="table_diag">
+                                <tr>
+                                    <td class="text-center" style="font-size: 25px;">Afirmación</td>
+                                    <td *ngFor="let header of resultados.Header">
+                                        <span class="font_worksans_ligth"
+                                            style="color: white !important;font-size: 13px;">
+                                            {{header.fechaCreacion | date: 'dd/MM/yyyy h:mm:ss'  }}
+                                        </span>
+                                        <hr style="border: 0.6px white solid;">
+                                        <span *ngIf="!is_loading_dict[header.numeroAutodiagnostico]"
+                                            (click)="descargarAutodiagnostigo(header.numeroAutodiagnostico)"
+                                            style="cursor: pointer; background: white;padding: 4px;border-radius: 10px;">
+                                            Descargar </span>
+                                        <div *ngIf="is_loading_dict[header.numeroAutodiagnostico]"
+                                            class="spinner-border text-primary"></div>
+                                    </td>
+
+                                </tr>
+                            </thead>
+                            <tbody class="font_p_2" *ngFor="let question of resultados.Data">
+                                <tr>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col  text-justify" style="display: flex;">
+                                                <span style="display: block; margin: 30px -13px 0px auto;" [ngClass]="{'cap_es': question.categoria=='E',
+                                                            'cap_tec': question.categoria=='T',
+                                                            'cap_per': question.categoria=='P'  }">
+                                                    {{question.categoria}}
+                                                </span>
+
+                                            </div>
+                                            <div class="col-11 text-justify">
+                                                <p style="display: block; margin: 15px;" class="font_p">
+                                                    {{question.afirmacion}}
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td *ngFor="let item of question.fechas">
+                                        <span class="font_p">
+                                            {{item.calificacion}}
+                                        </span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--  {{fecha.fechaCalificacion | date: 'dd/MM/yyyy h:mm:ss'  }} -->
+
+
+    </div>
+
+</div>
+<br>
+<br>
+<br>

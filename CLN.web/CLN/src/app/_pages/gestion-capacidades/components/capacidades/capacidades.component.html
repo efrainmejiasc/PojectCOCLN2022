@@ -1,0 +1,13 @@
+<div class="container-max contenedor">
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-fall" [fullScreen]="true">
+        <p style="color: white">Cargando...</p>
+    </ngx-spinner>
+    <div class="container">
+        <app-contenidos-titulo-capacidades (evento)="reloadtable($event)" [titulo]="titulo" [permitsUser]="permitsUser">
+        </app-contenidos-titulo-capacidades>
+    </div>
+    <app-table-dynamic-capacidades (buildAction)="buildAction($event)" [dataRow]="configuration.rowOrderData"
+        [dataToPrint]="configuration.dataToPrint" [permitsUser]="permitsUser" [emptyConfiguration]="emptyConfiguration"
+        [searchConfig]="searchConfig">
+    </app-table-dynamic-capacidades>
+</div>

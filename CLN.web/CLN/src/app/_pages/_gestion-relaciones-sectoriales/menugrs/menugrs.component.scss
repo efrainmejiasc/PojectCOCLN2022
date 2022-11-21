@@ -1,0 +1,279 @@
+.grs-header{
+  display: flex;
+}
+
+.grs-header>div{
+  width:50%;
+  border:1px solid #7d7d7d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  height: 50px;
+}
+
+.grs-icon-container{
+  height: 60px;
+  max-height: 60px;
+  overflow: hidden;
+  border:none;
+  width:40px;
+  border:none;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.grs-icon-container img{
+  height:21px;
+}
+.grs-titlem-container{
+  height: 50px;
+}
+
+.grs-titlem-container p{
+  padding-top: 13px;
+  padding-left: 7px;
+  color:#4169af;
+  font-weight:500;
+  font-size: 17px;
+  width:auto;
+}
+
+.grs-selected{
+  background-color: #4169af;
+}
+
+.grs-selected p{
+  color:#fff!important;
+}
+
+.grs-info-section{
+  min-height: 300px;
+}
+
+.grs-descargar{
+  text-align: center;
+  padding-top: 40px;
+}
+
+.grs-descargar img{
+  width:40px;
+  cursor: pointer;
+}
+
+.grs-descargar p{
+  color:#3366ff;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.grs-cargar{
+  border:1px solid #7d7d7d;
+  text-align: center;
+  padding-top: 40px!important;
+  padding-bottom: 40px!important;
+}
+
+.cargar-titulo{
+  color:#4169af;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.grs-cargar img{
+  width:22px;
+  margin-top: -10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.grs-cargar-input-component{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.grs-cargar-input-component input{
+  width:70%;
+  background-color: #ebebeb;
+  border: none;
+}
+
+.grs-cargar-input-component button{
+  background-color: #3366ff;
+  border: 0px;
+  font-size: 16px;
+  border-radius: 16px;
+  padding: 4px 16px;
+  color:#fff;
+  cursor:pointer;
+  width:130px;
+}
+
+.grs-file-input{
+  visibility:hidden;
+  display: none;
+}
+
+.grs-iniciar-carga{
+  text-align: center;
+  padding: 20px 0px;
+}
+
+.btn-off{
+  background-color: #003595;
+  border: 0px;
+  font-size: 16px;
+  border-radius: 16px;
+  padding: 4px 16px;
+  color:#fff;
+  cursor:pointer;
+  width:200px;
+  opacity:0.5;
+  cursor:not-allowed;
+}
+
+.btn-on{
+  background-color: #003595;
+  border: 0px;
+  font-size: 16px;
+  border-radius: 16px;
+  padding: 4px 16px;
+  color:#fff;
+  cursor:pointer;
+  width:200px;
+  opacity:1;
+}
+
+.info-ayuda-container{
+  width: 94%;
+  margin-left: 3%;
+}
+
+.close-info{
+  text-align: right;
+  padding-bottom: 10px;
+}
+
+.close-info span{
+  background-color: #d8d8d8;
+  color:#333;
+  padding: 1px 3px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.close-info span:hover{
+  background-color: #a09e9e;
+}
+
+.info-ayuda{
+  background-color:#f1f1f1;
+  border-left: 5px solid #3366ff;
+  text-align: justify;
+  width:100%;
+  font-size: 16px;
+  color:#7d7d7d;
+}
+
+.info-ayuda ul{
+  list-style: none;
+  padding: 10px 30px;
+}
+
+.info-ayuda ul li::before {
+  content: "\2022";
+  color: #3366ff;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.grs-modal{
+  z-index: 80;
+  position:fixed;
+  left:0px;
+  top:0px;
+  background-color: rgba(0, 0, 0, 0.8);
+  width:100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grs-modal>div{
+  width:400px;
+  background-color: #fff;
+  padding: 20px 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.grs-modal p{
+  margin: 0px 0px;
+}
+
+.grs-modal-info{
+  margin: 14px 0px !important;
+  text-align: center;
+}
+
+.grs-btn{
+  background-color: #003595;
+  border: 0px;
+  font-size: 16px;
+  border-radius: 16px;
+  padding: 4px 16px;
+  color:#fff;
+  cursor:pointer;
+  opacity:1;
+}
+
+.grs-modal-success-btn-container{
+  display: flex;
+  justify-content: center;
+}
+
+.grs-modal-success-btn-container button{
+  margin: 0px 12px;
+}
+
+.grs-descargar-info{
+  display: flex;
+  justify-content: left;
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+
+.grs-descargar-info img{
+  width:15px;
+  margin-top: 2px;
+}
+
+.grs-descargar-info p{
+  font-size: 14px;
+  margin: 0px 0px 0px 6px;
+}
+
+.grs-descargar-container{
+  border:1px solid #7d7d7d;
+  padding: 30px 30px;
+}
+
+.grs-descargar-btn-container{
+  text-align: center;
+}
+
+.grs-descargar-container button{
+  margin: auto;
+}
+
+

@@ -1,0 +1,131 @@
+<section>
+  <app-popup-confirmation *ngIf="showNotification"
+    [message] = "notificationMessage"
+    (close)="closePopup($event)">
+  </app-popup-confirmation>
+
+  <h2>INTERESES DE TU EMPRESA</h2>
+  <div class="procesos-card">
+    <h2>PROCESOS DE COMPRA PÚBLICA</h2>
+
+    <div title="Selecciona uno, varios o todos los departamentos en los que quieres participar en procesos de compras públicas.">
+      <p class="list-item">1. Estoy interesado en los procesos de compra pública ubicados en: *</p>
+      <p class="indication">Departamento *</p>
+      <div class="input-container">
+        <app-cp-input-boxes
+          [wrapperActive]="wrapperActiveDepartamento"
+          (show)="show('departamento')"
+          [lista]="interestObj.departamentosNoSelected"
+          [itemsS]="interestObj.departamentosSelected"
+          [showAlert] = "showAlertDepartamentos"
+          (idValueEvent)="idDepSelected($event)"
+          (idRemoveEvent)="idDepRemove($event)">
+        </app-cp-input-boxes>
+      </div>
+    </div>
+
+    <div title="Selecciona uno, varios o todos los municipios en los que quieres participar en los procesos de compras públicas.">
+      <p class="list-item">2. Estoy interesado en los procesos de compra pública ubicados en: *</p>
+      <p class="indication">Ciudad / Municipio*</p>
+      <div class="input-container">
+        <app-cp-input-boxes
+          [wrapperActive]="wrapperActiveMunicipio"
+          (show)="show('municipio')"
+          [lista]="interestObj.municipalitiesNoSelected"
+          [itemsS]="interestObj.municipalitiesSelected"
+          [showAlert] = "showAlertMunicipalities"
+          (idValueEvent)="idCiudadSelected($event)"
+          (idRemoveEvent)="idCiudadRemove($event)">
+        </app-cp-input-boxes>
+      </div>
+    </div>
+
+    <div title="Selecciona una, varias o todas, las fases de los Procesos de Contratación Pública en los cuales quieres participar.">
+      <p class="list-item">3. Estoy interesado en los procesos de compra pública que se encuentren en la fase o estado: *</p>
+      <div class="input-container">
+        <app-cp-input-boxes
+          [wrapperActive]="wrapperActiveProcesos"
+          (show)="show('procesos')"
+          [lista]="stagesNoSelected"
+          [itemsS]="stagesSelected"
+          [showAlert] = "showAlertStage"
+          (idValueEvent)="idStageSelected($event)"
+          (idRemoveEvent)="idStageRemove($event)">
+        </app-cp-input-boxes>
+      </div>
+    </div>
+
+    <div title="Selecciona una, varias o todas, las entidades sobre las cuales tienes interés y con las cuales quieres contratar.">
+      <p class="list-item">4. Estoy interesado en los procesos de compra pública cuya entidad contratante sea:</p>
+      <div class="alert-container">
+        <img src="assets/img/others/alerta.svg" alt="ver ayuda" />
+        <p class="indication">Sí estás interesado en incluir más de una entidad debes separarlas mediante una coma (,)</p>
+      </div>
+      <div class="input-container">
+        <app-cp-input-search
+          [lista]="entidadesFoundList"
+          [itemsS]="entidadesSelected"
+          [listResult]="entidadesFoundList"
+          (idValueEvent)="idEntidadSelected($event)"
+          (idRemoveEvent)="idEntidadRemove($event)"
+          (stringValueEvent)="stringEntidad($event)"
+          (itemsSValueEvent)="handleEntidadesList($event)">
+        </app-cp-input-search>
+      </div>
+    </div>
+
+    <div title="Selecciona una, varias o todas las modalidades de contratación en las que tienes interés y con las cuales quieres contratar.">
+      <p class="list-item">5. Estoy interesado en los procesos de compra pública cuya modalidad de contratación sea: *</p>
+      <div class="input-container">
+        <app-cp-input-boxes
+          [wrapperActive]="wrapperActiveModalidad"
+          (show)="show('modalidad')"
+          [lista]="modesNoSelected"
+          [itemsS]="modesSelected"
+          [showAlert] = "showAlertModes"
+          (idValueEvent)="idModeSelected($event)"
+          (idRemoveEvent)="idModeRemove($event)">
+        </app-cp-input-boxes>
+      </div>
+    </div>
+
+    <div title="Selecciona los valores de contratación que te interesan.">
+      <p class="list-item">6. Estoy interesado en los procesos de compra pública cuyo rango de precio base se encuentra: *</p>
+      <div class="input-container">
+        <app-cp-values
+          [minValue] = "companyInterest.minimumValues"
+          [maxValue] = "companyInterest.maximumValues"
+          [maxValuePossible] = "maximunValuePossible"
+          [allValues] = "companyInterest.allValues"
+          [includeValues] = "companyInterest.includeValues"
+          [showIncludeValues] = true
+          (minimunValueS) = "setMinValue($event)"
+          (maximunValueS) = "setMaxValue($event)"
+          (allValueS) = "setAllValues($event)"
+          (includeValueS) = "setIncludeValues($event)">
+        </app-cp-values>
+      </div>
+    </div>
+
+    <div title="Selecciona los códigos de clasificación de Naciones Unidas que te interesan o que guardan relación con la línea de negocio de tu empresa. Recuerda que será con base en estos códigos que podrás consultar Procesos de Contratación Pública.">
+      <p class="list-item" style="font-size: 15.8px">7. Selecciona los productos y servicios que estén alineados con los intereses de tu empresa. A continuación encontrarás el listado de los códigos que corresponden a la clasificación de productos y servicios de Naciones Unidas - UNSPSC: *</p>
+      <div class="input-container">
+        <app-cp-input-products
+          [selectedItems] = "productosSelected"
+          [showAlert] = "showAlertProducts"
+          (productsSelectedEmmiter) = "setProducts($event)">
+        </app-cp-input-products>
+      </div>
+    </div>
+
+  </div>
+
+  <div [ngClass] = "guardarOn ? 'guardar-on' : 'guardar-off'" class="btn-container">
+    <button
+      [disabled] = "disabledButton"
+      (click)="saveCompanyInterest()"class="general-btn">GUARDAR
+    </button>
+  </div>
+</section>
+
+

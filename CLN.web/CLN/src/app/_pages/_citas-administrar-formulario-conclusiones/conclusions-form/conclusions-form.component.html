@@ -1,0 +1,129 @@
+<section>
+    <form>
+        <div class="numero-pregunta">
+            <label>PREGUNTA {{index}}</label>
+            <input type="checkbox" [disabled]="index==1" [checked]="isMostrarFormulario"
+                (click)="changeIsMostrarFormulario()">
+            <span [ngClass]="index==1?'desactivado':''">Mostrar</span>
+        </div>
+        <div class="contenedor-pregunta">
+            <div class="detalle-pregunta" [ngClass]="index==1 || !isMostrarFormulario?'desactivado':''">
+                <div class="input-contenedor">
+                    <label>Texto de pregunta {{index}} *</label>
+                    <div>
+                        <input class="input" type="text" placeholder="" id="pregunta" [(ngModel)]="pregunta"
+                            [ngModelOptions]="{standalone: true}" (ngModelChange)="changePregunta($event)"
+                            maxlength="300" autocomplete="off">
+                        <span class="contador">
+                            {{ pregunta.length }}
+                        </span>
+                    </div>
+                </div>
+                <div class="input-contenedor">
+                    <label>Tipo de respuestas *</label>
+                    <app-cp-select [lista]="listaTipoRespuestas" [itemS]="tipoRespuestasSeleccionada"
+                        (idValueEvent)="idTipoRespuestaSeleccionada($event)">
+                    </app-cp-select>
+                </div>
+                <div class="input-contenedor" *ngFor="let respuesta of listaRespuestas; index as i;">
+                    <label>Opción de respuesta {{i+1}} *</label>
+                    <div style="position: relative;" class="input-control">
+                        <img class="click" src="assets/imgs/iconos/caneca.svg" alt="-" (click)="eliminarRespuesta(i)"
+                            *ngIf="listaRespuestas.length>2">
+                        <div style="width: 100%;">
+                            <input class="input input-control" type="text" autocomplete="off" placeholder=""
+                                maxlength="100" [(ngModel)]="respuesta.name" [ngModelOptions]="{standalone: true}">
+                            <span class="contador">
+                                {{ respuesta.name.length }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="añadir-contenedor">
+                    <div>
+                        <div class="añadir-contenedor-izquierda">
+                            <div (click)="addRespuesta()"
+                                [ngClass]="listaRespuestas.length>=1 && listaRespuestas.length<6?'click':'desactivado'">
+                                <img src="assets/imgs/iconos/add.svg" alt="+">
+                                <span>
+                                    Añadir opción de respuesta
+                                </span>
+                            </div>
+                        </div>
+                        <div class="añadir-contenedor-derecha">
+                            <input type="checkbox" [checked]="isDiligenciamientoRequerido"
+                                (click)="changeIsDiligenciamientoRequerido()"> <span>Diligenciamiento obligatorio</span>
+                        </div>
+                    </div>
+                    <div class="añadir-condicion">
+                        <div class="click" *ngIf="!isCondicion" (click)="activarCondicion()"
+                            [ngClass]="{'desactivado': filtroCondicionDosPreguntas()<2 && index!=1}">
+                            <img src="assets/imgs/iconos/add.svg" alt="+">
+                            <span>
+                                Añadir condición
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="condicion-añadida" *ngIf="isCondicion">
+                    <hr>
+                    <label class="condicion-añadida-label">CONDICIÓN</label>
+                    <div class="input-contenedor">
+                        <label>El sistema NO muestra la “pregunta {{index}}”, sí el usuario en la pregunta:</label>
+                        <app-cp-select [lista]="filtroObjetoPreguntas()" [itemS]="condicionPreguntaSeleccionada"
+                            (idValueEvent)="idCondicionPreguntaSeleccionada($event)">
+                        </app-cp-select>
+                    </div>
+                    <!-- *ngIf="listaCondicionRespuesta.length>1" -->
+                    <div class="input-contenedor"
+                        [ngClass]="{'desactivado': listaCondicionRespuesta.length<=1}">
+                        <label>Selecciona la opción de respuesta:</label>
+                        <app-cp-select [lista]="listaCondicionRespuesta" [itemS]="condicionRespuestaSeleccionada"
+                            (idValueEvent)="idCondicionRespuestaSeleccionada($event)">
+                        </app-cp-select>
+                    </div>
+                    <div style="width: 100%; display: flex;">
+                        <div class="centeringBtn" style="width: 50%;">
+                            <app-button text="CANCELAR" width="180px"
+                                *ngIf="!formularioConclusiones.condition.idConditionAnswer && !formularioConclusiones.condition.idConditionQuestion"
+                                [disabled]="formularioConclusiones.condition.idConditionAnswer && formularioConclusiones.condition.idConditionQuestion"
+                                (click)="cancelarCondicion()">
+                            </app-button>
+                            <app-button text="ELIMINAR" width="180px"
+                                *ngIf="formularioConclusiones.condition.idConditionAnswer && formularioConclusiones.condition.idConditionQuestion"
+                                [disabled]="!formularioConclusiones.condition.idConditionAnswer && !formularioConclusiones.condition.idConditionQuestion"
+                                (click)="eliminarCondicion()">
+                            </app-button>
+                        </div>
+                        <div class="centeringBtn" style="width: 50%;">
+                            <app-button text="CREAR CONDICIÓN" width="180px" [disabled]="isBtnCrearCondicion()"
+                                (click)="crearCondicion()">
+                            </app-button>
+                        </div>
+                    </div>
+                    <!-- <div class="centeringBtn">
+                        <app-button text="CREAR CONDICIÓN" width="180px" [disabled]="false">
+                        </app-button>
+                    </div> -->
+                </div>
+            </div>
+            <!-- <div class="eliminar-pregunta">
+                <img src="assets/imgs/iconos/caneca.svg" alt="-" (click)="eliminarPregunta(index-1)"
+                    [ngClass]="index==1?'desactivado':'click'">
+            </div> -->
+        </div>
+        <!-- <div class="añadir-pregunta">
+            <div class="añadir-contenedor-derecha click" (click)="addPregunta(index)"
+                *ngIf="objetoFormularioConclusiones.length<10">
+                <img src="assets/imgs/iconos/add.svg" alt="+">
+                <span>Añadir pregunta</span>
+            </div>
+        </div> -->
+    </form>
+    <app-popup-cambios *ngIf="isPopupCambios" [message]="mensajePopupCambios" (close)="closePopupCambios($event)">
+    </app-popup-cambios>
+    <app-popup-confirmation *ngIf="isPopupConfirmacion" [message]="mensajePopupConfirmacion"
+        (close)="closePopupConfimacion($event)">
+    </app-popup-confirmation>
+</section>

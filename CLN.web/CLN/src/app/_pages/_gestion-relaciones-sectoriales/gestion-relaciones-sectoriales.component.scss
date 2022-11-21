@@ -1,0 +1,77 @@
+
+.relaciones-sectoriales-section{
+  min-height: 500px;
+  padding: 0 0 100px 0;
+}
+
+.relaciones-titulo-contenedor{
+  text-align: center;
+  padding-top: 40px!important;
+  padding-bottom: 40px!important;
+}
+
+.relaciones-titulo-contenedor img{
+  width:22px;
+  margin-top: -10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.titulo{
+  color:#4169af;
+  font-size: 26px;
+  font-weight: 800;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.info-ayuda-container{
+  border:1ox solid red;
+  width: 60%;
+  margin-left: 20%;
+}
+
+.close-info{
+  text-align: right;
+  padding-bottom: 10px;
+}
+
+.close-info span{
+  background-color: #d8d8d8;
+  color:#333;
+  padding: 1px 3px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.close-info span:hover{
+  background-color: #a09e9e;
+}
+
+.info-ayuda{
+  background-color:#f1f1f1;
+  border-left: 5px solid #3366ff;
+  text-align: justify;
+  padding: 4px 12px;
+  width:100%;
+  font-size: 16px;
+  color:#7d7d7d;
+}
+
+.icono-relaciones{
+  width:100%;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.icono-relaciones img{
+  width:30px;
+}
+
+.relaciones-sectoriales-contenido{
+  width:70%;
+  margin: auto;
+}
+
+

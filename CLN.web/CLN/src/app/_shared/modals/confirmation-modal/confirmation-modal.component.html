@@ -1,0 +1,12 @@
+<div class="modal-body">
+  <p class="message text-secondary pt-4" [innerHTML]="message"></p>
+
+  <div class="form-group text-center mt-2">
+    <span class="btn_third col-sm-4" (click)="cancelar()">
+      {{buttonContent[0]}}
+    </span>
+    <span class="btn_third ml-2 col-sm-4" (click)="aceptar()">
+      {{buttonContent[1]}}
+    </span>
+  </div>
+</div>

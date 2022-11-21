@@ -1,0 +1,81 @@
+<section class="consultar-planes-section">
+    <!-- regresar -->
+    <app-regresar [linkTo]="linkTo"></app-regresar>
+    <!-- fin regresar -->
+
+    <!-- titulo -->
+    <app-top-section [titulo]="titulo" [icono]="icono" [alertaIcono]="alertaIcono" [infoAyuda]="infoAyuda">
+    </app-top-section>
+    <!-- fin titulo -->
+        <div>
+            <div class="info-ayuda-contenedor col-sm-12 title-select" *ngIf="reportList.length>1"
+                style="padding: 0; margin-bottom: 20px;">
+                <div class="row" style="width: 100%;">
+                    <div class="col-sm-12 col-lg-4">
+                        <h2 class="title-components">Seleccione un reporte</h2>
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                        <app-selector-report-citas [lista]="reportList" [itemS]="reporteSelected"
+                        (idValueEvent)="idReporteSelected($event)"></app-selector-report-citas>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="div-reportes" *ngIf="reporteSelected.url" style="margin-left: 10%; margin-right: 10%;">
+                <iframe height="603px" width="1145px" [src]="reporteSelected.url | safe" frameborder="0">
+                    <!-- allowFullScreen="true" -->
+                </iframe>
+            </div>
+            <div class="div-reportes" style="margin-left: 10%; margin-right: 10%; padding: 2em; border: 1px solid #7d7d7d; height: auto; border-radius: 0.5em; margin-top: 2em;">
+                <div
+                    style="text-align: center; color: #4169af; font-size: 16px; font-family: 'Open Sans'; font-weight: 600">
+                    <b>GENERAR REPORTE GENERAL DE CITAS DE NEGOCIOS VIRTUALES</b>
+                </div>
+
+                <form [formGroup]="formAppointmentDate">
+                    <div style="display: flex; margin-top: 1em;">
+                        <div style="margin-left: 5%; width: 40%;" title="Ingresa el valor mínimo de los procesos de contratación.">
+                            <b>Desde</b>
+                            <div style="display:flex;">
+                                <div class="input-group">
+                                    <input 
+                                        matInput 
+                                        id="fechaInicioProceso" 
+                                        formControlName="fechaInicioProceso"
+                                        [matDatepicker]="pickerDate" 
+                                        class="recuperar-input" 
+                                        (click)="pickerDate.open()" 
+                                        [max]="maxDayPast">
+                                    <mat-datepicker #pickerDate></mat-datepicker>
+                                </div>
+                                <span class="contador" (click)="pickerDate.open()">
+                                    <img src="assets/imgs/iconos/calendario.svg" style="width: 15px;">
+                                </span>
+                            </div>
+                        </div>
+                        <div style="margin-left: 10%; width: 40%;" title="Ingresa el valor máximo de los procesos de contratación.">
+                            <b>Hasta</b>
+                            <div style="display:flex;">
+                                <div class="input-group">
+                                    <input matInput id="fechaFinProceso" formControlName="fechaFinProceso"
+                                        [matDatepicker]="pickerDate2" class="recuperar-input" (click)="pickerDate2.open()" [max]="maxDayPresent">
+                                    <mat-datepicker #pickerDate2></mat-datepicker>
+                                </div>
+                                <span class="contador" (click)="pickerDate2.open()">
+                                    <img src="assets/imgs/iconos/calendario.svg" style="width: 15px;">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div style="text-align:center; margin-top: 2em;">
+                    <p style="margin: 0;" style="margin-bottom: 0em;">
+                      <img src="assets/imgs/iconos/descargarplantilla.svg" style="cursor: pointer; width: 50px; height: 50px"  (click)="descargarReporte()">
+                    </p>
+                    <p style="margin: 0;">
+                        <span style="color: #3366ff; font-family: opensans_bold; cursor: pointer;"  (click)="descargarReporte()">DESCARGAR REPORTE</span>
+                    </p>
+                  </div>
+            </div>
+        </div>
+</section>

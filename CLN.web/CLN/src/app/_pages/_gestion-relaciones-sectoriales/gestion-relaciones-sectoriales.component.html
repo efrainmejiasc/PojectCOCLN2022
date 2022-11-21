@@ -1,0 +1,22 @@
+
+<section class="relaciones-sectoriales-section">
+  <app-regresar [linkTo]="linkTo"></app-regresar>
+  <div class="relaciones-sectoriales-section-top">
+    <div class="icono-relaciones">
+      <img (click)= "toogleHelp()" src="assets/imgs/iconos/iconorelaciones.svg" />
+    </div>
+    <div class="relaciones-titulo-contenedor">
+      <img (click)= "toogleHelp()" src="assets/imgs/home-editor/alerta.svg" />
+      <span class="titulo">GESTIONAR RELACIONES SECTORIALES</span>
+    </div>
+    <div *ngIf="showHelp" class="info-ayuda-container">
+      <div class="close-info"><span (click)= "toogleHelp()">X</span></div>
+      <p class="info-ayuda">Aquí podrás cargar y actualizar la clasificación de sectores de Compra Lo Nuestro, los sectores de Colombia Productiva, y el Clasificador de Bienes y Servicios de las naciones Unidas</p>
+    </div>
+  </div>
+
+  <div class="relaciones-sectoriales-contenido">
+    <app-menugrs></app-menugrs>
+  </div>
+</section>
+

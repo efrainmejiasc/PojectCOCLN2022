@@ -1,0 +1,33 @@
+<section class="row">
+    <div class="col-12">
+        <div class="row p-0 d-flex flex-column justify-content-start align-items-start">
+            <div class="col-sm-12 title-select">
+                <div class="row" style="width: 100%;">
+                    <div class="col-sm-12 col-lg-3">
+                        <h2 class="title-components">Mercado libre</h2>
+                    </div>
+                    <div class="col-sm-12 col-lg-4">
+                        <!-- <select class="form-control" (change)="obtenerTendenciasPorCategoriaId($event.target.value)">
+                            <option value="" selected>Tendencias en Colombia</option>
+                            <option [value]="item.id" *ngFor="let item of categorias">{{ item.name }}</option>
+                        </select> -->
+                        <app-cp-select-editor 
+                            [lista]="categorias"
+                            [itemS]="tendenciaSelected"
+                            (idValueEvent)="idTendenciaSelected($event)"
+                            >
+                        </app-cp-select-editor>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row col-sm-12 d-flex flex-column justify-content-start align-items-start div-lista">
+            <ul class="ul-style-mercado">
+                <li *ngFor="let item of tendencias; index as i;">
+                    <span class="li-numero">{{ i+1 }}</span>
+                    {{item.keyword}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>

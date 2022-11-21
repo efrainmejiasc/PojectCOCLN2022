@@ -1,0 +1,150 @@
+@font-face {
+  font-family: parrafos;
+  // src: url("../src/assets/fonts/Lato/Lato-Light.ttf");
+  src: url("../src/assets/fonts/WorkSans/WorkSans-Light.otf");
+}
+
+@font-face {
+  font-family: parrafos_bold;
+  src: url("../src/assets/fonts/Lato/Lato-Regular.ttf");
+}
+
+@font-face {
+  font-family: parrafos_lato_bold;
+  src: url("../src/assets/fonts/Lato/Lato-Bold.ttf");
+}
+
+@font-face {
+  font-family: titulos;
+  src: url("../src/assets/fonts/antipasto/Antipasto-Pro-Regular-trial.ttf");
+}
+
+@font-face {
+  font-family: worksans_extrabold;
+  src: url("../src/assets/fonts/Work Sans/static/WorkSans-ExtraBold.ttf");
+}
+
+@font-face {
+  font-family: worksans_bold;
+  src: url("../src/assets/fonts/WorkSans/WorkSans-Bold.otf");
+}
+
+@font-face {
+  font-family: worksans_ligth;
+  src: url("../src/assets/fonts/WorkSans/WorkSans-Light.otf");
+}
+
+@font-face {
+  font-family: worksans_semibold;
+  src: url("../src/assets/fonts/WorkSans/WorkSans-SemiBold.otf");
+}
+
+@font-face {
+  font-family: worksans_medium;
+  src: url("../src/assets/fonts/WorkSans/WorkSans-Medium.otf");
+}
+
+//////////////////@at-root
+
+@font-face {
+  font-family: bitter_bold;
+  src: url("../src/assets/fonts/homeEditor/Bitter-Bold.ttf");
+}
+@font-face {
+  font-family: bitter_medium;
+  src: url("../src/assets/fonts/homeEditor/Bitter-Medium.ttf");
+}
+@font-face {
+  font-family: bitter_regular;
+  src: url("../src/assets/fonts/homeEditor/Bitter-Regular.ttf");
+}
+@font-face {
+  font-family: firasans_bold;
+  src: url("../src/assets/fonts/homeEditor/FiraSans-Bold.ttf");
+}
+@font-face {
+  font-family: firasans_light;
+  src: url("../src/assets/fonts/homeEditor/FiraSans-Light.ttf");
+}
+@font-face {
+  font-family: firasans_regular;
+  src: url("../src/assets/fonts/homeEditor/FiraSans-Regular.ttf");
+}
+@font-face {
+  font-family: opensans_bold;
+  src: url("../src/assets/fonts/homeEditor/OpenSans-Bold.ttf");
+}
+@font-face {
+  font-family: opensans_light;
+  src: url("../src/assets/fonts/homeEditor/OpenSans-Light.ttf");
+}
+@font-face {
+  font-family: opensans_medium;
+  src: url("../src/assets/fonts/homeEditor/OpenSans-Medium.ttf");
+}
+@font-face {
+  font-family: opensans_regular;
+  src: url("../src/assets/fonts/homeEditor/OpenSans-Regular.ttf");
+}
+@font-face {
+  font-family: opensans_semibold;
+  src: url("../src/assets/fonts/homeEditor/OpenSans-SemiBold.ttf");
+}
+
+////////////////////////<<<------------------
+
+.font_worksans_bold {
+  font-family: worksans_bold;
+  color: #3366cc;
+}
+
+.font_worksans_ligth {
+  font-family: worksans_ligth;
+  color: #3366cc;
+}
+
+.font_worksans_semibold {
+  font-family: worksans_semibold;
+  color: #3366cc;
+}
+
+.font_worksans_medium {
+  font-family: worksans_medium;
+  color: #3366cc;
+}
+
+.form-control:focus {
+  color: #3366cc !important;
+}
+
+.font_p {
+  font-family: worksans_ligth;
+  color: #3366cc;
+}
+
+.font_p_2 {
+  font-family: parrafos;
+  color: $secundary;
+}
+
+.font_p_worksans {
+  font-family: worksans_ligth;
+  color: $secundary;
+}
+
+.font_pb {
+  font-family: worksans_semibold;
+  color: $primary;
+}
+
+.font_title {
+  font-family: worksans_semibold;
+  color: $primary; /// #606060;
+  margin-bottom: 0px;
+}
+
+.font_plb {
+  font-family: parrafos_lato_bold;
+  color: #3366cc;
+  margin-bottom: 0px;
+}

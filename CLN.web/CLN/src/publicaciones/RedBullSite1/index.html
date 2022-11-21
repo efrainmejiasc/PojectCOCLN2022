@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+Red Bull Site 1
+    </title>
+
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+        <link rel="stylesheet" href="../assets/css/style.css" type="text/css" />
+
+        <style>
+            .hover:hover {
+                cursor: pointer;
+                color: blue !important;
+                text-decoration-line: underline !important;
+            }
+            .carousel{
+                min-height: 500px;
+                width: 100%;
+                background-color: hsl(255,0%,90%) !important;
+            }
+            .carousel .carousel-item{
+                display: flex !important;
+                justify-content: center;
+                user-select: none;
+                min-width: 100%;
+                max-height: 100%;
+                margin:0px !important;
+            }
+            .pagination :nth-child(n){
+                font-size: 16pt;
+                color:#36c;
+                margin: 0px 1em;
+            }
+            .pagination :nth-child(n).current{
+                background:radial-gradient(hsl(0,0%,70%) 10%, transparent);
+            }
+            .pagination :nth-child(n):hover {
+                color: red;
+                cursor: pointer;
+            }
+            .card-columns{
+                display:flex;
+            }
+            .pagination {
+                display: flex;
+                justify-content: space-between;
+                background: hsla(50,0%,0%,10%);
+                border-radius: 50vmin;
+            }
+
+            /* --- css microsite --- */
+
+* { box-sizing: border-box; } body {margin: 0;}.gjs-row{display:table;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;width:100%;}.gjs-cell{width:8%;display:table-cell;height:75px;}#ip1l{padding:10px;font-size:100px;background-color:#2d299e;text-align:center;color:#9ba7b3;font-family:worksans_ligth, sans-serif;}.navbar-items-c{display:inline-block;float:right;}.navbar{background-color:rgb(34, 34, 34);color:rgb(221, 221, 221);min-height:50px;width:100%;}.navbar-container{max-width:950px;margin-top:0px;margin-right:auto;margin-bottom:0px;margin-left:auto;width:95%;text-align:left;}.navbar-container::after{content:"";clear:both;display:block;}.navbar-brand{vertical-align:top;display:inline-block;padding-top:5px;padding-right:5px;padding-bottom:5px;padding-left:5px;min-height:50px;min-width:50px;color:inherit;text-decoration-line:none;text-decoration-style:initial;text-decoration-color:initial;}.navbar-menu{padding-top:10px;padding-right:0px;padding-bottom:10px;padding-left:0px;display:block;float:right;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;background-color:#b02a2a;}.navbar-menu-link{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;color:inherit;text-decoration-line:none;text-decoration-style:initial;text-decoration-color:initial;display:inline-block;padding-top:10px;padding-right:15px;padding-bottom:10px;padding-left:15px;}.navbar-burger{margin-top:10px;margin-right:0px;margin-bottom:10px;margin-left:0px;width:45px;padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:10px;display:none;float:right;cursor:pointer;}.navbar-burger-line{padding-top:1px;padding-right:1px;padding-bottom:1px;padding-left:1px;background-color:white;margin-top:5px;margin-right:0px;margin-bottom:5px;margin-left:0px;}#ims8i{justify-content:center;align-items:center;flex-direction:column;width:100%;min-height:150px;height:min-content;background-color:gray;display:flex;}.carousel-item.m-1{font-family:Comic Sans MS, cursive, sans-serif;text-align:center;max-width:auto;margin:3px 4px 4px 4px;width:1000px;height:350px;}#icc0p{width:95% !important;display:block;min-height:100px !important;height:min-content !important;background-color:#ffffff;}#il5jl{width:95% !important;display:block;min-height:100px !important;height:min-content !important;background-color:#ffffff;}#iv6fj{color:black;text-align:center;width:591px;height:199px;float:none;}#ip89n{color:black;width:383px;height:170px;}#idyrb{width:95% !important;display:block;min-height:100px !important;height:min-content !important;background-color:#ffffff;}#ihv8o{width:1000px;height:200px;}#ic6d9{text-align:center;}#ibeao{color:black;}#ipdam{width:30%;}#io19i{width:30%;}#io64k{width:70%;}#i6nch{padding:10px;font-family:worksans_ligth, sans-serif;}#iv3wq{padding:15px 20px;background-color:#3366cc;color:white !important;border-radius:15px;font-family:parrafos;font-size:20px;cursor:pointer;}#ikm39m{height:400px;}#i5zvb1{display:inline-block;padding:5px;min-height:50px;min-width:50px;}#i8i0va{color:black;}#ir3aic{height:500px;}#iuv287{display:none;}#ivt1qz{display:none;}#igm7uo{display:none;}@media (max-width: 768px){.gjs-cell{width:100%;display:block;}.navbar-burger{display:block;}.navbar-items-c{display:none;width:100%;}.navbar-menu{width:100%;}.navbar-menu-link{display:block;}}
+
+            /* --- css microsite --- */
+        </style>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+        <script type="text/javascript" src="../assets/js/gestorcontenidos.js"></script>
+</head>
+<body>
+
+<div id="i57w" class="gjs-row"><div id="ik3g" class="gjs-cell"><div id="ip1l">RED BULL SITE</div></div></div><div data-gjs="navbar" class="navbar"><div class="navbar-container"><a href="/" id="il14" class="navbar-brand"></a><div id="i4m7" class="navbar-burger"><div class="navbar-burger-line"></div><div class="navbar-burger-line"></div><div class="navbar-burger-line"></div></div><div data-gjs="navbar-items" class="navbar-items-c"><nav data-gjs="navbar-menu" class="navbar-menu"><a href="#" class="navbar-menu-link">Inicio</a><a href="#bull" id="iy41f" class="navbar-menu-link">Toro</a><a href="#" id="iw5gt" class="navbar-menu-link">Galeria</a></nav></div></div></div><div id="ims8i" class="carousel"><div id="il5jl" class="carousel-item m-1">Inserte aquí contenido de prueba
+              <img id="iv6fj" src="https://escuelasecretarias.ivolucion.com/assets/uploads/24164293.jpg"/></div><div id="idyrb" class="carousel-item m-1"><img draggable="true" id="ihv8o" src="https://escuelasecretarias.ivolucion.com/assets/uploads/29159943.jpg"/></div><div id="icc0p" class="carousel-item m-1">Inserte aquí contenido de prueba
+              <img id="ip89n" src="https://escuelasecretarias.ivolucion.com/assets/uploads/65789310.png"/></div></div><div id="bull" class="gjs-row"><div id="ic6d9" class="gjs-cell"><img id="ibeao" src="https://escuelasecretarias.ivolucion.com/assets/uploads/38560999.jpg"/></div></div><div id="iz9ks" class="gjs-row"><div id="ipdam" class="gjs-cell"><div id="i8ckn" class="gjs-row"><div id="io19i" class="gjs-cell"><div ancho="560" largo="315" my-trait="https://www.youtube.com/watch?v=1Q470aUwi3E" id="imakx"><div id="ijfoh"><div></div></div><div id="io64k" class="gjs-cell"><div id="i6nch"><p draggable="true" data-highlightable="1" id="il353">l <span draggable="true" data-highlightable="1" id="ilu21">Gran Premio de Austria</span> es una carrera de <a draggable="true" data-highlightable="1" href="https://es.wikipedia.org/wiki/Automovilismo_de_velocidad" title="Automovilismo de velocidad" id="idafi" class="mw-redirect">automovilismo de velocidad</a> que forma parte del calendario de la <a draggable="true" data-highlightable="1" href="https://es.wikipedia.org/wiki/F%C3%B3rmula_1" title="Fórmula 1" id="ixd1u">Fórmula 1</a> en distintos períodos entre 1964 y 2014. La <a draggable="true" data-highlightable="1" href="https://es.wikipedia.org/wiki/F%C3%B3rmula_3000_Internacional" title="Fórmula 3000 Internacional" id="i729x">Fórmula 3000 Internacional</a> estuvo presente como categoría previa en 1985, 1986 y entre 1998 y 2003.</p><p draggable="true" data-highlightable="1" id="ircew">La primera edición se disputó en <a draggable="true" href="https://es.wikipedia.org/wiki/1964" title="1964" id="ig0iq">1964</a>, en la pista de aterrizaje de <a draggable="true" href="https://es.wikipedia.org/wiki/Zeltweg_Airfield" title="Zeltweg Airfield" id="ixfab" class="mw-redirect">Zeltweg Airfield</a>. La carrera fue un éxito, pero la pista fue considerada demasiado peligrosa; era estrecha y con muchos saltos y los espectadores se quejaron de las pocas áreas con vista hacia la pista. La <a draggable="true" href="https://es.wikipedia.org/wiki/Federaci%C3%B3n_Internacional_del_Autom%C3%B3vil" title="Federación Internacional del Automóvil" id="in453">Federación Internacional del Automóvil</a> eliminó esta carrera del calendario de la Fórmula 1 hasta que se construyera un circuito más adecuado.</p><span draggable="true" data-highlightable="1" id="idnyl">Durante el </span><a draggable="true" data-highlightable="1" href="https://es.wikipedia.org/wiki/Gran_Premio_de_Austria_de_2002" title="Gran Premio de Austria de 2002" id="ifgpv" class="mw-redirect">Gran Premio de Austria de 2002</a><span draggable="true" data-highlightable="1" id="icapi"> ocurrió un hecho muy negativo para el deporte, cuando el equipo Ferrari ordenó a </span><a draggable="true" data-highlightable="1" href="https://es.wikipedia.org/wiki/Rubens_Barrichello" title="Rubens Barrichello" id="imgwj">Rubens Barrichello</a><span draggable="true" data-highlightable="1" id="iz0y3"> que cediera su victoria a su compañero de escudería </span><a draggable="true" data-highlightable="1" href="https://es.wikipedia.org/wiki/Michael_Schumacher" title="Michael Schumacher" id="ix632">Michael Schumacher</a><span draggable="true" data-highlightable="1" id="iqrkd">. Esto condujo a la prohibición de órdenes de equipo que determinen de forma artificial el resultado de una carrera.</span>Insert your text here</div><a href="https://escuelasecretarias.ivolucion.com/gestion/contenidos" id="iv3wq">
+                    Doble click para modificar este texto
+                </a></div></div></div></div></div></div><div id="ibqjv" class="gjs-row"><div id="is2vw" class="gjs-cell"><div id="i6ojn"><a href="https://escuelasecretarias.ivolucion.com/assets/uploads/46819353.mp4" download="true"><svg xmlns="http://www.w3.org/2000/svg" width="44.39" height="44.547" viewBox="0 0 44.39 44.547"><g id="Desde_bibliotec" data-name="Desde bibliotec" transform="translate(0 0.75)"><g id="Grupo_146" data-name="Grupo 146" transform="translate(-567.436 -366.975)"><g id="Grupo_144" data-name="Grupo 144"><g id="Grupo_143" data-name="Grupo 143"><path id="Trazado_263" data-name="Trazado 263" d="M579.171,394.072a3.343,3.343,0,0,1,2.435.835,3.226,3.226,0,0,1,.855,2.415,3.383,3.383,0,0,1-.855,2.49,
+                            3.279,3.279,0,0,1-2.435.86h-2.08v-6.6Zm.04,6.14a2.645,2.645,0,0,0,2.025-.75,3.006,3.006,0,0,0,.7-2.14,
+                            2.843,2.843,0,0,0-.7-2.065,2.7,2.7,0,0,0-2.025-.725h-1.62v5.68Z" fill="#36c"></path><path id="Trazado_264" data-name="Trazado 264" d="M584.782,400.458a2.178,2.178,0,0,1-.845-.9,2.948,2.948,0,0,1-.306-1.385,3.023,3.023,0,0,1,.3-1.38,2.184,
+                            2.184,0,0,1,.825-.9,2.28,2.28,0,0,1,1.2-.315,2.19,2.19,0,0,1,1.149.3,1.921,1.921,0,0,1,.75.835,2.818,
+                            2.818,0,0,1,.261,1.24c0,.06,0,.119-.005.175s-.009.109-.016.155h-4.149v-.45h3.929l-.259.19a2.072,2.072,0,
+                            0,0-.41-1.46,1.55,1.55,0,0,0-1.26-.54,1.75,1.75,0,0,0-.95.256,1.68,1.68,0,0,0-.641.75,2.713,2.713,0,0,
+                            0-.23,1.154,2.658,2.658,0,0,0,.236,1.155,1.689,1.689,0,0,0,.659.75,1.871,1.871,0,0,0,.985.256,1.93,1.93,
+                            0,0,0,.991-.246,1.656,1.656,0,0,0,.649-.694l.4.23a2.043,2.043,0,0,1-.809.844,2.579,2.579,0,0,1-2.45-.009Z" fill="#36c"></path><path id="Trazado_265" data-name="Trazado 265" d="M589.881,400.458a1.779,1.779,0,0,1-.82-.886l.43-.29a1.442,1.442,0,0,0,.645.775,2.187,2.187,0,0,0,1.135.276,
+                            1.8,1.8,0,0,0,1.03-.261.8.8,0,0,0,.38-.69.711.711,0,0,0-.2-.515,1.391,1.391,0,0,0-.68-.315l-1.17-.25a1.978,
+                            1.978,0,0,1-1.01-.475,1.126,1.126,0,0,1-.32-.825,1.178,1.178,0,0,1,.239-.714,1.659,1.659,0,0,1,.676-.52,2.671,
+                            2.671,0,0,1,2.225.1,1.593,1.593,0,0,1,.69.885l-.421.27a1.284,1.284,0,0,0-.545-.76,1.77,1.77,0,0,0-.964-.25,2,2,
+                            0,0,0-.73.125,1.152,1.152,0,0,0-.495.345.767.767,0,0,0-.175.49.757.757,0,0,0,.21.535,1.343,1.343,0,0,0,
+                            .7.335l1.2.261a1.887,1.887,0,0,1,.975.439,1.055,1.055,0,0,1,.3.77,1.26,1.26,0,0,1-.53,1.065,2.32,2.32,0,0,
+                            1-1.42.395A2.793,2.793,0,0,1,589.881,400.458Z" fill="#36c"></path><path id="Trazado_266" data-name="Trazado 266" d="M596.54,400.772a2.233,2.233,0,0,1-1.169-.31,2.111,2.111,0,0,1-.815-.9,3.061,3.061,0,0,1-.3-1.395,2.956,2.956,0,
+                            0,1,.311-1.41,2.176,2.176,0,0,1,.84-.885,2.325,2.325,0,0,1,1.179-.305,1.931,1.931,0,0,1,1.186.37,1.8,1.8,0,0,1,
+                            .665,1.02l-.061.05v-3.639h.5v7.3h-.449l-.03-1.39.059-.02a1.793,1.793,0,0,1-.365.821,1.739,1.739,0,0,
+                            1-.68.514A2.17,2.17,0,0,1,596.54,400.772Zm.061-.439a1.644,1.644,0,0,0,.93-.266,1.754,1.754,0,0,0,.625-.765,
+                            2.827,2.827,0,0,0,.224-1.17,2.624,2.624,0,0,0-.224-1.134,1.72,1.72,0,0,0-.62-.73,1.645,1.645,0,0,0-.915-.256,
+                            1.707,1.707,0,0,0-1.361.58,2.758,2.758,0,0,0-.005,3.16A1.677,1.677,0,0,0,596.6,400.333Z" fill="#36c"></path><path id="Trazado_267" data-name="Trazado 267" d="M601.471,400.458a2.185,2.185,0,0,1-.845-.9,2.948,2.948,0,0,1-.3-1.385,3.011,3.011,0,0,1,.3-1.38,
+                            2.178,2.178,0,0,1,.825-.9,2.276,2.276,0,0,1,1.2-.315,2.19,2.19,0,0,1,1.149.3,1.908,1.908,0,0,1,
+                            .75.835,2.818,2.818,0,0,1,.261,1.24c0,.06,0,.119-.005.175s-.008.109-.015.155h-4.15v-.45h3.93l-.26.19a2.063,
+                            2.063,0,0,0-.41-1.46,1.55,1.55,0,0,0-1.26-.54,1.752,1.752,0,0,0-.95.256,1.693,1.693,0,0,0-.641.75,2.714,
+                            2.714,0,0,0-.229,1.154,2.658,2.658,0,0,0,.235,1.155,1.7,1.7,0,0,0,.659.75,1.877,1.877,0,0,0,.986.256,1.924,
+                            1.924,0,0,0,.99-.246,1.656,1.656,0,0,0,.649-.694l.4.23a2.046,2.046,0,0,1-.81.844,2.579,2.579,0,0,1-2.45-.009Z" fill="#36c"></path><path id="Trazado_268" data-name="Trazado 268" d="M569.787,410.772a2.15,2.15,0,0,1-.856-.169,1.821,1.821,0,0,1-.67-.491,2.046,2.046,0,0,1-.4-.75l.07-.08-.04,
+                            1.39h-.45v-7.3h.5v3.639l-.06-.09a1.879,1.879,0,0,1,.715-.985,2.017,2.017,0,0,1,1.2-.365,2.134,2.134,0,0,1,
+                            1.979,1.2,3.405,3.405,0,0,1,0,2.795,2.167,2.167,0,0,1-.814.9A2.217,2.217,0,0,1,569.787,
+                            410.772Zm-.061-.439a1.679,1.679,0,0,0,1.346-.581,2.786,2.786,0,0,0,.005-3.16,1.81,1.81,0,0,0-2.271-.315,1.779,
+                            1.779,0,0,0-.64.755,2.688,2.688,0,0,0-.23,1.15,2.657,2.657,0,0,0,.23,1.14,1.752,1.752,0,0,0,.635.75A1.672,1.672,
+                            0,0,0,569.726,410.333Z" fill="#36c"></path><path id="Trazado_269" data-name="Trazado 269" d="M573.756,404.7a.42.42,0,1,1,0-.84.42.42,0,1,1,0,.84Zm.25.97v5h-.5v-5Z" fill="#36c"></path><path id="Trazado_270" data-name="Trazado 270" d="M578.146,410.772a2.151,2.151,0,0,1-.856-.169,1.818,1.818,0,0,1-.669-.491,2.034,2.034,0,0,
+                            1-.406-.75l.071-.08-.04,1.39h-.451v-7.3h.5v3.639l-.059-.09a1.879,1.879,0,0,1,.715-.985,2.014,2.014,0,0,1,
+                            1.2-.365,2.216,2.216,0,0,1,1.17.31,2.193,2.193,0,0,1,.809.89,3.405,3.405,0,0,1,0,2.795,2.161,2.161,0,0,
+                            1-.814.9A2.214,2.214,0,0,1,578.146,410.772Zm-.061-.439a1.678,1.678,0,0,0,1.346-.581,2.785,2.785,0,0,0,0-3.16,
+                            1.663,1.663,0,0,0-1.34-.58,1.686,1.686,0,0,0-.931.265,1.77,1.77,0,0,0-.639.755,2.673,2.673,0,0,0-.231,1.15,
+                            2.643,2.643,0,0,0,.231,1.14,1.739,1.739,0,0,0,.635.75A1.668,1.668,0,0,0,578.085,410.333Z" fill="#36c"></path><path id="Trazado_271" data-name="Trazado 271" d="M582.326,403.373v6.119a1.021,1.021,0,0,0,.16.651.618.618,0,0,0,.5.19,1.482,1.482,0,0,0,.335-.031,2.014,2.014,
+                            0,0,0,.3-.1l-.07.441a1.44,1.44,0,0,1-.3.094,1.721,1.721,0,0,1-.365.035,1,1,0,0,1-.795-.3,1.43,1.43,0,0,
+                            1-.265-.955v-6.139Z" fill="#36c"></path><path id="Trazado_272" data-name="Trazado 272" d="M584.856,404.7a.42.42,0,1,1,0-.84.42.42,0,1,1,0,.84Zm.25.97v5h-.5v-5Z" fill="#36c"></path><path id="Trazado_273" data-name="Trazado 273" d="M588.936,405.572a2.423,2.423,0,0,1,1.235.31,2.158,2.158,0,0,1,.84.9,3.343,3.343,0,0,1,0,2.79,2.146,2.146,0,0,
+                            1-.84.9,2.613,2.613,0,0,1-2.469,0,2.14,2.14,0,0,1-.84-.9,3.333,3.333,0,0,1,0-2.79,2.152,2.152,0,0,1,
+                            .84-.9A2.419,2.419,0,0,1,588.936,405.572Zm0,.43a1.84,1.84,0,0,0-.989.26,1.75,1.75,0,0,0-.656.745,3,3,0,0,0,0,
+                            2.326,1.746,1.746,0,0,0,.656.75,2.02,2.02,0,0,0,1.979,0,1.751,1.751,0,0,0,.655-.75,3,3,0,0,0,0-2.326,1.755,
+                            1.755,0,0,0-.655-.745A1.846,1.846,0,0,0,588.936,406Z" fill="#36c"></path><path id="Trazado_274" data-name="Trazado 274" d="M595.356,405.672v.431h-3.37v-.431Zm-1.87-1.39v5.071a1.019,1.019,0,0,0,.225.714.842.842,0,0,0,.655.245,1.208,
+                            1.208,0,0,0,.495-.1,1.191,1.191,0,0,0,.385-.275l.19.411a1.4,1.4,0,0,1-.48.3,1.746,1.746,0,0,1-.65.115,1.562,
+                            1.562,0,0,1-.69-.145,1.031,1.031,0,0,1-.465-.445,1.564,1.564,0,0,1-.165-.76v-5Z" fill="#36c"></path><path id="Trazado_275" data-name="Trazado 275" d="M597.236,410.458a2.178,2.178,0,0,1-.845-.9,2.949,2.949,0,0,1-.306-1.385,3.023,3.023,0,0,1,.3-1.38,2.185,
+                            2.185,0,0,1,.825-.9,2.28,2.28,0,0,1,1.2-.315,2.19,2.19,0,0,1,1.149.3,1.92,1.92,0,0,1,.75.835,2.818,2.818,
+                            0,0,1,.261,1.24c0,.06,0,.119-.005.175s-.009.109-.016.155H596.4v-.45h3.93l-.26.19a2.072,2.072,0,0,0-.41-1.46,
+                            1.55,1.55,0,0,0-1.26-.54,1.752,1.752,0,0,0-.95.256,1.68,1.68,0,0,0-.641.75,2.713,2.713,0,0,0-.229,1.154,2.659,
+                            2.659,0,0,0,.235,1.155,1.69,1.69,0,0,0,.659.75,1.871,1.871,0,0,0,.985.256,1.93,1.93,0,0,0,.991-.246,1.655,
+                            1.655,0,0,0,.649-.694l.4.23a2.051,2.051,0,0,1-.81.844,2.579,2.579,0,0,1-2.45-.009Z" fill="#36c"></path><path id="Trazado_276" data-name="Trazado 276" d="M604.016,405.572a2.446,2.446,0,0,1,.91.16,1.867,1.867,0,0,1,.68.46,2.062,2.062,0,0,1,.43.73l-.47.221a1.56,
+                            1.56,0,0,0-.555-.836,1.639,1.639,0,0,0-1.005-.3,1.822,1.822,0,0,0-.97.256,1.674,1.674,0,0,0-.65.739,3.056,
+                            3.056,0,0,0,0,2.326,1.694,1.694,0,0,0,.64.744,1.789,1.789,0,0,0,.97.256,2,2,0,0,0,.765-.141,1.412,1.412,0,
+                            0,0,.569-.41,1.361,1.361,0,0,0,.295-.639l.461.159a1.934,1.934,0,0,1-1.14,1.295,2.422,2.422,0,0,1-.94.175,
+                            2.381,2.381,0,0,1-1.216-.31,2.129,2.129,0,0,1-.835-.9,3.035,3.035,0,0,1-.3-1.395,2.973,2.973,0,0,1,.3-1.395,
+                            2.158,2.158,0,0,1,.84-.9A2.387,2.387,0,0,1,604.016,405.572Z" fill="#36c"></path><path id="Trazado_277" data-name="Trazado 277" d="M610.135,406.373a1.326,1.326,0,0,0-1-.361,1.823,1.823,0,0,0-.994.256,1.477,1.477,0,0,0-.6.8l-.41-.26a1.759,
+                            1.759,0,0,1,.74-.919,2.377,2.377,0,0,1,1.271-.321,1.938,1.938,0,0,1,1.345.446,1.623,1.623,0,0,1,.495,
+                            1.274v2.5c0,.354.16.53.479.53a.842.842,0,0,0,.361-.07l-.031.4a.933.933,0,0,1-.439.09.889.889,0,0,
+                            1-.636-.23.931.931,0,0,1-.234-.73v-.22l.13-.06a1.468,1.468,0,0,1-.39.7,1.8,1.8,0,0,1-.69.43,2.451,2.451,0,0,
+                            1-.821.14,1.9,1.9,0,0,1-1.179-.34,1.122,1.122,0,0,1-.451-.95,1.16,1.16,0,0,1,.37-.9,2.176,2.176,0,0,1,
+                            1.061-.48l2.069-.411v.42l-1.819.36a2.216,2.216,0,0,0-.886.355.745.745,0,0,0-.285.615.774.774,0,0,0,.311.655,
+                            1.429,1.429,0,0,0,.88.236,2.128,2.128,0,0,0,.8-.156,1.529,1.529,0,0,0,.646-.475,1.225,1.225,0,0,0,
+                            .255-.789v-1.531A1.383,1.383,0,0,0,610.135,406.373Z" fill="#36c"></path></g></g><g id="Grupo_145" data-name="Grupo 145"><path id="Trazado_278" data-name="Trazado 278" d="M575.173,373.353c.028-1.637-.048-3.7.982-4.994a4.046,4.046,0,0,1,2.8-1.11,29.693,29.693,0,0,1,3.2-.229c3.914-.11,
+                          7.862-.012,11.769.227,0,0,3.358-.305,3.765,2.85a39.8,39.8,0,0,1,0,9.871c-.407,2.34-1.73,2.646-2.747,
+                          2.748s-13.231.387-15.418.091c-1.916-.258-3.814-.451-4.089-2.755a41.475,41.475,0,0,1-.268-6.312Q575.17,373.551,
+                          575.173,373.353Z" fill="none" stroke="#36c" stroke-miterlimit="10" stroke-width="1.5"></path><path id="Trazado_279" data-name="Trazado 279" d="M600.781,382.242l-.034-3.511a.762.762,0,0,0-1.149-.649l-3.024,1.785-.282.167v-.259a.822.822,0,0,
+                          0-.82-.82h-.286a.822.822,0,0,0-.82.82v4.948a.822.822,0,0,0,.82.82h.286a.822.822,0,0,0,.82-.82v-.211l.33.186,
+                          3.057,1.725a.761.761,0,0,0,1.136-.67Z" fill="#f2f2f2" stroke="#36c" stroke-linecap="round" stroke-miterlimit="10" stroke-width="1"></path><path id="Trazado_280" data-name="Trazado 280" d="M590.6,375.238l-3.5,2.022-3.5,2.022v-8.088l3.5,2.022Z" fill="#36c"></path><path id="Trazado_281" data-name="Trazado 281" d="M603.141,380.274a4.974,4.974,0,0,1,.059,3.563.35.35,0,0,0,.243.427.355.355,0,0,0,.427-.242,5.565,5.565,0,0,
+                          0-.06-3.932.359.359,0,0,0-.427-.243.35.35,0,0,0-.242.427Z" fill="#36c"></path><path id="Trazado_282" data-name="Trazado 282" d="M603.913,377.06a10.545,10.545,0,0,1,.224,9.933c-.283.558.639.877.919.325a11.449,11.449,0,0,
+                          0-.269-10.689c-.308-.542-1.185-.116-.874.431Z" fill="#36c"></path></g></g><path id="Trazado_283" data-name="Trazado 283" d="M575.14,379.574l-3.041-7.7a1.555,1.555,0,0,1,.908-2.03l2.964-1.227" transform="translate(-567.436 -366.975)" fill="none" stroke="#36c" stroke-miterlimit="10" stroke-width="1"></path><path id="Trazado_284" data-name="Trazado 284" d="M575.616,381.55c-.091-.215-3.673-4.868-5.107-6.9a1.177,1.177,0,0,1,.332-1.673l1.149-.734" transform="translate(-567.436 -366.975)" fill="none" stroke="#36c" stroke-miterlimit="10" stroke-width="1"></path></g></svg>
+              46819353.mp4
+            </a></div><iframe id="iwnyml" class="powerbi"></iframe></div></div><div id="ikm39m" class="gjs-row"></div><div ancho="560" largo="315" my-trait="https://www.youtube.com/watch?v=rbpM0HVcsTg" id="ie93iu"></div><div id="ir3aic" class="gjs-row"><div id="insck" class="gjs-cell"><div ancho="560" largo="315" my-trait="https://www.youtube.com/watch?v=rbpM0HVcsTg" id="ixahh6"><div id="i9e743"><div></div></div></div><div class="gjs-row"></div><div class="gjs-row"><div id="iqmstm" class="gjs-cell"><div ancho="560" largo="315" my-trait="https://www.youtube.com/watch?v=LkvUjgNmaW4" id="inp7h5"><iframe width="560" height="315" src="https://www.youtube.com/embed/LkvUjgNmaW4" frameborder="0" allow="
+          accelerometer;
+          autoplay;
+          encrypted-media;
+          gyroscope;
+          picture-in-picture" allowfullscreen="">
+      </iframe><div id="i1ru2r" class="gjs-cell"><a href="https://www.google.com" id="i5zvb1"><img id="i8i0va" src="https://escuelasecretarias.ivolucion.com/assets/uploads/5017878.png"/></a></div></div></div></div><div id="ilpj3e" class="gjs-row"><div id="itj55f" class="gjs-cell"><iframe src="https://app.powerbi.com/reportEmbed?reportId=f6bfd646-b718-44dc-a378-b73e6b528204&groupId=be8908da-da25-452e-b220-163f52476cdd&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLVVTLU5PUlRILUNFTlRSQUwtcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQiLCJlbWJlZEZlYXR1cmVzIjp7Im1vZGVybkVtYmVkIjp0cnVlfX0%3d" class="powerbi"></iframe></div></div></div></div><div id="igx8q5" class="gjs-row"><div id="i4j8mc" class="gjs-cell"><div id="gallery" cant_imgs="4" class="card-columns"><div id="iuv287" class="card pagination__item"><img src="https://escuelasecretarias.ivolucion.com/assets/uploads/19022144.jpg" alt="..." class="card-img-top"/><img src="https://escuelasecretarias.ivolucion.com/assets/uploads/38415542.jpg" alt="..." class="card-img-top"/><div class="card-body">
+            </div></div><div id="ivt1qz" class="card pagination__item"><img src="https://escuelasecretarias.ivolucion.com/assets/uploads/55220259.jpg" alt="..." class="card-img-top"/><img src="https://escuelasecretarias.ivolucion.com/assets/uploads/20496125.png" alt="..." class="card-img-top"/><div class="card-body">
+            </div></div><div id="igm7uo" class="card pagination__item"><img src="https://escuelasecretarias.ivolucion.com/assets/uploads/52492241.gif" alt="..." class="card-img-top"/><img src="https://escuelasecretarias.ivolucion.com/assets/uploads/41293140.jpg" alt="..." class="card-img-top"/><div class="card-body">
+            </div></div></div><div id="gallery-2" cant_imgs="1" class="card-columns"><div class="card pagination__item"><img src="..." alt="..." class="card-img-top"/><div class="card-body">
+            </div></div><div class="card pagination__item"><img src="..." alt="..." class="card-img-top"/><div class="card-body">
+            </div></div><div class="card pagination__item"><img src="..." alt="..." class="card-img-top"/><div class="card-body">
+            </div></div></div></div></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../assets/js/scriptsCarouselMaterial.js"></script>
+    <script type="text/javascript" src="../assets/js/paginador.js"></script>
+    <script type="text/javascript" src="../assets/js/scripts.js"></script>
+</body>
+</html>

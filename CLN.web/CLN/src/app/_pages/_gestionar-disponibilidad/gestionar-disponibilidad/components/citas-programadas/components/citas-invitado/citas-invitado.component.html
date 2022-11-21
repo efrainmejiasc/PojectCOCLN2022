@@ -1,0 +1,324 @@
+<div class="citas-anfitrion">
+    <div style="margin-left: 10%; margin-right: 10%; text-align: center;">
+        <table [ngStyle]="listaCitas.length > 0 ? {'display': 'block'} : {'display': 'none'}">
+            <thead>
+                <tr>
+                    <th width="15%">Fecha</th>
+                    <th width="15%">Hora</th>
+                    <th width="200px">Nombre de la empresa</th>
+                    <th width="15%">Motivo</th>
+                    <th width="15%">Estado</th>
+                    <th width="15%">Gestión</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of citas | async">
+                    <td>{{ formatoDeFecha(item.appointmentDate) }}</td>
+                    <td>{{ formatoHora(item.startHour) }} - {{ formatoHora(item.endHour) }}</td>
+                    <td>{{ item.host || "" }}</td>
+                    <td>{{ item.appointmentReason }}</td>
+                    <td>{{ convertirStateId(item.idState) }}</td>
+                    <td>
+                        <app-button 
+                            *ngIf="item.reprogramar"
+                            text="REPROGRAMAR" 
+                            width="150px"
+                            backgroundColor="#376bf9"
+                            (onClick)="reprogramarCita(item)">
+                        </app-button>
+                        <app-button 
+                            *ngIf="item.rechazar"
+                            text="RECHAZAR" 
+                            width="150px"
+                            backgroundColor="#376bf9"
+                            (onClick)="rechazarCita(item)">
+                        </app-button>
+                        <app-button 
+                            *ngIf="item.confirmar"
+                            text="CONFIRMAR" 
+                            width="150px" 
+                            backgroundColor="#376bf9"
+                            (onClick)="confirmarCita(item)">
+                        </app-button>
+                        <app-button 
+                            *ngIf="item.cancelar"
+                            text="CANCELAR CITA" 
+                            width="150px"
+                            backgroundColor="#376bf9"
+                            (onClick)="cancelarCita(item)">
+                        </app-button>
+                        <app-button 
+                            *ngIf="item.detalles"
+                            text="VER DETALLE" 
+                            width="150px"
+                            backgroundColor="#376bf9"
+                            (onClick)="openPopupRechazarCancelar(item, dialogTemplateCancelacionRechazo)">
+                        </app-button>
+                        <app-button 
+                            *ngIf="validarOpcionesConHora(item, 'conclusiones')"
+                            text="VER CONCLUSIONES" 
+                            width="150px"
+                            backgroundColor="#376bf9"
+                            (onClick)="cancelarCita(item,dialogTemplateCancelar)">
+                        </app-button>
+                        <app-button 
+                        *ngIf="item.idState == 13"
+                        text="VER CONCLUSIONES" width="150px"
+                        backgroundColor="#376bf9"
+                            (onClick)="verRespuestas(item,dialogRespuestasConclusionesTemplate)">
+                        </app-button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="margin-left: 18%; margin-top: 2%; margin-right: 28%" [ngStyle]="listaCitas.length > 0 ? {'display': 'block'} : {'display': 'none'}">
+            <mat-paginator [pageSizeOptions]="[3]" hidePageSize="true" showFirstLastButtons="true">
+            </mat-paginator>
+        </div>
+    </div>
+    <app-popup-cambios 
+        *ngIf="isPopupCambios" 
+        [message]="mensajePopupCambios" 
+        (close)="closePopupConfirmation($event)">
+    </app-popup-cambios>
+
+
+    <app-popup-cambios 
+        *ngIf="rechazando" 
+        [message]="mensajeRechazo" 
+        (close)="closePopupRechazo($event)">
+    </app-popup-cambios>
+
+    <app-popup-cambios 
+        *ngIf="cancelar" 
+        [message]="mensajePopupCambios" 
+        (close)="closePopupCancelacion($event)">
+    </app-popup-cambios>
+
+    <app-popup-confirmation 
+        *ngIf="isPopupConfirmacion" 
+        [message]="mensajePopupConfirmacion"
+        (close)="close($event)">
+    </app-popup-confirmation>
+</div>
+
+<div class="popup-bg" *ngIf="showConfirmation">
+    <div class="popup-container">
+        <div class="message-container">
+            <div class="modal-conclusiones">
+                <div class="div-principal center-content">
+                    <span class="text-titulo">
+                        Confirmado
+                    </span>
+                </div>
+                <div class="center-content responder-preguntas">
+                    <h6>Has confirmado una cita de negocios virtual con:</h6>
+                    <br>
+                    <div>
+                        <label style="margin-bottom:0">
+                            <b>Didactical sas</b>
+                        </label>
+                        <br>
+                        <label style="margin-top:0; margin-bottom:0">
+                            Sector/Industria: <b>Servicios comerciales y profesionales</b> 
+                        </label>
+                        <br>
+                        <label style="margin-top:0; margin-bottom:0">
+                            Fecha: <b>Viernes, 27 de mayo/2022</b>
+                        </label>
+                        <br>
+                        <label style="margin-top:0; margin-bottom:0">
+                            Hora: <b>16:00 – 17:00</b> 
+                        </label>
+                        <br>
+                        <label style="margin-top:0; margin-bottom:0">
+                            Enlace para ingresar a la cita: 
+                            <br>
+                            <b>https://meet.google.com/dgc-gcvb-ctm</b>
+                        </label>
+                    </div>
+                    <br>
+                    <p>
+                        Hemos enviado un mensaje de confirmación al correo electrónico de los invitados a 
+                        la cita de negocios, con la información requerida para asistir a la misma.
+                    </p>
+                </div>
+                <div class="center-content" style="margin-top: 1em; margin-bottom: 1em;">
+                    <app-button text="Aceptar" width="150px"
+                        (click)="closeConfirmation()">
+                    </app-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="popup-bg" *ngIf="popupRazonRechazo">
+    <div class="popup-container">
+        <div class="message-container">
+            <div class="modal-conclusiones">
+                <div class="div-principal center-content">
+                    <span class="text-titulo">
+                        ¿Cuál es el motivo del rechazo de la invitación a la cita?
+                    </span>
+                </div>
+                <div  *ngFor="let item of motivosRechazoCita" style="margin-top: 5px">
+                    <div style="text-align: left;">
+                        <input type="radio" name="motivoCancelacionCita" [value]="item.name" [(ngModel)]="motivoRechazoCita">
+                        <span class="text-negrita ml-1">{{item.name}}</span>
+                    </div>
+                </div>
+                <div class="center-content" style="margin-top: 1em; margin-bottom: 1em;">
+                    <app-button text="ACEPTAR" width="150px"
+                        [disabled]="!motivoRechazoCita"
+                        (click)="enviarRechazo()">
+                    </app-button>
+                    <app-button style="margin-left: 5px;" text="CANCELAR" width="150px"
+                        (click)="popupRazonRechazo = false">
+                    </app-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="popup-bg" *ngIf="popupRazonCancelacion">
+    <div class="popup-container">
+        <div class="message-container">
+            <div class="modal-conclusiones">
+                <div class="div-principal center-content">
+                    <span class="text-titulo">
+                        ¿Cuál es el motivo de la cancelación de la cita?”
+                    </span>
+                </div>
+                <div  *ngFor="let item of motivosCancelacionCita" style="margin-top: 5px">
+                    <div style="text-align: left;">
+                        <input type="radio" name="motivoCancelacionCita" [value]="item.name" [(ngModel)]="motivoCancelacionCita">
+                        <span class="text-negrita ml-1">{{item.name}}</span>
+                    </div>
+                </div>
+                <div class="center-content" style="margin-top: 1em; margin-bottom: 1em;">
+                    <app-button text="ACEPTAR" width="150px"
+                        [disabled]="!motivoCancelacionCita"
+                        (click)="enviarCancelacion()">
+                    </app-button>
+                    <app-button style="margin-left: 5px;" text="CANCELAR" width="150px"
+                        (click)="popupRazonCancelacion = false">
+                    </app-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="popup-bg" *ngIf="popupDetalle">
+    <div class="popup-container">
+        <div class="message-container">
+            <div class="modal-conclusiones">
+                <div class="div-principal center-content">
+                    <span class="text-titulo">
+                        {{ titulo }}
+                    </span>
+                </div>
+                <div  *ngFor="let item of motivosCancelacionCita" style="margin-top: 5px">
+                    <div style="text-align: left;">
+                        <input type="radio" name="motivoCancelacionCita" [value]="item.name" [(ngModel)]="motivoCancelacionCita">
+                        <span class="text-negrita ml-1">{{item.name}}</span>
+                    </div>
+                </div>
+                <div class="center-content" style="margin-top: 1em; margin-bottom: 1em;">
+                    <app-button text="ACEPTAR" width="150px"
+                        [disabled]="!motivoCancelacionCita"
+                        (click)="enviarCancelacion()">
+                    </app-button>
+                    <app-button style="margin-left: 5px;" text="CANCELAR" width="150px"
+                        (click)="popupRazonCancelacion = false">
+                    </app-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #dialogTemplateCancelacionRechazo>
+    <div class="modal-conclusiones">
+        <div class="div-principal center-content">
+            <span class="text-titulo">{{this.mensajeRechazarCancelar.title}}</span>
+        </div>
+        <br>
+        <br>
+        <div class="center-content" style="margin-top: 1em; margin-bottom: 1em;">
+            <p>
+                {{this.mensajeRechazarCancelar.body || motivo}}
+            </p>
+        </div>
+        <br>
+        <br>
+        <div class="center-content" style="margin-top: 1em; margin-bottom: 1em;">
+            <app-button style="margin-left: 5px;" text="REGRESAR" width="150px"
+                (click)="cerrarDialogTemplate()">
+            </app-button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #dialogRespuestasConclusionesTemplate>
+    <div class="modal-conclusiones">
+        <div class="div-principal center-content">
+            <span class="text-titulo">CONCLUSIONES DE LA CITA DE NEGOCIOS</span>
+        </div>
+        <div style="display: none;">{{isBtnGuardarConcluciones()}}</div>
+
+        <div class="center-content responder-preguntas">
+            <div style="justify-content: center;">
+                <span class="text-negrita m-1" style="padding: 0 0.5rem;"> <b>Nombre de la empresa:</b> </span>
+                <span>{{itemActual.companyNameHost}}</span>
+            </div>
+            <div style="justify-content: center;">
+                <span class="text-negrita m-1" style="padding: 0 0.5rem;"> <b>Fecha de la cita:</b> </span>
+                <span>{{ formatoDeFecha(itemActual.appointmentDate) }}</span>
+            </div>
+            <div style="justify-content: center;">
+                <span class="text-negrita m-1" style="padding: 0 0.5rem;"><b>Hora: </b></span>
+                <span>{{itemActual.startHour.split(':')[0]}}:00-{{itemActual.endHour.split(':')[0]}}:00</span>
+            </div>
+            <div class="div-principal" *ngFor="let item of itemActual.respuestas;index as i;">
+                <div>
+                    <hr style="margin-top: 10px; margin-bottom: 10px">
+                    <div style="justify-content: center;">
+                        <span class="text-negrita m-1" style="padding: 0 0.5rem;">{{item.ask}}</span>
+                        <span>{{item.response}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="center-content" style="margin-top: 1em; margin-bottom: 1em;" >
+            <app-button text="REGRESAR" width="150px"
+                (click)="cerrarDialogTemplate()">
+            </app-button>
+        </div>
+    </div>
+</ng-template>
+
+
+
+
+<!-- <ng-template #dialogTemplateCancelar>
+    <div class="modal-conclusiones">
+        <div class="div-principal center-content">
+            <span class="text-titulo">¿Cuál es el motivo de la cancelación de la cita?</span>
+        </div>
+        <div class="center-content responder-preguntas">
+            <div class="div-principal" *ngFor="let item of motivosCancelacionCita">
+                <span class="text-negrita ml-1">{{item.name}}</span>
+                <input type="radio" name="motivoCancelacionCita" [value]="item.name">
+            </div>
+        </div>
+        <div class="center-content" style="margin-top: 1em; margin-bottom: 1em;">
+            <app-button text="GUARDAR" width="150px" [disabled]="!disabledBtnGuardarMotivoCancelacion"
+                (click)="guardarCancelarCita()">
+            </app-button>
+        </div>
+        <div style="display: none;">{{isBtnGuardarMotivoCancelacion(motivosCancelacionCita)}}</div>
+    </div>
+</ng-template> -->

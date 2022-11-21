@@ -1,0 +1,117 @@
+$color-blanco: rgba(255, 255, 255, 1);
+$color-blue: #36c;
+$color-red: #f42f63;
+$color-red-oscuro: #d6184b;
+$line-height-paragraph: 18px;
+$font-size-paragraph: 16px;
+
+.container-relative {
+    height: 350px;
+    position: relative;
+}
+.RedLine {
+    margin: 0px 0px 0px 0px;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    border-style: dashed;
+    border-color: #f42f63;
+    border-width: 1px;
+}
+/*  Estilos content capacidades  */
+.box-capacidad {
+    width: 90%;
+    margin: 20px 0px 0px 0px;
+}
+.box-capacidad:first-child {
+    margin: 0px;
+}
+.box-capacidad .name-capacidad {
+    width: 300px;
+    padding: 5px;
+}
+.box-capacidad .name-capacidad .result-first-word {
+    width: 30px;
+    height: 30px;
+    color: $color-blanco;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $font-size-paragraph;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 900;
+    border-radius: 3px;
+}
+.box-capacidad .name-capacidad .name {
+    text-align: center;
+    width: 150px;
+    font-size: $font-size-paragraph;
+    line-height: $line-height-paragraph;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 600;
+}
+.borde-gris-claro {
+    border-left: solid 7px rgba($color: $color-blue, $alpha: 0.2);
+}
+.borde-rojo-claro {
+    border-left: solid 7px rgba($color: $color-red, $alpha: 0.2);
+}
+.borde-rojo-oscuro {
+    border-left: solid 7px rgba($color: $color-red-oscuro, $alpha: 0.2);
+}
+.box-capacidad .resume-capacidad {
+    min-width: 900px;
+    border-left:solid 7px;
+}
+.box-capacidad .resume-capacidad p {
+    font-size: $font-size-paragraph;
+    line-height: $line-height-paragraph;
+    width: 90%;
+    text-align: justify;
+}
+.goTop {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    bottom: 30px;
+    right: 0px;
+    background-color: transparent;
+    border: none;
+}
+.goTop .icon-goTop {
+    width: 100%;
+    height: 40px;
+    background-color: #757575;
+    display: block;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask: url(src\assets\imgs\iconos\subir.svg) no-repeat center;
+    mask: url(src\assets\imgs\iconos\subir.svg) no-repeat center;
+}
+
+.animation-to-bottom {
+    animation-name: toBot;
+    animation-duration: 1s;
+    overflow: hidden;
+}
+@keyframes toBot {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 350px;
+    }
+}
+.animation-to-top {
+    animation-name: toTop;
+    animation-duration: 1s;
+    overflow: hidden;
+}
+@keyframes toTop {
+    0% {
+        height: 350px;
+    }
+    100% {
+        height: 0px;
+    }
+}

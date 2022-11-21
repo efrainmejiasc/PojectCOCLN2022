@@ -1,0 +1,30 @@
+<div class="wrapper">
+    <div class="select-btn" style="max-height: 300px;">
+        <textarea 
+            [disabled]="textIcon == 0"
+            id="" 
+            cols="30" 
+            rows="10"
+            class="recuperar-input" 
+            [(ngModel)]="text"
+            style="font-size: 15px;color: black;padding: 5px" 
+            [id]="placeholder"
+            [placeholder]="placeholder"
+            autocomplete="off"
+            (ngModelChange)="typeText()"
+            [maxlength]="maxLength - link.length"
+        ></textarea>
+        <div class="arrow-right">
+            <img *ngIf="icon" [src]="icon" />
+            <span *ngIf="textIcon" style="font-size: .7vw;">
+                <b>{{ textIcon }}</b>
+            </span>
+            <span *ngIf="!textIcon" style="font-size: .7vw;">
+                <b>0</b>
+            </span>
+        </div>
+    </div>
+    <div style="background: #ececec; height: 100%; max-height: 100%; padding: 5px;word-break: break-word;">
+        <a [href]="buildLink()" target="_blank">{{ enlace }}</a>
+    </div>
+</div>

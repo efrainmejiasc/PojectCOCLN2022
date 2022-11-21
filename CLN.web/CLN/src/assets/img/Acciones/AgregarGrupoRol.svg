@@ -1,0 +1,22 @@
+<svg id="evs_grupos_de_roles" data-name="evs grupos de roles" xmlns="http://www.w3.org/2000/svg" width="47.181" height="47.181" viewBox="0 0 47.181 47.181">
+  <g id="Grupo_13" data-name="Grupo 13" transform="translate(-941.642 -461.381)">
+    <g id="Grupo_11" data-name="Grupo 11">
+      <path id="Trazado_15" data-name="Trazado 15" d="M965.233,508.562a23.59,23.59,0,1,1,23.59-23.591A23.618,23.618,0,0,1,965.233,508.562Zm0-45.692a22.1,22.1,0,1,0,22.1,22.1A22.127,22.127,0,0,0,965.233,462.87Z" fill="#36c"/>
+    </g>
+    <g id="Grupo_12" data-name="Grupo 12">
+      <path id="Trazado_16" data-name="Trazado 16" d="M985.2,483.665v2.588H972.859v-2.588Zm-4.753-5.126V491.4h-2.812V478.539Z" fill="#36c"/>
+    </g>
+  </g>
+  <g id="Grupo_14" data-name="Grupo 14" transform="translate(-941.642 -461.381)">
+    <circle id="Elipse_9" data-name="Elipse 9" cx="3.192" cy="3.192" r="3.192" transform="translate(963.178 465.688)" fill="none" stroke="#36c" stroke-miterlimit="10" stroke-width="2"/>
+    <path id="Trazado_17" data-name="Trazado 17" d="M960.08,479.669s.129-4.823,3.963-6.741a3.59,3.59,0,0,0,2.318,1.177,3.151,3.151,0,0,0,2.279-1.177c1.122.6,3.69,2.244,4,6.741Z" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  </g>
+  <g id="Grupo_15" data-name="Grupo 15" transform="translate(-941.642 -461.381)">
+    <circle id="Elipse_10" data-name="Elipse 10" cx="3.192" cy="3.192" r="3.192" transform="translate(963.178 486.502)" fill="none" stroke="#36c" stroke-miterlimit="10" stroke-width="2"/>
+    <path id="Trazado_18" data-name="Trazado 18" d="M960.08,500.483s.129-4.823,3.963-6.741a3.584,3.584,0,0,0,2.318,1.176,3.146,3.146,0,0,0,2.279-1.176c1.122.6,3.69,2.244,4,6.741Z" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  </g>
+  <g id="Grupo_16" data-name="Grupo 16" transform="translate(-941.642 -461.381)">
+    <circle id="Elipse_11" data-name="Elipse 11" cx="3.192" cy="3.192" r="3.192" transform="translate(949.715 475.713)" fill="none" stroke="#36c" stroke-miterlimit="10" stroke-width="2"/>
+    <path id="Trazado_19" data-name="Trazado 19" d="M946.617,489.694s.129-4.823,3.963-6.741a3.59,3.59,0,0,0,2.318,1.177,3.151,3.151,0,0,0,2.279-1.177c1.122.6,3.69,2.244,4,6.741Z" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  </g>
+</svg>

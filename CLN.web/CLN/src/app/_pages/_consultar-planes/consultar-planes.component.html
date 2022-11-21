@@ -1,0 +1,309 @@
+<section class="consultar-planes-section">
+  <app-regresar [linkTo]="linkTo"></app-regresar>
+  <app-top-section [titulo]="titulo" subtitulo="COMPRAS PÚBLICAS" [icono]="icono" [alertaIcono]="alertaIcono"
+    [infoAyuda]="infoAyuda" [buttonText]="buttonText" style="margin-bottom: 15px;">
+  </app-top-section>
+
+  <div class="info-ayuda-contenedor" style="margin-top: 2em;">
+    <p class="info-ayuda">
+      La información que se muestra en la funcionalidad corresponde a la información suministrada por las entidades publicas para el año vigente y en caso de encontrarse inconsistencias en la información que se encuentra en la plataforma es responsabilidad de las entidades que cargaron los planes anuales de adquisición en SECOP I y II.
+    </p>
+  </div>
+
+  <div class="info-ayuda-contenedor">
+    <table>
+      <tr>
+        <td class="td-izquierda">
+          <img src="assets/imgs/iconos/admiracion.svg" class="img-info-ayuda">
+        </td>
+        <td class="td-derecha">
+          <span style="color:#7d7d7d; font-family: 'opensans_regular'; text-align: left;">Los filtros de búsqueda que
+            encontrarás a continuación están asociados al clasificador de bienes y servicios de las Naciones
+            Unidas.</span>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <form [formGroup]="formPlans">
+    <div class="info-ayuda-contenedor"
+      style="border: 1px solid #222; border-radius: 0.3em; margin-top: 2em; height: auto;">
+      <div style="padding: 2em 1.5em;">
+        <div title="Selecciona los productos / servicios de Naciones Unidas">
+          <label>Clasificador de bienes y servicios</label>
+          <div style="display:flex;">
+            <span><img src="assets/imgs/iconos/alerta.svg" class="imgAyuda"></span><span class="descriptionField">
+              A continuación, encontrarás la clasificación de Naciones Unidas - UNSPSC. Selecciona los productos y servicios que estén alineados con los intereses de tu empresas
+            </span>
+          </div>
+          <div class="input-contenedor agregar-productos">
+            <app-cp-input-products
+              [selectedItems] = "productosSelected"
+              (productsSelectedEmmiter) = "setProducts($event)">
+            </app-cp-input-products>
+          </div>
+        </div>
+        <div style="border-top: 1px solid;"></div>
+        <div class="input-contenedor" title="Selecciona la modalidad de selección del contratista.">
+          <label>Modalidad</label>
+          <app-cp-input-boxes 
+            [wrapperActive]="wrapperActiveModalidad"
+            (show)="show('modalidad')"
+            [lista]="modesNoSelected" 
+            [itemsS]="modesSelected" 
+            (idValueEvent)="idModeSelected($event)"
+            (idRemoveEvent)="idModeRemove($event)">
+          </app-cp-input-boxes>
+        </div>
+        <div class="input-contenedor">
+          <label>Rango de precio</label>
+          <div style="display: flex;">
+            <span><img src="assets/imgs/iconos/alerta.svg" class="imgAyuda"></span><span class="descriptionField">Te
+              mostraremos por defecto el valor mínimo y el valor máximo de las oportunidades de los planes de
+              adquisición disponibles para tu consulta.</span>
+          </div>
+        </div>
+        <div class="input-contenedor">
+          <div style="width: 48%; float: left;" title="Ingresa el valor mínimo de las adquisiciones.">
+            <label>Desde</label>
+            <div style="display:flex;">
+              <input class="recuperar-input" type="text" id="rangoDesde" formControlName="rangoDesde" min="0"
+                maxlength="25" autocomplete="off" placeholder="$ 0" [value]="acquisitionPlanMinimumValue || '$0'"
+                currencyMask (blur)="onBlurRango()">
+              <span class="contador">
+                {{ contador(formPlans.value.rangoDesde) }}
+              </span>
+            </div>
+          </div>
+          <div style="width: 48%; float: right;" title="Ingresa el valor máximo de las adquisiciones.">
+            <label>Hasta</label>
+            <div style="display:flex;">
+              <input class="recuperar-input" type="text" id="rangoHasta" formControlName="rangoHasta" min="0"
+                maxlength="25" autocomplete="off" [placeholder]="acquisitionPlanMaximumValue || '$ 0'"
+                [value]="acquisitionPlanMaximumValue || '$0'" currencyMask (blur)="onBlurRango()">
+              <span class="contador">
+                {{ contador(formPlans.value.rangoHasta) }}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="input-contenedor" title="Ingresa la fecha de inicio del proceso de contratación.">
+          <label style="margin-top: 1em;">Fecha de inicio proceso de contratación</label>
+          <div style="display: flex;">
+            <div class="input-group">
+              <input matInput id="fechaInicioProceso" formControlName="fechaInicioProceso" [matDatepicker]="pickerDate"
+                class="recuperar-input" (click)="pickerDate.open()">
+              <mat-datepicker #pickerDate></mat-datepicker>
+            </div>
+            <span class="contador" (click)="pickerDate.open()">
+              <img src="assets/imgs/iconos/calendario.svg" style="width: 15px;">
+            </span>
+          </div>
+        </div>
+        <div class="input-contenedor" title="Ingresa la entidad.">
+          <label>Entidad</label>
+          <div style="margin-bottom: .5rem; display: flex;">
+            <span><img src="assets/imgs/iconos/alerta.svg" class="imgAyuda"></span><span class="descriptionField">Para
+              incluir entidades, debe escribir la entidad y seleccionarla
+            </span>
+          </div>
+          <div style="display:flex;">
+            <app-cp-input-search-acquisition-plans class="conponente-search" [lista]="entidadesFoundList"
+              [itemsS]="entidadesSelected" [listResult]="entidadesFoundList" (idValueEvent)="idEntidadSelected($event)"
+              (idRemoveEvent)="idEntidadRemove($event)" (stringValueEvent)="stringEntidad($event)"
+              (itemsSValueEvent)="handleEntidadesList($event)" placeholderText="Ingresa una palabra o frase clave">
+            </app-cp-input-search-acquisition-plans>
+          </div>
+        </div>
+        <div class="input-contenedor" title="Selecciona los departamentos.">
+          <label>Departamento</label>
+          <div>
+            <app-cp-input-boxes
+              [wrapperActive]="wrapperActiveDepartamento"
+              (show)="show('departamento')"
+              [lista]="planesObj.departamentosNoSelected"
+              [itemsS]="planesObj.departamentosSelected"
+              (idValueEvent)="idDepSelected($event)"
+              (idRemoveEvent)="idDepRemove($event)">
+            </app-cp-input-boxes>
+          </div>
+        </div>
+        <div class="input-contenedor" title="Selecciona las ciudades / municipios.">
+          <label>Ciudad/Municipio</label>
+          <div>
+            <app-cp-input-boxes
+              [wrapperActive]="wrapperActiveMunicipio"
+              (show)="show('municipio')"
+              [lista]="planesObj.municipalitiesNoSelected"
+              [itemsS]="planesObj.municipalitiesSelected"
+              (idValueEvent)="idCiudadSelected($event)"
+              (idRemoveEvent)="idCiudadRemove($event)">
+            </app-cp-input-boxes>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="centeringBtn" style="margin-top: 2em;">
+      <app-button text="BUSCAR" width="150px" [disabled]="false" (onClick)="onSearch()">
+      </app-button>
+      <app-button text="LIMPIAR" width="150px" [disabled]="false" (onClick)="onClear()">
+      </app-button>
+    </div>
+  </form>
+
+  <div class="card-contenedor" [ngClass]="{'ocultar': isOcultarCards}">
+    <div class="centeringBtnImgDown" style="height: auto;">
+      <div>
+        <img src="assets/imgs/iconos/descargarplantilla.svg" (click)="onExportarExcel()">
+      </div>
+      <div>
+        <span (click)="onExportarExcel()">DESCARGAR ADQUISICIONES</span>
+      </div>
+    </div>
+    <div class="grid-card row">
+      <mat-card class="card-contenido" *ngFor="let acquisitionPlan of obs | async">
+        <span class="card-titulo">PLANES ANUALES</span>
+
+        <div class="card-subtitulo-entidad">Entidad</div>
+        <div style="font-size: 16px; color: #333333; font-family: opensans_semibold;">{{ acquisitionPlan.entityName }}
+        </div>
+
+        <div class="card-subtitulo">Producto o servicio asociado:</div>
+        <div class="card-productos-correo">{{ acquisitionPlan.product || "No disponible" }}</div>
+
+        <div class="card-subtitulo">Valor de adquisición</div>
+        <div class="card-contenido-regular16">{{ numberFormatColombia(acquisitionPlan.acquisitionValue) || "No
+          disponible"}}</div>
+
+        <div class="card-subtitulo">Modalidad de contratación</div>
+        <div class="card-contenido-regular16">{{acquisitionPlan.modality || "No disponible"}}</div>
+
+        <div class="card-subtitulo">Contacto de la entidad</div>
+        <div class="card-contenido-regular16"> {{ acquisitionPlan.contactInfo }}</div>
+        <div class="card-productos-correo">{{acquisitionPlan.contactEmail}}</div>
+        <div class="card-productos-correo">{{acquisitionPlan.contactPhone}}</div>
+
+        <div class="prueba-margin" style="-webkit-box-flex: 1; -ms-flex: 1 1 auto; flex: 1 1 auto"></div>
+
+        <div class="card-bottom">
+          <div class="card-bottom-inside">
+            <div class="card-municipio-pais">
+              <span><img src="assets/imgs/iconos/ubicacion.svg"></span><span>{{ acquisitionPlan.location }}</span>
+            </div>
+            <div style="margin-top: 1em; margin-bottom: 1em;">
+              <app-button class="centeringBtn" text="VER DETALLE" width="150px" [disabled]="false"
+                (onClick)="getAcquisitionPlanById(acquisitionPlan.idAcquisitionPlans, dialogTemplate)">
+              </app-button>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="paginator-content" style="margin-top: 2%" [ngClass]="{'ocultar': isOcultarPaginacion}">
+      <mat-paginator 
+        [pageSizeOptions]="[8]"
+        hidePageSize="true"
+        showFirstLastButtons="true">
+      </mat-paginator>
+    </div>
+  </div>
+
+  <div class="info-ayuda-contenedor" style="margin-top: 2em;" [ngClass]="{'ocultar': isOcultarMsgNoRegistros}">
+    <p class="info-ayuda">
+      No se encontraron adquisiciones asociadas a los datos ingresados
+    </p>
+  </div>
+
+  <div class="info-ayuda-contenedor" style="margin-top: 2em;" [ngClass]="{'ocultar': isOcultarMsgDisponibles}">
+    <p class="info-ayuda">En este momento existen <span>{{ acquisitionPlansTotalCount }}</span>
+      adquisiciones de compra pública disponibles para tu consulta
+    </p>
+  </div>
+
+  <div class="info-ayuda-contenedor" style="margin-top: 2em;" [ngClass]="{'ocultar': isOcultarMsgErrorRespuesta}">
+    <p class="info-ayuda">
+      Se ha producido un error y no se puede mostrar el contenido
+    </p>
+  </div>
+
+  <ng-template #dialogTemplate>
+    <div class="plan-adquisicion-modal">
+      <div class="plan-adquisicion-title">
+        <span> {{ detallePlanAdquisicion.entityName }}</span>
+      </div>
+      <div>
+        <span class="plan-adquisicion-subtitle">Descripción</span>
+        <p class="plan-adquisicion-descripcion" style="border: 1px solid #222; border-radius: 5px;"
+          *ngIf="detallePlanAdquisicion.description">
+          {{ detallePlanAdquisicion.description }}
+        </p>
+      </div>
+      <div>
+        <span class="plan-adquisicion-subtitle">Producto o servicio asociado: </span><span
+          class="plan-adquisicion-descripcion">{{ detallePlanAdquisicion.product }}</span>
+      </div>
+      <div>
+        <span class="plan-adquisicion-subtitle">Duración estimada: </span><span class="plan-adquisicion-descripcion">{{
+          detallePlanAdquisicion.duration }}</span>
+      </div>
+      <div>
+        <span class="plan-adquisicion-subtitle">Modalidad de contratación: </span><span
+          class="plan-adquisicion-descripcion">{{ detallePlanAdquisicion.modality }}</span>
+      </div>
+      <div>
+        <span class="plan-adquisicion-subtitle">Valor aquisición: </span><span
+          class="plan-adquisicion-descripcion">$ {{ convertirValor(detallePlanAdquisicion.acquisitionValue) }}</span>
+      </div>
+      <div>
+        <span class="plan-adquisicion-subtitle">Fecha de inicio proceso de contración: </span><span
+          class="plan-adquisicion-descripcion">{{ detallePlanAdquisicion.initDate }}</span>
+      </div>
+      <div class="plan-adquisicion-contacto">
+        <table>
+          <tr>
+            <td class="plan-adquisicion-ubicacion-izquierda td-izquierda">
+              <div class="plan-adquisicion-left">
+                <span>
+                  <img src="assets/imgs/iconos/ubicacion.svg">
+                </span><span class="plan-adquisicion-subtitle">{{ detallePlanAdquisicion.location }}</span>
+                <span class="plan-adquisicion-subtitle">
+                </span>
+              </div>
+            </td>
+            <td class="plan-adquisicion-ubicacion-derecha td-derecha">
+              <div class="plan-adquisicion-texto-left">
+                <div>
+                  <span class="plan-adquisicion-subtitle-contacto">Contacto de la entidad</span>
+                </div>
+                <div>
+                  <span class="plan-adquisicion-subtitle">Nombre del contacto: </span><span
+                    class="plan-adquisicion-descripcion">{{
+                    detallePlanAdquisicion.contactInfo }}</span>
+                </div>
+                <div>
+                  <span class="plan-adquisicion-subtitle">Correo electrónico: </span><span
+                    class="plan-adquisicion-descripcion">{{
+                    detallePlanAdquisicion.contactEmail }}</span>
+                </div>
+                <div>
+                  <span class="plan-adquisicion-subtitle">Número de contacto: </span><span
+                    class="plan-adquisicion-descripcion">{{
+                    detallePlanAdquisicion.contactPhone }}</span>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="centeringBtn" style="margin-top: 1em; margin-bottom: 1em;">
+        <app-button text="CERRAR" width="150px" [disabled]="false" (onClick)="cerrarDialogTemplate()">
+        </app-button>
+      </div>
+    </div>
+  </ng-template>
+
+  <app-popup-confirmation *ngIf="showAlerta" [message]="notificationMessage" (close)="closePopup($event)">
+  </app-popup-confirmation>
+
+</section>

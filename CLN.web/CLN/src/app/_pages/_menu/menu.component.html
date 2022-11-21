@@ -1,0 +1,84 @@
+<nav>
+  <div>
+      <div id="header-left">
+        <img *ngIf="isUserAuth" (click)="navigateToPanel()" src="assets/imgs/header/home.svg" alt="">
+      </div>
+  </div>
+
+  <div id="menu-logo">
+      <img (click)="navigateToRoot()" src="assets/imgs/header/ptp-logo-menu.png" alt="">
+  </div>
+
+  <div *ngIf="!isUserAuth && !hideLoginViewForAdmin" id="menu-r">
+      <span (click)="generateUrlForLogin(true)">Iniciar sesión</span>
+  </div>
+
+  <div *ngIf="hideLoginViewForAdmin && !isUserAuth" id="menu-r">
+    <span> </span>
+</div>
+
+  <div *ngIf="isUserAuth" class="usuario">
+    <div class="usuario-container">
+      <div>
+        <img (click)="toogleCloseSession()" src="assets/imgs/header/usuario.svg" alt="">
+      </div>
+      <div>
+        <p>{{userCas.fullName}}</p>
+        <p>{{userCas.country}}</p>
+      </div>
+      <div *ngIf="hideCloseSessionBox" id="close-session-box">
+        <div class="cerrar-img-container">
+          <img (click)="logout()" src="assets/imgs/header/cerrarsesion.svg" alt="">
+        </div>
+        <div>
+          <p (click)="logout()">Cerrar sesión</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</nav>
+
+<app-loading *ngIf="showLoading"></app-loading>
+<app-login [isLocalSession]="session"></app-login>
+
+<app-popup-cambios 
+    *ngIf="showAlert" 
+    [message]="message" 
+    (close)="closeAlert($event)">
+</app-popup-cambios>
+
+<!-- <nav class="navbar navbar-expand-lg col-sm-12 navbar-dark bg-dark text-center sticky-top">
+  <button class="navbar-toggler ml-auto mr-2 my-2" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="navShow = !navShow">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div id="navbarResponsive" class="col-sm-12 d-flex justify-content-between align-items-center px-4">
+    <div class="d-flex justify-content-center align-items-center px-2">
+      <button class="buttonSvg button-home" [routerLink]="['/']"></button>
+      <span class="separater"></span>
+      <button *ngIf="userlogged != null && mainActive" class="buttonSvg button-main" (click)="toHome()"></button>
+    </div>
+    <div *ngIf="userlogged != null" class="d-flex justify-content-center align-items-center px-2">
+      <span class="text-light">{{ userlogged.rol }}</span>
+      <span class="separater"></span>
+      <span class="contentUser text-light d-flex justify-content-center align-items-center">
+        <span class="btn col-sm-12 d-flex justify-content-center align-items-center text-light" id="buttonOptions" #buttonOptions (click)="activeOptions()">
+          {{userlogged.primerNombre + " " + userlogged.primerApellido}}
+          <button class="buttonSvgRed button-user ml-2"></button>
+        </span>
+        <div class="contentOptions" *ngIf="viewOption">
+          <button (click)="do_Logout()">Cerrar sesión<span class="buttonSvgBlue button-close ml-1"></span></button>
+          <button [routerLink]="['/changepassword']">Cambiar contraseña<span
+              class="buttonSvgBlue button-password ml-1"></span></button>
+        </div>
+      </span>
+    </div>
+    <button class="session" *ngIf="userlogged == null" [routerLink]="['/login']">Iniciar sesión</button>
+  </div>
+</nav> -->
+
+

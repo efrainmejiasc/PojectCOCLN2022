@@ -1,0 +1,79 @@
+<div [ngClass]="{'container-dashThird-bg':builder}"
+  class="carrousel col-sm-12 p-0 m-0 d-flex justify-content-center align-items-center position-relative" [ngStyle]="{
+    'background-color': background,
+    'background-image': 'url(' + background_image + ')',
+    'background-position': 'center',
+    'background-repeat': 'no-repeat',
+    'background-size': 'cover'
+  }">
+  <app-action-attribute [closeActionByOutsideClick]="closeActionByOutsideClick" [configAction]="configMediaEditor"
+    [index]="indexTemplate + '3001'" (fileReturn)="setData($event,1)" [effectType]="textDataMaster.mediaEffect"
+    (effect)="setData($event,8)" *ngIf="builder"></app-action-attribute>
+  <div class="loadingMediaThird p-2 d-flex justify-content-center align-items-center" *ngIf="mediaActivated">
+    <h4 class="text-light text-align">Estamos cargando tu imagen</h4>
+  </div>
+  <div class="imageContainerThird">
+    <img *ngIf="textDataMaster.mediaUrl" [src]="textDataMaster.mediaUrl" class="image"
+      [ngClass]="{'fade-right':textDataMaster.mediaEffect == 'fdr' , 'fade-left':textDataMaster.mediaEffect == 'fdl' , 'fade-top':textDataMaster.mediaEffect == 'fdt' , 'fade-bottom':textDataMaster.mediaEffect == 'fdb' , 'fade-in':textDataMaster.mediaEffect == 'fdi'}" />
+  </div>
+  <div class="content-text d-flex flex-column justify-content-center align-items-center">
+    <span [ngClass]="{'container-dashThird':builder}" [ngStyle]="{'z-index': '3'}"
+      class="col-sm-12 p-0 m-0 d-flex justify-content-center align-items-start position-relative contentTitle">
+      <app-action-attribute [configAction]="configTitleEditor" [closeActionByOutsideClick]="closeActionByOutsideClick"
+        [index]="indexTemplate + '3002'" (text)="setData($event,2)" [textData]="textDataMaster"
+        [effectType]="textDataMaster.titleEffect" (effect)="setData($event,9)" *ngIf="builder"></app-action-attribute>
+      <h3 class="col-sm-12 text-left contentTitle" [innerHtml]="textDataMaster.title | safeHtml"
+        [ngClass]="{'fade-right':textDataMaster.titleEffect == 'fdr' , 'fade-left':textDataMaster.titleEffect == 'fdl' , 'fade-top':textDataMaster.titleEffect == 'fdt' , 'fade-bottom':textDataMaster.titleEffect == 'fdb' , 'fade-in':textDataMaster.titleEffect == 'fdi'}">
+      </h3>
+    </span>
+    <span [ngClass]="{'container-dashThird':builder}" [ngStyle]="{'z-index': '2'}"
+      class="col-sm-12 mt-4 p-0 d-flex justify-content-center align-items-start position-relative contentParagraphThree">
+      <app-action-attribute [configAction]="configTextEditor" [closeActionByOutsideClick]="closeActionByOutsideClick"
+        [index]="indexTemplate + '3004'" (text)="setData($event,4)" [textData]="textDataMaster"
+        [effectType]="textDataMaster.textEffect" (effect)="setData($event,11)" *ngIf="builder"></app-action-attribute>
+      <span class="col-sm-12 text-left contentParagraphThree overflowHidden"
+        [innerHtml]="textDataMaster.text | safeHtml"
+        [ngClass]="{'fade-right':textDataMaster.textEffect == 'fdr' , 'fade-left':textDataMaster.textEffect == 'fdl' , 'fade-top':textDataMaster.textEffect == 'fdt' , 'fade-bottom':textDataMaster.textEffect == 'fdb' , 'fade-in':textDataMaster.textEffect == 'fdi'}">
+      </span>
+    </span>
+    <span [ngClass]="{'container-dashThird':builder}" [ngStyle]="{'z-index': '1'}"
+      class="col-sm-12 p-0 mt-4 d-flex justify-content-center align-items-center position-relative contentEnlace">
+      <app-action-attribute [configAction]="configLinkEditor" [closeActionByOutsideClick]="closeActionByOutsideClick"
+        [index]="indexTemplate + '3005'" (vinculo)="setData($event,6)" (text)="setData($event,5)"
+        [textData]="textDataMaster" [effectType]="textDataMaster.enlaceEffect" (effect)="setData($event,12)"
+        (text_roll)="setData($event,13)" (linkType)="setData($event,7)" [textData]="textDataMaster" *ngIf="builder">
+      </app-action-attribute>
+      <div class="col-sm-12 d-flex justify-content-center align-items-center position-relative linkContent">
+        <a *ngIf="textDataMaster.typelink == 'link'" (click)="hreFunction(textDataMaster.link)" target="_blank"
+          class="text-center linkVinculo" [innerHTML]="textDataMaster.enlace | safeHtml" (mouseover)="fourSection=true"
+          (mouseout)="fourSection=false"
+          [ngClass]="{'fade-right':textDataMaster.enlaceEffect == 'fdr' , 'fade-left':textDataMaster.enlaceEffect == 'fdl' , 'fade-top':textDataMaster.enlaceEffect == 'fdt' , 'fade-bottom':textDataMaster.enlaceEffect == 'fdb' , 'fade-in':textDataMaster.enlaceEffect == 'fdi'}"></a>
+        <button *ngIf="textDataMaster.typelink == 'btn'" (click)="hreFunction(textDataMaster.link)"
+          class="text-center linkButton" [innerHTML]="textDataMaster.enlace | safeHtml" (mouseover)="fourSection=true"
+          (mouseout)="fourSection=false"
+          [ngClass]="{'fade-right':textDataMaster.enlaceEffect == 'fdr' , 'fade-left':textDataMaster.enlaceEffect == 'fdl' , 'fade-top':textDataMaster.enlaceEffect == 'fdt' , 'fade-bottom':textDataMaster.enlaceEffect == 'fdb' , 'fade-in':textDataMaster.enlaceEffect == 'fdi'}"></button>
+        <span class="tooltipAct" *ngIf="fourSection && textDataMaster.text_roll"
+          [innerHTML]="textDataMaster.text_roll | safeHtml"></span>
+      </div>
+    </span>
+  </div>
+  <div class="navigation-point-three d-flex justify-content-center align-items-center">
+    <div *ngFor="let point of arrayPage; let i = index" class="point"
+      [ngClass]="{'navigation-inactive': (i+1) != indexCarrouselEditor , 'navigation-active': (i+1) == indexCarrouselEditor}"
+      (click)="changeEditorByPage(i + 1)"></div>
+  </div>
+  <div class="editorNavigation" *ngIf="builder">
+    <div class="paginator-actions">
+      <div class="pages">
+        <!--button [ngClass]="{'page-active':page == (pageActive + 1),'page-inactive' : page != (pageActive + 1)}"></button-->
+        <button *ngFor="let a of arrayPage"
+          [ngClass]="{'page-active': a == indexCarrouselEditor ,'page-inactive': a != indexCarrouselEditor}"
+          (click)="changeEditorByPage(a)">{{a}}</button>
+      </div>
+      <!--button
+                 [ngClass]="{'action-inactive':(pageActive + 1) == paginatorPrint.length, 'action-active': (pageActive + 1) < paginatorPrint.length }"
+                 (click)="navigatePaginator(2)">Siguiente</button-->
+      <button class="action-active" (click)="next()">Siguiente</button>
+    </div>
+  </div>
+</div>

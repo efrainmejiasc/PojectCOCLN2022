@@ -1,0 +1,31 @@
+<section>
+    <div class="col-sm-12 p-0 d-flex flex-column justify-content-start align-items-start">
+        <div class="reporte-tendencias">
+            <h2 class="title-reporte-tendencias">Tendencias</h2>
+        </div>
+    </div>
+    <div class="col-sm-12 title-select" *ngIf="reportesPowerBi.length>1"
+        style="padding: 0;">
+        <div class="row" style="width: 100%;">
+            <div class="col-sm-12 col-lg-3">
+                <h2 class="title-components">Seleccione un reporte</h2>
+            </div>
+            <div class="col-sm-12 col-lg-7">
+                <app-cp-select-editor [lista]="reportesPowerBi" [itemS]="reporteSelected"
+                    (idValueEvent)="idReporteSelected($event)">
+                </app-cp-select-editor>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="div-reportes" *ngFor="let item of reportesPowerBi">
+        <iframe height="603px" width="1031px" [src]="item.translation | safe"
+            frameborder="0">
+            <! -- allowFullScreen="true" -- >
+        </iframe>
+    </div> -->
+    <div class="div-reportes" *ngIf="reporteSelected.translation" >
+        <iframe height="603px" width="1031px" [src]="reporteSelected.translation | safe" frameborder="0">
+            <!-- allowFullScreen="true" -->
+        </iframe>
+    </div>
+</section>

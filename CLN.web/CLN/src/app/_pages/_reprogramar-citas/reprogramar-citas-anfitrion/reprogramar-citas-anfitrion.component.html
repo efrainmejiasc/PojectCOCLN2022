@@ -1,0 +1,206 @@
+<div class="content">
+    <div class="banner-citas">
+        <app-encabezado-citas headerInput="assets/imgs/citas/header-gestionar-citas.png"></app-encabezado-citas>
+    </div>
+    <div class="configuracion container card" id="configuracion">
+        <div class="input-contenedor">
+            <label>Selecciona la empresa que realiza la invitación*</label>
+            <app-cp-select [lista]="listaEmpresasAnfitriona" [itemS]="empresaAnfitrionaSeleccionada"
+                (idValueEvent)="idEmpresaAnfitrionaSeleccionada($event)">
+            </app-cp-select>
+        </div>
+        <div style="margin-top: 2rem; width: 100%; padding: 2rem; border: 1px solid #222; border-radius: 5px;">
+            <div class="title">
+                <span>PERFIL DE LA EMPRESA</span>
+            </div>
+            <div>
+                <span class="subtitle">Nombre de la empresa:</span>
+                <span class="descripcion">{{empresaInvitada.name}}</span>
+            </div>
+            <div>
+                <span class="subtitle">Industria/ Sector principal de la empresa:</span>
+                <span class="descripcion" *ngFor="let item of empresaInvitada.industrySector; index as i">
+                    <span *ngIf="i>=1"> - </span> {{item.Value}}
+                </span>
+                <!-- <span class="descripcion" *ngFor="let item of empresaInvitada.industrySector">
+                    {{item.Value}}
+                </span> -->
+            </div>
+            <!-- <div>
+                <span class="subtitle">Nombre del contacto de la empresa:</span>
+                <span class="descripcion">{{empresaInvitada.nameContact}}</span>
+            </div> -->
+            <div>
+                <span class="subtitle">Correo electrónico:</span>
+                <span class="descripcion">{{empresaInvitada.emailContact}}</span>
+            </div>
+            <div>
+                <span class="subtitle">Número de teléfono de la empresa:</span>
+                <span class="descripcion">{{empresaInvitada.telContact}}</span>
+            </div>
+        </div>
+        <div >
+
+            <div *ngIf="!existeDisponibilidad">
+                <div class="editor-top col-sm-12 p-0 d-flex flex-column">
+                    <div class="info-editor" style="display: flex; width: 100%; margin-left: 0">
+                        <img [src]="alertaIcono" style="cursor: revert;" />
+                        <p style="padding: 12px;">
+                            No podemos continuar con la programación de citas virtuales, debido a que la empresa o
+                            empresas seleccionadas, no tienen horario de disponibilidad establecido.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="editor-top col-sm-12 p-0 d-flex flex-column">
+                    <div>
+                        <img (click)="palancaInfoOculta()" [src]="alertaIcono" />
+                        <span class="bienvenido">{{titulo}}</span>
+                    </div>
+                    <div class="info-editor" *ngIf="mostrarInfoOculta">
+                        <div class="info-close"><span (click)="palancaInfoOculta()">X</span></div>
+                        <p style="padding: 12px;">
+                            {{infoAyuda}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <app-calendario-citas-coincide-disponibilidad [nitEmpresaInvitada]="nitInvitada"
+                    [nitEmpresaAnfitriona]="nitAnfitriona" (close)="closePopupCambios($event)"
+                    (fechaCalendario)="fechaCalendarioEscogida($event)"
+                    (existeDisponibilidad)="funExisteDisponibilidad($event)">
+                </app-calendario-citas-coincide-disponibilidad>
+            </div>
+            <div >
+                <div class="input-contenedor">
+                    <label>Motivo de la cita*</label>
+                    <app-cp-select style="pointer-events: none; opacity: 0.5" [lista]="listaMotivoCita" [itemS]="motivoCitaSeleccionada"
+                        (idValueEvent)="idMotivoCitaSeleccionada($event)">
+                    </app-cp-select>
+                </div>
+                <div class="herramientas-contenedor">
+                    <label>Selecciona la herramienta de tu preferencia y programa la cita*</label>
+                    <div class="" style="display: flex; background-color: transparent; font-size: 15px;">
+                        <img style="width: 18px; height: 18px; margin: 5px 12px 0 0;" [src]="alertaIcono" />
+                        <p>
+                            Genera un enlace para tu reunión en la aplicación de tu preferencia a continuación pega el
+                            enlace en el siguiente campo
+                            de texto
+                        </p>
+                    </div>
+                    <div style="padding: 1rem 2rem;">
+                        <div class="herramientas">
+                            <div class="input">
+                                <a href="https://meet.google.com/" target="_blank">
+                                    <img class="iconoHerramienta" [src]="iconoGoogleMeet" alt="Google Meet">
+                                </a>
+                                <img class="iconoHerramientaAyuda" (click)="mostrarInfoHerramienta('googe-meet')"
+                                    [src]="interroganteIcono" />
+                            </div>
+                            <div class="input center-content">
+                                <a href="https://www.skype.com/es/free-conference-call/" target="_blank">
+                                    <img class="iconoHerramienta" [src]="iconoSkype" alt="Skype">
+                                </a>
+                                <img class="iconoHerramientaAyuda" (click)="mostrarInfoHerramienta('skype')"
+                                    [src]="interroganteIcono" />
+                            </div>
+                            <div class="input center-content">
+                                <a href="https://zoom.us/start/videomeeting" target="_blank">
+                                    <img class="iconoHerramienta" [src]="iconoZoom" alt="zoom">
+                                </a>
+                                <img class="iconoHerramientaAyuda" (click)="mostrarInfoHerramienta('zoom')"
+                                    [src]="interroganteIcono" />
+                            </div>
+                        </div>
+                        <div class="herramientas-ayuda-contenedor" *ngIf="infoAyudaHerramienta">
+                            <img style="width: 18px; height: 18px; margin: 5px 12px 0 0;" [src]="interroganteIcono"
+                                (click)="mostrarInfoHerramienta('')" />
+                            <p>
+                                {{infoAyudaHerramienta}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-contenedor">
+                    <label>Copia aquí el enlace de tu reunión *</label>
+                    <div style="pointer-events: none; opacity: 0.5">
+                        <input class="input" type="text" placeholder="" id="pregunta" [(ngModel)]="enlaceInvitacion"
+                            [ngModelOptions]="{standalone: true}" maxlength="300" autocomplete="off">
+                    </div>
+                </div>
+                <div class="center-content" style="margin-top: 2em;">
+                    <app-button text="REPROGRAMAR" width="150px" [disabled]="!isBtnInvitar()"
+                        (click)="reprogramar(dialogTemplate)">
+                    </app-button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-popup-confirmation *ngIf="isPopupConfirmacion" [message]="mensajePopupConfirmacion"
+        (close)="closePopupConfimacion($event)">
+    </app-popup-confirmation>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ng-template #dialogTemplate>
+    <div class="modal-confirmado">
+        <div class="div-principal center-content">
+            <span class="text-titulo">Confirmado</span>
+        </div>
+        <div class="div-principal center-content">
+            <span class="text-regular">Has reprogramado una cita de negocios virtual con:</span>
+        </div>
+        <div class="div-principal">
+            <div class="center-content">
+                <span class="text-negrita" style="text-align: center">{{empresaInvitada.name}}</span>
+            </div>
+            <div class="center-content">
+                <span class="text-regular">Sector/Industria:</span>
+                <div>
+                    <span class="text-negrita ml-1" *ngFor="let item of empresaInvitada.industrySector; index as i">
+                        <span *ngIf="i>=1"> - </span> {{item.Value}}
+                    </span>
+                </div>
+            </div>
+            <div class="center-content">
+                <span class="text-regular">Fecha:</span>
+                <span class="text-negrita ml-1">{{fecha}}</span>
+            </div>
+            <div class="center-content">
+                <span class="text-regular">Hora:</span>
+                <span class="text-negrita ml-1">{{citaActual.startHour + " - " + citaActual.endHour}}</span>
+            </div>
+            <div class="center-content">
+                <span class="text-regular">Enlace para ingresar a la cita:</span>
+            </div>
+            <div class="center-content">
+                <span class="text-negrita">{{citaActual.link}}</span>
+            </div>
+        </div>
+        <div class="div-principal center-content">
+            <span class="text-regular" style="text-align: center;">Hemos enviado un mensaje de confirmación al
+                correo electrónico del anfitrión de la cita de
+                negocios, con la información requerida para asistir a
+                la misma</span>
+        </div>
+        <div class="center-content" style="margin-top: 1em; margin-bottom: 1em;">
+            <app-button text="ACEPTAR" width="150px" [disabled]="false" (click)="cerrarDialogTemplate()">
+            </app-button>
+        </div>
+    </div>
+</ng-template>

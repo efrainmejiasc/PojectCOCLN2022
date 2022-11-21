@@ -1,0 +1,22 @@
+<div class="wrapper" [ngClass]="wrapperActive ? 'active' : 'inactive'">
+    <div class="select-btn">
+        <div class="content-box">
+            <ul>
+                <li *ngFor="let item of itemsS">
+                    <p>{{item.name}}</p>
+                    <span (click)="removeItem(item.id)">X</span>
+                </li>
+            </ul>
+        </div>
+        <div class="arrow-right" (click)="showOptions()">
+            <img src="assets/imgs/iconos/arrow-down.svg" />
+        </div>
+    </div>
+    <div class="content">
+        <ul class="options">
+            <li *ngFor="let item of lista" (click)="selectChangeHandler(item.id)">
+                {{item.name}}
+            </li>
+        </ul>
+    </div>
+</div>

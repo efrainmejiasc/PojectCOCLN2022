@@ -1,0 +1,388 @@
+<app-popup-cambios *ngIf="showAlertOut"
+[message] = "notificationCambiosMessage"
+(close)="closePopupCambios($event)">
+</app-popup-cambios>
+
+<section class="consultar-planes-section">
+
+    <!-- regresar -->
+    <div>
+        <div class="regresar">
+            <img (click)="regresar()" src="assets/imgs/compartidas/regresar.svg" />
+            <span class="regresar-span">Regresar</span>
+        </div>
+    </div>
+    <!-- fin regresar -->
+  
+    <!-- titulo -->
+    <app-top-section 
+      [titulo]="titulo" 
+      [icono]="icono" 
+      [alertaIcono]="alertaIcono" 
+      [infoAyuda]="infoAyuda">
+    </app-top-section>
+    <!-- fin titulo -->
+
+    <!-- Formulario -->
+    <form>
+        <div class="info-ayuda-contenedor">
+            <div style="padding: 2em; border: 1px solid #7d7d7d; height: auto; border-radius: 0.5em;">
+                <div style="margin-top: 25px;">
+                    <p class="indication">
+                        <b>Selecciona tipo de notificación *</b>
+                    </p>
+                    <div class="input-container">
+                        <app-cp-input-boxes
+                            [wrapperActive]="wrapperActiveTipo"
+                            (show)="show('tipo')"
+                            [textoAlerta]="'Selecciona una opción'"
+                            [lista]="listas.tiposNotificacionesVisibles"
+                            [itemsS]="listas.tipoNotificacionSeleccionada"
+                            (idValueEvent)="agregarTipoNotificacion($event)"
+                            (idRemoveEvent)="removerTipoNotificacion($event)"
+                            [showAlert]="listas.tipoNotificacionSeleccionada.length === 0"
+                            >
+                        </app-cp-input-boxes>
+                    </div>
+                </div>
+           
+                <div style="margin-top: 20px;">
+                    <b>Nombre de la alerta *</b>
+                    <div style="width: 175px; float: right; z-index: 200;
+                        right:0px;
+                        background-color: #2b65f5;
+                        border-radius: 6px;
+                        color:#fff;
+                        padding: 2px 6px;
+                        position: absolute;
+                        right: 22.5%;
+                        top: 30%;" *ngIf="showAlertInfoNombre">
+                        Escriba algún nombre
+                    </div>
+                    <div style="margin-top: 1em;display: grid; grid-template-columns: 99.5% .5%;">
+                        <div>
+                            <app-custom-input
+                                (setText)="setNombreAlerta($event)"
+                                [text]='listas.nombreAlerta'
+                                placeholder="Ingrese nombre de la alerta"
+                                textIcon=""
+                            >
+                            </app-custom-input>
+                        </div>
+                        <div>
+                            <img
+                                style="top: 42px; width:24px; cursor: pointer;margin-left: 6px;"
+                                (mouseover) = "showAlertInfoNombre = true"
+                                (mouseout) = "showAlertInfoNombre = false"
+                                *ngIf="!listas.nombreAlerta"
+                                src="assets/imgs/iconos/alerta.svg" />
+                        </div>
+                    </div>
+                </div>
+  
+                <div style="border-top: 1px solid; margin-top: 15px; margin-bottom: 5px;"></div>
+  
+                <div style="text-align: center;display: grid; grid-template-columns: auto auto auto auto;padding: 10px;">
+                    <div></div>
+                    <div style="margin: 6px;">
+                        <b>¿Enviar a todas las empresas? *</b>
+                    </div>
+                    <mat-radio-group name="enviarAEmpresa" [(ngModel)]="listas.enviarAEmpresa" (ngModelChange)="limpiarOpcionesNoObligatorias()">
+                        <mat-radio-button *ngFor="let op of radios.enviarAEmpresas" name="enviarAEmpresas" [value]="op"  style="margin: 10px">
+                          {{ op }}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                    <div></div>
+                </div>
+  
+                <div *ngIf="listas.enviarAEmpresa === 'No'">
+
+                    <div style="border-top: 1px solid; margin-top: 5px; margin-bottom: 5px;"></div>
+
+                    <div style="text-align: center;display: grid; grid-template-columns: auto auto auto auto;padding: 10px;">
+                        <div></div>
+                        <div style="margin: 6px;">
+                            <b>Enviar a micronegocios o microempresas *</b>
+                        </div>
+                        <mat-radio-group name="enviarMicronegocios" [(ngModel)]="listas.enviarMicronegocios">
+                            <mat-radio-button *ngFor="let op of radios.enviarAMicronegocios" name="enviarAMicronegocios" [value]="op"  style="margin: 10px">
+                              {{ op }}
+                            </mat-radio-button>
+                        </mat-radio-group>
+                        <div></div>
+                    </div>
+    
+                    <div style="border-top: 1px solid; margin-top: 5px; margin-bottom: 5px;"></div>
+      
+                    <div style="text-align: center;display: grid; grid-template-columns: auto auto auto auto;padding: 10px;">
+                        <div></div>
+                        <div style="margin: 6px;">
+                            <b>Tipo de Identificación</b>
+                        </div>
+                        <mat-radio-group name="tipoIdentificacion" [(ngModel)]="listas.tipoIdentificacionSeleccionada">
+                            <mat-radio-button *ngFor="let op of listas.tipoIdentificacion" name="tipoIdentificacion" [value]="op" style="margin: 10px">
+                              {{ op }}
+                            </mat-radio-button>
+                        </mat-radio-group>
+                        <div></div>
+                    </div>
+    
+                    <div style="margin-top: 25px;">
+                        <p class="indication">
+                            <b>Sector</b>
+                        </p>
+                        <div class="input-container">
+                            <app-cp-input-boxes
+                                [wrapperActive]="wrapperActiveSector"
+                                (show)="show('sector')"
+                                [lista]="listas.sectoresVisibles"
+                                [itemsS]="listas.sectoresSeleccionados"
+                                (idValueEvent)="agregarSector($event)"
+                                (idRemoveEvent)="removerSector($event)">
+                            </app-cp-input-boxes>
+                        </div>
+                    </div>
+    
+                    <div style="margin-top: 25px;">
+                        <p class="indication">
+                            <b>Caracterización</b>
+                        </p>
+                        <div class="input-container">
+                            <app-cp-input-boxes
+                                [wrapperActive]="wrapperActiveCaracterizacion"
+                                (show)="show('caracterizacion')"
+                                [lista]="listas.caracterizacionesVisibles"
+                                [itemsS]="listas.caracterizacionesSeleccionadas"
+                                (idValueEvent)="agregarCaracterizacion($event)"
+                                (idRemoveEvent)="removerCaracterizacion($event)">
+                            </app-cp-input-boxes>
+                        </div>
+                    </div>
+    
+                    <div style="margin-top: 25px;">
+                        <p class="indication">
+                            <b>Información comercial</b>
+                        </p>
+                        <div class="input-container">
+                            <app-cp-input-boxes
+                                [wrapperActive]="wrapperActiveInformacion"
+                                (show)="show('informacion')"
+                                [lista]="listas.informacionesComercialesVisibles"
+                                [itemsS]="listas.informacionesComercialesSeleccionadas"
+                                (idValueEvent)="agregarInformacionesComerciales($event)"
+                                (idRemoveEvent)="removerInformacionesComerciales($event)">
+                            </app-cp-input-boxes>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div style="border-top: 1px solid; margin-top: 10px; margin-bottom: 10px;"></div>
+
+                <div style="width: 100%; text-align: center;">
+                    <span style="width:10%;">
+                      <img src="assets/imgs/iconos/alerta.svg" style="width: 15px; padding-bottom: 3px;">
+                    </span>
+                    <span style="width:90%;" class="descriptionField">
+                        La fecha inicial del envío y la hora aplica para los mensajes SMS y correo electrónico 
+                    </span>
+                </div>
+
+                <div style="margin-top: 25px;">
+                    <p class="indication">
+                        <b>Frecuencia de envío *</b>
+                    </p>
+                    <div class="input-container">
+                        <app-cp-input-boxes
+                            [wrapperActive]="wrapperActiveFrecuencia"
+                            [textoAlerta]="'Selecciona una opción'"
+                            (show)="show('frecuencia')"
+                            [lista]="listas.frecuenciasEnvioVisibles"
+                            [itemsS]="listas.frecuenciasEnvioSeleccionadas"
+                            (idValueEvent)="agregarFrecuencia($event)"
+                            (idRemoveEvent)="removerFrecuencia($event)"
+                            [showAlert]="listas.frecuenciasEnvioSeleccionadas.length === 0">
+                        </app-cp-input-boxes>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <div class="wrapper">
+                        <div class="input-contenedor">
+                            <b>Desde *</b>
+                            <div style="display: flex; margin-top: 1em;">
+                                <div class="input-group">
+                                    <input 
+                                        matInput 
+                                        id="fechaInicioProceso" 
+                                        [matDatepicker]="fechaInicio"
+                                        [class]="!time.desde ? 'alert-i recuperar-input': 'recuperar-input'"
+                                        (click)="fechaInicio.open()"
+                                        [(ngModel)]="time.desde"
+                                        [min]="todaysdate"
+                                        name="desde"
+                                        (ngModelChange)="validarFormulario()"
+                                    >
+                                    <mat-datepicker #fechaInicio></mat-datepicker>
+                                </div>
+                                <span class="arrow-right" (click)="fechaInicio.open()">
+                                    <img src="assets/imgs/iconos/calendario.svg" style="width: 15px;">
+                                </span>
+                                <div>
+                                    <div style="    position: absolute;
+                                    z-index: 200;
+                                    right:0px;
+                                    top:10px;
+                                    background-color: #2b65f5;
+                                    border-radius: 6px;
+                                    color:#fff;
+                                    padding: 2px 6px;" *ngIf="showAlertInfoDesde">Selecciona una opción</div>
+                                    <img
+                                        style="top: 42px;"
+                                      (mouseover) = "showAlertInfoDesde = true"
+                                      (mouseout) = "showAlertInfoDesde = false"
+                                      *ngIf="!time.desde"
+                                      class = "alert-img"
+                                      src="assets/imgs/iconos/alerta.svg" />
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="input-contenedor" style="margin-top: 15px; margin-bottom:15px;">
+                            <b>Hora *</b>
+                            <div style="display: flex; margin-top: 1em;">
+                                <div class="input-group">
+                                    <div class="recuperar-input time">
+                                        <input 
+                                            id="hora" 
+                                            [(ngModel)]="time.hora" 
+                                            [value]="time.hora"
+                                            (blur) = 'onBlur("hora")'
+                                            class="recuperar-input" 
+                                            type="number" 
+                                            max="23" 
+                                            min="0"
+                                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength); this.value = this.value.replace(/[`~!@#$%^&*()_|+\-=?;:',.<>\{\}\[\]\\\/]/gi, '');"
+                                            maxlength="2"
+                                            placeholder="23"
+                                            (ngModelChange)="validarFormulario()"
+                                            name="hora">:
+                                        <input 
+                                            id="minuto" 
+                                            [(ngModel)]="time.minuto" 
+                                            [value]="time.minuto" 
+                                            (blur) = 'onBlur("minuto")'
+                                            (ngModelChange)="validarFormulario()"
+                                            class="recuperar-input" 
+                                            type="number" 
+                                            min="0" 
+                                            max="59" 
+                                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength); this.value = this.value.replace(/[`~!@#$%^&*()_|+\-=?;:',.<>\{\}\[\]\\\/]/gi, '');"
+                                            maxlength="2"
+                                            placeholder="00"
+                                            name="minuto">
+                                    </div>
+                                </div>
+                                <span class="arrow-right">
+                                    <img src="assets/imgs/iconos/reloj.svg" style="width: 15px;">
+                                </span>
+                            </div>
+                        </div>
+                    
+                        <div class="input-contenedor">
+                            <b>Hasta {{ !disabledHasta ? '*' : '' }}</b>
+                            <div style="display: flex; margin-top: 1em;">
+                                <div class="input-group">
+                                    <div *ngIf="!disabledHasta">
+                                        <div class="alert-info" style="top: -30px; right: -30px" *ngIf="showAlertInfoHasta">Selecciona una opción</div>
+                                        <img
+                                            style="top: 3px; right: -56px"
+                                          (mouseover) = "showAlertInfoHasta = true"
+                                          (mouseout) = "showAlertInfoHasta = false"
+                                          *ngIf="!time.hasta"
+                                          class="alert-img"
+                                          src="assets/imgs/iconos/alerta.svg" />
+                                    </div>
+                                    <input 
+                                        matInput 
+                                        id="fechaFinProceso" 
+                                        [matDatepicker]="fechaFin"
+                                        [class]="!time.hasta && !disabledHasta ? 'alert-i recuperar-input': 'recuperar-input'"
+                                        (click)="fechaFin.open()"
+                                        [(ngModel)]="time.hasta"
+                                        (ngModelChange)="validarFormulario()"
+                                        [disabled]="disabledHasta || !time.desde"
+                                        [min]="calcularMinimaFechaHasta()"
+                                        name="hasta"
+                                    >
+                                    <mat-datepicker #fechaFin></mat-datepicker>
+                                </div>
+                                <span class="arrow-right" (click)="fechaFin.open()">
+                                    <img src="assets/imgs/iconos/calendario.svg" style="width: 15px;">
+                                </span>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+
+                <div style="text-align: center;display: grid; grid-template-columns: auto auto auto auto auto;padding: 10px; margin-top: 10px">
+                    <div></div>
+                    <div style="margin: 6px;">
+                        <b>Tipo de envío *</b>
+                    </div>
+                    <mat-radio-group name="tipoEnvio" [(ngModel)]="listas.tipoEnvio">
+                        <mat-radio-button *ngFor="let op of radios.tipoEnvio" name="tipoEnvio" [value]="op" style="margin: 10px">
+                          {{ op }}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                    <div></div>
+                </div>
+  
+            </div>
+
+            <app-email 
+                (setImagen)="asignarImagen($event)"
+                (setEnlace)="asignarEnlace($event)"
+                (setTextoOne)="asignarTextoOne($event)"
+                (setTextoTwo)="asignarTextoTwo($event)"
+                [imagen]="valoresEmail.imagen"
+                [primerTextoI]="valoresEmail.primerTexto"
+                [segundoTextoI]="valoresEmail.segundoTexto"
+                [plantilla]="valoresEmail.plantilla"
+                [tipoNotificacion]="listas.tipoNotificacionSeleccionada"
+                (setTipoPlantilla)="asignarTipoPlantilla($event)"
+                [textoSugerido]="textoSugerido"
+                (asignarTextoSugerido)="asignarTextoSugerido($event)"
+                [enlace]="valoresEmail.enlace"
+                *ngIf="listas.tipoEnvio === 'Correo electrónico'">
+            </app-email>
+            <app-sms 
+                *ngIf="listas.tipoEnvio === 'SMS'"
+                (setValues)="asignarValoresSms($event)"
+                [sms]="valoresSms.sms"
+                [textoSms]="valoresSms.tituloLink"
+                [vinculo]="valoresSms.link"
+            ></app-sms>
+
+        </div>
+        <div class="centeringBtn" style="margin-top: 2em;">
+            <div>
+                <app-button 
+                    text="GUARDAR" 
+                    width="150px" 
+                    [disabled]="disabledSendButton && !isSaving" 
+                    (onClick)="guardar()"
+                >
+                </app-button>
+            </div>
+        </div>
+    </form>
+    <!-- Fin Formulario -->
+
+</section>       
+<app-popup-confirmation *ngIf="showConfirmAlerta"
+  [message] = "notificationConfirmMessage"
+  [title]="'CERRAR'"
+  (close)="closePopup($event)">
+</app-popup-confirmation> 

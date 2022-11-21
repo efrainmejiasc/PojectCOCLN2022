@@ -1,0 +1,776 @@
+<div class="container" *ngIf="result_q">
+
+    <br>
+    <br>
+    <div *ngIf="!diagnostico && !asistencia && !gestion && !gestionar_contenido">
+        <div class="row">
+            <div class="col-md-12 offset-md-1 " style="display: inline-flex;">
+                <span class="title_decorator"></span>
+                <h4 class="font_p">
+                    Bienvenida/o, aquí podrá realizar el autodiagnóstico para su
+                    Secretaría, visualizar el resultado, solicitar asistencia técnica
+                    integral, gestionar usuarios y gestionar contenidos de inducción
+                    y contenidos de fortalecimiento para las capacidades
+                </h4>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="row justify-content-md-center" *ngIf="menu || is_login == '1' ">
+            <div class="col col-lg-2">
+            </div>
+            <div class="col-md-auto">
+                <div style="text-align: center;">
+
+                    <a class="btn_secundary_allwith" (click)="do_diagnostico()">
+                        Diagnóstico de capacidades de nuestra Secretaría
+                    </a> <br>
+                    <a class="btn_secundary_allwith" (click)="do_Asistencia()">
+                        Solicitar asistencia técnica integral
+                    </a>
+                </div>
+            </div>
+            <div class="col col-lg-2">
+            </div>
+
+        </div>
+    </div>
+    <div class="container">
+        <div *ngIf="diagnostico">
+            <div class="col-md-12 text-center">
+                <h2 class="font_title">Diagnóstico de capacidades de nuestra Secretaría</h2>
+                <br>
+            </div>
+            <!--             <div class="col-lg-12  text-center" style="display: inline-flex;place-items: center;">
+                    <span class="title_decorator" style="margin-left:8%;display: flex;position: absolute;"></span>
+                    <h4 class="font_p" style="cursor: pointer;display: block;  margin-left: auto; margin-right: auto;">
+                        Aquí podrá diligenciar el autodiagnóstico de capacidades para su Secretaría
+                    </h4>
+
+                </div> -->
+
+            <div class="col-md-12 sin-padding-celular">
+                <span style="
+                            display: inline-block;
+                            height: 88%;
+                            width: 8px;
+                            position: absolute;
+                            background-size: cover;
+                            margin: 0 auto;" class="title_decorator">
+                </span>
+                <h5 class="font_worksans_ligth" style="font-size: 18px;
+                    border-radius: 20px;
+                    padding: 20px;
+                    text-align: justify;">
+                    Este instrumento, que a su vez es la primera etapa de la Estrategia de Fortalecimiento
+                    Territorial,
+                    consiste en un ejercicio autónomo que permite a través de una aproximación,
+                    analizar y valorar el estado de las capacidades estratégicas, técnicas y personales del
+                    equipo de la Secretaría, a fin de
+                    generar oportunidades de mejora para una gestión educativa integral. <br><br>
+                    Para realizar el autodiagnóstico es indispensable la mirada de todo el equipo, que liderado por
+                    el
+                    secretario o secretaria y con la
+                    participación de todos los líderes de proceso, permita en una jornada de trabajo realizar una
+                    valoración cuantitativa y cualitativa de cada
+                    capacidad. De esta manera, es posible identificar en una primera versión, en donde se debe poner
+                    mayor
+                    énfasis en el fortalecimiento de su gestión y en donde
+                    se identifican aspectos que puedan convertirse en buenas prácticas que potencialmente les sirvan
+                    a
+                    otras entidades territoriales para
+                    su fortalecimiento. <br><br>
+                    Ten en cuenta que desde la Subdirección de Fortalecimiento Institucional del Ministerio de
+                    Educación se realizará el acompañamiento
+                    para el desarrollo del autodiagnóstico. Sin embargo, si tiene inquietudes frente al
+                    diligenciamiento
+                    del mismo escríbenos a la cuenta de
+                    correo <span class="font_worksans_medium"
+                        style="word-wrap: break-word;">fortalecimientogestion@mineducacion.gov.co </span>
+                </h5>
+                <br>
+                <br>
+            </div>
+            <div class="col-md-12 text-center" style="text-align: center;">
+                <span *ngIf="!is_loading" class="download_steps" (click)="descargarGuia('.zip')"></span>
+                <div *ngIf="is_loading" class="spinner-border text-primary"></div>
+                <!--   <h5 class="font_p" style="cursor: pointer;"> Descargar guía</h5> -->
+                <br>
+                <br>
+            </div>
+
+        </div>
+
+
+    </div>
+    <hr *ngIf="diagnostico" class="hr_">
+
+    <!-- <div class="col-md-12" style="text-align: center;" *ngIf="verResultado && diagnostico">
+            <br>
+            <br>
+            <span [routerLink]="['/resultados']" routerLinkActive="router-link-active" class="view_result"></span>
+            <br>
+            <br>
+        </div> -->
+
+    <br>
+    <br>
+    <br>
+    <div class="row" *ngIf="diagnostico">
+        <div class="col-lg-12 text-center font_p">
+            <div class="row" style="margin-bottom: 30px;">
+                <div class="col-lg-4">
+
+                    <span class="cap_es mr-2">E</span>
+                    <div class="left">
+                        <p class="" data-tooltip="Frente a las capacidades estratégicas las cuales son cualidades claves que cada Secretaría de Educación tiene potencialmente pero
+                            que, al fortalecerlas a través de su equipo de trabajo, se podría materializar en el logro de mejores resultados del sector educativo
+                            de acuerdo con su contexto territorial.">Capacidades
+                            Estratégicas</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <span class="cap_tec mr-2">T</span>
+                    <div class="center">
+
+                        <p class="" style="display: inline-block;"
+                            data-tooltip="Frente a las capacidades técnicas (Del saber hacer) las cuales son cualidades específicas del saber hacer que el equipo de trabajo
+                            tiene potencialmente, pero que al fortalecerlas se podría materializar en el fortalecimiento de sus procesos y gestión en el territorio.">
+                            Capacidades Técnicas
+                        </p>
+                    </div>
+
+                </div>
+                <div class="col-lg-4">
+
+                    <span class="cap_per mr-2">P</span>
+                    <div class="cemter">
+                        <p class="" style="display: inline-block;"
+                            data-tooltip="Frente a las capacidades personales (Del ser) las cuales son cualidades específicas del ser que el equipo de trabajo tiene potencialmente, pero que al fortalecerlas se podría materializar en el mejoramiento de la calidad de relaciones dentro y fuera de la entidad y el sector.">
+                            Capacidades Personales
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="head_table_diag">
+                <h5>
+                    Lee cada una de las afirmaciones que se presentan a continuación y califica de <b>1</b> a
+                    <b>10</b>,
+                    siendo <b>1</b> la menor calificación y <b>10</b> la mayor calificación, qué tanto en tu
+                    Secretaría
+                    de
+                    Educación se cumple con cada una de ellas.
+                </h5>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table " style="height: 480px !important">
+                    <thead class="table_diag">
+                        <tr>
+                            <th class="align-middle">Afirmación</th>
+                            <th class="w-th-calificacion">Seleccione la calificación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let question of questions; let i = index">
+                            <td class="align-middle">
+                                <div class="row">
+                                    <div class="col-md-auto " style="display: flex;">
+                                        <span style="display: block; margin: auto;" [ngClass]="{'cap_es': question.categoria=='' ||
+                                                        question.categoria=='SECCION_#1_DIAGNOSTICO_CAPACIDADES_ESTRATEGICAS',
+                                                        'cap_es': question.categoria=='E' ,
+                                                        'cap_tec': question.categoria=='T' ,
+                                                        'cap_per': question.categoria=='P'   }"> {{question.categoria}}
+                                        </span>
+
+                                    </div>
+                                    <div class="col-11">
+                                        <p style="display: block; margin: auto;" class="font_p">
+                                            {{question.afirmacion}} </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="align-middle">
+                                <!--  {{question.idAfirmacion}} -->
+                                <div class="select">
+                                    <select name="calificacion" class='combox' [(ngModel)]="calificacion[i]"
+                                        [value]="question.calificacion"
+                                        (change)="do_Calificate(question.idCalificacionAfirmacion, calificacion[i])">
+                                        <option *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]" [value]="item"
+                                            [selected]="question.calificacion">{{item}}
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <!--<drop-down-radio name="typeSelect" class="combox" color="primary"
+                                                [itemList]="arrayValoracion" [ngModel]="calificacion[i]"
+                                                [defaultValue]="calificacion[i]"
+                                                (onRadioSelectedItemChange)="onChange($event)">
+                                            </drop-down-radio> -->
+                                <!--                               <select [(ngModel)]="calificacion[i]">
+                                            <option *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]" [selected]="1" [value]="item">{{item}}</option>
+                                        </select> -->
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-4">
+            <!--  <span class="arrow left" (click)="do_back()"></span> -->
+            <span class="back" disable (click)="do_back()"></span>
+        </div>
+        <div class="col-4" style="text-align: center; margin: auto 0; cursor: pointer;">
+            <ng-container *ngIf="isTerminado(result_q)">
+                <span [className]="saveUpdate ? 'btn_third' : 'btn_third btn-disable'" (click)="do_Finish('update')"
+                    class="btn_third"> Terminar Actualización </span>
+            </ng-container>
+        </div>
+        <div class="col-4" style="text-align: -webkit-right;">
+            <!-- <span class="arrow right" (click)="do_next()"></span> -->
+            <span *ngIf="!endprocess" class="next2 text-right" (click)="do_next()"></span>
+            <span *ngIf="endprocess && !isTerminado(result_q)" [ngClass]="{'btn-disable': saveUpdate}"
+                class="EndProcess" (click)="do_Finish('save_1st')"></span>
+        </div>
+        <div *ngIf="(endprocess && !isTerminado(result_q)) || isTerminado(result_q)" class="col-lg-12">
+            <h5 class="font_p" style="text-align: justify;">
+                Una vez haya realizado todas las modificaciones haga clic en este botón para generar un nuevo
+                resultado del autodiagnóstico.
+                Recuerde que el resultado será generado en un documento y enviado a su correo electrónico y a los
+                correos ingresados.
+                Asegúrese de dar clic aquí únicamente cuando haya realizado <b>TODOS</b> los ajustes requeridos.
+            </h5>
+        </div>
+    </div>
+
+    <!-- admin contenido -->
+    <div class="row" *ngIf="gestionar_contenido">
+        <div class="offset-3 col-lg-6 offset-3 text-center">
+
+            <h3 class="font_title">
+                Gestionar Contenidos
+            </h3>
+            <br>
+            <br>
+            <a class="btn_secundary_allwith" (click)="do_ContenidoInduccion();">Contenidos de inducción</a>
+            <br>
+            <a class="btn_secundary_allwith" (click)="do_CapacidadesCapacidades();">Contenidos para fortalecer las
+                capacidades</a>
+            <br>
+            <a class="btn_secundary_allwith" routerLink="./../gestor/temas">Gestionat temas</a>
+            <br>
+            <a class="btn_secundary_allwith" routerLink="./../gestor/bibliotecas">Gestionar bibliotecas</a>
+            <br>
+            <a class="btn_secundary_allwith" routerLink="./../gestor/contenidos">Gestionar contenidos</a>
+            <br>
+        </div>
+    </div>
+
+</div>
+
+<div *ngIf="contenido_induccion || contenido_capacidades">
+    <hr class="hr_">
+</div>
+
+<!-- ADMIN CONTENIDOS -->
+
+<div *ngIf="submenu_admin_2 && submenu_admin_2_cont_intro || contenido_induccion" class="container">
+    <div class="row">
+        <div class="offset-3 col-lg-6 offset-3 text-center">
+            <br>
+            <br>
+            <h5 class="font_title">
+                Contenidos de inducción
+            </h5>
+            <br>
+            <br>
+        </div>
+        <div class="offset-3 col-lg-6 offset-3 " style="display: flex;">
+            <span class="title_decorator"></span>
+            <p class="font_p" style="display: block; margin: calc(5%) 0 auto;">
+                Aquí podrá gestionar los contenidos de inducción
+            </p>
+            <br>
+            <br>
+        </div>
+        <div class="offset-1 col-lg-10 offset-1 text-center">
+            <br>
+            <br>
+            <i>
+                <b class="font_worksans_ligth">*Recuerde que es obligatorio ingresar información en uno de los dos
+                    campos por cada Secretaría</b>
+            </i>
+            <br>
+            <br>
+        </div>
+        <div class="col-lg-12" id="formulario">
+            <br>
+            <br>
+            <div class="form-group">
+                <p class="font_worksans_ligth" style="margin: 0;">
+                    <b> Nombre documento |
+                        <span style="color: #ff3466;">
+                            <span *ngIf="nombreDoc==null">100</span>
+                            <span *ngIf="nombreDoc!=null">{{100-(nombreDoc.length)}} </span>
+                        </span>
+                    </b>
+                </p>
+                <input type="text" maxlength="100" [(ngModel)]="nombreDoc"
+                    (keyup)="do_Valid(nombreDoc, 'string', 100, $event)" class="form-control">
+            </div>
+            <div class="form-group">
+                <p class="font_worksans_ligth" style="margin: 0;">
+                    <span class="left">
+                        <b
+                            data-tooltip="En este campo describa el tipo de contenido (instructivo, lineamiento u orientación técnica/normativa/contenido conceptual o de trabajo/
+                        contenido de referencia/procedimiento o proceso recomendado/formato de trabajo/buena práctica sistematizada)">
+                            Descripción | <span style="color: #ff3466;">
+                                <span *ngIf="descripcionDoc==null">200</span>
+                                <span *ngIf="descripcionDoc!=null">{{200-(descripcionDoc.length)}} </span>
+
+                            </span>
+                        </b>
+                    </span>
+                </p>
+                <textarea [(ngModel)]="descripcionDoc" maxlength="200"
+                    (keyup)="do_Valid(descripcionDoc, 'string', 200, $event)" name="" id="" cols="100"
+                    style=" width: 100%" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="font_worksans_ligth" style="margin: 0;" for=""><b>Temática </b> </label>
+                <div class="select">
+                    <select name="tematica" class='combox container-checkbox' [(ngModel)]="idTematica">
+                        <option value=""> Seleccione ...</option>
+                        <option *ngFor="let item of tematicas" value="{{item.idTematica}}">{{item.tematica}}
+                        </option>
+                    </select>
+                    <div class="invalid-feedback">Example invalid custom select feedback</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <p class="font_worksans_ligth" style="margin: 0;">
+                    <b> Documento </b>
+                </p>
+
+                <input type="file" (change)="fileChangeEvent($event)" name="photo" [(ngModel)]="fileUpload" />
+                <!--                 <button type="button" class="btn btn-success btn-s" (click)="uploader.do_SaveContenidoInduccion()"
+                        [disabled]="!uploader.getNotUploadedItems().length">
+                        Subir un Archivo
+                    </button> -->
+
+            </div>
+            <br><br>
+            <div class="form-group text-center">
+                <span class="btn_third" (click)="do_SaveContenidoInduccion()">
+                    Guardar
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="submenu_admin_2 && cont_capacidades || contenido_capacidades" class="container">
+    <div class="row">
+        <div class="offset-3 col-lg-6 offset-3 text-center">
+            <br>
+            <br>
+            <h5 class="font_title">
+                Contenidos para fortalecer las capacidades
+            </h5>
+            <br>
+            <br>
+        </div>
+        <div class="offset-1 col-lg-10 offset-1 text-center">
+            <b class="font_worksans_ligth" style="color: #ff3466;">Desea cargar un contenido que fortalece una:</b>
+            <br>
+            <br>
+        </div>
+        <div class="col-lg-4">
+            <br>
+            <a class="btn_secundary_allwith" [ngClass]="{'btn_secundary_actived': onclick_capTec }"
+                (click)="do_AdminContCapacidades_Form('tecnica')">Capacidad Técnica</a>
+            <br>
+        </div>
+        <div class="col-lg-4">
+            <br>
+            <a class="btn_secundary_allwith" [ngClass]="{'btn_secundary_actived': onclick_capDe }"
+                (click)="do_AdminContCapacidades_Form('personal')">Capacidad de desarrollo
+                personal</a>
+            <br>
+        </div>
+        <div class="col-lg-4">
+            <br>
+            <a class="btn_secundary_allwith" [ngClass]="{'btn_secundary_actived': onclick_capEst }"
+                (click)="do_AdminContCapacidades_Form('estratégica')">Capacidad estratégica</a>
+            <br>
+        </div>
+
+    </div>
+
+</div>
+<!-- [ngClass]="{'show': onclick }" -->
+<!-- ////////////////////////////LISTA DE CONTENIDOS PARA INDUCCION ///////////////////////////////////// -->
+
+<div *ngIf="contenido_induccion ">
+    <hr class="hr_">
+</div>
+<div *ngIf="submenu_admin_2 && submenu_admin_2_cont_intro || contenido_induccion" class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="result_table" style="height: auto;overflow:hidden">
+                <div class="force-overflow">
+                    <div class="table-responsive">
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class=""
+                            style="margin:1rem; width: 95% !important;">
+                            <thead class="table_diag">
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <th>Secretaría / MEN</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody class="font_p_2">
+                                <tr *ngFor="let item of contenidos_induccion">
+                                    <td style="width:450px;">
+                                        <p>
+                                            {{item.tituloContenido}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="font_p_2">
+                                            {{item.contenidoDescricion}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="font_p_2">
+                                            {{item.secretaria}}
+                                        </p>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <a (click)="To_updateContenidoIn(item.idContenido, item.tituloContenido,item.contenidoDescricion, item.idTematica )"
+                                            class="text_click" href="autodiagnostico#formulario">Editar</a>
+                                        <hr>
+                                        <span (click)="do_deleteContendoIn(item.idContenido, item.idTematica)"
+                                            class="text_click">Eliminar</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="capacidades"
+    *ngIf="submenu_admin_2 && cont_capacidades ||  contenido_capacidades && submenu_admin_2_contCapacidades"
+    class="container">
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <br>
+            <br>
+
+            <div class="form-group ">
+                <p class="font_worksans_ligth" style="margin: 0;">
+                    <b>Seleccione una afirmación <span style="color: #ff3466;"> </span> </b>
+                </p>
+                <div class="select2">
+                    <select name="tematica" class='combox container-checkbox select2select'
+                        [(ngModel)]="idAfirmacionConFort">
+                        <option value=""> Seleccione ...</option>
+                        <option value="{{item.idAfirmacion}}" *ngFor="let item of listCapacidadesbyCat.afirmaciones">
+                            {{clear(item.afirmacionResumen)}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p class="font_worksans_ligth" style="margin: 0;">
+                    <b> Nombre documento | <span style="color: #ff3466;">
+                            <span *ngIf="nombredocConFort==null">100</span>
+                            <span *ngIf="nombredocConFort!=null">{{100-(nombredocConFort.length)}}</span>
+
+                        </span>
+                    </b>
+                </p>
+                <input type="text" class="form-control" [(ngModel)]="nombredocConFort" maxlength="100"
+                    (keyup)="do_Valid(nombredocConFort, 'string', 100, $event)">
+            </div>
+            <div class="form-group">
+                <p class="font_worksans_ligth" style="margin: 0;">
+                    <b> Descripción | <span style="color: #ff3466;">
+                            <span *ngIf="descripcionConFort==null">200</span>
+                            <span *ngIf="descripcionConFort!=null">{{200-(descripcionConFort.length)}}</span>
+                        </span>
+                    </b>
+                </p>
+                <textarea name="" id="" cols="100" style=" width: 100%" rows="5" maxlength="200"
+                    (keyup)="do_Valid(descripcionConFort, 'string', 200, $event)"
+                    [(ngModel)]="descripcionConFort"></textarea>
+            </div>
+
+            <div class="form-group">
+                <p class="font_worksans_ligth" style="margin: 0;">
+                    <b> Documento </b>
+                </p>
+                <input type="file" (change)="fileChangeEvent($event)" [(ngModel)]="fileUpload" class="form-control">
+            </div>
+            <br><br>
+            <div class="form-group text-center">
+                <span class="btn_third " (click)="do_SaveContenidoFort()">
+                    Guardar
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr class="hr_" *ngIf="submenu_admin_2 && cont_capacidades || contenido_capacidades && submenu_admin_2_contCapacidades">
+
+<div class="container"
+    *ngIf="submenu_admin_2 && cont_capacidades || contenido_capacidades && submenu_admin_2_contCapacidades">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="result_table" style="overflow: hidden; height: auto;">
+                <div class="force-overflow">
+                    <div class="table-responsive">
+                        <table class="" style="margin:1rem; width: 95% !important;">
+                            <thead class="table_diag">
+                                <tr>
+                                    <th>Afirmación</th>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <!--  <th>Secretaría / MEN</th> -->
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody class="font_p_2">
+                                <tr *ngIf="listCapacidadesFort.length  == 0">
+                                    <td colspan="4" class="text-center">
+                                        <p class="font_p_2">No hay contenido</p>
+                                    </td>
+                                </tr>
+                                <tr *ngFor="let item of listCapacidadesFort">
+                                    <td style="width:300px;">
+                                        <p class="font_p_2">
+                                            {{clear(item.afirmacionResumen)}}
+                                        </p>
+                                    </td>
+                                    <td style="width:300px;">
+                                        <p>
+                                            {{item.titulo}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="font_p_2">
+                                            {{item.descripcion}}
+                                        </p>
+                                    </td>
+                                    <!--                                 <td>
+                                            <p class="font_p_2">
+                                                {{item.secretaria}}
+                                            </p>
+                                        </td> -->
+
+                                    <td class="text-center">
+                                        <a (click)="To_updateConFort( item.idAfirmacion, item.idContenido, item.titulo,item.descripcion)"
+                                            class="text_click" href="autodiagnostico#capacidades">Editar
+                                        </a>
+                                        <hr>
+                                        <span (click)="do_deleteConFort(item.idContenido, item.idAfirmacion)"
+                                            class="text_click">Eliminar</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<br>
+<br>
+<br>
+
+
+<ng-template #content id="modal" let-c="close" let-d="dismiss">
+
+
+    <div class="modal-body">
+        <!-- <div class="col-12 text-center" *ngIf="next_question"> -->
+        <div class="col-12 text-center" *ngIf="next_question">
+            <h5 class="font_p">
+                Se ha guardado correctamente las valoraciones a las afirmaciones
+                diligenciadas.
+            </h5>
+            <br>
+        </div>
+
+        <div class="col-12 text-center" *ngIf="send_email">
+            <h5 class="font_p">
+                <b> Se enviará a su correo electrónico el resultado del autodiagnóstico.</b>
+                Si desea que el resultado se envíe a otras personas, ingrese aquí los correos electrónicos a los
+                cuales
+                desea enviar
+                el resultado del autodiagnóstico
+            </h5>
+            <br>
+            <div>
+                <textarea [(ngModel)]="emails" (keyup)="do_checkMail()" name="" id="" cols="70" rows="5"></textarea>
+            </div>
+        </div>
+        <div class="col-12 text-center"
+            *ngIf="email_sended && !many_emails && emails == undefined && update_diagnostico">
+            <h5 class="font_p">
+                Se han actualizado correctamente las valoraciones, y se ha enviado a
+                su correo electrónico el resultado actualizado del autodiagnóstico.
+            </h5>
+            <br>
+        </div>
+        <div class="col-12 text-center" *ngIf="primera_vez && email_success && !many_emails && email_own">
+            <h5 class="font_p">
+                Se han guardado correctamente todas las valoraciones, y se ha
+                enviado a su correo electrónico el resultado del autodiagnóstico.
+            </h5>
+            <br>
+        </div>
+        <div class="col-12 text-center" *ngIf="email_sended && many_emails ">
+            <h5 class="font_p">
+                Se han guardado correctamente todas las valoraciones, y se ha
+                enviado a su correo electrónico y a los correos ingresados el resultado
+                del autodiagnóstico.
+            </h5>
+            <br>
+        </div>
+
+
+        <!--         <div class="col-12 text-center" *ngIf="update_diagnostico && email_sended">
+                <h5 class="font_p">
+                    Se han actualizado correctamente todas las respuestas, y se ha
+                    enviado a su correo electrónico y a los correos ingresados el resultado
+                    actualizado del autodiagnóstico.
+                </h5>
+                <br>
+            </div> -->
+        <div class="col-12 text-center" *ngIf="alert">
+            <h5 class="font_p_2">
+                Para poder guardar y continuar debe responder todas las afirmaciones del bloque
+            </h5>
+            <br>
+        </div>
+
+        <div class="col-12 text-center" *ngIf="error">
+            <h5 class="font_p_2">
+                {{msg}} <br>
+                Intente Nuevamente
+            </h5>
+            <br>
+        </div>
+
+
+        <div class="col-12 text-center" *ngIf="!email_ok">
+            <h5 class="font_p_2">
+                Verifique la sintaxis del correo, recuerde que deben ir separados por punto y coma (;) Ejemplo: <br>
+                <i>usuario1@mail.com;usuario2@mail.com </i>
+            </h5>
+            <br>
+        </div>
+
+
+
+        <div class="mod_modal-footer">
+
+            <div class="col text-center">
+                <div *ngIf="is_loading" class="spinner-border text-primary"></div>
+                <span style="cursor:pointer" *ngIf="!is_loading && send_email && !alert" class="btn_third"
+                    (click)="close('open_again', 'send')">Enviar</span>&nbsp;&nbsp;
+                <span style="cursor:pointer" *ngIf="!is_loading && (email_sended && !alert) || (next_question)"
+                    class="btn_third" (click)="close('close', 'email_ok')">Continuar</span>
+                <span style="cursor:pointer" *ngIf="alert" class="btn_third" (click)="close('close', '')">Aceptar</span>
+                &nbsp;&nbsp;
+                <span style="cursor:pointer" class="btn_third" *ngIf="!is_loading && !email_sended && !endprocess"
+                    (click)="close('cerrar', '')">Cancelar</span>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #modalDos id="modal" let-c="close" let-d="dismiss">
+
+
+    <div class="modal-body">
+        <div *ngIf="id_emty" class="form-group text-center">
+            <p>
+                Existen Campos vacios
+            </p>
+        </div>
+        <div *ngIf="is_saveContenido ||  is_saveContenidoConFort" class="form-group text-center">
+            <p>
+                Se ha guardado correctamente el contenido
+            </p>
+        </div>
+        <div *ngIf="is_updateContenidoIn || is_updateConFort" class="form-group text-center">
+            <p>
+                Se ha actualizado correctamente el contenido
+            </p>
+        </div>
+        <div *ngIf="is_deletedContenidoIn || is_deletedContFort" class="form-group text-center">
+            <p>
+                Se ha eliminado correctamente el contenido
+            </p>
+        </div>
+        <div class="col text-center">
+            <span style="cursor:pointer" class="btn_third" (click)="close()">Cerrar</span>
+        </div>
+    </div>
+</ng-template>
+
+
+
+<ng-template #modalTres let-c="close" let-d="dismiss">
+
+
+    <div class="modal-body">
+        <div *ngIf="id_emty" class="form-group text-center">
+            <p>
+                Existen Campos vacios
+            </p>
+        </div>
+        <div *ngIf="is_saveContenido ||  is_saveContenidoConFort" class="form-group text-center">
+            <p>
+                Se ha guardado correctamente el contenido
+            </p>
+        </div>
+        <div *ngIf="is_updateContenidoIn || is_updateConFort" class="form-group text-center">
+            <p>
+                Se ha actualizado correctamente el contenido
+            </p>
+        </div>
+        <div *ngIf="is_deletedContenidoIn || is_deletedContFort" class="form-group text-center">
+            <p>
+                Se ha eliminado correctamente el contenido
+            </p>
+        </div>
+        <div class="col text-center">
+            <span style="cursor:pointer" class="btn_third" (click)="close()">Cerrar</span>
+        </div>
+    </div>
+</ng-template>

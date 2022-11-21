@@ -1,0 +1,23 @@
+.regresar{
+  position:absolute;
+  width:80px;
+  top:20px;
+  right:10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.regresar img{
+  width:30%;
+  cursor: pointer
+}
+
+.regresar span{
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-top: 4px;
+}

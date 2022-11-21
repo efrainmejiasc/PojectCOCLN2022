@@ -1,0 +1,12 @@
+<div class="container contenedor">
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-fall" [fullScreen]="true">
+        <p style="color: white">Cargando...</p>
+    </ngx-spinner>
+    <div class="container">
+        <app-contenidos-titulo (evento)="reloadtable($event)" [titulo]="titulo" [permitsUser]="permitsUser">
+        </app-contenidos-titulo>
+    </div>
+    <app-table-dynamic-rol (buildAction)="buildAction($event)" [dataRow]="configuration.rowOrderData"
+        [dataToPrint]="configuration.dataToPrint" [permitsUser]="permitsUser" [emptyConfiguration]="emptyConfiguration">
+    </app-table-dynamic-rol>
+</div>

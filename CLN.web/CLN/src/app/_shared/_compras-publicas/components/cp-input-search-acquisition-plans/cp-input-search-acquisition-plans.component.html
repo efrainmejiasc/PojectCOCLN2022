@@ -1,0 +1,24 @@
+<div class="wrapper" [ngClass]="wrapperActive ? 'active' : 'inactive'">
+    <div class="select-btn">
+        <div class="content-box">
+            <ul>
+                <li *ngFor="let item of itemsS" style="height: auto;">
+                    <p>{{item.name}}</p>
+                    <span (click)="removeItem(item.name, inputSearch)">X</span>
+                </li>
+                <input #inputSearch class="input-search" (keyup)="searchItem($event, inputSearch)" type="text"
+                    spellcheck="false" style="width: 100%;" [placeholder]="placeholderText">
+            </ul>
+        </div>
+        <div class="arrow-right">
+            <img src="assets/imgs/iconos/lupitaformulario.svg" />
+        </div>
+    </div>
+    <div class="content">
+        <ul class="options">
+            <li *ngFor="let item of listResult" (click)="selectChangeHandler(item.name, inputSearch)">
+                {{item.name}}
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="regresar">
+  <img (click)="regresar()" src="assets/imgs/compartidas/regresar.svg" />
+  <span class="regresar-span">Regresar</span>
+</div>
+
+<app-popup-cambios *ngIf="showAlertOut"
+    [message] = "notificationCambiosMessage"
+    (close)="closePopupCambios($event)">
+</app-popup-cambios>
+
+
+<!-- <img [routerLink]="linkTo" src="assets/imgs/compartidas/regresar.svg" /> -->

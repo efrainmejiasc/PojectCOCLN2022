@@ -1,0 +1,67 @@
+.gi-header{
+    display: flex;
+    margin-top: 30px;
+    justify-content: center;
+}
+
+/* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
+@media (min-width: 601px) {
+    p {
+      font-size: .8rem;
+    }
+  }
+  
+  /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+  @media (max-width: 600px) {
+    p {
+      font-size: .5rem;
+    }
+  }
+  
+.gi-header > div{
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: .1px solid #7d7d7d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // font-size: 17px;
+    font-weight: SemiBold;
+    font-family: 'Open Sans';
+}
+
+.gi-header > div:nth-child(1){
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+  
+.gi-header > div:last-child{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px
+}
+  
+.gi-header div img{
+    width: 30px; 
+    height: 30px;
+    padding-right: 10px;
+}
+  
+.gi-header div p{
+    height:20px;
+    padding: 8px 0px 0px 3px;
+    line-height: 20px;
+    color:#4169af;
+    font-weight:700;
+    // font-size: 17px;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: .5;
+}
+
+.nodisabled {
+    cursor: pointer;
+}

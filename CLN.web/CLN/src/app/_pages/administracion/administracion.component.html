@@ -1,0 +1,937 @@
+<!--div class="container">
+    <!--div class="row" *ngIf="menu_admin">
+        <ng-container *ngIf="is_adminUser(); else is_userConsultas">
+            <div class="offset-1 col-lg-10 offset-1 " style="display: flex;">
+                <span class="title_decorator"></span>
+                <p class="font_p " style="margin-top: calc(2%);">
+                    Bienvenida/o, aquí podrá gestionar usuarios, gestionar contenidos de inducción, de fortalecimiento
+                    para
+                    las capacidades y administrar algunas secciones del sitio Web.
+                </p>
+            </div>
+            <div class="offset-3 col-lg-6 offset-3 text-center">
+                <br>
+                <a class="btn_secundary_allwith" (click)="do_AdminSecciones()">Administrar secciones sitio web </a>
+                <br>
+                <a class="btn_secundary_allwith" (click)="do_GestionUsuarios()">Gestionar usuarios </a>
+                <br>
+                <a class="btn_secundary_allwith" (click)="do_MenuReportes()">Reportes </a>
+                <br>
+            </div>
+        </ng-container>
+        <ng-template #is_userConsultas>
+            <div class="offset-1 col-lg-10 offset-1 " style="display: flex;">
+                <span class="title_decorator"></span>
+                <p class="font_p " style="margin-top: calc(2%);">
+                    Bienvenida/o, aquí podrá generar reportes de su interés.
+                </p>
+            </div>
+            <div class="offset-3 col-lg-6 offset-3 text-center">
+                <br>
+                <br>
+                <br>
+                <a class="btn_secundary_allwith" (click)="do_ReporteAcceso()">
+                    Generar reporte de acceso por parte de las Secretarías</a>
+                <br>
+                <a class="btn_secundary_allwith" (click)="do_ReporteSolicitudes()">
+                    Generar reporte de solicitudes de asistencia técnica integral
+                </a>
+            </div>
+        </ng-template>
+
+        <!--         <div *ngIf="!is_admin_user && !admin_contenido && !submenu_reporte && !submenu_reporteAcceso" class="offset-1 col-lg-10 offset-1 ">
+            <span class="title_decorator"></span>
+            <p class="font_p">
+                Bienvenida/o, aquí podrá realizar el autodiagnóstico para su Secretaría, visualizar el resultado,
+                solicitar
+                asistencia técnica integral y gestionar contenidos de inducción y contenidos de fortalecimiento para las
+                capacidades.
+            </p>
+        </div> -->
+
+<!--         <div *ngIf="!is_admin_user && !admin_contenido" class="offset-3 col-lg-6 offset-3 text-center">
+            <br>
+            <br>
+            <br>
+            <a class="btn_secundary_allwith">Diagnóstico de capacidades de nuestra Secretaría </a>
+            <br>
+            <a class="btn_secundary_allwith">Solicitar asistencia técnica integral </a>
+            <br>
+            <a class="btn_secundary_allwith">Gestionar contenidos</a>
+        </div> -->
+
+
+<!--/div-->
+
+<!-- admin secciones -->
+<!--div class="col-sm-12 d-flex justify-content-center align-items-center" *ngIf="submenu_admin_1">
+    <div class="col-sm-10 text-center d-flex flex-column justify-content-center align-items-center">
+        <h5 class="font_title mt-4 pt-4">
+            Administrar secciones sitio web
+        </h5>
+        <a class="mt-4 col-sm-8 btn_secundary_allwith" (click)="routingKey(1)">Banner principal de
+            reconocimiento</a>
+        <a class="mt-2 col-sm-8 btn_secundary_allwith" (click)="routingKey(2)">Actualizar E-mail para asistencia
+            técnica
+            integral
+        </a>
+        <a class="mt-2 col-sm-8 btn_secundary_allwith" (click)="routingKey(3)">Video de presentación de la
+            Estrategia</a>
+        <a class="mt-2 col-sm-8 btn_secundary_allwith" (click)="routingKey(4)">Actualizar E-mail para proceso de migración de datos</a>
+    </div>
+</div-->
+
+<!-- admin contenido -->
+<!--div class="row" *ngIf="admin_contenido ">
+        <div class="offset-3 col-lg-6 offset-3 text-center">
+            <br>
+            <br>
+            <h3 class="font_title">
+                Gestionar Contenidos
+            </h3>
+            <br>
+            <br>
+            <a class="btn_secundary_allwith" (click)="do_AdminContInduccion_Form();">Contenidos de inducción</a>
+            <br>
+            <a class="btn_secundary_allwith" (click)="do_AdminContCapacidades();">Contenidos para fortalecer las
+                capacidades
+            </a>
+            <br>
+
+        </div>
+    </div-->
+
+<!-- --------------------------  REPORTES  ------------------------- -->
+
+<!--div class="row" *ngIf="submenu_reporte && !is_admin_user ">
+        <div class="offset-3 col-lg-6 offset-3 text-center">
+            <br>
+            <br>
+            <h3 class="font_title">
+                Reportes
+            </h3>
+            <br>
+            <br>
+            <a class="btn_secundary_allwith" (click)="do_ReporteAcceso()">Generar reporte de acceso por parte
+                de
+                las Secretarías</a>
+            <br>
+            <a class="btn_secundary_allwith" (click)="do_ReporteSolicitudes()">Generar reporte de solicitudes de
+                asistencia técnica integral
+            </a>
+            <br>
+
+        </div>
+    </div-->
+
+<!--/div-->
+
+<!--div class="my-4"
+    *ngIf="(submenu_admin_1_banner || submenu_admin_1_email || submenu_admin_1_video || submenu_admin_1_FAQ || submenu_admin_2_cont_intro || cont_capacidades  )">
+    <hr class="hr_">
+</div-->
+<app-data-migration *ngIf="adminDataMigration && submenu_admin_1"></app-data-migration>
+<div *ngIf="submenu_admin_1 && submenu_admin_1_banner" class="container mt-4">
+    <div class="row">
+        <div class="offset-3 col-lg-6 offset-3 text-center">
+
+            <h5 class="font_title">
+                Banner principal de reconocimiento
+            </h5>
+            <br>
+            <br>
+        </div>
+        <div class="offset-1 col-lg-10 offset-1 " style="display: flex;">
+            <span class="title_decorator"></span>
+            <p class="font_p" style="margin: calc(2%);">
+                Aquí podrá seleccionar la(s) Secretaría(s) que se quiere reconocer en el banner principal de la
+                Estrategia
+                de Fortalecimiento Territorial.
+            </p>
+            <br>
+            <br>
+        </div>
+        <div class="offset-3 col-lg-6 offset-3 text-center">
+            <br>
+            <br>
+            <h5 class="font_title">
+                Reconocimiento
+            </h5>
+            <br>
+        </div>
+        <div class="offset-3 col-lg-6 offset-3 text-center">
+            <!-- Default checked -->
+            <div class="custom-control custom-switch">
+                <input type="checkbox" (change)="ActiveBanner($event)" class="custom-control-input"
+                    [checked]="is_bannerAcknow" id="customSwitch1"> <!-- checked-->
+                <label *ngIf="!is_bannerAcknow" class="custom-control-label font_p"
+                    style="display: inline-block; line-height: 26px;" for="customSwitch1">Activar</label>
+                <label *ngIf="is_bannerAcknow" class="custom-control-label font_p"
+                    style="display: inline-block;line-height: 26px;" for="customSwitch1">Desactivar</label>
+                <br>
+                <br>
+            </div>
+
+            <div class="form-group">
+                <label class="font_pb" for="">Secretaría</label>
+                <ng-multiselect-dropdown style="border: 0px solid #3366cc !important;"
+                    [placeholder]="'Seleccione una secretaría'" [data]="dropdownList" [(ngModel)]="selectedItems"
+                    [settings]="dropdownSettingsBanner" (onSelect)="onItemSelect($event)"
+                    (onDeSelect)="onItemDeSelect($event)" (onSelectAll)="onSelectAll($event)">
+                </ng-multiselect-dropdown>
+
+            </div>
+            <br>
+        </div>
+        <div class="offset-1 col-lg-10 offset-1 text-center">
+            <i>
+                <b class="font_worksans_ligth">*Recuerde que es obligatorio ingresar información en uno de los dos
+                    campos por cada Secretaría</b>
+            </i>
+            <br>
+            <br>
+        </div>
+        <div class="col-lg-12 ">
+            <div *ngFor="let item of secretarias">
+                <fieldset>
+
+                    <legend>Secretaría de Educación de {{item.entidadTerritorial}}:</legend>
+                    <p class="font_worksans_ligth" style="margin: 0;">
+                        <b> Ingrese aquí las razones de reconocimiento | <span style="color: #ff3466;">
+
+                                <span *ngIf="item.motivoReconocimiento==null">500</span>
+                                <span *ngIf="item.motivoReconocimiento != null ">
+                                    {{500-(item.motivoReconocimiento.length)}}</span>
+
+                            </span> </b>
+                    </p>
+                    <textarea id="" cols="100" style=" width: 100%"
+                        (keyup)="do_Valid(item.motivoReconocimiento, 'string', 500,$event)"
+                        [(ngModel)]="item.motivoReconocimiento" maxlength="500"></textarea>
+                    <br>
+                    <br>
+                    <b class="font_worksans_ligth" style="margin: 0;">
+                        Url del video
+                    </b>
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="item.videoReconocimiento" class="form-control">
+                    </div>
+                </fieldset>
+                <br><br>
+            </div>
+            <div class="form-group text-center">
+                <span class="btn_third " (click)="updateSecretarias()">
+                    Guardar
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<form [formGroup]="form" *ngIf="submenu_admin_1 && submenu_admin_1_email" class="container mt-4">
+    <div class="row">
+        <div class="col-sm-12 d-flex justify-content-center align-items-center text-center">
+            <h2 class=" col-sm-10 text-color-red">
+                Actualizar E-mail para acompañamiento integral
+            </h2>
+        </div>
+        <div class="offset-1 col-lg-10 offset-1 mt-4" style="display: flex;">
+            <span class="title_decorator"></span>
+            <p class="text-color-gray">
+                Aquí podrá parametrizar la cuenta de correo electrónico al cual llegarán las solicitudes de
+                asistencia
+                técnica integral que hagan las Secretarías que ya realizaron el autodiagnóstico
+            </p>
+            <br>
+            <br>
+        </div>
+        <div class="col-lg-12">
+            <br>
+            <br>
+            <div class="form-group">
+                <p class="font_worksans_ligth" style="margin: 0;">
+                    <b>Correo electrónico</b>
+                </p>
+                <input type="email" formControlName="emailAsistencia" maxlength="50"
+                    style="text-align-last: center;text-align: center;" class="form-control" value="">
+            </div>
+            <br><br>
+            <div class="form-group text-center">
+                <span [ngClass]="{'btn_third': !emailAsistencia_is_wrong,
+                                    btn_third_disabled: emailAsistencia_is_wrong }"
+                    (click)="do_UpdateEmailAsistencia()">
+                    Guardar
+                </span>
+            </div>
+        </div>
+    </div>
+</form>
+<div *ngIf="submenu_admin_1 && submenu_admin_1_video" class="container mt-4">
+    <div class="row">
+        <div class="offset-3 col-lg-6 offset-3 text-center">
+            <h5 class="font_title">
+                Video de presentación de la Estrategia de Fortalecimiento Territorial
+            </h5>
+            <br>
+            <br>
+        </div>
+        <div class="offset-1 col-lg-10 offset-1 " style="display: flex;">
+            <span class="title_decorator"></span>
+            <p class="font_p" style="display: block; margin: calc(3%) 0 auto;">
+                Aquí podrá cargar y actualizar el video de presentación de la Estrategia de Fortalecimiento
+                Territorial
+            </p>
+            <br>
+            <br>
+        </div>
+        <div class="col-lg-12">
+            <br>
+            <br>
+            <div class="form-group">
+                <p class="font_worksans_ligth" style="margin: 0;">
+                    <b>Video</b>
+                </p>
+                <input type="text" [(ngModel)]="urlVideoEstrategia" style="text-align-last: center;text-align: center;"
+                    class="form-control" value="">
+            </div>
+            <br><br>
+            <div class="form-group text-center">
+                <span class="btn_third " (click)="do_UpdateVideoEstrategia()">
+                    Guardar
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="submenu_admin_1 && submenu_admin_1_FAQ" class="container mt-4" id="preguntasFrequentes">
+    <div class="row">
+        <div class="offset-3 col-lg-6 offset-3 text-center">
+            <h5 class="font_title">
+                Preguntas frecuentes
+            </h5>
+            <br>
+            <br>
+        </div>
+        <div class="offset-1 col-lg-10 offset-1 " style="display: flex;">
+            <span class="title_decorator"></span>
+            <p class="font_p" style="display: block; margin: calc(3%) 0 auto;">
+                Aquí podrá gestionar las preguntas frecuentes del sitio
+            </p>
+            <br>
+            <br>
+        </div>
+        <div class="col-lg-12">
+            <br>
+            <br>
+            <div class="form-group">
+                <p class="font_worksans_ligth" style="margin: 0;">
+                    <b> Pregunta | <span style="color: #ff3466;">
+                            <span *ngIf="pregunta==null">300</span>
+                            <span *ngIf="pregunta != null "> {{300-(pregunta.length)}}</span>
+
+                        </span> </b>
+                </p>
+                <textarea name="" [(ngModel)]="pregunta" id="" maxlength="300" cols="100" style=" width: 100%"
+                    rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                <p class="font_worksans_ligth" style="margin: 0;">
+                    <b> Respuesta | <span style="color: #ff3466;">
+                            <span *ngIf="respuesta==null">300</span>
+                            <span *ngIf="respuesta != null "> {{300-(respuesta.length)}}</span>
+
+                        </span> </b>
+                </p>
+                <textarea name="" [(ngModel)]="respuesta" id="" maxlength="300" cols="100" style=" width: 100%"
+                    rows="5"></textarea>
+            </div>
+            <br><br>
+            <div class="form-group text-center">
+                <span class="btn_third " (click)="savePreguntasFrecuentes()">
+                    Guardar
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="submenu_admin_1 && submenu_admin_1_FAQ" class="container mt-4">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="result_table" style="height: auto; overflow: auto;">
+                <div class="force-overflow">
+                    <table class="" style="margin:1rem; width: 95% !important;" datatable [dtOptions]="dtOptions">
+                        <thead class="table_diag">
+                            <tr>
+                                <th>Pregunta</th>
+                                <th>Respuesta</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="font_p_2">
+                            <tr *ngFor="let item of ListPreguntasFrecuentes">
+                                <td>
+                                    <p>
+                                        {{item.pregunta}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="font_p_2">
+                                        {{item.respuesta}}
+                                    </p>
+                                </td>
+
+                                <td>
+                                    <span
+                                        (click)="To_updatePreguntaFreq(item.idPreguntasFrecuentes, item.pregunta,item.respuesta)"
+                                        class="text_click">Editar</span>
+                                    <hr>
+                                    <span (click)="do_deletePreguntaFreq(item.idPreguntasFrecuentes)"
+                                        class="text_click">Eliminar</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ADMIN CONTENIDOS -->
+
+<div *ngIf="submenu_admin_2 && submenu_admin_2_cont_intro" class="container" id="contenidoInduccion">
+    <div class="row">
+        <div class="offset-3 col-lg-6 offset-3 text-center">
+            <br>
+            <br>
+            <h5 class="font_title">
+                Contenidos de inducción
+            </h5>
+            <br>
+            <br>
+        </div>
+        <div class="offset-3 col-lg-6 offset-3 " style="display: flex;">
+            <span class="title_decorator"></span>
+            <p class="font_p" style="display: block; margin: calc(5%) 0 auto;">
+                Aquí podrá gestionar los contenidos de inducción
+            </p>
+            <br>
+            <br>
+        </div>
+        <div class="offset-1 col-lg-10 offset-1 text-center">
+            <br>
+            <br>
+            <i>
+                <b class="font_worksans_ligth">*Recuerde que es obligatorio ingresar información en uno de los dos
+                    campos por cada Secretaría</b>
+            </i>
+            <br>
+            <br>
+        </div>
+        <div class="col-lg-12">
+            <br>
+            <br>
+            <div class="form-group">
+                <p class="font_worksans_ligth" style="margin: 0;">
+                    <b> Nombre documento | <span style="color: #ff3466;">
+                            <span *ngIf="nombreDoc==null">100</span>
+                            <span *ngIf="nombreDoc!=null">{{100-(nombreDoc.length)}} </span>
+                        </span> </b>
+                </p>
+                <input type="text" maxlength="100" (keyup)="do_Valid(nombreDoc, 'anychar', 100, $event)"
+                    [(ngModel)]="nombreDoc" class="form-control">
+            </div>
+            <div class="form-group">
+                <p class="font_worksans_ligth" style="margin: 0;">
+                    <b
+                        data-tooltip="En este campo describa el tipo de contenido (instructivo, lineamiento u orientación técnica/normativa/contenido conceptual o de trabajo/
+                    contenido de referencia/procedimiento o proceso recomendado/formato de trabajo/buena práctica sistematizada)">
+                        Descripción | <span style="color: #ff3466;">
+
+                            <span *ngIf="descripcionDoc==null">200</span>
+                            <span *ngIf="descripcionDoc!=null">{{200-(descripcionDoc.length)}} </span>
+
+                        </span> </b>
+                </p>
+                <textarea maxlength="200" (keyup)="do_Valid(descripcionDoc, 'anychar', 200, $event)"
+                    [(ngModel)]="descripcionDoc" name="" id="" cols="100" style=" width: 100%" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="font_worksans_ligth" style="margin: 0;" for=""><b>Temática </b> </label>
+                <div class="select">
+                    <select name="tematica" class='combox container-checkbox' [(ngModel)]="idTematica">
+                        <option value="" disabled> Seleccione ...</option>
+                        <option *ngFor="let item of tematicas" value="{{item.idTematica}}">{{item.tematica}}
+                        </option>
+                    </select>
+                    <div class="invalid-feedback">Example invalid custom select feedback</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p class="font_worksans_ligth" style="margin: 0;">
+                    <b> Documento: {{nombreDoc}}{{formatoDoc}}</b>
+                </p>
+
+                <input type="file" (change)="fileChangeEvent($event)" name="photo" [(ngModel)]="fileUpload"
+                    class="form-control" />
+                <!--                 <button type="button" class="btn btn-success btn-s" (click)="uploader.do_SaveContenidoInduccion()"
+                    [disabled]="!uploader.getNotUploadedItems().length">
+                    Subir un Archivo
+                </button> -->
+
+            </div>
+            <br><br>
+            <div class="form-group text-center">
+                <span *ngIf="!is_loading"
+                    [className]="saveContenidoEnabled ? 'btn_third' : 'btn_third_disabled btn_third' "
+                    (click)="saveContenidoEnabled && do_SaveContenidoInduccion()">
+                    Guardar
+                </span>
+                <div *ngIf="is_loading" class="spinner-border text-primary"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="submenu_admin_2 && cont_capacidades" class="container" id="capacidades">
+    <div class="row">
+        <div class="offset-3 col-lg-6 offset-3 text-center">
+            <br>
+            <br>
+            <h5 class="font_title">
+                Contenidos para fortalecer las capacidades
+            </h5>
+            <br>
+            <br>
+        </div>
+        <div class="offset-1 col-lg-10 offset-1 text-center">
+            <b class="font_worksans_ligth" style="color: #ff3466;">Desea cargar un contenido que fortalece una:</b>
+            <br>
+            <br>
+        </div>
+        <div class="col-lg-4">
+            <br>
+            <a class="btn_secundary_allwith" [ngClass]="{'btn_secundary_actived': onclick_capTec }"
+                (click)="do_AdminContCapacidades_Form('tecnica')">Capacidad Técnica</a>
+            <br>
+        </div>
+        <div class="col-lg-4">
+            <br>
+            <a class="btn_secundary_allwith" [ngClass]="{'btn_secundary_actived': onclick_capDe }"
+                (click)="do_AdminContCapacidades_Form('personal')">Capacidad de desarrollo
+                personal</a>
+            <br>
+        </div>
+        <div class="col-lg-4">
+            <br>
+            <a class="btn_secundary_allwith" [ngClass]="{'btn_secundary_actived': onclick_capEst }"
+                (click)="do_AdminContCapacidades_Form('estrategica')">Capacidad estratégica</a>
+            <br>
+        </div>
+
+    </div>
+
+</div>
+<!-- [ngClass]="{'show': onclick }" -->
+<!-- ////////////////////////////LISTA DE CONTENIDOS PARA INDUCCION ///////////////////////////////////// -->
+
+<div *ngIf="submenu_admin_2 && submenu_admin_2_cont_intro || submenu_admin_2 && cont_capacidades ">
+    <hr class="hr_">
+</div>
+<div *ngIf="submenu_admin_2 && submenu_admin_2_cont_intro" class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="result_table" style="height: auto;">
+                <div class="force-overflow">
+                    <table datatable [dtOptions]="dtOptions" class="" style="margin:1rem; width: 95% !important;">
+                        <thead class="table_diag">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Secretaría / MEN</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="font_p_2">
+                            <tr *ngIf="contenidos_induccion == undefined">
+                                <td colspan="4" class="text-center"> No hay contenido </td>
+                            </tr>
+                            <tr *ngFor="let item of contenidos_induccion">
+                                <td style="width:450px;">
+                                    <p>
+                                        {{item.tituloContenido}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="font_p_2">
+                                        {{item.contenidoDescricion}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="font_p_2">
+                                        {{item.secretaria}}
+                                    </p>
+                                </td>
+
+                                <td>
+                                    <a (click)="To_updateContenidoIn(item.idContenido, item.tituloContenido,item.contenidoDescricion, item.idTematica, item.formatoContenido)"
+                                        class="text_click" href="admin#contenidoInduccion">Editar</a>
+                                    <hr>
+                                    <span (click)="do_deleteContendoIn(item.idContenido, item.idTematica)"
+                                        class="text_click">Eliminar</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="submenu_admin_2 && cont_capacidades && submenu_admin_2_contCapacidades" class="container">
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <br>
+            <br>
+
+            <div class="form-group ">
+                <p class="font_worksans_ligth" style="margin: 0;">
+                    <b>Seleccione una afirmación <span style="color: #ff3466;"> </span> </b>
+                </p>
+                <div class="select">
+                    <select name="tematica" class='combox container-checkbox' [(ngModel)]="idAfirmacionConFort">
+                        <!-- <option value=""> Seleccione ...</option> -->
+                        <option value="{{item.idAfirmacion}}" *ngFor="let item of listCapacidadesbyCat.afirmaciones">
+                            {{item.afirmacionResumen}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p class="font_worksans_ligth" style="margin: 0;">
+                    <b> Nombre documento | <span style="color: #ff3466;">
+                            <span *ngIf="nombredocConFort==null">100</span>
+                            <span *ngIf="nombredocConFort!=null">{{100-(nombredocConFort.length)}}</span>
+
+                        </span> </b>
+                </p>
+                <input type="text" class="form-control" maxlength="100"
+                    (keyup)="do_Valid(nombredocConFort, 'alphanumeric', 100, $event)" [(ngModel)]="nombredocConFort">
+            </div>
+            <div class="form-group">
+                <p class="font_worksans_ligth" style="margin: 0;">
+                    <b> Descripción | <span style="color: #ff3466;">
+                            <span *ngIf="descripcionConFort==null">200</span>
+                            <span *ngIf="descripcionConFort!=null">{{200-(descripcionConFort.length)}}</span>
+                        </span> </b>
+                </p>
+                <textarea name="" id="" cols="100" style=" width: 100%" rows="5" maxlength="200"
+                    (keyup)="do_Valid(descripcionConFort, 'alphanumeric', 200, $event)"
+                    [(ngModel)]="descripcionConFort"></textarea>
+            </div>
+
+            <div class="form-group">
+                <p class="font_worksans_ligth" style="margin: 0;">
+                    <b> Documento: {{nombredocConFort}}{{formatodocConFort}}</b>
+                </p>
+                <input type="file" (change)="fileChangeEventCap($event)" [(ngModel)]="fileUploadCap"
+                    class="form-control">
+            </div>
+            <br><br>
+            <div class="form-group text-center">
+                <span [className]="saveContenidoCapEnabled ? 'btn_third' : 'btn_third_disabled btn_third' "
+                    (click)="saveContenidoCapEnabled && do_SaveContenidoFort()">
+                    Guardar
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr class="hr_" *ngIf="submenu_admin_2 && cont_capacidades && submenu_admin_2_contCapacidades">
+
+<div class="container" *ngIf="submenu_admin_2 && cont_capacidades && submenu_admin_2_contCapacidades">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="result_table" style="height: auto;">
+                <div class="force-overflow">
+                    <table datatable [dtOptions]="dtOptions" class="" style="margin:1rem; width: 95% !important;">
+                        <thead class="table_diag">
+                            <tr>
+                                <th>Afirmación</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <!--  <th>Secretaría / MEN</th> -->
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="font_p_2">
+                            <tr *ngIf="listCapacidadesFort.length  == 0">
+                                <td colspan="4" class="text-center">
+                                    <p class="font_p_2">No hay contenido</p>
+                                </td>
+                            </tr>
+                            <tr *ngFor="let item of listCapacidadesFort">
+                                <td style="width:300px;">
+                                    <p class="font_p_2">
+                                        {{item.afirmacionResumen}}
+                                    </p>
+                                </td>
+                                <td style="width:300px;">
+                                    <p>
+                                        {{item.titulo}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="font_p_2">
+                                        {{item.descripcion}}
+                                    </p>
+                                </td>
+                                <!--                                 <td>
+                                    <p class="font_p_2">
+                                        {{item.secretaria}}
+                                    </p>
+                                </td> -->
+
+                                <td class="text-center">
+                                    <a (click)="To_updateConFort( item.idAfirmacion, item.idContenido, item.titulo, item.descripcion, item.formato)"
+                                        class="text_click" href="/admin#capacidades">Editar</a>
+                                    <hr>
+                                    <span (click)="do_deleteConFort(item.idContenido, item.idAfirmacion)"
+                                        class="text_click">Eliminar</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- --------------------------  REPORTES  ------------------------- -->
+
+
+<div *ngIf="!submenu_reporte && submenu_reporteAcceso" class="container">
+    <div class="row">
+        <div class="offset-3 col-lg-6 offset-3 text-center">
+            <h3 class="font_title">
+                Reporte de acceso
+            </h3>
+            <br>
+            <br>
+        </div>
+        <div class="offset-1 col-lg-10 offset-1 " style="display: flex;">
+            <span class="title_decorator"></span>
+            <p class="font_p" style="display: block; margin: calc(3%) 0 auto;">
+                Aquí podrá generar el reporte de acceso por parte de las Secretarías
+            </p>
+            <br>
+            <br>
+        </div>
+        <div class="offset-3 col-lg-6 offset-3 text-center">
+            <br>
+            <br>
+            <div class="form-group">
+                <label class="font_pb" for="">Secretaría</label>
+                <ng-multiselect-dropdown [placeholder]="'Seleccione una secretaría'" [data]="dropdownList"
+                    [(ngModel)]="selSecretariasReporteAcceso" [settings]="dropdownSettings"
+                    (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)"
+                    (onDeSelect)="onItemDeSelect($event)" (onDeSelectAll)="onDeSelectAll($event)">
+                </ng-multiselect-dropdown>
+            </div>
+            <br><br>
+            <div class="form-group text-center">
+                <span *ngIf="!is_loading"
+                    [className]="generarReporteAccesoEnabled ? 'btn_third' : 'btn-disable btn_third'"
+                    (click)="generarReporteAccesoEnabled && do_getReporteByAccess('.xlsx')">
+                    Generar Reporte
+                </span>
+                <div *ngIf="is_loading" class="spinner-border text-primary"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!submenu_reporte && submenu_reporteSolicitudes" class="container">
+    <div class="row">
+        <div class="offset-1 col-lg-10 offset-1 text-center">
+            <h3 class="font_title">
+                Reporte de solicitudes de asistencia técnica integral
+            </h3>
+            <br>
+            <br>
+        </div>
+        <div class="offset-1 col-lg-10 offset-1 " style="display: flex;">
+            <span class="title_decorator"></span>
+            <p class="font_p" style="display: block; margin: calc(3%) 0 auto;">
+                Aquí podrá generar el reporte de solicitudes que han realizado las Secretarías para asistencia
+                técnica
+                integral
+            </p>
+            <br>
+            <br>
+        </div>
+        <div class="offset-3 col-lg-6 offset-3 text-center">
+            <br>
+            <br>
+            <div class="form-group">
+                <label class="font_pb" for="">Secretaría</label>
+                <ng-multiselect-dropdown style="border: 0px solid #3366cc !important;"
+                    [placeholder]="'Seleccione una secretaría'" [data]="dropdownList"
+                    [(ngModel)]="selSecretariasReporteAsistencia" [settings]="dropdownSettings"
+                    (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)"
+                    (onDeSelect)="onItemDeSelect($event)" (onDeSelectAll)="onDeSelectAll($event)">
+                </ng-multiselect-dropdown>
+            </div>
+            <br><br>
+            <div class="form-group text-center">
+                <span *ngIf="!is_loading"
+                    [className]="generarReporteAsistenciaEnabled ? 'btn_third' : 'btn-disable btn_third'"
+                    (click)="generarReporteAsistenciaEnabled && getReporte_byAsistencias('.xlsx')">
+                    Generar Reporte
+                </span>
+                <div *ngIf="is_loading" class="spinner-border text-primary"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<ng-template #content id="modal" let-c="close" let-d="dismiss">
+
+
+    <div class="modal-body">
+
+        <div *ngIf="submenu_admin_1 && submenu_admin_1_banner && !email_asistencia_is_wrong"
+            class="col-12 text-center font_p_worksans">
+            Se ha actualizado correctamente.
+            <br>
+        </div>
+        <div *ngIf="submenu_admin_1 && submenu_admin_1_email" class="col-12 text-center font_p_worksans">
+            Se ha actualizado correctamente la cuenta de correo electrónico.
+            <br>
+        </div>
+        <div *ngIf="submenu_admin_1 && submenu_admin_1_video" class="col-12 text-center font_p_worksans">
+            Se ha actualizado correctamente el video de presentación de la estrategia.
+            <br>
+        </div>
+        <div *ngIf="submenu_admin_1 && submenu_admin_1_FAQ" class="col-12 text-center font_p_worksans">
+            Se ha creado correctamente la pregunta frecuente.
+            <br>
+        </div>
+        <div *ngIf="submenu_admin_1 && submenu_admin_1_FAQ && delete_FAQ " class="col-12 text-center font_p_worksans">
+            Se ha eliminado correctamente la pregunta frecuente
+            <br>
+        </div>
+        <div *ngIf="submenu_admin_1 && submenu_admin_1_FAQ && update_FAQ " class="col-12 text-center font_p_worksans">
+            Se ha actualizado correctamente la pregunta frecuente
+            <br>
+        </div>
+
+        <!-- contenidos -->
+
+        <div *ngIf="submenu_admin_2 && submenu_admin_2_cont_intro && save_cont_intro || save_cont_capacidad  "
+            class="col-12 text-center font_p_worksans">
+            Se ha guardado correctamente el contenido
+            <br>
+        </div>
+        <div *ngIf="submenu_admin_2 && submenu_admin_2_cont_intro && update_cont_intro "
+            class="col-12 text-center font_p_worksans">
+            Se ha actualizado correctamente la información del contenido de inducción:
+            <b> Realice un diagnóstico adecuado y oportuno </b>
+            <br>
+        </div>
+        <div *ngIf="submenu_admin_2 && submenu_admin_2_cont_intro && delete_cont_intro "
+            class="col-12 text-center font_p_worksans">
+            Se ha eliminado correctamente el contenido
+            <br>
+        </div>
+
+
+        <div class="mod_modal-footer">
+
+            <div class="col text-center">
+                <span style="cursor:pointer" class="btn_third" (click)="closeModal()">Cerrar</span>
+
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #modaldos id="modaldos" let-c="close" let-d="dismiss">
+    <div class="modal-body">
+        <div *ngIf="id_emty" class="form-group text-center">
+            <p>
+                Existen Campos vacios
+            </p>
+        </div>
+        <div *ngIf="email_asistencia_is_wrong" class="form-group text-center">
+            <p>
+                El correo ingresado no es correcto
+            </p>
+        </div>
+        <div *ngIf="is_savePreguntasFrecuentes" class="form-group text-center">
+            <p>
+                Se ha creado correctamente la pregunta frecuente
+            </p>
+        </div>
+        <div *ngIf="is_updatePreguntaF && !is_savePreguntasFrecuentes" class="form-group text-center">
+            <p>
+                Se ha actualizado correctamente
+            </p>
+        </div>
+        <div *ngIf="is_deletedPreguntaF" class="form-group text-center">
+            <p>
+                Se ha eliminado correctamente la pregunta frecuente
+            </p>
+        </div>
+        <div *ngIf="is_saveContenido ||  is_saveContenidoConFort" class="form-group text-center">
+            <p>
+                Se ha guardado correctamente el contenido
+            </p>
+        </div>
+        <div *ngIf="is_updateContenidoIn || is_updateConFort" class="form-group text-center">
+            <p>
+                Se ha actualizado correctamente la información del contenido de inducción: {{nombreDoc}}
+            </p>
+        </div>
+        <div *ngIf="is_deletedContenidoIn || is_deletedContFort" class="form-group text-center">
+            <p>
+                Se ha eliminado correctamente el contenido
+            </p>
+        </div>
+        <div *ngIf="is_updatedEmailAsistencia" class="form-group text-center">
+            <p>
+                Correo Actualizado correctamente
+            </p>
+        </div>
+        <div *ngIf="is_updatedVideoAsistencia" class="form-group text-center">
+            <p>
+                Url del video Actualizado correctamente
+            </p>
+        </div>
+        <div *ngIf="is_bannerAcknow && !is_savePreguntasFrecuentes && !is_updatedVideoAsistencia && !is_updatedEmailAsistencia"
+            class="form-group text-center">
+            <p>
+                Se ha actualizado correctamente
+            </p>
+        </div>
+
+        <div class="col text-center">
+            <span style="cursor:pointer" class="btn_third" (click)="closeModal()">Cerrar</span>
+        </div>
+    </div>
+</ng-template>

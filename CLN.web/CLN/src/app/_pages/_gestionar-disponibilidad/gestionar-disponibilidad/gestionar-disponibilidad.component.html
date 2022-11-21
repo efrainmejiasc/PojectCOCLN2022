@@ -1,0 +1,54 @@
+
+
+<div class="content">
+
+    <app-header-disponibilidad></app-header-disponibilidad>
+
+    <div class="configuracion container card" id="configuracion" style="margin-top: -5.6em;">
+        <div style="margin-top: 25px; margin-bottom: 25px; margin-left: 10%; margin-right: 10%;">
+            <p class="indication">
+                Selecciona la empresa *
+            </p>
+            <div class="input-container">
+                <app-cp-input-boxes
+                    [wrapperActive]="wrapperActiveEmpresa"
+                    (show)="show()"
+                    [lista]="listadoEmpresasVisibles"
+                    [itemsS]="empresaSeleccionada"
+                    (idValueEvent)="agregarEmpresa($event)"
+                    (idRemoveEvent)="removerEmpresa($event)">
+                </app-cp-input-boxes>
+            </div>
+        </div>
+        <hr>
+        <!-- menu de ofertas -->
+        <app-offer-options
+            [opciones]="opciones" 
+            [selectedOption]="selectedOption">
+        </app-offer-options>
+        <!-- Fin menu de ofertas -->
+
+        <div id="contenido">
+            <!-- componentes seleccionados -->
+            <app-como-funciona
+                *ngIf="selectedOption === opciones[0].title"
+            ></app-como-funciona>
+            <app-establecer-disponibilidad
+                *ngIf="selectedOption === opciones[1].title"
+                [empresaSeleccionada]="empresaSeleccionada"
+                (validarCambios)="validarCambiosDisponibilidad($event)"
+            ></app-establecer-disponibilidad>
+            <app-citas-programadas
+                [empresaSeleccionada]="empresaSeleccionada"
+                *ngIf="selectedOption === opciones[2].title"
+            ></app-citas-programadas>
+            <!-- fin componentes seleccionados -->
+        </div>
+
+    </div>
+</div>
+<app-popup-cambios 
+    *ngIf="isPopupCambios" 
+    [message]="mensajePopupCambios" 
+    (close)="closePopupConfirmation($event)">
+</app-popup-cambios>

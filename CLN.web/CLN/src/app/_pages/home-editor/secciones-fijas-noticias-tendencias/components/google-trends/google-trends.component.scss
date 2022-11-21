@@ -1,0 +1,32 @@
+.title-components{
+    color: #4b68ae;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: sans-serif;
+    margin-bottom: 1rem;
+}
+
+.div-trends{
+    width: 100%;
+}
+
+.ubicacionBtn {
+  justify-content: right;
+  display: flex;
+  width: 100%;
+  // margin-top: 2em;
+  // margin-bottom: 2em;
+}
+.btn-submit-wine2 {
+  background-color: #003595;
+  border-radius: 6mm;
+  border-style: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: opensans_semibold;
+  font-size: 12px;
+  height: 40px;
+  margin-top: 0em !important;
+  max-width: 230px;
+  width: 200px;
+}

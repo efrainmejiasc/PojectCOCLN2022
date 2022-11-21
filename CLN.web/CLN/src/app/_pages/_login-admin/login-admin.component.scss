@@ -1,0 +1,30 @@
+
+h1, h2, p{
+    margin: 0px;
+    padding: 0px;
+}
+
+#admin-top{
+    text-align: center;
+    color:#fff;
+    background-color: #4169af;
+    padding: 4px;
+}
+
+.titulo{
+    font-size: 14px;
+    font-weight: 800;
+}
+
+h2{
+    font-weight:400;
+    font-size: 10px;
+    font-weight: 100;
+}
+
+#admin-bottom{
+  height: 600px;
+  background-image: url(src\assets\imgs/login-admin/fondo.jpg);
+  background-size: cover;
+
+}

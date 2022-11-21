@@ -1,0 +1,19 @@
+<div style="margin-bottom: 30px">
+  <div class="icono-secciones">
+    <img style="width: 70px; height: 70px"(click)= "toogleHelp()" src="{{icono}}" />
+  </div>
+  <div class="titulo-contenedor">
+    <img (click)= "toogleHelp()" src="{{alertaIcono}}" />
+    <span class="titulo">{{titulo}}</span>
+  </div>
+  <div class="buttonText">
+    <span>{{buttonText}}</span>
+  </div>
+  <div class="info-ayuda-contenedor">
+    <p class="info-ayuda">{{infoAyuda}}</p>
+  </div>
+  <!-- <div *ngIf="showHelp" class="info-ayuda-contenedor">
+    <div class="close-info"><span (click)= "toogleHelp()">X</span></div>
+    <p class="info-ayuda">{{infoAyuda}}</p>
+  </div> -->
+</div>

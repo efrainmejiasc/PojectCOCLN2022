@@ -1,0 +1,32 @@
+
+
+<div class="wrapper cp-input-boxes" [ngClass]="wrapperActive ? 'active' : 'inactive'">
+  <div class="alert-info"*ngIf="showAlertInfo"> {{ textoAlerta }}</div>
+  <img
+    (mouseover) = "handleAlertInfo()"
+    (mouseout) = "closeAlertInfo()"
+    *ngIf="showAlert"
+    class = "alert-img"
+    src="assets/imgs/iconos/alerta.svg" />
+  <div class="select-btn" [ngClass]="{'alert': showAlert}">
+    <div class="content-box">
+      <ul>
+        <li *ngFor="let item of itemsS">
+          <p>{{ showId ? item.id : '' }} {{ showId ? '-' : '' }} {{item.name}}</p>
+          <span (click)="removeItem(item.id)">X</span>
+        </li>
+      </ul>
+    </div>
+    <div class="arrow-right" (click)="showOptions()">
+      <img src="assets/imgs/iconos/arrow-down.svg" />
+    </div>
+  </div>
+  <div class="content">
+    <ul class="options">
+      <li *ngFor="let item of lista" (click)="selectChangeHandler(item.id)">
+        {{ showId ? item.id : '' }} {{ showId ? '-' : '' }} {{item.name}}
+      </li>
+    </ul>
+  </div>
+</div>
+

@@ -1,0 +1,211 @@
+$color-blanco: rgba(255, 255, 255, 1);
+$color-blue: #36c;
+$color-red: #f42f63;
+$color-red-oscuro: #d6184b;
+$color-gray-font: rgba(0, 0, 0, 0.7);
+$line-height-paragraph: 18px;
+$font-size-paragraph: 16px;
+$font-family-light: workSans_ligth;
+$font-family-medium: worksans_medium;
+$font-family-bold: workSans_bold;
+.TituloPrincipal {
+    text-align: center;
+    padding-top: 12px;
+    font-size: 16pt;
+    font-family: "Work Sans", sans-serif;
+    color: #36c;
+    font-weight: bold;
+}
+.title_decorator_dynamic {
+    width: 8px;
+    min-height: 70px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.boxTop {
+    width: 100%;
+    height: 50%;
+    background-color: $color-blue;
+}
+.boxDown {
+    width: 100%;
+    height: 50%;
+    background-color: $color-red;
+}
+.subTitulo {
+    max-width: 90%;
+    font-family: "Work Sans", sans-serif;
+    font-size: 13pt;
+    font-weight: lighter;
+    margin: auto 0px auto 0px;
+    padding: 0px;
+}
+
+.text-center {
+    justify-content: center;
+}
+
+.bandera {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    display: block;
+    width: 7px;
+    height: 100%;
+    background-image: linear-gradient(180deg, #f42f63 0%, #f42f63 50%, #36c 50%, #36c 100%);
+    padding: 0;
+    margin: 0;
+}
+
+.RedLine {
+    border-style: dashed;
+    border-color: #f42f63;
+    border-width: 1px;
+}
+
+.cargar-contenido-link:hover {
+    .buttonSvg {
+        background-color: #f42f63;
+    }
+    color: #f42f63 !important;
+    cursor: pointer;
+}
+
+.contenidos-form {
+    border-radius: 23px;
+}
+
+// *********************Posibles Botones**********************************************
+.buttonSvg {
+    width: 100%;
+    height: 50px;
+    background-color: #36c;
+    display: block;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+.button-Agregar {
+    -webkit-mask: url(src\assets\img\Acciones\Agregar.svg) no-repeat center;
+    mask: url(src\assets\img\Acciones\Agregar.svg) no-repeat center;
+}
+.button-Agregar {
+    -webkit-mask: url(src\assets\img\Acciones\Agregar.svg) no-repeat center;
+    mask: url(src\assets\img\Acciones\Agregar.svg) no-repeat center;
+}
+.button-rol {
+    -webkit-mask: url(src\assets\img\Acciones\AgregarRol.svg) no-repeat center;
+    mask: url(src\assets\img\Acciones\AgregarRol.svg) no-repeat center;
+}
+.button-group-rol {
+    -webkit-mask: url(src\assets\img\Acciones\AgregarGrupoRol.svg) no-repeat center;
+    mask: url(src\assets\img\Acciones\AgregarGrupoRol.svg) no-repeat center;
+}
+.button-reports {
+    -webkit-mask: url(src\assets\img\Acciones\gestionar_reportes.png) no-repeat center;
+    mask: url(src\assets\img\Acciones\gestionar_reportes.png) no-repeat center;
+}
+.button-capacidades {
+    -webkit-mask: url(src\assets\iconos\GestionCapacidades\button_capacidades.svg) no-repeat center;
+    mask: url(src\assets\iconos\GestionCapacidades\button_capacidades.svg) no-repeat center;
+}
+//**************************** Grupos de botones ***********************************
+
+.buttons-flex-group {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+}
+.buttons-flex-item {
+    margin: 2em 0.5em 1em 0.5em;
+}
+.buttons-flex-item {
+    padding: 0.2em 1em;
+    border-radius: 50vmin;
+    color: white;
+    background-color: #36c;
+    border: none;
+    font-weight: bold;
+}
+.box-iconos {
+    width: 200px;
+    height: 70px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.icon-guia {
+    width: 100%;
+    height: 50px;
+    background-color: #36c;
+    display: block;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask: url(src\assets\img\capacidades\guia.svg) no-repeat center;
+    mask: url(src\assets\img\capacidades\guia.svg) no-repeat center;
+}
+.icon-video {
+    width: 100%;
+    height: 50px;
+    background-color: #36c;
+    display: block;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask: url(src\assets\img\capacidades\video.svg) no-repeat center;
+    mask: url(src\assets\img\capacidades\video.svg) no-repeat center;
+}
+.icon-download {
+    width: 100%;
+    height: 50px;
+    background-color: #36c;
+    display: block;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask: url(src\assets\img\capacidades\download.svg) no-repeat center;
+    mask: url(src\assets\img\capacidades\download.svg) no-repeat center;
+}
+.name-box {
+    padding: 5px 0px 0px 0px;
+    text-align: center;
+    font-family: $font-family-medium !important;
+    font-size: $font-size-paragraph;
+    line-height: $line-height-paragraph;
+}
+
+.box-lila {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(123, 99, 224, 0.4);
+    color: rgb(255, 255, 255);
+}
+.box-naranja {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(209, 105, 105, 0.4);
+    color: rgb(255, 255, 255);
+}
+.box-fucsia {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(213, 101, 219, 0.4);
+    color: rgb(255, 255, 255);
+}
+.font-bold {
+    font-family: workSans_bold !important;
+}

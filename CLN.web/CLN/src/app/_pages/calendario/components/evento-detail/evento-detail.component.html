@@ -1,0 +1,121 @@
+<div class="detail" *ngIf="showDetailsEvent">
+    <h1 class="title-primary text-color-gray">Nombre del evento</h1>
+    <h2 class="title-secondary">{{ evento.nombre }}</h2>
+
+  <section>
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="title-primary text-color-gray">Descripción del evento</h1>
+        <p class="paragraph text-color-gray">
+          {{ evento.descripcion }}
+        </p>
+      </div>
+    </div>
+  </section>
+
+    <h3 class="title-third text-color-gray">Hora del evento</h3>
+    <section>
+        <p class="paragraph text-color-gray">{{ evento.horaInicio + ' - ' + evento.horaFin}}</p>
+    </section>
+    <div class="row">
+        <div class="col-10">
+            <h3 class="title-third text-color-gray">
+                Enlace para la conexión del evento / Dirección física
+            </h3>
+        </div>
+        <div class="col-2">X</div>
+    </div>
+    <div class="paragraph linkStCal">
+      <p class="text-color-gray overflowText" [innerHTML]="(evento.direccion | urlify)"></p>
+    </div>
+    <!-- Temas -->
+    <section *ngIf="evento.EventoTemas != null && evento.EventoTemas.length > 0">
+      <h3 class="title-third text-color-gray">Temas del evento</h3>
+      <ul class="list">
+        <li class="paragraph text-color-gray" *ngFor="let tema of evento.EventoTemas">{{ tema.descripcion }}</li>
+      </ul>
+    </section>
+    <!-- Fin Temas -->
+    <!-- Contenidos -->
+    <section *ngIf="evento.EventoContenidos != null && evento.EventoContenidos.length > 0">
+      <h3 class="title-third text-color-gray">Contenidos del evento</h3>
+      <div class="grid-layout-Contenidos" *ngFor="let contenido of evento.EventoContenidos">
+          <div  class="paragraph grid-content-contenidos">
+            <img *ngIf="contenido.tipoContenido === 'ENLACE'" src="assets/img/Tipos_De_Archivos/enlace web.svg" >
+            <img *ngIf="contenido.tipoContenido === 'ARCHIVO'" [src]="['assets/img/Tipos_De_Archivos/' + (contenido.ruta | extensionArchivo) + '.svg']" [alt]="(contenido.ruta | extensionArchivo)">
+          </div>
+          <div class="paragraph grid-content-contenidos text-color-gray">{{contenido.titulo}}</div>
+          <div class="paragraph grid-content-contenidos">
+            <a [href]="[url + contenido.ruta]" target="_blank">
+              <img [src]="['assets/iconos/men/' + (contenido.tipoContenido === 'ARCHIVO' ? 'evs-descargar.svg' : 'evs-vinculo.svg')]"
+                [alt]="[(contenido.tipo == 'descargar')]">
+            </a>
+          </div>
+      </div>
+    </section>
+    <!-- Fin Contenidos -->
+</div>
+
+
+<div class="detail" *ngIf="!showDetailsEvent">
+    <div *ngIf="!evento.privado">
+      <h1 class="title-primary text-color-gray">Nombre del evento</h1>
+      <h2 class="title-secondary text-color-gray">{{ evento.nombre }}</h2>
+    </div>
+
+    <section>
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="title-primary text-color-gray">Descripción del evento</h1>
+          <p class="paragraph text-color-gray">
+            {{ evento.descripcion }}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div *ngIf="!evento.privado">
+      <h3 class="title-third text-color-gray">Hora del evento</h3>
+      <section>
+          <p class="paragraph text-color-gray">{{ evento.horaInicio + ' - ' + evento.horaFin}}</p>
+      </section>
+      <div class="row">
+          <div class="col-10">
+              <h3 class="title-third text-color-gray">
+                  Enlace para la conexión del evento / Dirección física
+              </h3>
+          </div>
+          <div class="col-2">X</div>
+      </div>
+      <div class="paragraph linkStCal">
+          <a *ngIf="evento.direccion.includes('https://')" [href]="evento.direccion" target="_blank" class="linkCalendarEvent">ir al evento</a>
+          <i *ngIf="!evento.direccion.includes('https://')" class="overflowText">{{ evento.direccion }}</i>
+      </div>
+      <!-- Temas -->
+      <section *ngIf="evento.EventoTemas != null && evento.EventoTemas.length > 0">
+        <h3 class="title-third">Temas del evento</h3>
+        <ul class="list">
+          <li class="paragraph" *ngFor="let tema of evento.EventoTemas">{{ tema.descripcion }}</li>
+        </ul>
+      </section>
+      <!-- Fin Temas -->
+      <!-- Contenidos -->
+      <section *ngIf="evento.EventoContenidos != null && evento.EventoContenidos.length > 0">
+        <h3 class="title-third">Contenidos del evento</h3>
+        <div class="grid-layout-Contenidos" *ngFor="let contenido of evento.EventoContenidos">
+            <div  class="paragraph grid-content-contenidos">
+              <img *ngIf="contenido.tipoContenido === 'ENLACE'" src="assets/img/Tipos_De_Archivos/enlace web.svg" >
+              <img *ngIf="contenido.tipoContenido === 'ARCHIVO'" [src]="['assets/img/Tipos_De_Archivos/' + (contenido.ruta | extensionArchivo) + '.svg']" [alt]="(contenido.ruta | extensionArchivo)">
+            </div>
+            <div class="paragraph grid-content-contenidos">{{contenido.titulo}}</div>
+            <div class="paragraph grid-content-contenidos">
+              <a [href]="[url + contenido.ruta]" target="_blank">
+                <img [src]="['assets/iconos/men/' + (contenido.tipoContenido === 'ARCHIVO' ? 'evs-descargar.svg' : 'evs-vinculo.svg')]"
+                  [alt]="[(contenido.tipo == 'descargar')]">
+              </a>
+            </div>
+        </div>
+      </section>
+      <!-- Fin Contenidos -->
+    </div>
+</div>

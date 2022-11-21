@@ -1,0 +1,435 @@
+<form class="AnimateMoveDown" [formGroup]="addressForm">
+  <div class="invitingCompany--container">
+    <label class="invitingCompany--label" for="invitingCompany">
+      Empresa
+      <span class="invitingCompany--required">*</span>
+    </label>
+    <div>
+      <mat-form-field class="custom-form-field invitingCompany--form-field">
+        <mat-select [formControl]="invitingCompany" required>
+          <mat-option
+            *ngFor="let companie of companiesInvite"
+            [value]="companie.companyId"
+          >
+            {{ companie.companyName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="AnimateMoveDown" *ngIf="addressForm.get('companyId').valid">
+    <section class="supply-grid">
+      <aside class="supply-grid--aside">
+        <span class="supply-grid--info">
+          <img
+            class="supply-grid--info-img"
+            src="assets/iconos/informacion.svg"
+            alt="informacion"
+          />
+          Recuerda los elementos de la cadena de abastecimiento para que
+          cunstruyas la tuya
+        </span>
+
+        <div class="supply-grid--button-container">
+          <div
+            class="supply-grid--hover"
+            *ngFor="let elements of supplyElements"
+            [attr.data-info]="elements.additionalInfo[0].tooltip"
+          >
+            <button mat-button class="supply-grid--button">
+              <img
+                class="supply-grid--button-img"
+                [src]="elements.additionalInfo[0].logo"
+                [alt]="elements.supplyElement"
+              />
+            </button>
+          </div>
+          <!-- <div
+            class="supply-grid--hover"
+            data-info="Son las personas o empresas que abastecen todo lo necesario para fabricar el producto final o bien pueden proveer el producto como tal."
+          >
+            <button mat-button class="supply-grid--button">
+              <img
+                class="supply-grid--button-img"
+                src="assets/img/cadenaAbastecimiento/proveedores.png"
+                alt="proveedores"
+              />
+            </button>
+          </div>
+          <div
+            class="supply-grid--hover"
+            data-info="Es el encargado de la creación y elaboración de un producto."
+          >
+            <button mat-button class="supply-grid--button">
+              <img
+                class="supply-grid--button-img"
+                src="assets/img/cadenaAbastecimiento/Fabricantes.png"
+                alt="Fabricantes"
+              />
+            </button>
+          </div>
+          <div
+            class="supply-grid--hover"
+            data-info="Son todos los procesos de transporte, almacenamiento y distribución para hacer que un producto llegue al consumidor final."
+          >
+            <button mat-button class="supply-grid--button">
+              <img
+                class="supply-grid--button-img"
+                src="assets/img/cadenaAbastecimiento/Transporte.png"
+                alt="Transporte y logística"
+              />
+            </button>
+          </div>
+          <div
+            class="supply-grid--hover"
+            data-info="Son las empresas en el sector de la comercialización que canalizan los productos hacia comerciantes o minoristas o directamente a los consumidores finales."
+          >
+            <button mat-button class="supply-grid--button">
+              <img
+                class="supply-grid--button-img"
+                src="assets/img/cadenaAbastecimiento/Distribuidores.png"
+                alt="Distribuidores"
+              />
+            </button>
+          </div>
+          <div
+            class="supply-grid--hover"
+            data-info="Son las empresas en el sector de la comercialización que canalizan los productos hacia comerciantes o minoristas o directamente a los consumidores finales."
+          >
+            <button mat-button class="supply-grid--button">
+              <img
+                class="supply-grid--button-img"
+                src="assets/img/cadenaAbastecimiento/Comerciantes.png"
+                alt="Comerciantes"
+              />
+            </button>
+          </div>
+          <div
+            class="supply-grid--hover"
+            data-info="Es aquella persona física o jurídica que adquiere, utiliza o disfruta bienes y servicios, para su consumo final o definitivo."
+          >
+            <button mat-button class="supply-grid--button">
+              <img
+                class="supply-grid--button-img"
+                src="assets/img/cadenaAbastecimiento/Consumidor.png"
+                alt="Consumidor"
+              />
+            </button>
+          </div> -->
+        </div>
+
+        <button
+          *ngFor="let template of supplyElementTemplates"
+          type="button"
+          mat-raised-button
+          color="primary"
+          class="section-cln--button mat-rounded-5em p-1-2em w-100 mb-2"
+          (click)="formTemplate(template.enumerator)"
+        >
+          {{ template.templateName }}
+        </button>
+        <!-- <button
+          mat-raised-button
+          color="primary"
+          class="section-cln--button mat-rounded-5em p-1-2em w-100 mb-2"
+        >
+          PLANTILLA B2B
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="section-cln--button mat-rounded-5em p-1-2em w-100 mb-2"
+        >
+          PLANTILLA B2C
+        </button> -->
+      </aside>
+      <div class="w-100">
+        <div class="px-4">
+          <div class="row">
+            <div
+              class="col-md-3"
+              formArrayName="supplyChainElements"
+              *ngFor="let elements of elementsField.controls; let i = index"
+            >
+              <div
+                class="btn-elemet mat-elevation-z10"
+                [class.active]="elementActive === i"
+                (click)="changeElement(i)"
+                [formGroupName]="i"
+              >
+                <button
+                  mat-mini-fab
+                  color="primary"
+                  type="button"
+                  class="btn-elemet--delete mat-elevation-z4"
+                  [disabled]="!elements.get('supplyElement').value"
+                >
+                  <!-- (click)="deleteElement(i)" -->
+                  <img
+                    class="btn-elemet--delete-img"
+                    src="assets/iconos/delete.svg"
+                    alt="Eliminar elementos"
+                  />
+                </button>
+                <strong> Elemento {{ i + 1 }} </strong>
+                <div class="btn-elemet--img">
+                  <img
+                    *ngIf="
+                      fetchElementImage(elements.get('supplyElement').value)
+                    "
+                    [src]="
+                      fetchElementImage(elements.get('supplyElement').value).img
+                    "
+                    [alt]="
+                      fetchElementImage(elements.get('supplyElement').value)
+                        .name
+                    "
+                  />
+                </div>
+                <mat-form-field appearance="outline" class="btn-elemet--select">
+                  <mat-select
+                    required
+                    formControlName="supplyElement"
+                    placeholder="Seleccione"
+                  >
+                    <mat-option
+                      *ngFor="let elm of supplyElements"
+                      [value]="elm.enumerator"
+                    >
+                      {{ elm.supplyElement }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="mx-4" />
+        <div class="px-4 mb-2">
+          <div
+            formArrayName="supplyChainElements"
+            *ngFor="let elements of elementsField.controls; let i = index"
+          >
+            <div *ngIf="i == elementActive">
+              <p
+                class="color-title"
+                *ngIf="elementsField.controls[i].get('supplyElement').valid"
+              >
+                ELEMENTO {{ i + 1 }} -
+                {{
+                  fetchElementImage(
+                    elementsField.controls[i].get("supplyElement").value
+                  ).name
+                }}
+              </p>
+              <div class="row" [formGroupName]="i">
+                <div class="col-md-6">
+                  <label class="form-field--label" for="chargePerson">
+                    Responsable
+                  </label>
+                  <div class="d-flex">
+                    <mat-form-field class="form-simulator">
+                      <input
+                        matInput
+                        formControlName="chargePerson"
+                        maxlength="100"
+                      />
+                    </mat-form-field>
+                    <span class="character-counter">
+                      {{ 100 - elements.get("chargePerson").value.length }}
+                    </span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-field--label" for="measurementUnit">
+                    Unidad de medida
+                  </label>
+                  <div class="d-flex">
+                    <mat-form-field class="form-simulator">
+                      <input
+                        matInput
+                        formControlName="measurementUnit"
+                        maxlength="50"
+                      />
+                    </mat-form-field>
+                    <span class="character-counter">
+                      {{ 50 - elements.get("measurementUnit").value.length }}
+                    </span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-field--label" for="quantity">
+                    Cantidad
+                  </label>
+                  <div class="d-flex">
+                    <mat-form-field class="form-simulator">
+                      <input
+                        matInput
+                        type="number"
+                        formControlName="quantity"
+                        maxlength="15"
+                      />
+                    </mat-form-field>
+                    <span class="character-counter">
+                      {{ 15 - valueNumber2(i, "quantity") }}
+                    </span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-field--label" for="cost"> Costo </label>
+                  <div class="d-flex">
+                    <mat-form-field class="form-simulator">
+                      <input
+                        matInput
+                        formControlName="cost"
+                        maxlength="20"
+                        currencyMask
+                        [options]="{
+                          prefix: '$ ',
+                          thousands: '.',
+                          precision: '0',
+                          align: 'left'
+                        }"
+                      />
+                    </mat-form-field>
+                    <span class="character-counter">
+                      {{ 100 - valueNumber2(i, "cost") }}
+                    </span>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <label class="form-field--label" for="activities">
+                    Actividad
+                  </label>
+                  <div class="d-flex">
+                    <mat-form-field class="form-simulator">
+                      <input
+                        matInput
+                        formControlName="activities"
+                        maxlength="1000"
+                      />
+                    </mat-form-field>
+                    <span class="character-counter">
+                      {{ 1000 - elements.get("activities").value.length }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <mat-form-field
+              class="custom-form-field invitingCompany--form-field"
+            >
+              <mat-select formControlName="element" required>
+                <mat-option value="companie.id"> companie.name </mat-option>
+              </mat-select>
+            </mat-form-field> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section-costs">
+      <div>
+        <div>
+          <div class="section-costs--grid">
+            <div class="section-costs--grid-1">
+              <label class="form-field--label" for="billingCost">
+                Costo de facturación (COP)
+              </label>
+              <div class="d-flex">
+                <mat-form-field class="form-simulator form-simulator--2">
+                  <input
+                    matInput
+                    formControlName="billingCost"
+                    maxlength="100"
+                    currencyMask
+                    [options]="{
+                      prefix: '$ ',
+                      thousands: '.',
+                      precision: '0',
+                      align: 'left'
+                    }"
+                    (keyup)="calculatePercentageParticipationLogistics()"
+                    (paste)="calculatePercentageParticipationLogistics()"
+                  />
+                </mat-form-field>
+                <span class="character-counter character-counter--2">
+                  {{ 100 - valueNumber("billingCost") }}
+                </span>
+              </div>
+            </div>
+            <div class="section-costs--grid-2">
+              <label class="form-field--label" for="totalCost">
+                Costo total logístico
+              </label>
+              <div class="d-flex">
+                <mat-form-field class="form-simulator form-simulator--2">
+                  <input
+                    matInput
+                    formControlName="totalCost"
+                    maxlength="50"
+                    currencyMask
+                    [options]="{
+                      prefix: '$ ',
+                      thousands: '.',
+                      precision: '0',
+                      align: 'left'
+                    }"
+                    (keyup)="calculatePercentageParticipationLogistics()"
+                    (paste)="calculatePercentageParticipationLogistics()"
+                  />
+                </mat-form-field>
+                <span class="character-counter character-counter--2">
+                  {{ 50 - valueNumber("totalCost") }}
+                </span>
+              </div>
+            </div>
+            <div class="section-costs--grid-3">
+              <div class="bg-white">
+                <label class="form-field--label" for="sharePercentage">
+                  % Participación del costo logístico sobre la venta:
+                </label>
+                <div class="d-flex">
+                  <mat-form-field class="form-simulator">
+                    <input
+                      matInput
+                      readonly
+                      formControlName="sharePercentage"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section-submit">
+      <p class="section-submit--p">
+        <img src="assets/iconos/info.svg" alt="información" />
+        La información registrada podrás exportarla en un documento en formato
+        PDF
+      </p>
+
+      <div class="section-submit--buttons">
+        <button
+          mat-raised-button
+          color="primary"
+          class="section-cln--button mat-rounded-5em"
+          (click)="onSubmit()"
+        >
+          GUARDAR
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="section-cln--button mat-rounded-5em"
+          (click)="onSubmit()"
+        >
+          EXPORTAR
+        </button>
+      </div>
+    </section>
+  </div>
+</form>

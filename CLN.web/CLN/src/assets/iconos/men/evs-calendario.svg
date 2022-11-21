@@ -1,0 +1,43 @@
+<svg id="calendario" xmlns="http://www.w3.org/2000/svg" width="27.439" height="29.634" viewBox="0 0 27.439 29.634">
+  <g id="Grupo_15" data-name="Grupo 15" transform="translate(-1167.561 -557)">
+    <g id="Grupo_14" data-name="Grupo 14">
+      <g id="Grupo_12" data-name="Grupo 12">
+        <path id="Trazado_14" data-name="Trazado 14" d="M1190.2,586.634h-17.83a4.81,4.81,0,0,1-4.8-4.8V564a4.81,4.81,0,0,1,4.8-4.8h17.83a4.81,4.81,0,0,1,4.8,4.8v17.83A4.811,4.811,0,0,1,1190.2,586.634Zm-17.83-25.832a3.2,3.2,0,0,0-3.2,3.2v17.83a3.2,3.2,0,0,0,3.2,3.2h17.83a3.2,3.2,0,0,0,3.2-3.2V564a3.2,3.2,0,0,0-3.2-3.2Z" fill="#36c"/>
+        <g id="Grupo_10" data-name="Grupo 10">
+          <line id="Línea_4" data-name="Línea 4" y2="4.445" transform="translate(1174.956 558.236)" fill="#36c"/>
+          <path id="Trazado_15" data-name="Trazado 15" d="M1174.956,563.917a1.235,1.235,0,0,1-1.235-1.236v-4.446a1.235,1.235,0,0,1,2.47,0v4.446A1.235,1.235,0,0,1,1174.956,563.917Z" fill="#36c"/>
+        </g>
+        <g id="Grupo_11" data-name="Grupo 11">
+          <line id="Línea_5" data-name="Línea 5" y2="4.445" transform="translate(1188.382 558.236)" fill="#36c"/>
+          <path id="Trazado_16" data-name="Trazado 16" d="M1188.381,563.917a1.235,1.235,0,0,1-1.235-1.236v-4.446a1.235,1.235,0,0,1,2.471,0v4.446A1.235,1.235,0,0,1,1188.381,563.917Z" fill="#36c"/>
+        </g>
+      </g>
+      <g id="Grupo_13" data-name="Grupo 13">
+        <circle id="Elipse_2" data-name="Elipse 2" cx="1.111" cy="1.111" r="1.111" transform="translate(1171.414 569.905)" fill="#36c"/>
+        <circle id="Elipse_3" data-name="Elipse 3" cx="1.111" cy="1.111" r="1.111" transform="translate(1171.414 573.239)" fill="#36c"/>
+        <circle id="Elipse_4" data-name="Elipse 4" cx="1.111" cy="1.111" r="1.111" transform="translate(1174.748 573.239)" fill="#36c"/>
+        <circle id="Elipse_5" data-name="Elipse 5" cx="1.111" cy="1.111" r="1.111" transform="translate(1174.748 569.905)" fill="#36c"/>
+        <circle id="Elipse_6" data-name="Elipse 6" cx="1.111" cy="1.111" r="1.111" transform="translate(1178.082 569.905)" fill="#36c"/>
+        <circle id="Elipse_7" data-name="Elipse 7" cx="1.111" cy="1.111" r="1.111" transform="translate(1178.082 573.239)" fill="#36c"/>
+        <circle id="Elipse_8" data-name="Elipse 8" cx="1.111" cy="1.111" r="1.111" transform="translate(1181.416 573.239)" fill="#36c"/>
+        <circle id="Elipse_9" data-name="Elipse 9" cx="1.111" cy="1.111" r="1.111" transform="translate(1181.416 569.905)" fill="#36c"/>
+        <circle id="Elipse_10" data-name="Elipse 10" cx="1.111" cy="1.111" r="1.111" transform="translate(1184.75 569.905)" fill="#36c"/>
+        <circle id="Elipse_11" data-name="Elipse 11" cx="1.111" cy="1.111" r="1.111" transform="translate(1184.75 573.239)" fill="#36c"/>
+        <circle id="Elipse_12" data-name="Elipse 12" cx="1.111" cy="1.111" r="1.111" transform="translate(1188.084 573.239)" fill="#36c"/>
+        <circle id="Elipse_13" data-name="Elipse 13" cx="1.111" cy="1.111" r="1.111" transform="translate(1188.084 569.905)" fill="#36c"/>
+        <circle id="Elipse_14" data-name="Elipse 14" cx="1.111" cy="1.111" r="1.111" transform="translate(1171.414 576.573)" fill="#36c"/>
+        <circle id="Elipse_15" data-name="Elipse 15" cx="1.111" cy="1.111" r="1.111" transform="translate(1171.414 579.907)" fill="#36c"/>
+        <circle id="Elipse_16" data-name="Elipse 16" cx="1.111" cy="1.111" r="1.111" transform="translate(1174.748 579.907)" fill="#36c"/>
+        <circle id="Elipse_17" data-name="Elipse 17" cx="1.111" cy="1.111" r="1.111" transform="translate(1174.748 576.573)" fill="#36c"/>
+        <circle id="Elipse_18" data-name="Elipse 18" cx="1.111" cy="1.111" r="1.111" transform="translate(1178.082 576.573)" fill="#36c"/>
+        <circle id="Elipse_19" data-name="Elipse 19" cx="1.111" cy="1.111" r="1.111" transform="translate(1178.082 579.907)" fill="#36c"/>
+        <circle id="Elipse_20" data-name="Elipse 20" cx="1.111" cy="1.111" r="1.111" transform="translate(1181.416 579.907)" fill="#36c"/>
+        <circle id="Elipse_21" data-name="Elipse 21" cx="1.111" cy="1.111" r="1.111" transform="translate(1181.416 576.573)" fill="#36c"/>
+        <circle id="Elipse_22" data-name="Elipse 22" cx="1.111" cy="1.111" r="1.111" transform="translate(1184.75 576.573)" fill="#36c"/>
+        <circle id="Elipse_23" data-name="Elipse 23" cx="1.111" cy="1.111" r="1.111" transform="translate(1188.084 576.573)" fill="#36c"/>
+      </g>
+    </g>
+  </g>
+  <line id="Línea_6" data-name="Línea 6" x2="26" transform="translate(0.439 10)" fill="none" stroke="#36c" stroke-miterlimit="10" stroke-width="1.5"/>
+  <line id="Línea_7" data-name="Línea 7" x2="26" transform="translate(0.439 10)" fill="none" stroke="#36c" stroke-miterlimit="10" stroke-width="1.5"/>
+</svg>

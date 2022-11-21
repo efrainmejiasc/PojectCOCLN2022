@@ -1,0 +1,355 @@
+<form class="AnimateMoveDown" [formGroup]="addressForm">
+  <div class="invitingCompany--container">
+    <label class="invitingCompany--label" for="invitingCompany">
+      Empresa
+      <span class="invitingCompany--required">*</span>
+    </label>
+    <div>
+      <mat-form-field class="custom-form-field invitingCompany--form-field">
+        <mat-select [formControl]="invitingCompany" required>
+          <mat-option
+            *ngFor="let companie of companiesInvite"
+            [value]="companie.companyId"
+            (click)="selectCompany(companie.companyId)"
+          >
+            {{ companie.companyName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="AnimateMoveDown" *ngIf="companySelected">
+    <section class="supply-grid">
+      <aside class="supply-grid--aside">
+        <span class="supply-grid--info" style="text-align: center">
+          <img
+            class="supply-grid--info-img"
+            src="assets/iconos/informacion.svg"
+            alt="informacion"
+          />
+          Recuerda los elementos de la cadena de abastecimiento para que
+          construyas la tuya
+        </span>
+
+        <div class="supply-grid--button-container">
+          <div
+            class="supply-grid--hover"
+            *ngFor="let elements of supplyElements"
+            [attr.data-info]="elements.additionalInfo[0].tooltip"
+          >
+            <button mat-button class="supply-grid--button">
+              <img
+                class="supply-grid--button-img"
+                [src]="elements.additionalInfo[0].logo"
+                [alt]="elements.supplyElement"
+              />
+            </button>
+          </div>
+        </div>
+
+        <button
+          *ngFor="let template of supplyElementTemplates"
+          type="button"
+          mat-raised-button
+          color="primary"
+          class="section-cln--button mat-rounded-5em p-1-2em w-100 mb-2"
+          (click)="addDefaultTemplate(template.templateInfo, true)"
+          [title]="getTitle(template)"
+        >
+          {{ template.templateName }}
+        </button>
+        <!-- <button
+          mat-raised-button
+          color="primary"
+          class="section-cln--button mat-rounded-5em p-1-2em w-100 mb-2"
+        >
+          PLANTILLA B2B
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="section-cln--button mat-rounded-5em p-1-2em w-100 mb-2"
+        >
+          PLANTILLA B2C
+        </button> -->
+      </aside>
+      <div class="w-100">
+        <div class="px-4">
+          <div class="row">
+            <div
+              class="col-md-3"
+              formArrayName="supplyChainElements"
+              *ngFor="let elements of list; let i = index"
+            >
+              <div
+                class="btn-elemet mat-elevation-z10"
+                [class.active]="elementSelected === i"
+                (click)="elementSelected = i"
+                [formGroupName]="i"
+              >
+                <button
+                  mat-mini-fab
+                  color="primary"
+                  type="button"
+                  class="btn-elemet--delete mat-elevation-z4"
+                  [ngClass]="!elements.supplyElement ? 'disabled-delete' : ''"
+                  [disabled]="elementSelected !== i"
+                  (click)="removeElement(i)"
+                >
+                  <img
+                    class="btn-elemet--delete-img"
+                    src="assets/iconos/delete.svg"
+                    alt="Eliminar elementos"
+                  />
+                </button>
+                <strong style="font-size: 13px;"> Elemento {{ i + 1 }} </strong>
+                <div class="btn-elemet--img">
+                  <img
+                    *ngIf="elements.supplyElement"
+                    [src]="elements.img.path"
+                    [alt]="elements.img.name"
+                  />
+                </div>
+                <mat-form-field appearance="outline" class="btn-elemet--select">
+                  <mat-select
+                    required
+                    formControlName="supplyElement"
+                    placeholder="Seleccione"
+                    [(ngModel)]="elements.supplyElement"
+                    (ngModelChange)="setImage(elements)"
+                  >
+                    <mat-option
+                      *ngFor="let elm of supplyElements"
+                      [value]="elm.enumerator"
+                      (click)="enableSaveButton = true"
+                    >
+                      {{ elm.supplyElement }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="mx-4" />
+        <div class="px-4 mb-2">
+          <div
+            formArrayName="supplyChainElements"
+            *ngFor="let elements of elementsField.controls; let i = index"
+          >
+            <div *ngIf="i == elementActive">
+              <p
+                class="color-title"
+                *ngIf="list[elementSelected].supplyElement"
+              >
+                ELEMENTO {{ elementSelected + 1 }} -
+                {{
+                  getElementName(supplyElements, list[elementSelected])
+                }}
+              </p>
+              <div class="row" [formGroupName]="i">
+                <div class="col-md-6">
+                  <label class="form-field--label" for="chargePerson">
+                    Responsable
+                  </label>
+                  <div class="d-flex">
+                    <mat-form-field class="form-simulator" [ngClass]="list[elementSelected].supplyElement ? '' : 'disabled'">
+                      <input
+                        matInput
+                        formControlName="chargePerson"
+                        [(ngModel)]="list[elementSelected].chargePerson"
+                      />
+                    </mat-form-field>
+                    <img class="info-alert" src="assets/iconos/info.svg" alt="información" title="Registra aquí, el nombre del cargo responsable de las actividades en esta etapa de tu cadena de abastecimiento." />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-field--label" for="measurementUnit">
+                    Unidad de medida
+                  </label>
+                  <div class="d-flex">
+                    <mat-form-field class="form-simulator" [ngClass]="list[elementSelected].supplyElement ? '' : 'disabled'">
+                      <input
+                        matInput
+                        formControlName="measurementUnit"
+                        [(ngModel)]="list[elementSelected].measurementUnit"
+                      />
+                    </mat-form-field>
+                    <img class="info-alert" src="assets/iconos/info.svg" alt="información" title="Registra aquí, la referencia estándar que usas para cuantificar una cantidad. Ejemplo: Gramo, kilogramo, metro, etc." />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-field--label" for="quantity">
+                    Cantidad
+                  </label>
+                  <div class="d-flex">
+                    <mat-form-field class="form-simulator" [ngClass]="list[elementSelected].supplyElement ? '' : 'disabled'">
+                      <input
+                        matInput
+                        formControlName="quantity"
+                        [(ngModel)]="list[elementSelected].quantity"
+                        currencyMask
+                        [options]="{
+                          prefix: '',
+                          thousands: '.',
+                          precision: '0',
+                          align: 'left'
+                        }"
+                      />
+                    </mat-form-field>
+                    <img class="info-alert" src="assets/iconos/info.svg" alt="información" title="Registra aquí, la cantidad requerida en tu cadena de abastecimiento." />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-field--label" for="cost"> Costo </label>
+                  <div class="d-flex">
+                    <mat-form-field class="form-simulator" [ngClass]="list[elementSelected].supplyElement ? '' : 'disabled'">
+                      <input
+                        matInput
+                        formControlName="cost"
+                        [(ngModel)]="list[elementSelected].cost"
+                        (ngModelChange)="validar(list[elementSelected])"
+                        (paste)="validar(list[elementSelected])"
+                        (key)="validar(list[elementSelected])"
+                        id="cost"
+                      />
+                    </mat-form-field>
+                    <img class="info-alert" src="assets/iconos/info.svg" alt="información" title="Registra aquí, el costo logístico en COP que tiene este elemento en tu cadena de abastecimiento." />
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <label class="form-field--label" for="activities">
+                    Actividades
+                  </label>
+                  <div class="d-flex">
+                    <mat-form-field class="form-simulator" [ngClass]="list[elementSelected].supplyElement ? '' : 'disabled'">
+                      <textarea 
+                        matInput 
+                        rows="6" 
+                        cols="40" 
+                        formControlName="activities"
+                        [(ngModel)]="list[elementSelected].activities"
+                        maxlength="1000"
+                        maxlength="1000">
+                      </textarea>
+                    </mat-form-field>
+                    <span class="character-counter">
+                      {{ elements.get("activities").value ? 1000 - elements.get("activities").value.length : 1000 }}
+                    </span>
+                    <img class="info-alert" src="assets/iconos/info.svg" alt="información" title="Registra aquí, las actividades asociadas al elemento de la cadena de abastecimiento seleccionado." />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section-costs">
+      <div>
+        <div>
+          <div class="section-costs--grid">
+            <div class="section-costs--grid-1">
+              <label class="form-field--label" for="billingCost">
+                Costo de facturación (COP)
+              </label>
+              <div class="d-flex">
+                <mat-form-field class="form-simulator form-simulator--2">
+                  <input
+                    matInput
+                    formControlName="billingCost"
+                    id="billingCost"
+                    [(ngModel)]="supplyChain.billingCost"
+                    (keyup)="validarCosto(supplyChain)"
+                    (paste)="validarCosto(supplyChain)"
+                    (ngModelChange)="validarCosto(supplyChain)"
+                  />
+                </mat-form-field>
+                <img class="info-alert" src="assets/iconos/info.svg" alt="información" title="Registra aquí el costo total facturado." />
+              </div>
+            </div>
+            <div class="section-costs--grid-2">
+              <label class="form-field--label" for="totalCost">
+                Costo total logístico
+              </label>
+              <div class="d-flex">
+                <mat-form-field class="form-simulator form-simulator--2">
+                  <input
+                    matInput
+                    formControlName="totalCost"
+                    [(ngModel)]="supplyChain.totalCost"
+                    id="totalCost"
+                    readonly
+                    (keyup)="calculatePercentageParticipationLogistics()"
+                    (paste)="calculatePercentageParticipationLogistics()"
+                  />
+                </mat-form-field>
+                <img class="info-alert" src="assets/iconos/info.svg" alt="información" title="Aquí, el sistema te muestra la sumatoria de los valores registrados en el campo “Costo” de todos los elementos ingresados." />
+              </div>
+            </div>
+            <div class="section-costs--grid-3">
+              <div class="bg-white">
+                <label class="form-field--label" for="sharePercentage">
+                  % Participación del costo logístico sobre la venta:
+                </label>
+                <div class="d-flex">
+                  <mat-form-field class="form-simulator">
+                    <input
+                      matInput
+                      readonly
+                      formControlName="sharePercentage"
+                      [(ngModel)]="supplyChain.sharePercentage"
+                    />
+                  </mat-form-field>
+                  <span class="character-counter character-counter--2">
+                    %
+                  </span>
+                  <img class="info-alert" src="assets/iconos/info.svg" alt="información" title="Aquí el sistema calcula y te muestra el porcentaje del costo logístico sobre la venta en tu cadena de abastecimiento." />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section-submit">
+      <p class="section-submit--p">
+        <img src="assets/iconos/info.svg" alt="información" />
+        La información registrada podrás exportarla en un documento en formato
+        PDF
+      </p>
+
+      <div class="section-submit--buttons">
+        <button
+          mat-raised-button
+          color="primary"
+          class="section-cln--button mat-rounded-5em"
+          (click)="onSubmit()"
+          [ngClass]="!enableSaveButton ? 'disabled-delete': ''"
+        >
+          GUARDAR
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="section-cln--button mat-rounded-5em"
+          [ngClass]="supplyChain.idSupplyChain === 0 ? 'disabled-delete': ''"
+          (click)="downloadFile()"
+        >
+          EXPORTAR
+        </button>
+      </div>
+    </section>
+  </div>
+</form>
+<app-popup-confirmation *ngIf="showConfirmAlerta"
+  message = "La cadena de abastecimiento ha sido guardada exitosamente"
+  [title]="'ACEPTAR'"
+  (close)="closePopup($event)">
+</app-popup-confirmation> 
+<app-popup-cambios
+  *ngIf="showAlertMessage"
+  [message]="alertMessage"
+  (close)="closePopupOptions($event)">
+</app-popup-cambios>

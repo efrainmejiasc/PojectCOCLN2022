@@ -1,0 +1,62 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-fall" [fullScreen]="true">
+    <p style="color: white">Cargando...</p>
+</ngx-spinner>
+<div class="container pt-4 container-relative d-flex flex-column justify-content-center align-items-center"
+    (click)="identifyClickOutSide($event)" *ngIf="loadComplet">
+    <div class="box-alert d-flex justify-content-center align-items-center">
+        <span class="alert-icon"></span>
+        <p class="text-color-red p-0 m-0 ml-4">Recuerde que para finalizar con éxito el diligenciamiento o actualización
+            del autodiagnóstico deberá valorar
+            todas las afirmaciones del formulario incluyendo las nuevas o las activadas que no tienen una valoración.
+        </p>
+    </div>
+    <div class="evaluacion-content d-flex flex-column justify-content-center align-items-center mt-4">
+        <div class="instruction">
+            Lea cada una de las afirmaciones que se presentan a continuación y califique de 1 a 10, siendo 1 la
+            menor calificación y 10 la mayor calificación, qué tanto en su Secretaría de Educación se cumple con cada
+            una
+            de ellas.
+        </div>
+        <div class="title-data d-flex justify-content-center align-items-center border-top border-light">
+            <div class="afirmationContent d-flex justify-content-center align-items-center">Afirmación</div>
+            <div class="calificationContent d-flex justify-content-center align-items-center border-left border-light">
+                Seleccione la calificación</div>
+        </div>
+        <div class="content-data d-flex justify-content-center align-items-center"
+            *ngFor="let autodiagnostico of diagnosticData[numberPosition]">
+            <div class="afirmationContent d-flex justify-content-center align-items-center">
+                <span class="result-first-word mr-4"
+                    [ngClass]="{'background-estrategias':autodiagnostico.tipoCapacidad == 'Estratégicas','background-tecnicas': autodiagnostico.tipoCapacidad == 'Técnicas','background-personales': autodiagnostico.tipoCapacidad == 'Personales'}">{{splitData(autodiagnostico.tipoCapacidad,0)}}</span>
+                <p class="p-0 m-0">{{autodiagnostico.afirmacion}}</p>
+            </div>
+            <div class="calificationContent d-flex justify-content-center align-items-center border-left border-light">
+                <app-calification-input [calification]="autodiagnostico.calificacion" [initInject]="initInject"
+                    (resultValue)="attachValue($event,autodiagnostico)"
+                    [closeActionByOutsideClick]="closeActionByOutsideClick" [index]="autodiagnostico.id">
+                </app-calification-input>
+            </div>
+        </div>
+        <div class="navigation">
+            <button (click)="actionNavigation(0,diagnosticData[numberPosition])">
+                <span [ngClass]="{'beforeIcon':numberPosition > 0,'beforeIconDisabled':numberPosition < 1}"></span>
+                <span>Anterior</span>
+            </button>
+            <button class="buttonFinal" *ngIf="!isFirstTime" [disabled]="!viewFinalEvaluation"
+                [ngClass]="{'active': viewFinalEvaluation, 'disabled': !viewFinalEvaluation }"
+                (click)="finalCapacidad(diagnosticData[numberPosition])">Terminar autodiagnóstico</button>
+            <button (click)="actionNavigation(1,diagnosticData[numberPosition])"
+                [disabled]="numberPosition == (diagnosticData.length - 1)">
+                <span
+                    [ngClass]="{'nextIcon' : numberPosition < (diagnosticData.length - 1) , 'nextIconDisabled':numberPosition == (diagnosticData.length - 1)}"></span>
+                <span>Siguiente</span>
+            </button>
+        </div>
+        <div class="col-sm-12 px-0 d-flex justify-content-center align-items-center py-4" *ngIf="!isFirstTime">
+            <p class="text-color-blue text-justify p-0 m-0">Una vez haya realizado todas las modificaciones al
+                autodiagnóstico haga clic en este botón para generar
+                un nuevo resultado del autodiagnóstico. Recuerde que el resultado será generado en un documento y
+                enviado a su correo electrónico y a los correos ingresados. Asegúrese de dar clic aquí únicamente cuando
+                haya realizado <b>TODOS</b> los ajustes requeridos.</p>
+        </div>
+    </div>
+</div>

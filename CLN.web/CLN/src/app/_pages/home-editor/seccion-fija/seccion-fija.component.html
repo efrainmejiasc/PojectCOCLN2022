@@ -1,0 +1,51 @@
+<div id="contenedor-general" class="gradiente-circular">
+    <div class="modulos-container">
+      <div class="modulo">
+        <div class="cabecera">
+            <img class="icono" src="assets/imgs/home-editor/iconoCP.svg" alt="">
+            <h1>CONSULTAR PROCESOS DE CONTRATACIÓN PÚBLICA</h1>
+        </div>
+        <div class="centro">
+            <img src="assets/imgs/home-editor/aro.png" alt="">
+        </div>
+        <div class="texto">
+            <p style="text-align:center; font-weight: regular;">
+              Conoce aquí los Procesos de Contratación Pública en los cuales puedes participar, según tu <br> industria o sector
+            </p>
+            <div style="text-align:center; margin-top: 10px;   margin-top: 30px">
+              <button class="conocemas"(click)="goToProcesosDeContratacion()">CONOCE MÁS</button>
+            </div>
+        </div>
+      </div>
+
+      <div class="modulo" *ngIf="isPlansAcquisition">
+        <div class="cabecera">
+            <img class="icono" src="assets/imgs/home-editor/adquisicion.svg" alt="">
+            <h1>CONSULTAR PLANES <br> DE ADQUISICIÓN</h1>
+        </div>
+        <div class="centro">
+            <img src="assets/imgs/home-editor/hombre.png" alt="">
+            <button (click)="goToPlanesDeAdquisicion()">CONOCE MÁS</button>
+        </div>
+        <div class="texto">
+            <p>
+              Conoce aquí las adquisiciones planeadas por las entidades estatales del país. Consulta y conoce las oportunidades de negocio según tu sector/industria.
+            </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="banner-container">
+      <div class="banner-bg">
+        <div class="banner-elements">
+          <h2>Conoce las cifras de Compras Públicas de nuestro país</h2>
+          <div>
+            <img src="assets/imgs/home-editor/flecha2.png" alt="" />
+            <span (click)="goToCifras()"  class="banner-btn">VER CONSOLIDADO</span>
+            <img src="assets/imgs/home-editor/flecha1.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>

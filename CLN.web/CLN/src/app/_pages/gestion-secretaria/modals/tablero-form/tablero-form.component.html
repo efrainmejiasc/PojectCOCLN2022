@@ -1,0 +1,48 @@
+<div class="modal-body">
+    <!-- Titulo -->
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h2 class="modal-title font_title text-color-red">{{ id === 0 ? 'Cargar' : 'Editar' }} Tablero </h2>
+    <!-- Fin Titulo -->
+
+    <!-- Formulario -->
+    <form novalidate [formGroup]="form" (ngSubmit)="save($event)">
+        <div class="form-group row mx-2">
+            <label class="label">
+                Nombre del tablero |
+                <span class="text-color-red">
+                    {{ nombre.value | conteoCaracteres: formProperties.nombre.maxCaracteres }}
+                </span>
+            </label>
+            <div class="content-asterisk pr-4">
+                <input type="text" autocomplete="off" class="input-asterisk px-2" id="nombre" #nombre
+                    [ngClass]="{'inputInvalid': validarCampo('nombre')}"
+                    [maxlength]="formProperties.nombre.maxCaracteres" 
+                    formControlName="nombre" (keypress)="patternValidation($event)" />
+                <span class="asterisk"
+                    [ngClass]="{'asteriskInvalid': validarCampo('nombre')}">*</span>
+            </div>
+        </div>
+        <div class="form-group row mx-2">
+            <label class="label">Link en Power BI / Vinculo a otro sitio web</label>
+            <div class="content-asterisk pr-4">
+                <input type="text" autocomplete="off" class="input-asterisk px-2" id="link" #link
+                    [ngClass]="{'inputInvalid': validarCampo('link')}"
+                    [maxlength]="formProperties.link.maxCaracteres" 
+                    formControlName="link" />
+                <span class="asterisk"
+                    [ngClass]="{'asteriskInvalid': validarCampo('link')}">*</span>
+            </div>
+        </div>
+
+        <div class="row mx-0">
+            <div class="col-12 form-group text-center pt-3">
+                <button class="submitbutton" [ngClass]="{disabled: form.invalid }" type="submit">
+                  Guardar
+                </button>
+              </div>
+        </div>
+    </form>
+    <!-- Fin Formulario -->
+</div>

@@ -1,0 +1,119 @@
+.input{
+    display: block;
+    position: relative;
+    z-index: 10;
+    background-color: transparent;
+    width: 100%;
+    color: #36c;
+    border: 1px solid #36c !important;
+    border-radius: 20px;
+    &.disabled{
+      border: 1px solid #999 !important;
+    }
+  }
+  .input-container{
+    position: relative;
+    }
+  .arrow-down{
+    position: absolute;
+    top: 0.35em;
+    right: 1.5em;
+    width: 1em;
+    height: 1em;
+    background: #f42f63;
+    -webkit-clip-path: polygon(50% 100%, 0 0, 100% 0);
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+    z-index: 8;
+  }
+
+  .box-color{
+    width: 25px;
+    height: 25px;
+    border-radius: 0.3em !important;
+  }
+
+  .select-contenidos {
+    height: 150px;
+    overflow: auto;
+    padding: 10px;
+  }
+
+  .item {
+    padding: 10px;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+
+  .extension {
+    margin-bottom: 5px;
+  }
+
+  .cantidad-contenidos {
+    border: 1px solid;
+    border-radius: 25px;
+    border-color: #f42f63;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom: 0px;
+    font-weight: bold;
+  }
+
+  #nuevotipoevento {
+    border-radius: 10px;
+    background-color: #e6effd;
+    margin: 10px;
+    padding: 20px;
+    vertical-align: middle;
+  }
+
+.simulatextarea {
+  border: 1px solid #3366cc;
+  color: #3366cc;
+  border-radius: 0.8em;
+  display: block;
+  width: 100%;
+  height: 150px;
+  overflow-y: scroll;
+}
+
+.texto-estatico {
+  padding: 0px 10px;
+  width: 100%;
+}
+
+.notificacion {
+  width: 100%;
+  border: none;
+}
+
+.private-error {
+  display: block;
+}
+
+button {
+  border: 0 !important;
+}
+
+ngx-timepicker-field.ngx-timepicker{
+  border-bottom: 0px !important;
+}
+
+.instead-option > li {
+  cursor: pointer;
+}
+
+.instead-option > li > a {
+  display: block;
+}
+
+.instead-option > li:hover {
+  background: #aaa;
+}
+
+.pull-right {
+  margin-left: 10px;
+}

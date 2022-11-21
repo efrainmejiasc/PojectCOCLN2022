@@ -1,0 +1,53 @@
+<section>
+
+  <app-popup-confirmation *ngIf="showNotification"
+    [message] = "notificationMessage"
+    (close)="closePopup($event)">
+  </app-popup-confirmation>
+
+  <h2>INTERESES DE TU EMPRESA</h2>
+
+  <div class="card">
+    <h3>ENVIO DE NOTIFICACIONES DE TU INTERES</h3>
+    <p class="list-item">Deseo recibir notificaciones a través de mi correo electrónico registrado asociado a:</p>
+    <!-- <div class="alert-container">
+      <img src="assets/img/others/alerta.svg" alt="ver ayuda" />
+      <p class="indication">Sí estás interesado en incluir más de una entidad debes separarlas mediante una coma (,)</p>
+    </div> -->
+    <div *ngFor="let item of notificationObjs">
+      <div class="row-checkbox">
+        <input
+        [checked] = "item.isSelected"
+        (click)="handleInput($event, item.id)"
+        type="checkbox"/>
+      <p>{{item.notification}}</p>
+      </div>
+      <div *ngIf ="item.frecuency.length > 0 && item.isSelected" class="frecuencia">
+        <p>Frecuencia de envío *</p>
+        <div *ngFor ="let frecuency of item.frecuency" class="row-checkbox-frecuencia">
+          <input
+            [checked] = "frecuency === item.notificationFrequency ? true : false"
+            (click) = "handlefrecuency(item, frecuency)"
+            type="checkbox"/>
+          <p>{{frecuency}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-checkbox">
+      <input
+        #todosInput
+        [checked] = "allSelected"
+        (click)="handleTodos($event, todosInput)"
+        type="checkbox"/>
+      <p>Seleccionar todos</p>
+    </div>
+
+  </div>
+  <div [ngClass] ="guardarOn ? 'guardar-on' : 'guardar-off' " class="btn-container">
+    <button
+      [disabled] = "disabledButton"
+      (click)="saveNotification()"class="general-btn">GUARDAR
+  </button>
+  </div>
+</section>

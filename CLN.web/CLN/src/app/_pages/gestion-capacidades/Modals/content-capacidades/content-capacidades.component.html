@@ -1,0 +1,17 @@
+<div [ngClass]="{'animation-to-bottom': !actionIn , 'animation-to-top': actionIn }"
+    class="container container-relative d-flex flex-column justify-content-center align-items-center" *ngIf="show">
+    <div class="box-capacidad d-flex justify-content-center align-items-center" *ngFor="let capacidad of capacidades">
+        <div class="name-capacidad d-flex flex-column justify-content-center align-items-center">
+            <span class="result-first-word" [style.background-color]="capacidad.color">{{capacidad.abreviatura}}</span>
+            <span class="name mt-2 text-color-blue">{{capacidad.nombre}}</span>
+        </div>
+        <div class="resume-capacidad d-flex justify-content-center align-items-center py-2"
+            [style.border-color]="capacidad.color">
+            <p class="p-0 m-0  text-color-blue">{{capacidad.descripcion}}</p>
+        </div>
+    </div>
+    <button class="goTop" (click)="close()">
+        <span class="icon-goTop"></span>
+    </button>
+    <hr class="RedLine" />
+</div>

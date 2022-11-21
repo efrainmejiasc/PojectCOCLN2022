@@ -1,0 +1,25 @@
+<div class="fake-body">
+    <div class="container contenedor">
+        <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-fall" [fullScreen]="true">
+            <p style="color: white">Cargando...</p>
+        </ngx-spinner>
+        <div class="container">
+            <div *ngIf="titulo; else cargandoTitulo">
+                <app-contenidos-titulo 
+                    (evento)="reloadtable($event)" 
+                    [titulo]="titulo" 
+                    [permitsUser]="permisosService.getPermitsUser()"
+                    (eventoReturn)="responseServerTwo($event)">
+                </app-contenidos-titulo>
+            </div>
+            <app-table-dynamic-contenidos 
+                (buildAction)="buildAction($event)" 
+                [dataRow]="configuration.rowOrderData"
+                [dataToPrint]="configuration.dataToPrint" 
+                [permitsUser]="permisosService.getPermitsUser()"
+                [searchConfig]="searchConfig"
+                [emptyConfiguration]="emptyConfiguration">
+            </app-table-dynamic-contenidos>
+        </div>
+    </div>
+</div>

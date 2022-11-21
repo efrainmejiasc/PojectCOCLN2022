@@ -1,0 +1,21 @@
+.modal-header{
+    border:none;
+}
+.modal-footer{
+    border:none;
+}
+.close
+{
+    right: 1em;
+    width: 1em;
+    height: 1em;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: #36c;
+    color: white;
+    float: right;
+    position: absolute;
+    padding: 0;
+    top: 1em;
+}

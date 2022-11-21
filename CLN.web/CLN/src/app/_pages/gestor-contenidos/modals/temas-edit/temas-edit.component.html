@@ -1,0 +1,37 @@
+<div class="modal-header">
+    <h2 class="modal-title font_title p-0 m-0 text-color-red">Editar tema</h2>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form novalidate [formGroup]="form" (ngSubmit)="save($event)">
+        <div class="form-input">
+            <label class="label">
+                <!-- [ngClass]="{ 'label-incorrecto': form['titulo'] }" -->
+                <span class="label p-0 m-0">
+                    Nombre del tema |
+                    <span class="text-color-red">
+                        {{
+                form.get("descripcion").value
+                  | conteoCaracteres: formProperties.descripcion.maxCaracteres
+              }}
+                    </span>
+                </span>
+                <div class="content-asterisk">
+                    <input class="input-asterisk px-2"
+                        [ngClass]="{'inputInvalid': form.get('descripcion').invalid && activeValidator}" maxlength="150"
+                        id="descripcion" #descripcion formControlName="descripcion"
+                        autocomplete="off" />
+                    <span class="asterisk"
+                        [ngClass]="{'asteriskInvalid': form.get('descripcion').invalid && activeValidator}">*</span>
+                </div>
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group text-center">
+                <button class="submitbutton" type="submit">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>

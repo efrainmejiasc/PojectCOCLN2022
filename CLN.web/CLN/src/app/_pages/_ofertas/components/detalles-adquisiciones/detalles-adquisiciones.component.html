@@ -1,0 +1,72 @@
+<div style="text-align:center;">
+    <span style="color: #4169af; font-size: 26px; font-weight: 800;">{{ data.entityName }}</span>
+</div>
+<div style="margin: 30px;">
+    <div style="margin-top: 15px; margin-bottom: 15px;">
+        <p style="font-weight: 800;">
+            Descripción
+        </p>
+        <div style="border-style: solid;">
+            <p style="margin: 10px">
+                {{ data.description || '' }}
+            </p>
+        </div>
+    </div>
+    <p> 
+        <span style="font-weight: 800;">Producto o servicio asociado:</span> {{ data.product ? data.product : '' }}
+    </p>
+    <p>
+        <span style="font-weight: 800;">Duración estimada:</span> {{ data.duration || '' }}
+    </p>
+    <p>
+        <span style="font-weight: 800;">Modalidad de contratación:</span> {{ data.modality || '' }}
+    </p>
+    <p>
+        <span style="font-weight: 800;">Fecha de inicio proceso de contración:</span> {{ data.initDate || '' }}
+    </p>
+
+    <div style="margin-top: 15px">
+        <div>
+            <table style="width: 100%;">
+                <tbody style="background-color: #ffffff">
+                    <tr>
+                        <td style="padding: 20px; width: 30%; border: 1px solid #070707;">
+                            <div style=" margin: 0; text-align: center;">
+                                <span style="font-size: 15px; color: #333333; font-family: opensans_semibold; margin-left: 0.1em;">
+                                    <img src="assets/imgs/iconos/ubicacion.svg" style="width: 15px;">
+                                    {{ data.location }}
+                                </span>
+                            </div>
+                        </td>
+                        <td style="padding: 10px; justify-content: left; border: 1px solid #070707;">
+                            <span style="text-align: left; font-size: 13px; color: #b3b4b5;">Contacto entidad</span>
+                            <p style="margin: 0">
+                                <span style="text-align: left; display: block; color: #00040c; font-size: 15px;">
+                                    <label style="font-weight: 800; text-align: left; color: #1e1f21; font-size: 15px;">Nombre del contacto:</label>
+                                    {{ data.contactName || '' }}
+                                </span>
+                            </p>
+                            <p style="margin: 0">
+                                <span style="text-align: left; display: block; color: #00040c; font-size: 15px;">
+                                    <label style="font-weight: 800; text-align: left; color: #1e1f21; font-size: 15px;">Correo electrónico:</label>
+                                    {{ data.contactEmail || '' }}
+                                </span>
+                            </p>
+                            <p style="margin: 0">
+                                <span style="text-align: left; display: block; color: #00040c; font-size: 15px;">
+                                    <label style="font-weight: 800; text-align: left; color: #1e1f21; font-size: 15px;">Número de contacto:</label>
+                                    {{ data.contactPhone || '' }}
+                                </span>
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+
+    <div class="btn-container">
+        <span (click)="closeDialog()"class="general-btn">CERRAR</span>
+    </div>
+</div>

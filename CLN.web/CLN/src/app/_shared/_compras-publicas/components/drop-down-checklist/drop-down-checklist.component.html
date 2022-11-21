@@ -1,0 +1,21 @@
+<div class="wrapper" [ngClass]="wrapperActive ? 'active' : 'inactive'">
+    <div class="select-btn" (click)="showOptions()">
+      <div class="content-box">
+        <div style="font-size: 16px; color: #959595; font-family: opensans_semibold; text-align: left;">
+            {{ title }}
+        </div>
+      </div>
+      <div class="arrow-right">
+        <img src="assets/imgs/iconos/arrow-down.svg" />
+      </div>
+    </div>
+    <div class="content">
+        <div class="options">
+            <div *ngFor="let item of lista" (click)="onClick(item)">
+                <input style="margin-left: 5px; border:none;" type="checkbox">
+                <label style="padding-left: 5px; color: #959595;">{{item.territorialEntity}}</label>
+            </div>
+        </div>
+    </div>
+</div>
+  

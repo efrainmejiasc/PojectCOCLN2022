@@ -1,0 +1,19 @@
+
+
+<div id="custom-select" class="wrapper cp-input-boxes" [ngClass]="wrapperActive ? 'active' : 'inactive'">
+    <div class="select-btn" [ngClass]="{'alert': showAlert}">
+      <div class="content-box">
+      </div>
+      <div class="arrow-right" (click)="showOptions()">
+        <img src="assets/imgs/iconos/arrow-down.svg" />
+      </div>
+    </div>
+    <div class="content">
+      <ul class="options">
+        <li [ngClass]="item.selected ? 'selected' : ''" *ngFor="let item of lista" (click)="selectChangeHandler(item)" [ngStyle]="item.disabled ? { 'pointer-events': 'none', 'opacity': '0.5', 'cursor': 'not-allowed' } : { }">
+          {{item.text}}
+        </li>
+      </ul>
+    </div>
+</div>
+  

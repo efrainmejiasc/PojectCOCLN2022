@@ -1,0 +1,158 @@
+<div class="container contenedor" (click)="identifyClickOutSide($event)">
+    <div class="container">
+        <form class="sizePages" [formGroup]="formSizePage">
+            <div class="container-actions">
+                N° de registros por página
+                <select class="sizeSelect" formControlName="size" (change)="modifySize()">
+                    <option *ngFor="let size of sizePagePaginator" [value]="size">{{size}}</option>
+                </select>
+            </div>
+            <div class="container-actions pr-4" *ngIf="searchConfig != undefined">
+                Buscar por:
+                <input class="sizeInput" formControlName="search" type="text" (input)="searchData()" maxlength="100">
+                <img class="iconInput" src="../../../../assets/iconos/table_dynamic/lupa.svg" />
+            </div>
+        </form>
+        <table class="table-dynamic mt-4" id="table">
+            <thead>
+                <tr>
+                    <th *ngFor="let titleData of dataRow" [style.width]="titleData.size + titleData.typeSize"
+                        [style.border-radius]="titleData.borderRadius">
+                        <span #textContent{{titleData.position}}
+                            id="textContent{{titleData.position}}">{{titleData.nameInThead}}</span>
+                        <form *ngIf="titleData.searchFunction" class="contentForm" #searchBox{{titleData.position}}
+                            id="searchBox{{titleData.position}}" [formGroup]="formColumn">
+                            <input type="text" placeholder="Buscar {{titleData.nameInThead}}"
+                                (input)="searchInColumn(titleData.nameInObject,titleData.position)"
+                                formControlName="masterSearch{{titleData.position}}" />
+                            <button (click)="searchByColumn(titleData.position , false)">x</button>
+                        </form>
+                        <div class="sortContent" *ngIf="titleData.orderBy" #orderByButton{{titleData.position}}
+                            id="orderByButton{{titleData.position}}"
+                            (click)="sortBy(titleData.nameInObject,titleData.orderBy)">
+                            <div class="sortarrows-top"></div>
+                            <div class="sortarrows-down"></div>
+                        </div>
+                        <div class="searchFilter" *ngIf="titleData.searchFunction"
+                            id="searchButton{{titleData.position}}" #searchButton{{titleData.position}}
+                            (click)="searchByColumn(titleData.position , true)">
+                            <button class="lupa-white-to-flex">
+                                <span class="lupa"></span>
+                            </button>
+                        </div>
+                        <div class="connectionFilter" *ngIf="titleData.filterBy" (click)="activeFilter(titleData)"
+                            id="filterButton{{titleData.position}}" #filterButton{{titleData.position}}>
+                            <button class="arrow-down-white-to-flex"></button>
+                        </div>
+                        <div class="window-filter-content" *ngIf="titleData.filterBy" id="filter{{titleData.position}}"
+                            #filter{{titleData.position}}>
+                            <input type="button" [ngClass]="{'active':activeFilt == null}" value="Todos"
+                                (click)="filterByContent(null , print)" />
+                            <input type="button" *ngFor="let print of createFilter(titleData)"
+                                [value]="print[titleData.nameInObject]" [attr.title]="print[titleData.nameInObject]"
+                                (click)="filterByContent(titleData , print)" />
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="pageView.length < 1 && masterArrayToPrint.length > 0">
+                    <td>{{emptyConfiguration.emptySearchText + formSizePage.get("search").value + "."}}</td>
+                </tr>
+                <tr *ngIf="masterArrayToPrint.length < 1">
+                    <td>{{emptyConfiguration.emptyContentText}}</td>
+                </tr>
+                <tr *ngFor=" let dataprint of pageView ; let i=index">
+                    <td *ngFor="let titleData of dataRow" [style.justify-content]="titleData.textAlign"
+                        [style.align-items]="titleData.horizontalAlign" [style.flex-direction]="titleData.flexDirection"
+                        [style.padding]="titleData.padding" [style.width]="titleData.size + titleData.typeSize"
+                        [style.height]="titleData.sizeH">
+                        <span *ngIf="titleData.activeIcon && !titleData.dataStatusActive == undefined"
+                            [ngClass]="{'circle-green':dataConcat(titleData.nameInObject,i)==titleData.activeResultInObject,'circle-red':dataConcat(titleData.nameInObject,i)==titleData.inactiveResultInObject}"></span>
+                        <p class="m-0">{{dataConcat(titleData.nameInObject,i)}}</p>
+                        <span *ngIf="titleData.activeIcon && titleData.dataStatusActive != undefined"
+                            [ngClass]="{'circle-green':dataConcat(titleData.dataStatusActive,i)==titleData.activeResultInObject,'circle-red':dataConcat(titleData.dataStatusActive,i)==titleData.inactiveResultInObject}"></span>
+                        <button (click)="actionType('view',dataprint)"
+                            [style.height]="titleData.buttonHeightPercent + '%'"
+                            *ngIf="permitsUser && titleData.actionRow && dataprint.idEstado == 5 && permitsUser.canEdit">Ver</button>
+                        <button (click)="actionType('viewAction',dataprint)"
+                            [style.height]="titleData.buttonHeightPercent + '%'"
+                            *ngIf="!titleData.viewIcon && permitsUser && titleData.actionRow && dataprint.idEstado != 5 && permitsUser.canView">Ver</button>
+                        <button (click)="actionType('edit',dataprint)"
+                            [style.height]="titleData.buttonHeightPercent + '%'"
+                            *ngIf="permitsUser && titleData.actionRow && dataprint.idEstado != 5 && permitsUser.canEdit">Editar</button>
+                        <button (click)="actionType('delete',dataprint)"
+                            [style.height]="titleData.buttonHeightPercent + '%'"
+                            *ngIf="permitsUser && titleData.actionRow && dataprint.idEstado != 5 && permitsUser.canDelete">Eliminar</button>
+                        <button (click)="actionType('activein',dataprint)"
+                            [style.height]="titleData.buttonHeightPercent + '%'"
+                            *ngIf="permitsUser && titleData.actionRow && dataprint.idEstado != 5 && permitsUser.canActive">{{activeAction(dataprint)}}</button>
+                        <span (click)="actionType('viewHTML',dataprint)"
+                            class="d-flex justify-content-center align-items-center"
+                            *ngIf="titleData.viewIcon && !titleData.actionRow">
+                            <img src="../../../../assets/micrositios/images/ojoAzul.svg" />
+                        </span>
+                        <button (click)="actionType('viewAction',dataprint)"
+                            class="d-flex justify-content-center align-items-center"
+                            *ngIf="titleData.viewIcon && titleData.actionRow && permitsUser.canView">
+                            <img src="../../../../assets/micrositios/images/ojoAzul.svg" />
+                        </button>
+                        <a *ngIf="titleData.actionRow && permitsUser == undefined && dataprint.tipoContenido == 'ARCHIVO'"
+                            [href]="urlToDownload + dataprint.ruta" class="font_pb text_click">
+                            <img src="../../../../assets/micrositios/images/ARCHIVO.svg" />
+                        </a>
+                        <a *ngIf="titleData.actionRow && permitsUser == undefined && dataprint.tipoContenido != 'ARCHIVO'"
+                            [href]="dataprint.ruta" target="_blank">
+                            <img src="../../../../assets/micrositios/images/ENLACE.svg" />
+                        </a>
+                        <div
+                            *ngIf="titleData.actionRow && permitsUser && !permitsUser.canDelete && !permitsUser.canEdit && !permitsUser.canActive && !permitsUser.canCreate && !permitsUser.canView">
+                            No hay acciones disponibles
+                        </div>
+                        <div *ngIf="dataConcat(titleData.nameInObject,i) == '' && titleData.arrayContent" class="col-sm-12 p-0 m-0">
+                            <div *ngFor="let array of dataprint[titleData.nameInObject]"
+                                class="col-sm-12 p-0 m-0 d-flex" [style.justify-content]="titleData.textAlign">
+                                {{"-" + array[titleData.nameInObjectArray]}}
+                                <span *ngIf="titleData.activeIconArray"
+                                    [ngClass]="{'circle-green':array[titleData.activeIconArrayName] == titleData.activeResultInObject,'circle-red':array[titleData.activeIconArrayName] == titleData.inactiveResultInObject}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="content-paginator-native">
+            <div class="paginator-resume">
+                Mostrando {{firstPage}} a {{finalPage}} de {{sizePage}}
+            </div>
+            <div class="paginator-actions">
+                <button [ngClass]="{'action-inactive':(pageActive) == 0, 'action-active': (pageActive) > 0 }"
+                    (click)="navigatePaginator(1)">Anterior</button>
+                <div class="pages">
+                    <button *ngIf="pageInit > 0"
+                        [ngClass]="{'page-active':page == (pageActive + 1),'page-inactive' : page != (pageActive + 1)}"
+                        (click)="viewPagesExtremes(1)">
+                        {{paginatorList[0]}}
+                    </button>
+                    <span class="mr-1 ml-2" *ngIf="pageInit > 0">...</span>
+                    <button *ngFor="let page of paginatorListSegmented ; let i = index"
+                        [ngClass]="{'page-active':page == (pageActive + 1),'page-inactive' : page != (pageActive + 1)}"
+                        (click)="viewPaginator(page,i)">
+                        {{page}}
+                    </button>
+                    <span class="mr-1 ml-2"
+                        *ngIf="paginatorList.length > 5 && (pageInit + 5) != paginatorPrint.length">...</span>
+                    <button *ngIf="paginatorList.length > 5 && (pageInit + 5) != paginatorPrint.length"
+                        [ngClass]="{'page-active':page == (pageActive + 1),'page-inactive' : page != (pageActive + 1)}"
+                        (click)="viewPagesExtremes(2)">
+                        {{paginatorList.length}}
+                    </button>
+
+                </div>
+                <button
+                    [ngClass]="{'action-inactive':(pageActive + 1) == paginatorPrint.length, 'action-active': (pageActive + 1) < paginatorPrint.length }"
+                    (click)="navigatePaginator(2)">Siguiente</button>
+            </div>
+        </div>
+    </div>
+</div>

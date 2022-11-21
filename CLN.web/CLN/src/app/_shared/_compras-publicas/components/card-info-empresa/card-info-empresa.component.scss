@@ -1,0 +1,23 @@
+.empresa-info-container{
+    border:1px solid #7d7d7d;
+    margin-top: 30px;
+    padding: 30px;
+}
+  
+.empresa-info-container h2{
+    text-align: center;
+    font-size: 19px;
+    font-weight: 700;
+    color:#4169af;
+    margin-bottom: 15px;
+}
+  
+.empresa-info-container p{
+    font-size: 16px;
+    color:#333333;
+    margin: 0px;
+}
+  
+.empresa-info-container p span:first-child{
+    font-weight: bold;
+}

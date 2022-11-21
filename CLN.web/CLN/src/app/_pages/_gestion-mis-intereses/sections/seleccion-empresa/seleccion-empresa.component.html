@@ -1,0 +1,32 @@
+<div class="empresa-container">
+
+  <app-popup-cambios *ngIf="showAlertOut"
+    [message] = "notificationCambiosMessage"
+    (close)="closePopupCambios($event)">
+  </app-popup-cambios>
+
+  <p>Selecciona la empresa *</p>
+  <app-cp-select
+    [lista]="empresas"
+    [itemS]="empresaSelected"
+    (idValueEvent)="idEmpresaSelected($event)">
+  </app-cp-select>
+
+  <div *ngIf="showEmpresaSelected" class="empresa-info-container">
+    <h2>PERFIL DE LA EMPRESA</h2>
+    <p><span>Nombre de la empresa: </span> <span>{{empresaSelected.name}}</span></p>
+    <p><span>Número de identificación: </span> <span>{{empresaSelected.identifier}}</span></p>
+    <p><span>País: </span> <span>{{empresaSelected.country}}</span></p>
+    <p><span>Ciudad:  </span> <span>{{empresaSelected.city}}</span></p>
+    <p><span>Industria/ Sector principal de la empresa: </span>
+      <span *ngFor="let item of empresaSelected.industries; let i=index">{{item.value}}</span>
+    </p>
+  </div>
+
+  <div class="company-interest-options-container">
+    <app-offer-options *ngIf="showEmpresaSelected" [opciones]="opciones" [selectedOption]="selectedOption"></app-offer-options>
+    <app-procesos-compra *ngIf="selectedOption === 'PROCESOS DE COMPRAS PÚBLICAS'"></app-procesos-compra>
+    <app-planes-anuales *ngIf="selectedOption === 'PLANES ANUALES DE ADQUISICIONES'"></app-planes-anuales>
+    <app-notificaciones *ngIf="selectedOption === 'NOTIFICACIONES'"></app-notificaciones>
+  </div>
+</div>

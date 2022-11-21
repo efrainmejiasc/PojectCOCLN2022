@@ -1,0 +1,32 @@
+<div class="col-sm-12 p-0 m-0">
+    <app-plantilla-uno [template]="EditorTemplates" [closeActionByOutsideClickPattern]="closeActionByOutsideClick"
+        (templateReturn)="buildEditor($event)" [nameSection]="nameSection" [color]="colorBackground"
+        [index]="indexEvent" [builder]="builder" [pagination]="pagination" [pages]="pages"
+        [backgroundImage]="backgroundImg" *ngIf="templateOne">
+    </app-plantilla-uno>
+    <app-plantilla-dos [template]="EditorTemplates" [closeActionByOutsideClickPattern]="closeActionByOutsideClick"
+        (templateReturn)="buildEditor($event)" [nameSection]="nameSection" [color]="colorBackground"
+        [index]="indexEvent" [builder]="builder" [pagination]="pagination" [pages]="pages"
+        [backgroundImage]="backgroundImg" *ngIf="templateTwo">
+    </app-plantilla-dos>
+    <app-plantilla-tres [template]="EditorTemplates" [closeActionByOutsideClickPattern]="closeActionByOutsideClick"
+        (templateReturn)="buildEditor($event)" [nameSection]="nameSection" [color]="colorBackground"
+        [index]="indexEvent" [builder]="builder" [pagination]="pagination" [pages]="pages" *ngIf="templateThree"
+        (paginationData)="paginationDataFn($event)">
+    </app-plantilla-tres>
+    <app-plantilla-cuatro [template]="EditorTemplates" [closeActionByOutsideClickPattern]="closeActionByOutsideClick"
+        (templateReturn)="buildEditor($event)" [nameSection]="nameSection" [color]="colorBackground"
+        [index]="indexEvent" [builder]="builder" [pagination]="pagination" [pages]="pages"
+        [backgroundImage]="backgroundImg" *ngIf="templateFour">
+    </app-plantilla-cuatro>
+    <app-plantilla-cinco [template]="EditorTemplates" [closeActionByOutsideClickPattern]="closeActionByOutsideClick"
+        (templateReturn)="buildEditor($event)" [nameSection]="nameSection" [color]="colorBackground"
+        [index]="indexEvent" [builder]="builder" [pagination]="pagination" [pages]="pages"
+        [backgroundImage]="backgroundImg" (paginationData)="paginationDataFn($event)" *ngIf="templateFive">
+    </app-plantilla-cinco>
+    <!-- <app-plantilla-seis [template]="EditorTemplates" [closeActionByOutsideClickPattern]="closeActionByOutsideClick"
+        (templateReturn)="buildEditor($event)" [nameSection]="nameSection" [color]="colorBackground" 
+        [index]="indexEvent" [builder]="builder" [pagination]="pagination" [pages]="pages" 
+        [backgroundImage]="backgroundImg" (paginationData)="paginationDataFn($event)" *ngIf="templateSix">
+    </app-plantilla-seis> -->
+</div>

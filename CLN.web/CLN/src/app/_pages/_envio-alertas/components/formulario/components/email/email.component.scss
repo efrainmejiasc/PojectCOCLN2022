@@ -1,0 +1,102 @@
+.consultar-planes-section{
+    min-height: 500px;
+  }
+  .info-ayuda-contenedor{
+    width: 60%;
+    margin-left: 20%;
+  }
+  .descriptionField{
+    color: #757575;
+    margin-left: 0.5em;
+  }
+  .recuperar-input{
+    width:100%;
+    border: 0px;
+    background-color: #ececec;
+  }
+  .recuperar-input2{
+    width:96%;
+    border: 0px;
+    background-color: #ececec;
+  }
+  .centeringBtnImg{
+    justify-content: center;
+      display: flex;
+      margin-top: 2em;
+      margin-bottom: 2em;
+  }
+  .contador{
+    background: #d4d4d4;
+    width: 40px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+  }
+  .mat-icon-button{
+    border: 1px solid red;
+  }
+  .centeringBtn{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+  .btn-submit-wine {
+    background-color: #839AC4;
+    width: 100%;
+    color: #ffffff;
+    cursor: pointer;
+    max-width: 230px;
+    font-size: 20px;
+    border-radius: 6mm;
+    border-style: none;
+    height: 40px;
+    margin-top: 0em !important;
+  }
+  .btn-submit-wine2 {
+    background-color: #0D3B8F;
+    width: 100%;
+    color: #ffffff;
+    cursor: pointer;
+    max-width: 230px;
+    font-size: 16px;
+    border-radius: 6mm;
+    border-style: none;
+    height: 40px;
+    margin-top: 0em !important;
+  }
+  .info-ayuda{
+    background-color:#f1f1f1;
+    border-left: 5px solid #3366ff;
+    text-align: justify;
+    padding: 12px;
+    width:100%;
+    font-size: 16px;
+    color:#7d7d7d;
+  }
+  
+  .example-card {
+    width: 24%;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  
+  .flexConents{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+  }
+
+  // =================================================================================================
+
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }

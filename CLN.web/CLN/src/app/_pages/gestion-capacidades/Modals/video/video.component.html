@@ -1,0 +1,12 @@
+<div class="modal-header d-flex justify-content-center align-items-center" (click)="identifyClickOutSide($event)">
+    <h2 class="modal-title font_title p-0 m-0">{{ sendedData }}</h2>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body d-flex justify-content-center align-items-center p-0">
+    <video id="my-video" class="video-js vjs-default-skin mb-4" controls preload="auto" width="640" height="400" 
+        data-setup="{'controls':true}">
+        <source [src]="finalUrl" type="video/mp4" />
+    </video>
+</div>

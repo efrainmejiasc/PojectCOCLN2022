@@ -1,0 +1,101 @@
+<header class="col-sm-12 header d-flex justify-content-center align-items-center px-4"
+  [style.background-color]="background">
+  <div [ngClass]="{'container-dash':builder}" class="col-sm-3 p-0">
+    <app-action-attribute [closeActionByOutsideClick]="closeActionByOutsideClick" [configAction]="configMediaEditor"
+      [index]="11111" (fileReturn)="setData($event,5)" *ngIf="builder" class="zindexContent"></app-action-attribute>
+    <div class="col-sm-12 p-0 row-image d-flex justify-content-center align-items-center">
+      <div class="col-sm-12 p-0 image-container">
+        <img *ngIf="textDataMaster.mediaUrl" [src]="sanitizeImageUrl(textDataMaster.mediaUrl)" class="image" />
+        <div class="loadingMedia p-2 d-flex justify-content-center align-items-center"
+          *ngIf="textDataMaster.uploadStatus == 'uploading'">
+          <p class="text-light text-align p-0 m-0">Estamos cargando tu imagen</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 d-flex justify-content-between align-items-center">
+    <a class="btn col-sm-3 d-flex flex-column justify-content-center align-items-center position-relativv"
+      (mouseover)="firstSection=true" (mouseout)="firstSection=false">
+      <app-action-attribute [configAction]="configTextEditor" [textData]="textDataMaster" [index]="1"
+        [closeActionByOutsideClick]="closeActionByOutsideClick" (text)="setData($event,1)"
+        (text_roll)="setData($event,7)" *ngIf="builder">
+      </app-action-attribute>
+      <span class="buttonSvgHeader button-informarme"></span>
+      <span class="header-nav text-color-blue" [innerHTML]="textDataMaster.button | safeHtml"></span>
+      <span class="tooltipAct" *ngIf="firstSection && textDataMaster.text_roll"
+        [innerHTML]="textDataMaster.text_roll | safeHtml"></span>
+    </a>
+    <a class="btn col-sm-3 d-flex flex-column justify-content-center align-items-center"
+      (mouseover)="secondSection=true" (mouseout)="secondSection=false">
+      <app-action-attribute [configAction]="configTextEditor" [textData]="textDataMasterTwo" [index]="2"
+        [closeActionByOutsideClick]="closeActionByOutsideClick" (text)="setData($event,2)"
+        (text_roll)="setData($event,8)" *ngIf="builder">
+      </app-action-attribute>
+      <span class="buttonSvgHeader button-aprender"></span>
+      <span class="header-nav text-color-blue" [innerHTML]="textDataMasterTwo.button | safeHtml"></span>
+      <span class="tooltipAct" *ngIf="secondSection && textDataMasterTwo.text_roll"
+        [innerHTML]="textDataMasterTwo.text_roll | safeHtml"></span>
+    </a>
+    <a class="btn col-sm-3 d-flex flex-column justify-content-center align-items-center" (mouseover)="thirdSection=true"
+      (mouseout)="thirdSection=false">
+      <app-action-attribute [configAction]="configTextEditor" [textData]="textDataMasterThree" [index]="3"
+        [closeActionByOutsideClick]="closeActionByOutsideClick" (text)="setData($event,3)"
+        (text_roll)="setData($event,9)" *ngIf="builder">
+      </app-action-attribute>
+      <span class="buttonSvgHeader button-contactar"></span>
+      <span class="header-nav text-color-blue" [innerHTML]="textDataMasterThree.button | safeHtml"></span>
+      <span class="tooltipAct" *ngIf="thirdSection && textDataMasterThree.text_roll"
+        [innerHTML]="textDataMasterThree.text_roll | safeHtml"></span>
+    </a>
+    <a class="btn col-sm-3 p-1 d-flex flex-column justify-content-center align-items-center"
+      (mouseover)="fourSection=true" (mouseout)="fourSection=false">
+      <app-action-attribute [configAction]="configTextEditor" [textData]="textDataMasterFour" [index]="4"
+        [closeActionByOutsideClick]="closeActionByOutsideClick" (text)="setData($event,4)"
+        (text_roll)="setData($event,10)" *ngIf="builder">
+      </app-action-attribute>
+      <span class="buttonSvgHeader button-compartir"></span>
+      <span class="header-nav text-color-blue" [innerHTML]="textDataMasterFour.button | safeHtml"></span>
+      <span class="tooltipAct" *ngIf="fourSection && textDataMasterFour.text_roll"
+        [innerHTML]="textDataMasterFour.text_roll | safeHtml"></span>
+    </a>
+  </div>
+  <div class="col-sm-3 container-dash p-0">
+    <app-action-attribute [closeActionByOutsideClick]="closeActionByOutsideClick" [configAction]="configMediaEditor"
+      [index]="11112" (fileReturn)="setData($event,6)" *ngIf="builder" class="zindexContent"></app-action-attribute>
+    <div class="col-sm-12 p-0 d-flex justify-content-end align-items-end">
+      <div class="col-sm-10 image-container">
+        <img *ngIf="textDataMasterFour.mediaUrl" [src]="sanitizeImageUrl(textDataMasterFour.mediaUrl)" class="image" />
+        <div class="loadingMedia p-2 d-flex justify-content-center align-items-center"
+          *ngIf="textDataMasterFour.uploadStatus_logo_dos == 'uploading'">
+          <p class="text-light text-align">Estamos cargando tu imagen</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<nav class="navbar navbar-expand-lg col-sm-12 navbar-dark bg-dark text-center sticky-top">
+  <div class="disabledNav"></div>
+  <button class="navbar-toggler ml-auto mr-2 my-2" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div id="navbarResponsive" class="col-sm-12 d-flex justify-content-between align-items-center px-4">
+    <div class="d-flex justify-content-center align-items-center px-2">
+      <button class="buttonSvg button-home"></button>
+      <span class="separater"></span>
+      <button class="buttonSvg button-main"></button>
+    </div>
+    <div class="d-flex justify-content-center align-items-center px-2">
+      <span class="separater"></span>
+      <span class="contentUser text-light d-flex justify-content-center align-items-center">
+        <span class="btn col-sm-12 d-flex justify-content-center align-items-center text-light" id="buttonOptions"
+          #buttonOptions>
+          <button class="buttonSvgRed button-user ml-2"></button>
+        </span>
+      </span>
+    </div>
+  </div>
+</nav>

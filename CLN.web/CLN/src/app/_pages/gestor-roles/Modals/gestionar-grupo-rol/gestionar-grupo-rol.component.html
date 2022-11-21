@@ -1,0 +1,55 @@
+<div class="modal-header d-flex justify-content-center align-items-center">
+    <h2 class="modal-title font_title p-0 m-0 text-color-red">{{ sendedData }}</h2>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form novalidate [formGroup]="form" (ngSubmit)="save($event)">
+        <div class="container">
+            <!-- Campo nombre -->
+            <div class="form-input">
+                <label class="label">
+                    <!-- [ngClass]="{ 'label-incorrecto': form['titulo'] }" -->
+                    <span class="label px-4">
+                        Nombre |
+                        <span class="text-color-red">
+                            {{ form.get("nombre").value | conteoCaracteres: formProperties.nombre.maxCaracteres }}
+                        </span>
+                    </span>
+                    <div class="content-asterisk">
+                        <input class="input-asterisk px-2" [ngClass]="{'inputInvalid': nameInvalid}"
+                            formControlName="nombre" maxlength="50" id="name" #name (input)="validationOut(1)"
+                            (keypress)="patternValidation($event)" (paste)="patternValidationPaste($event)"
+                            autocomplete="off" />
+                        <span class="asterisk" [ngClass]="{'asteriskInvalid': nameInvalid}">*</span>
+                    </div>
+                </label>
+            </div>
+            <div class="form-input">
+                <label class="label">
+                    <!-- [ngClass]="{ 'label-incorrecto': form['titulo'] }" -->
+                    <span class="label px-4">
+                        Descripción |
+                        <span class="text-color-red">
+                            {{ form.get("descripcion").value | conteoCaracteres: formProperties.descripcion.maxCaracteres }}
+                        </span>
+                    </span>
+                    <div class="content-asterisk">
+                        <input class="input-asterisk px-2" [ngClass]="{'inputInvalid': descriptionInvalid}"
+                            formControlName="descripcion" id="description" (keypress)="patternValidation($event)"
+                            (paste)="patternValidationPaste($event)" #description maxlength="100"
+                            (input)="validationOut(2)" autocomplete="off" />
+                        <span class="asterisk" [ngClass]="{'asteriskInvalid': descriptionInvalid}">*</span>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="form-group text-center submit-rol-button" *ngIf="!adminView">
+            <!-- [disabled]="form.invalid" [ngClass]="{ disabled: form.invalid }" -->
+            <button class="btn_third" [ngClass]="{ disabled: disabledButton }" type="submit">
+                Guardar
+            </button>
+        </div>
+    </form>
+</div>

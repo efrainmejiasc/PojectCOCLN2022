@@ -1,0 +1,10 @@
+<div class="container-max contenedor pb-2">
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-fall" [fullScreen]="true">
+        <p style="color: white">Cargando...</p>
+    </ngx-spinner>
+    <div class="container pb-4" [hidden]="loadComplet">
+        <app-contenidos-titulo-capacidades [titulo]="titulo" [permitsUser]="permitsUser">
+        </app-contenidos-titulo-capacidades>
+        <app-tabla-resultado></app-tabla-resultado>
+    </div>
+</div>

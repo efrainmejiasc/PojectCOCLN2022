@@ -1,0 +1,121 @@
+  <div class="row justify-content-md-center">
+    <div class="col col-lg-4">
+      <div class="form-group input-group">
+        <input matInput [matDatepicker]="picker" class="form-control" [(ngModel)]="consultDate" (dateChange)="changeDate('change', $event)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </div>
+    </div>
+  </div>
+
+  <br/><br/>
+
+  <div class="row justify-content-md-center">
+    <div class="col col-lg-9">
+      <div class="row text-center mb-5">
+        <div class="col-md-12">
+          <div class="mx-2 mx-md-3 mx-lg-4 mx-xl-5">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="btn-group">
+                  <div class="btn btn-primary btn-calendar"
+                    mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+                    (viewDateChange)="closeOpenMonthViewDay()">
+                    Anterior
+                  </div>
+                  <div class="btn btn-primary btn-calendar active"
+                    mwlCalendarToday [(viewDate)]="viewDate">
+                    Hoy
+                  </div>
+                  <div class="btn btn-primary btn-calendar"
+                    mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+                    (viewDateChange)="closeOpenMonthViewDay()">
+                    Siguiente
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):locale:weekStartsOn }}</h3>
+              </div>
+              <div class="col-md-4">
+                <div class="btn-group">
+                  <div class="btn btn-primary btn-calendar"
+                    (click)="setView(CalendarView.Month)"
+                    [class.active]="view === CalendarView.Month">
+                    Mes
+                  </div>
+                  <div class="btn btn-primary btn-calendar"
+                    (click)="setView(CalendarView.Week)"
+                    [class.active]="view === CalendarView.Week">
+                    Semana
+                  </div>
+                  <div class="btn btn-primary btn-calendar"
+                    (click)="setView(CalendarView.Day)"
+                    [class.active]="view === CalendarView.Day">
+                    Día
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Calendario-->
+      <div class="row">
+        <div class="col-12">
+          <div [ngSwitch]="view">
+            <mwl-calendar-month-view
+              *ngSwitchCase="CalendarView.Month"
+              [viewDate]="viewDate"
+              [events]="events"
+              [refresh]="refresh"
+              [locale]="locale"
+              [weekStartsOn]="weekStartsOn"
+              [weekendDays]="weekendDays"
+              [activeDayIsOpen]="activeDayIsOpen"
+              (dayClicked)="dayClicked($event.day)"
+              (eventTimesChanged)="eventTimesChanged($event)">
+            </mwl-calendar-month-view>
+            <mwl-calendar-week-view
+              *ngSwitchCase="CalendarView.Week"
+              [viewDate]="viewDate"
+              [dayStartHour]="7"
+              [dayEndHour]="21"
+              [events]="events"
+              [refresh]="refresh"
+              [locale]="locale"
+              [weekStartsOn]="weekStartsOn"
+              [weekendDays]="weekendDays"
+              (eventTimesChanged)="eventTimesChanged($event)">
+            </mwl-calendar-week-view>
+            <mwl-calendar-day-view
+              *ngSwitchCase="CalendarView.Day"
+              [viewDate]="viewDate"
+              [dayStartHour]="7"
+              [dayEndHour]="21"
+              [events]="events"
+              [refresh]="refresh"
+              [locale]="locale"
+              (eventTimesChanged)="eventTimesChanged($event)">
+            </mwl-calendar-day-view>
+          </div>
+        </div>
+      </div>
+      <!-- Fin Calendario-->
+      <!-- Tipo Eventos -->
+      <div class="row">
+        <div class="col-12 text-right">
+          <a href="javascript:void(0)" (click)="showListEventosModal()">
+            <img src="assets/img/calendario/tipos de eventos.svg" alt="">
+            Tipos de eventos
+          </a>
+        </div>
+      </div>
+      <!-- Fin Tipo Eventos -->
+    </div>
+    <!-- Detalle -->
+    <div class="col col-lg-3 bg-blueSecondary" *ngIf="evento != null">
+      <app-evento-detail [evento]="evento"></app-evento-detail>
+    </div>
+    <!-- Fin Detalle -->
+  </div>

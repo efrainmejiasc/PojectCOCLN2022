@@ -1,0 +1,12 @@
+<div class="gi-header" style="width: 100%; min-height: 60px;">
+    <div *ngFor="let opcion of opciones" 
+      (click)="opcion.onClick(opcion.title)" 
+      style="word-wrap: break-word; max-width: 33%; width: 33%;" 
+      [ngStyle]="selectedOption === opcion.title ? {'background-color': '#4169af'} : {}"
+      [ngClass]="opcion.disabled ? 'disabled' : 'nodisabled'">
+      <img *ngIf="opcion.defaultImage && opcion.whiteImage" 
+        [src]="selectedOption !== opcion.title ? opcion.defaultImage : opcion.whiteImage" 
+      /> 
+      <p  [ngStyle]="selectedOption === opcion.title ? {'color': '#fff'} : {}">{{opcion.title}}</p>
+    </div>
+</div>

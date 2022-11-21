@@ -1,0 +1,62 @@
+$color-blue: #003595;
+$color-red: #f42f63;
+.modal-title {
+    position: relative;
+}
+.modal-title .close {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 1em;
+    background-color: $color-blue;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    opacity: 1;
+    padding: 2px 0px 0px 0px;
+}
+.text-center {
+    font-size: 1rem;
+}
+.content-permits {
+    width: 90%;
+    margin-top: 30px;
+}
+.box-parent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    justify-items: center;
+    margin: auto;
+}
+.box-parent .content-grid {
+    width: 50%;
+    margin-bottom: 15px !important;
+    padding-right: 10%;
+}
+.box-parent .content-grid .input_container {
+    width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.box-parent .content-grid .input_container .master {
+    text-decoration: none;
+    font-family: "Work Sans", sans-serif;
+    font-weight: bold;
+}
+.box-parent .content-grid .input_container ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.box-parent .content-grid .input_container ul li {
+    font-size: 14px;
+}

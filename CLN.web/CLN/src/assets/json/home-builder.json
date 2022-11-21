@@ -1,0 +1,229 @@
+[
+  {
+    "id": 1,
+    "name": "Seccion2",
+    "idTemplate": 1,
+    "idState": 4,
+    "state": "Publicado",
+    "attributes": null
+  },
+  {
+    "id": 2,
+    "name": "Seccion1",
+    "idTemplate": 1,
+    "idState": 4,
+    "state": "Publicado",
+    "attributes": [
+      { "id": 1, "name": "background", "value": "#c4e992" },
+      { "id": 2, "name": "backgroundStatus", "value": "color" },
+      { "id": 3, "name": "title", "value": "<p>plantilla 1</p>" },
+      { "id": 4, "name": "titleEffect", "value": "" },
+      {
+        "id": 5,
+        "name": "text_one",
+        "value": "<p><span class=\"ql-font-opensanslight\">desc bbb</span></p>"
+      },
+      { "id": 6, "name": "textEffect", "value": "" },
+      { "id": 7, "name": "link", "value": "www.google.com" },
+      { "id": 8, "name": "typelink", "value": "btn" },
+      { "id": 9, "name": "enlace", "value": "<p>boton p1</p>" },
+      { "id": 10, "name": "textRoll", "value": "" },
+      { "id": 11, "name": "enlaceEffect", "value": "" },
+      { "id": 12, "name": "type_media", "value": "video" },
+      {
+        "id": 13,
+        "name": "media_url",
+        "value": "../../../../../assets/upload/ComponentesMultimediaHome/4f1c9457-c817-4256-aaf7-f12f33c7c2ab+videoplayback.mp4"
+      },
+      { "id": 14, "name": "mediaEffect", "value": "" },
+      { "id": 15, "name": "uploadStatus", "value": "uploaded" }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Seccion3",
+    "idTemplate": 4,
+    "idState": 4,
+    "state": "Publicado",
+    "attributes": [
+      { "id": 16, "name": "background", "value": "" },
+      { "id": 17, "name": "backgroundStatus", "value": "" },
+      {
+        "id": 18,
+        "name": "title",
+        "value": "<p><span class=\"ql-font-opensansbold\">PLANTILLA 4</span></p>"
+      },
+      { "id": 19, "name": "titleEffect", "value": "" },
+      {
+        "id": 20,
+        "name": "text_one",
+        "value": "<p><span class=\"ql-font-opensansregular\">esta es la open sans</span></p>"
+      },
+      { "id": 21, "name": "textEffect", "value": "" },
+      { "id": 22, "name": "link", "value": "www.google.com" },
+      { "id": 23, "name": "typelink", "value": "btn" },
+      { "id": 24, "name": "enlace", "value": "<p>un boton</p>" },
+      { "id": 25, "name": "textRoll", "value": "<p>mira tú esta vaina</p>" },
+      { "id": 26, "name": "enlaceEffect", "value": "" },
+      { "id": 27, "name": "type_media", "value": "video" },
+      {
+        "id": 28,
+        "name": "media_url",
+        "value": "../../../../../assets/upload/ComponentesMultimediaHome/1d0d9385-764b-4957-b0a8-64cbdd093f53+159318331-.jpeg"
+      },
+      { "id": 29, "name": "mediaEffect", "value": "" },
+      { "id": 30, "name": "uploadStatus", "value": "uploaded" },
+      { "id": 31, "name": "mediaSize", "value": "medium" }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Seccion4",
+    "idTemplate": 2,
+    "idState": 4,
+    "state": "Publicado",
+    "attributes": [
+      { "id": 32, "name": "textEffect0", "value": "" },
+      { "id": 33, "name": "mediaEffect0", "value": "" },
+      { "id": 34, "name": "text_one0", "value": "<p>img 1</p>" },
+      { "id": 35, "name": "type_media0", "value": "imagen" },
+      { "id": 36, "name": "uploadStatus0", "value": "uploaded" },
+      {
+        "id": 37,
+        "name": "media_url0",
+        "value": "../../../../../assets/upload/ComponentesMultimediaHome/cb8f6ee0-3b86-4831-9e52-732b1031800f+blanco-y-negro-w.jpg"
+      },
+      { "id": 38, "name": "pages", "value": "1" },
+      { "id": 39, "name": "backgroundStatus", "value": "" },
+      { "id": 40, "name": "background", "value": "" },
+      { "id": 41, "name": "titleEffect", "value": "" },
+      { "id": 42, "name": "title", "value": "<p>PLANTLLA 2</p>" },
+      { "id": 43, "name": "textEffect1", "value": "" },
+      { "id": 44, "name": "mediaEffect1", "value": "" },
+      {
+        "id": 45,
+        "name": "text_one1",
+        "value": "<p><strong>img 2</strong></p>"
+      },
+      { "id": 46, "name": "type_media1", "value": "imagen" },
+      { "id": 47, "name": "uploadStatus1", "value": "uploaded" },
+      {
+        "id": 48,
+        "name": "media_url1",
+        "value": "../../../../../assets/upload/ComponentesMultimediaHome/8c868953-ca8d-4cdb-86ea-1247ba24d37e+descarga (1).jpg"
+      },
+      { "id": 49, "name": "textEffect2", "value": "" },
+      { "id": 50, "name": "mediaEffect2", "value": "" },
+      { "id": 51, "name": "text_one2", "value": "<p><em>img 3</em></p>" },
+      { "id": 52, "name": "type_media2", "value": "imagen" },
+      { "id": 53, "name": "uploadStatus2", "value": "uploaded" },
+      {
+        "id": 54,
+        "name": "media_url2",
+        "value": "../../../../../assets/upload/ComponentesMultimediaHome/9d1f8c61-d10a-4c58-9bcf-b6380420cdac+golden-letter-w.jpg"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Seccion6",
+    "idTemplate": 3,
+    "idState": 4,
+    "state": "Publicado",
+    "attributes": [
+      { "id": 55, "name": "pages", "value": "1" },
+      { "id": 56, "name": "title1", "value": "<p>PLANTILLA 3</p>" },
+      { "id": 57, "name": "text_one1", "value": "<p>DESC</p>" },
+      { "id": 58, "name": "link1", "value": "" },
+      { "id": 59, "name": "enlace1", "value": "" },
+      { "id": 60, "name": "enlaceEffect1", "value": "" },
+      { "id": 61, "name": "type_media1", "value": "imagen" },
+      {
+        "id": 62,
+        "name": "media_url1",
+        "value": "../../../../../assets/upload/ComponentesMultimediaHome/2dd8c62c-2335-4cb1-a3ce-e20ad95b7353+chart.png"
+      },
+      { "id": 63, "name": "uploadStatus1", "value": "uploaded" },
+      { "id": 64, "name": "titleEffect1", "value": "" },
+      { "id": 65, "name": "textEffect1", "value": "" },
+      { "id": 66, "name": "mediaEffect1", "value": "" },
+      { "id": 67, "name": "typelink1", "value": "btn" },
+      { "id": 68, "name": "textRoll1", "value": "" }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Seccion7",
+    "idTemplate": 5,
+    "idState": 4,
+    "state": "Publicado",
+    "attributes": [
+      { "id": 69, "name": "titleEffect0", "value": "" },
+      { "id": 70, "name": "textEffect0", "value": "" },
+      { "id": 71, "name": "mediaEffect0", "value": "" },
+      { "id": 72, "name": "text_one0", "value": "<p>imagen 1</p>" },
+      { "id": 73, "name": "type_media0", "value": "imagen" },
+      { "id": 74, "name": "uploadStatus0", "value": "uploaded" },
+      {
+        "id": 75,
+        "name": "media_url0",
+        "value": "../../../../../assets/upload/ComponentesMultimediaHome/73188c4e-d196-4db5-85ce-5fde1e39ef99+chart1.png"
+      },
+      { "id": 76, "name": "media_enlace0", "value": "" },
+      { "id": 77, "name": "pages", "value": "2" },
+      { "id": 78, "name": "backgroundStatus", "value": "" },
+      { "id": 79, "name": "background", "value": "" },
+      { "id": 80, "name": "titleEffect", "value": "" },
+      { "id": 81, "name": "title", "value": "<p>p5</p>" },
+      { "id": 82, "name": "titleEffect1", "value": "" },
+      { "id": 83, "name": "textEffect1", "value": "" },
+      { "id": 84, "name": "mediaEffect1", "value": "" },
+      { "id": 85, "name": "text_one1", "value": "<p>imagen 2</p>" },
+      { "id": 86, "name": "type_media1", "value": "imagen" },
+      { "id": 87, "name": "uploadStatus1", "value": "uploaded" },
+      {
+        "id": 88,
+        "name": "media_url1",
+        "value": "../../../../../assets/upload/ComponentesMultimediaHome/07b9bc14-2113-42a9-8f17-50bdf9ffc28c+Firma.png"
+      },
+      { "id": 89, "name": "media_enlace1", "value": "" },
+      { "id": 90, "name": "titleEffect2", "value": "" },
+      { "id": 91, "name": "textEffect2", "value": "" },
+      { "id": 92, "name": "mediaEffect2", "value": "" },
+      { "id": 93, "name": "text_one2", "value": "<p>imagen 3</p>" },
+      { "id": 94, "name": "type_media2", "value": "imagen" },
+      { "id": 95, "name": "uploadStatus2", "value": "uploaded" },
+      {
+        "id": 96,
+        "name": "media_url2",
+        "value": "../../../../../assets/upload/ComponentesMultimediaHome/fcf6e9ec-09cd-482f-8848-3477cc2eedb0+calendario.png"
+      },
+      { "id": 97, "name": "media_enlace2", "value": "" },
+      { "id": 98, "name": "textEffect3", "value": "" },
+      { "id": 99, "name": "mediaEffect3", "value": "" },
+      { "id": 100, "name": "text_one3", "value": "" },
+      { "id": 101, "name": "type_media3", "value": "" },
+      { "id": 102, "name": "uploadStatus3", "value": "" },
+      { "id": 103, "name": "media_url3", "value": "" },
+      { "id": 104, "name": "media_enlace3", "value": "" },
+      { "id": 105, "name": "textEffect4", "value": "" },
+      { "id": 106, "name": "mediaEffect4", "value": "" },
+      { "id": 107, "name": "text_one4", "value": "<p>imagen 4</p>" },
+      { "id": 108, "name": "type_media4", "value": "imagen" },
+      { "id": 109, "name": "uploadStatus4", "value": "uploaded" },
+      {
+        "id": 110,
+        "name": "media_url4",
+        "value": "../../../../../assets/upload/ComponentesMultimediaHome/1a7102fa-6bdb-433b-b8d7-947e75d349c3+ProcesoSoporte.png"
+      },
+      { "id": 111, "name": "media_enlace4", "value": "" },
+      { "id": 112, "name": "textEffect5", "value": "" },
+      { "id": 113, "name": "mediaEffect5", "value": "" },
+      { "id": 114, "name": "text_one5", "value": "" },
+      { "id": 115, "name": "type_media5", "value": "" },
+      { "id": 116, "name": "uploadStatus5", "value": "" },
+      { "id": 117, "name": "media_url5", "value": "" },
+      { "id": 118, "name": "media_enlace5", "value": "" }
+    ]
+  }
+]

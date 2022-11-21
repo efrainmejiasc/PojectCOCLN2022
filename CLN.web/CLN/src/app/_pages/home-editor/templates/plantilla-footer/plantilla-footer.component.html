@@ -1,0 +1,31 @@
+<footer>
+    <div class="block_footer col-sm-12 d-flex justify-content-between align-items-center">
+        <!--div class="col-sm-3" style="display: inline-flex;">
+            <span class="logo_men">    
+            </span>
+        </div-->
+        <div [ngClass]="{'container-dash':builder}" class="col-sm-3 p-0">
+            <app-action-attribute [closeActionByOutsideClick]="closeActionByOutsideClick"
+                [configAction]="configMediaEditor" [index]="99111" (fileReturn)="setData($event,1)" *ngIf="builder"
+                class="zindexContent"></app-action-attribute>
+            <div class="col-sm-12 p-0 row-image d-flex justify-content-center align-items-center">
+                <div class="col-sm-12 p-0 image-container">
+                    <img *ngIf="textDataMaster.mediaUrl" [src]="sanitizeImageUrl(textDataMaster.mediaUrl)"
+                        class="image" />
+                    <div class="loadingMedia p-2 d-flex justify-content-center align-items-center"
+                        *ngIf="textDataMaster.uploadStatus == 'uploading'">
+                        <p class="text-light text-align p-0 m-0">Estamos cargando tu imagen</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 text-white text-center">
+            <a>Copyright © Todos los Derechos Reservados {{year}}</a>
+        </div>
+        <div class="col-sm-3 d-flex justify-content-center align-items-center">
+            <span class="font_p text-white mt-1">Diseñado por:</span>
+            <span class="separater"></span>
+            <a href="https://www.ivolucion.com" target="_blank" rel="noopener noreferrer" class="logo_ivolucion"></a>
+        </div>
+    </div>
+</footer>

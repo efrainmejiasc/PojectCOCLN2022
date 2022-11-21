@@ -1,0 +1,39 @@
+$color-blue: #003595;
+$color-red: #f42f63;
+.modal-body {
+    border-top: dashed 1px $color-red;
+}
+.contentForm {
+    width: 70%;
+}
+.input-container select {
+    width: 100%;
+}
+.closemodal {
+    width: 80%;
+    position: relative;
+}
+.closemodal button {
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    right: 1em;
+    top: 0px;
+    background-color: $color-blue;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 100%;
+}
+.iconView {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.font-view {
+    font-size: 14px;
+}
+.link {
+    cursor: pointer;
+}

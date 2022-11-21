@@ -1,0 +1,1053 @@
+<div class="containerActions" id="selectLoop{{indexInput}}" #selectLoop{{indexInput}}>
+    <button class="delete" *ngIf="configuration.delete" (click)="deleteAction()"></button>
+    <button class="edit" *ngIf="configuration.edit" (click)="actionBuild(2)"></button>
+    <button class="efect" *ngIf="configuration.editorEfects" (click)="actionBuild(4)"></button>
+    <button class="config" *ngIf="isConfig" (click)="actionBuild(3)"></button>
+    <button class="background" *ngIf="configuration.background && canChangeBackground"
+        (click)="editBackground()"></button>
+
+    <div class="configurationEditor shadow p-4 fade-in" *ngIf="editorOpenEffects && configuration.editorEfects"
+        id="windoweffects{{indexInput}}" #windoweffects{{indexInput}}>
+        <h6>Efectos</h6>
+        <form [formGroup]="form" class="col-sm-12 d-flex flex-column justify-content-center align-items-center">
+            <div class="col-sm-12 d-flex justify-content-start align-items-center mt-2"
+                *ngIf="configuration.typeEditorText != 'title' && configuration.typeEditorText != 'paragraphBig' && configuration.typeEditorText != 'paragraph'">
+                <label class="containerLabel">
+                    <span class="label px-0 pl-2 d-flex justify-content-start align-items-center">
+                        Fade in right
+                    </span>
+                    <input type="radio" name="effect" value="fdr" formControlName="effect" (change)="setEffect()">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="col-sm-12 d-flex justify-content-start align-items-center mt-2"
+                *ngIf="configuration.typeEditorText != 'title' && configuration.typeEditorText != 'paragraphBig' && configuration.typeEditorText != 'paragraph'">
+                <label class="containerLabel">
+                    <span class="label px-0 pl-2 d-flex justify-content-start align-items-center">
+                        Fade in left
+                    </span>
+                    <input type="radio" name="effect" value="fdl" formControlName="effect" (change)="setEffect()">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="col-sm-12 d-flex justify-content-start align-items-center mt-2"
+                *ngIf="configuration.typeEditorText != 'title' && configuration.typeEditorText != 'paragraphBig' && configuration.typeEditorText != 'paragraph'">
+                <label class="containerLabel">
+                    <span class="label px-0 pl-2 d-flex justify-content-start align-items-center">
+                        Fade in top
+                    </span>
+                    <input type="radio" name="effect" value="fdt" formControlName="effect" (change)="setEffect()">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="col-sm-12 d-flex justify-content-start align-items-center mt-2"
+                *ngIf="configuration.typeEditorText != 'title' && configuration.typeEditorText != 'paragraphBig' && configuration.typeEditorText != 'paragraph'">
+                <label class="containerLabel">
+                    <span class="label px-0 pl-2 d-flex justify-content-start align-items-center">
+                        Fade in down
+                    </span>
+                    <input type="radio" name="effect" value="fdb" formControlName="effect" (change)="setEffect()">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="col-sm-12 d-flex justify-content-start align-items-center mt-2">
+                <label class="containerLabel">
+                    <span class="label px-0 pl-2 d-flex justify-content-start align-items-center">
+                        Fade in
+                    </span>
+                    <input type="radio" name="effect" value="fdi" formControlName="effect" (change)="setEffect()">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </form>
+    </div>
+    <div class="configurationEditor shadow p-4 fade-in"
+        *ngIf="editorOpenConfig && isConfig && !configuration.editorEfects" id="windowconfiguration{{indexInput}}"
+        #windowconfiguration{{indexInput}}>
+        <h6>Propiedades</h6>
+        <form [formGroup]="form" class="col-sm-12 d-flex flex-column justify-content-center align-items-center">
+            <!--div class="form-input mt-2">
+                <label class="label">
+                    <span class="label px-4 d-flex justify-content-start align-items-center">
+                        Vinculo |
+                        <span class="text-color-red">
+                            {{
+                            form.get("enlace").value
+                            | conteoCaracteres: formProperties.vinculo.maxCaracteres
+                            }}
+                        </span>
+                    </span>
+                </label>
+                <div class="content-asterisk">
+                    <input class="input-asterisk px-2" maxlength="100" id="name" #name autocomplete="off"
+                        formControlName="enlace" (input)="changeEventText(null,6)" />
+                </div>
+            </div-->
+            <!--div class="col-sm-12 d-flex justify-content-start align-items-center mt-4">
+                <label class="container">
+                    <span class="label px-0 pl-2 d-flex justify-content-start align-items-center">
+                        Paginación
+                    </span>
+                    <input type="checkbox" formControlName="paginacion" (change)="changeEventText(null,7)">
+                    <span class="checkmark"></span>
+                </label>
+            </div-->
+            <div class="form-input mt-4">
+                <label class="label">
+                    <span class="label px-4 d-flex justify-content-start align-items-center">
+                        Números de páginas
+                    </span>
+                </label>
+                <div class="content-asterisk">
+                    <input class="input-asterisk px-2" maxlength="2" id="name" #name (input)="changeEventText(null,8)"
+                        (keypress)="numberValidate($event)" autocomplete="off" formControlName="paginas"
+                        (input)="numberMaxValidate()" (input)="minLength()" />
+                </div>
+            </div>
+            <!--<span class="alertPage mt-2" *ngIf="activeAlertPages">La cantidad mínima de páginas es {{pageSize}}</span>-->
+            <span class="alertPage mt-2" *ngIf="activeAlertPages">Cantidad mínima 1 página</span>
+        </form>
+    </div>
+    <div class="textEditor shadow p-4 d-flex flex-column justify-content-center align-items-center fade-in"
+        *ngIf="editorOpen && configuration.editorText" id="windowtext{{indexInput}}" #windowtext{{indexInput}}>
+        <h6>Propiedades</h6>
+        <form [formGroup]="form" class="col-sm-12 d-flex flex-column justify-content-center align-items-center">
+            <div class="form-input d-flex flex-column justify-content-center align-items-center mt-4"
+                *ngIf="configuration.typeEditorText == 'link'">
+                <span class="label px-4 d-flex justify-content-center align-items-center">
+                    Botón o Link
+                </span>
+                <label class="col-sm-2">
+                    <input type="range" class="slider" min="0" max="1" formControlName="typelink"
+                        (change)="changeEventText(null,9)">
+                </label>
+            </div>
+            <!--div class="form-input mt-2 d-flex justify-content-start align-items-center"
+                *ngIf="configuration.typeEditorText == 'link'">
+                <label class="label">
+                    <span class="label px-4 d-flex flex-column justify-content-start align-items-center">
+                        Link |
+                        <span class="ml-2 text-color-red" *ngIf="qe_link.quillEditor">
+                            {{qe_link.quillEditor.editor.delta.ops[0].insert | conteoCaracteresQuill:
+                            formProperties.link.maxCaracteres}}
+                        </span>
+                    </span>
+                </label>
+                <quill-editor #qe_link id="descripcion" [modules]="modules" formControlName="link"
+                    (onContentChanged)="changeEventText($event,2)">
+                </quill-editor>
+            </div-->
+            <div class="form-input mt-2" *ngIf="configuration.typeEditorText == 'link'">
+                <label class="label">
+                    <span class="label px-4 d-flex justify-content-start align-items-center">
+                        Link |
+                        <span class="ml-2 text-count" *ngIf="qe_link.quillEditor">
+                            <!-- {{qe_link.quillEditor.editor.delta.ops[0].insert | conteoCaracteresQuill:
+                            formProperties.link.maxCaracteres}} -->
+                            {{concatenarTextoEdicion(qe_link.quillEditor.editor.delta.ops) | conteoCaracteresQuill:
+                            formProperties.link.maxCaracteres}}
+                        </span>
+                    </span>
+                </label>
+                <div class="content-asterisk">
+                    <quill-editor #qe_link id="qe_link" [modules]="modules" formControlName="link"
+                        (onContentChanged)="changeEventText($event,2)" (paste)="changeEventText($event,2)"
+                        [style.width]="'100%'">
+                        <div quill-editor-toolbar>
+                            <span class="ql-formats">
+                                <select class="ql-font" style="width: 170px;" [title]="'Font'">
+                                    <option value="worksans">Worksans</option>
+                                    <option value="worksansmedium">Worksans_Medium</option>
+                                    <option value="worksanssemibold">Worksans_Semi_Bold</option>
+                                    <option value="worksansextrabold">Worksans_Extra_Bold</option>
+                                    <option value="bitterbold">Bitter_Bold</option>
+                                    <option value="bittermedium">Bitter_Medium</option>
+                                    <option value="bitterregular">Bitter_Regular</option>
+                                    <option value="firesansbold">Firesans_Bold</option>
+                                    <option value="firesanslight">Firesans_Light</option>
+                                    <option value="firesansregular">Firesans_Regular</option>
+                                    <option value="opensanslight">Opensans_Light</option>
+                                    <option value="opensansregular">Opensans_Regular</option>
+                                    <option value="opensansmedium">Opensans_Medium</option>
+                                    <option value="opensansbold">Opensans_Bold</option>
+                                </select>
+                            </span>
+                            <span class="ql-formats">
+                                <select class="ql-size" [title]="'Size'">
+                                    <option value="small">Small</option>
+                                    <option selected>Normal</option>
+                                    <option value="large">Large</option>
+                                </select>
+                                <select class="ql-align" [title]="'Aligment'">
+                                    <option selected></option>
+                                    <option value="center"></option>
+                                    <option value="right"></option>
+                                    <option value="justify"></option>
+                                </select>
+                                <button class="ql-bold"></button>
+                                <button class="ql-italic"></button>
+                                <button class="ql-underline"></button>
+                            </span>
+                            <span class="ql-formats">
+                                <select class="ql-color" [title]="'Color'">
+                                  <option value="#023995"></option>
+                                  <option value="#0093dd"></option>
+                                  <option value="#004d9a"></option>
+                                  <option value="#3366ff"></option>
+                                  <option value="#003595"></option>
+
+                                  <option value="#4169af"></option>
+                                  <option value="#6687bf"></option>
+                                  <option value="#a0b4d7"></option>
+                                  <option value="#e2ebf7"></option>
+                                  <option value="#ecf0f7"></option>
+
+                                  <option value="#000000"></option>
+                                  <option value="#333333"></option>
+                                  <option value="#515151"></option>
+                                  <option value="#5b5b5b"></option>
+                                  <option value="#a8a9aa"></option>
+
+                                  <option value="#ebebeb"></option>
+                                  <option value="#cccccc"></option>
+                                  <option value="#fafafa"></option>
+                                  <option value="#ffffff"></option>
+                                  <option value="#3a5e9d"></option>
+
+                                  <option value="#ffca00"></option>
+                                  <option value="#d59a29"></option>
+                                  <option value="#d8211f"></option>
+                                  <option value="#e73465"></option>
+                                  <option value="#bd134e"></option>
+
+                                  <option value="#e95627"></option>
+                                  <option value="#e77817"></option>
+                                  <option value="#099169"></option>
+                                  <option value="#006950"></option>
+                                  <option value="#4d2980"></option>
+
+                                  <option value="#131f34"></option>
+                                </select>
+                            </span>
+                        </div>
+                    </quill-editor>
+                </div>
+            </div>
+            <div class="form-input mt-2" *ngIf="configuration.typeEditorText == 'link'" [ngStyle]="{'z-index':'0'}">
+                <label class="label">
+                    <span class="label px-4 d-flex justify-content-start align-items-center">
+                        Vínculo |
+                        <span class="ml-2 text-count">
+                            {{
+                            form.get("enlace").value
+                            | conteoCaracteres: formProperties.vinculo.maxCaracteres
+                            }}
+                        </span>
+                    </span>
+                </label>
+                <div class="content-asterisk">
+                    <input class="input-asterisk px-2" maxlength="100" id="name" #name formControlName="enlace"
+                        (input)="changeEventText($event,6)" />
+                </div>
+            </div>
+            <div class="form-input mt-2" *ngIf="configuration.typeEditorText == 'title'">
+                <label class="label">
+                    <span class="label px-4 d-flex justify-content-start align-items-center">
+                        Título |
+                        <span class="ml-2 text-count" *ngIf="qe_title.quillEditor">
+                            <!-- {{qe_title.quillEditor.editor.delta.ops[0].insert | conteoCaracteresQuill:
+                            formProperties.title.maxCaracteres}} -->
+                            {{concatenarTextoEdicion(qe_title.quillEditor.editor.delta.ops) | conteoCaracteresQuill:
+                            formProperties.title.maxCaracteres}}
+                        </span>
+                    </span>
+                </label>
+                <quill-editor #qe_title style="width:100%;" id="descripcion" [modules]="modules" formControlName="title"
+                    (onContentChanged)="changeEventText($event,5)" [sanitize]="true" (paste)="changeEventText($event,5)">
+                    <div quill-editor-toolbar>
+                        <span class="ql-formats">
+                            <select class="ql-font" style="width: 170px;" [title]="'Font'">
+                                <option value="worksans">Worksans</option>
+                                <option value="worksansmedium">Worksans_Medium</option>
+                                <option value="worksanssemibold">Worksans_Semi_Bold</option>
+                                <option value="worksansextrabold">Worksans_Extra_Bold</option>
+                                <option value="bitterbold">Bitter_Bold</option>
+                                <option value="bittermedium">Bitter_Medium</option>
+                                <option value="bitterregular">Bitter_Regular</option>
+                                <option value="firesansbold">Firesans_Bold</option>
+                                <option value="firesanslight">Firesans_Light</option>
+                                <option value="firesansregular">Firesans_Regular</option>
+                                <option value="opensanslight">Opensans_Light</option>
+                                <option value="opensansregular">Opensans_Regular</option>
+                                <option value="opensansmedium">Opensans_Medium</option>
+                                <option value="opensansbold">Opensans_Bold</option>
+                            </select>
+                        </span>
+                        <span class="ql-formats">
+                            <select class="ql-size" [title]="'Size'">
+                                <option value="small">Small</option>
+                                <option selected>Normal</option>
+                                <option value="large">Large</option>
+                                <option value="huge">Huge</option>
+                            </select>
+                            <select class="ql-align" [title]="'Aligment'">
+                                <option selected></option>
+                                <option value="center"></option>
+                                <option value="right"></option>
+                                <option value="justify"></option>
+                            </select>
+                            <button class="ql-bold"></button>
+                            <button class="ql-italic"></button>
+                            <button class="ql-underline"></button>
+                        </span>
+                        <span class="ql-formats">
+                            <select class="ql-color" [title]="'Color'">
+                                <option value="#023995"></option>
+                                <option value="#0093dd"></option>
+                                <option value="#004d9a"></option>
+                                <option value="#3366ff"></option>
+                                <option value="#003595"></option>
+
+                                <option value="#4169af"></option>
+                                <option value="#6687bf"></option>
+                                <option value="#a0b4d7"></option>
+                                <option value="#e2ebf7"></option>
+                                <option value="#ecf0f7"></option>
+
+                                <option value="#000000"></option>
+                                <option value="#333333"></option>
+                                <option value="#515151"></option>
+                                <option value="#5b5b5b"></option>
+                                <option value="#a8a9aa"></option>
+
+                                <option value="#ebebeb"></option>
+                                <option value="#cccccc"></option>
+                                <option value="#fafafa"></option>
+                                <option value="#ffffff"></option>
+                                <option value="#3a5e9d"></option>
+
+                                <option value="#ffca00"></option>
+                                <option value="#d59a29"></option>
+                                <option value="#d8211f"></option>
+                                <option value="#e73465"></option>
+                                <option value="#bd134e"></option>
+
+                                <option value="#e95627"></option>
+                                <option value="#e77817"></option>
+                                <option value="#099169"></option>
+                                <option value="#006950"></option>
+                                <option value="#4d2980"></option>
+
+                                <option value="#131f34"></option>
+
+                            </select>
+                        </span>
+                    </div>
+                </quill-editor>
+            </div>
+            <div class="form-input mt-2" *ngIf="configuration.typeEditorText == 'subTitle'">
+                <label class="label">
+                    <span class="label px-4 d-flex justify-content-start align-items-center">
+                        Contacto |
+                        <span class="ml-2 text-count" *ngIf="qe_sub_title.quillEditor">
+                            {{qe_sub_title.quillEditor.editor.delta.ops[0].insert | conteoCaracteresQuill:
+                            formProperties.sub_title.maxCaracteres}}
+                        </span>
+                    </span>
+                </label>
+                <quill-editor #qe_sub_title style="width:100%;" id="sub_title" [modules]="modules"
+                    formControlName="sub_title" (onContentChanged)="changeEventText($event,12)" [sanitize]="true"
+                    (paste)="changeEventText($event,12)">
+                    <div quill-editor-toolbar>
+                        <span class="ql-formats">
+                            <select class="ql-font" style="width: 170px;" [title]="'Font'">
+                                <option value="worksans">Worksans</option>
+                                <option value="worksansmedium">Worksans_Medium</option>
+                                <option value="worksanssemibold">Worksans_Semi_Bold</option>
+                                <option value="worksansextrabold">Worksans_Extra_Bold</option>
+                                <option value="bitterbold">Bitter_Bold</option>
+                                <option value="bittermedium">Bitter_Medium</option>
+                                <option value="bitterregular">Bitter_Regular</option>
+                                <option value="firesansbold">Firesans_Bold</option>
+                                <option value="firesanslight">Firesans_Light</option>
+                                <option value="firesansregular">Firesans_Regular</option>
+                                <option value="opensanslight">Opensans_Light</option>
+                                <option value="opensansregular">Opensans_Regular</option>
+                                <option value="opensansmedium">Opensans_Medium</option>
+                                <option value="opensansbold">Opensans_Bold</option>
+                            </select>
+                        </span>
+                        <span class="ql-formats">
+                            <select class="ql-size" [title]="'Size'">
+                                <option value="small">Small</option>
+                                <option selected>Normal</option>
+                                <option value="large">Large</option>
+                            </select>
+                            <select class="ql-align" [title]="'Aligment'">
+                                <option selected></option>
+                                <option value="center"></option>
+                                <option value="right"></option>
+                                <option value="justify"></option>
+                            </select>
+                            <button class="ql-bold"></button>
+                            <button class="ql-italic"></button>
+                            <button class="ql-underline"></button>
+                        </span>
+                        <span class="ql-formats">
+                            <select class="ql-color" [title]="'Color'">
+                              <option value="#023995"></option>
+                              <option value="#0093dd"></option>
+                              <option value="#004d9a"></option>
+                              <option value="#3366ff"></option>
+                              <option value="#003595"></option>
+
+                              <option value="#4169af"></option>
+                              <option value="#6687bf"></option>
+                              <option value="#a0b4d7"></option>
+                              <option value="#e2ebf7"></option>
+                              <option value="#ecf0f7"></option>
+
+                              <option value="#000000"></option>
+                              <option value="#333333"></option>
+                              <option value="#515151"></option>
+                              <option value="#5b5b5b"></option>
+                              <option value="#a8a9aa"></option>
+
+                              <option value="#ebebeb"></option>
+                              <option value="#cccccc"></option>
+                              <option value="#fafafa"></option>
+                              <option value="#ffffff"></option>
+                              <option value="#3a5e9d"></option>
+
+                              <option value="#ffca00"></option>
+                              <option value="#d59a29"></option>
+                              <option value="#d8211f"></option>
+                              <option value="#e73465"></option>
+                              <option value="#bd134e"></option>
+
+                              <option value="#e95627"></option>
+                              <option value="#e77817"></option>
+                              <option value="#099169"></option>
+                              <option value="#006950"></option>
+                              <option value="#4d2980"></option>
+
+                              <option value="#131f34"></option>
+                            </select>
+                        </span>
+                    </div>
+                </quill-editor>
+            </div>
+            <div class="form-input mt-2" *ngIf="configuration.typeEditorText == 'paragraph'">
+                <label class="label">
+                    <span class="label px-4 d-flex justify-content-start align-items-center">
+                        Cuerpo texto |
+                        <span class="ml-2 text-count" *ngIf="qe_cuerpo.quillEditor" pres>
+                            {{concatenarTextoEdicion(qe_cuerpo.quillEditor.editor.delta.ops) | conteoCaracteresQuill:
+                            formProperties.textoSmall.maxCaracteres}}
+                        </span>
+                    </span>
+                </label>
+                <quill-editor [style]="editorStyle" #qe_cuerpo style="width:100%;max-width: 100%;" id="descripcion"
+                    [modules]="modules" formControlName="textoSmall" (onContentChanged)="changeEventText($event,3)"
+                    (paste)="changeEventText($event,3)">
+                    <div quill-editor-toolbar>
+                        <span class="ql-formats">
+                            <select class="ql-font" style="width: 170px;" [title]="'Font'">
+                                <option value="worksans">Worksans</option>
+                                <option value="worksansmedium">Worksans_Medium</option>
+                                <option value="worksanssemibold">Worksans_Semi_Bold</option>
+                                <option value="worksansextrabold">Worksans_Extra_Bold</option>
+                                <option value="bitterbold">Bitter_Bold</option>
+                                <option value="bittermedium">Bitter_Medium</option>
+                                <option value="bitterregular">Bitter_Regular</option>
+                                <option value="firesansbold">Firesans_Bold</option>
+                                <option value="firesanslight">Firesans_Light</option>
+                                <option value="firesansregular">Firesans_Regular</option>
+                                <option value="opensanslight">Opensans_Light</option>
+                                <option value="opensansregular">Opensans_Regular</option>
+                                <option value="opensansmedium">Opensans_Medium</option>
+                                <option value="opensansbold">Opensans_Bold</option>
+                            </select>
+                        </span>
+                        <span class="ql-formats">
+                            <select class="ql-size" [title]="'Size'">
+                                <option value="small">Small</option>
+                                <option selected>Normal</option>
+                                <option value="large">Large</option>
+                            </select>
+                            <select class="ql-align" [title]="'Aligment'">
+                                <option selected></option>
+                                <option value="center"></option>
+                                <option value="right"></option>
+                                <option value="justify"></option>
+                            </select>
+                            <button class="ql-bold"></button>
+                            <button class="ql-italic"></button>
+                            <button class="ql-underline"></button>
+                        </span>
+                        <span class="ql-formats">
+                            <select class="ql-color" [title]="'Color'">
+                              <option value="#023995"></option>
+                              <option value="#0093dd"></option>
+                              <option value="#004d9a"></option>
+                              <option value="#3366ff"></option>
+                              <option value="#003595"></option>
+
+                              <option value="#4169af"></option>
+                              <option value="#6687bf"></option>
+                              <option value="#a0b4d7"></option>
+                              <option value="#e2ebf7"></option>
+                              <option value="#ecf0f7"></option>
+
+                              <option value="#000000"></option>
+                              <option value="#333333"></option>
+                              <option value="#515151"></option>
+                              <option value="#5b5b5b"></option>
+                              <option value="#a8a9aa"></option>
+
+                              <option value="#ebebeb"></option>
+                              <option value="#cccccc"></option>
+                              <option value="#fafafa"></option>
+                              <option value="#ffffff"></option>
+                              <option value="#3a5e9d"></option>
+
+                              <option value="#ffca00"></option>
+                              <option value="#d59a29"></option>
+                              <option value="#d8211f"></option>
+                              <option value="#e73465"></option>
+                              <option value="#bd134e"></option>
+
+                              <option value="#e95627"></option>
+                              <option value="#e77817"></option>
+                              <option value="#099169"></option>
+                              <option value="#006950"></option>
+                              <option value="#4d2980"></option>
+
+                              <option value="#131f34"></option>
+                            </select>
+                        </span>
+                    </div>
+                </quill-editor>
+            </div>
+            <div class="form-input mt-2" *ngIf="configuration.typeEditorText == 'paragraphBig'">
+                <label class="label">
+                    <span class="label px-4 d-flex justify-content-start align-items-center">
+                        Cuerpo texto |
+                        <span class="ml-2 text-count" *ngIf="qe_cuerpo_big.quillEditor">
+                            <!-- {{qe_cuerpo_big.quillEditor.editor.delta.ops[0].insert | conteoCaracteresQuill:
+                            formProperties.texto.maxCaracteres}} -->
+                            {{concatenarTextoEdicion(qe_cuerpo_big.quillEditor.editor.delta.ops) | conteoCaracteresQuill:
+                            formProperties.texto.maxCaracteres}}
+                        </span>
+                    </span>
+                </label>
+                <quill-editor #qe_cuerpo_big style="width:100%;" id="descripcion" [modules]="modules"
+                    formControlName="texto" (onContentChanged)="changeEventText($event,11)"
+                    (paste)="changeEventText($event,11)">
+                    <div quill-editor-toolbar>
+                        <span class="ql-formats">
+                            <select class="ql-font" style="width: 170px;" [title]="'Font'">
+                                <option value="worksans">Worksans</option>
+                                <option value="worksansmedium">Worksans_Medium</option>
+                                <option value="worksanssemibold">Worksans_Semi_Bold</option>
+                                <option value="worksansextrabold">Worksans_Extra_Bold</option>
+                                <option value="bitterbold">Bitter_Bold</option>
+                                <option value="bittermedium">Bitter_Medium</option>
+                                <option value="bitterregular">Bitter_Regular</option>
+                                <option value="firesansbold">Firesans_Bold</option>
+                                <option value="firesanslight">Firesans_Light</option>
+                                <option value="firesansregular">Firesans_Regular</option>
+                                <option value="opensanslight">Opensans_Light</option>
+                                <option value="opensansregular">Opensans_Regular</option>
+                                <option value="opensansmedium">Opensans_Medium</option>
+                                <option value="opensansbold">Opensans_Bold</option>
+                            </select>
+                        </span>
+                        <span class="ql-formats">
+                            <select class="ql-size" [title]="'Size'">
+                                <option value="small">Small</option>
+                                <option selected>Normal</option>
+                                <option value="large">Large</option>
+                            </select>
+                            <select class="ql-align" [title]="'Aligment'">
+                                <option selected></option>
+                                <option value="center"></option>
+                                <option value="right"></option>
+                                <option value="justify"></option>
+                            </select>
+                            <button class="ql-bold"></button>
+                            <button class="ql-italic"></button>
+                            <button class="ql-underline"></button>
+                        </span>
+                        <span class="ql-formats">
+                            <select class="ql-color" [title]="'Color'">
+                              <option value="#023995"></option>
+                              <option value="#0093dd"></option>
+                              <option value="#004d9a"></option>
+                              <option value="#3366ff"></option>
+                              <option value="#003595"></option>
+
+                              <option value="#4169af"></option>
+                              <option value="#6687bf"></option>
+                              <option value="#a0b4d7"></option>
+                              <option value="#e2ebf7"></option>
+                              <option value="#ecf0f7"></option>
+
+                              <option value="#000000"></option>
+                              <option value="#333333"></option>
+                              <option value="#515151"></option>
+                              <option value="#5b5b5b"></option>
+                              <option value="#a8a9aa"></option>
+
+                              <option value="#ebebeb"></option>
+                              <option value="#cccccc"></option>
+                              <option value="#fafafa"></option>
+                              <option value="#ffffff"></option>
+                              <option value="#3a5e9d"></option>
+
+                              <option value="#ffca00"></option>
+                              <option value="#d59a29"></option>
+                              <option value="#d8211f"></option>
+                              <option value="#e73465"></option>
+                              <option value="#bd134e"></option>
+
+                              <option value="#e95627"></option>
+                              <option value="#e77817"></option>
+                              <option value="#099169"></option>
+                              <option value="#006950"></option>
+                              <option value="#4d2980"></option>
+
+                              <option value="#131f34"></option>
+                            </select>
+                        </span>
+                    </div>
+                </quill-editor>
+            </div>
+            <div class="form-input mt-2" *ngIf="configuration.typeEditorText == 'paragraphMedium'">
+                <label class="label">
+                    <span class="label px-4 d-flex justify-content-start align-items-center">
+                        Cuerpo texto |
+                        <span class="ml-2 text-count" *ngIf="qe_cuerpo_big.quillEditor">
+                            <!-- {{qe_cuerpo_big.quillEditor.editor.delta.ops[0].insert | conteoCaracteresQuill:
+                            formProperties.textoMedium.maxCaracteres}} -->
+                            {{concatenarTextoEdicion(qe_cuerpo_big.quillEditor.editor.delta.ops) | conteoCaracteresQuill:
+                            formProperties.textoMedium.maxCaracteres}}
+                        </span>
+                    </span>
+                </label>
+                <quill-editor #qe_cuerpo_big style="width:100%;" id="descripcion" [modules]="modules" formControlName="textoMedium"
+                    (onContentChanged)="changeEventText($event,13)" (paste)="changeEventText($event,13)">
+                    <div quill-editor-toolbar>
+                        <span class="ql-formats">
+                            <select class="ql-font" style="width: 170px;" [title]="'Font'">
+                                <option value="worksans">Worksans</option>
+                                <option value="worksansmedium">Worksans_Medium</option>
+                                <option value="worksanssemibold">Worksans_Semi_Bold</option>
+                                <option value="worksansextrabold">Worksans_Extra_Bold</option>
+                                <option value="bitterbold">Bitter_Bold</option>
+                                <option value="bittermedium">Bitter_Medium</option>
+                                <option value="bitterregular">Bitter_Regular</option>
+                                <option value="firesansbold">Firesans_Bold</option>
+                                <option value="firesanslight">Firesans_Light</option>
+                                <option value="firesansregular">Firesans_Regular</option>
+                                <option value="opensanslight">Opensans_Light</option>
+                                <option value="opensansregular">Opensans_Regular</option>
+                                <option value="opensansmedium">Opensans_Medium</option>
+                                <option value="opensansbold">Opensans_Bold</option>
+                            </select>
+                        </span>
+                        <span class="ql-formats">
+                            <select class="ql-size" [title]="'Size'">
+                                <option value="small">Small</option>
+                                <option selected>Normal</option>
+                                <option value="large">Large</option>
+                            </select>
+                            <select class="ql-align" [title]="'Aligment'">
+                                <option selected></option>
+                                <option value="center"></option>
+                                <option value="right"></option>
+                                <option value="justify"></option>
+                            </select>
+                            <button class="ql-bold"></button>
+                            <button class="ql-italic"></button>
+                            <button class="ql-underline"></button>
+                        </span>
+                        <span class="ql-formats">
+                            <select class="ql-color" [title]="'Color'">
+                                <option value="#023995"></option>
+                                <option value="#0093dd"></option>
+                                <option value="#004d9a"></option>
+                                <option value="#3366ff"></option>
+                                <option value="#003595"></option>
+            
+                                <option value="#4169af"></option>
+                                <option value="#6687bf"></option>
+                                <option value="#a0b4d7"></option>
+                                <option value="#e2ebf7"></option>
+                                <option value="#ecf0f7"></option>
+            
+                                <option value="#000000"></option>
+                                <option value="#333333"></option>
+                                <option value="#515151"></option>
+                                <option value="#5b5b5b"></option>
+                                <option value="#a8a9aa"></option>
+            
+                                <option value="#ebebeb"></option>
+                                <option value="#cccccc"></option>
+                                <option value="#fafafa"></option>
+                                <option value="#ffffff"></option>
+                                <option value="#3a5e9d"></option>
+            
+                                <option value="#ffca00"></option>
+                                <option value="#d59a29"></option>
+                                <option value="#d8211f"></option>
+                                <option value="#e73465"></option>
+                                <option value="#bd134e"></option>
+            
+                                <option value="#e95627"></option>
+                                <option value="#e77817"></option>
+                                <option value="#099169"></option>
+                                <option value="#006950"></option>
+                                <option value="#4d2980"></option>
+            
+                                <option value="#131f34"></option>
+                            </select>
+                        </span>
+                    </div>
+                </quill-editor>
+            </div>
+            <div class="form-input mt-2" *ngIf="configuration.typeEditorText == 'menu_roll'">
+                <label class="label">
+                    <span class="label px-4 d-flex justify-content-start align-items-center">
+                        Menu |
+                        <span class="ml-2 text-count" *ngIf="qe_menu.quillEditor">
+                            {{qe_menu.quillEditor.editor.delta.ops[0].insert | conteoCaracteresQuill:
+                            formProperties.menu.maxCaracteres}}
+                        </span>
+                    </span>
+                </label>
+                <quill-editor #qe_menu style="width:100%;" id="descripcion" [modules]="modules" formControlName="menu"
+                    (onContentChanged)="changeEventText($event,10)" (paste)="changeEventText($event,10)">
+                    <div quill-editor-toolbar>
+                        <span class="ql-formats">
+                            <select class="ql-font" style="width: 170px;" [title]="'Font'">
+                                <option value="worksans">Worksans</option>
+                                <option value="worksansmedium">Worksans_Medium</option>
+                                <option value="worksanssemibold">Worksans_Semi_Bold</option>
+                                <option value="worksansextrabold">Worksans_Extra_Bold</option>
+                                <option value="bitterbold">Bitter_Bold</option>
+                                <option value="bittermedium">Bitter_Medium</option>
+                                <option value="bitterregular">Bitter_Regular</option>
+                                <option value="firesansbold">Firesans_Bold</option>
+                                <option value="firesanslight">Firesans_Light</option>
+                                <option value="firesansregular">Firesans_Regular</option>
+                                <option value="opensanslight">Opensans_Light</option>
+                                <option value="opensansregular">Opensans_Regular</option>
+                                <option value="opensansmedium">Opensans_Medium</option>
+                                <option value="opensansbold">Opensans_Bold</option>
+                            </select>
+                        </span>
+                        <span class="ql-formats">
+                            <select class="ql-size" [title]="'Size'">
+                                <option value="small">Small</option>
+                                <option selected>Normal</option>
+                                <option value="large">Large</option>
+                            </select>
+                            <select class="ql-align" [title]="'Aligment'">
+                                <option selected></option>
+                                <option value="center"></option>
+                                <option value="right"></option>
+                                <option value="justify"></option>
+                            </select>
+                            <button class="ql-bold"></button>
+                            <button class="ql-italic"></button>
+                            <button class="ql-underline"></button>
+                        </span>
+                        <span class="ql-formats">
+                            <select class="ql-color" [title]="'Color'">
+                              <option value="#023995"></option>
+                              <option value="#0093dd"></option>
+                              <option value="#004d9a"></option>
+                              <option value="#3366ff"></option>
+                              <option value="#003595"></option>
+
+                              <option value="#4169af"></option>
+                              <option value="#6687bf"></option>
+                              <option value="#a0b4d7"></option>
+                              <option value="#e2ebf7"></option>
+                              <option value="#ecf0f7"></option>
+
+                              <option value="#000000"></option>
+                              <option value="#333333"></option>
+                              <option value="#515151"></option>
+                              <option value="#5b5b5b"></option>
+                              <option value="#a8a9aa"></option>
+
+                              <option value="#ebebeb"></option>
+                              <option value="#cccccc"></option>
+                              <option value="#fafafa"></option>
+                              <option value="#ffffff"></option>
+                              <option value="#3a5e9d"></option>
+
+                              <option value="#ffca00"></option>
+                              <option value="#d59a29"></option>
+                              <option value="#d8211f"></option>
+                              <option value="#e73465"></option>
+                              <option value="#bd134e"></option>
+
+                              <option value="#e95627"></option>
+                              <option value="#e77817"></option>
+                              <option value="#099169"></option>
+                              <option value="#006950"></option>
+                              <option value="#4d2980"></option>
+
+                              <option value="#131f34"></option>
+                            </select>
+                        </span>
+                    </div>
+                </quill-editor>
+            </div>
+            <div class="form-input mt-2"
+                *ngIf="configuration.typeEditorText == 'link' || configuration.typeEditorText == 'paragraph_roll' || configuration.typeEditorText == 'menu_roll'">
+                <label class="label">
+                    <span class="label px-4 d-flex justify-content-start align-items-center">
+                        Tool tip |
+                        <span class="ml-2 text-count" *ngIf="qe_roll.quillEditor">
+                            <!-- {{qe_roll.quillEditor.editor.delta.ops[0].insert | conteoCaracteresQuill:
+                            formProperties.rollover.maxCaracteres}} -->
+                            {{concatenarTextoEdicion(qe_roll.quillEditor.editor.delta.ops) | conteoCaracteresQuill:
+                            formProperties.rollover.maxCaracteres}}
+                        </span>
+                    </span>
+                </label>
+                <quill-editor #qe_roll style="width:100%;" id="descripcion" [modules]="modules"
+                    formControlName="rollover" (onContentChanged)="changeEventText($event,4)"
+                    (paste)="changeEventText($event,4)">
+                    <div quill-editor-toolbar>
+                        <span class="ql-formats">
+                            <select class="ql-font" style="width: 170px;" [title]="'Font'">
+                                <option value="worksans">Worksans</option>
+                                <option value="worksansmedium">Worksans_Medium</option>
+                                <option value="worksanssemibold">Worksans_Semi_Bold</option>
+                                <option value="worksansextrabold">Worksans_Extra_Bold</option>
+                                <option value="bitterbold">Bitter_Bold</option>
+                                <option value="bittermedium">Bitter_Medium</option>
+                                <option value="bitterregular">Bitter_Regular</option>
+                                <option value="firesansbold">Firesans_Bold</option>
+                                <option value="firesanslight">Firesans_Light</option>
+                                <option value="firesansregular">Firesans_Regular</option>
+                                <option value="opensanslight">Opensans_Light</option>
+                                <option value="opensansregular">Opensans_Regular</option>
+                                <option value="opensansmedium">Opensans_Medium</option>
+                                <option value="opensansbold">Opensans_Bold</option>
+                            </select>
+                        </span>
+                        <span class="ql-formats">
+                            <select class="ql-size" [title]="'Size'">
+                                <option value="small">Small</option>
+                                <option selected>Normal</option>
+                                <option value="large">Large</option>
+                            </select>
+                            <select class="ql-align" [title]="'Aligment'">
+                                <option selected></option>
+                                <option value="center"></option>
+                                <option value="right"></option>
+                                <option value="justify"></option>
+                            </select>
+                            <button class="ql-bold"></button>
+                            <button class="ql-italic"></button>
+                            <button class="ql-underline"></button>
+                        </span>
+                        <span class="ql-formats">
+                            <select class="ql-color" [title]="'Color'">
+                              <option value="#023995"></option>
+                              <option value="#0093dd"></option>
+                              <option value="#004d9a"></option>
+                              <option value="#3366ff"></option>
+                              <option value="#003595"></option>
+
+                              <option value="#4169af"></option>
+                              <option value="#6687bf"></option>
+                              <option value="#a0b4d7"></option>
+                              <option value="#e2ebf7"></option>
+                              <option value="#ecf0f7"></option>
+
+                              <option value="#000000"></option>
+                              <option value="#333333"></option>
+                              <option value="#515151"></option>
+                              <option value="#5b5b5b"></option>
+                              <option value="#a8a9aa"></option>
+
+                              <option value="#ebebeb"></option>
+                              <option value="#cccccc"></option>
+                              <option value="#fafafa"></option>
+                              <option value="#ffffff"></option>
+                              <option value="#3a5e9d"></option>
+
+                              <option value="#ffca00"></option>
+                              <option value="#d59a29"></option>
+                              <option value="#d8211f"></option>
+                              <option value="#e73465"></option>
+                              <option value="#bd134e"></option>
+
+                              <option value="#e95627"></option>
+                              <option value="#e77817"></option>
+                              <option value="#099169"></option>
+                              <option value="#006950"></option>
+                              <option value="#4d2980"></option>
+
+                              <option value="#131f34"></option>
+                            </select>
+                        </span>
+                    </div>
+                </quill-editor>
+            </div>
+        </form>
+    </div>
+    <div class="backgroundEditor shadow p-4 fade-in"
+        *ngIf="editorBackgroundOpen && configuration.editorBackground && !configuration.editorEfects"
+        id="windowbackground{{indexInput}}" #windowbackground{{indexInput}}>
+        <div id="background-editor-x" (click)="cerrarBackgroundEditor()" ><span>X</span></div>
+        <div class="selectorType d-flex flex-column justify-content-center align-items-center">
+            <h3 class="background-editor-titulo" *ngIf="!edyting">Fondo</h3>
+            <span class="type d-flex justify-content-center align-items-center py-3 rounded" (click)="actionBack(1)"
+                id="selectLoop{{indexInput}}" #selectLoop{{indexInput}}>
+                <div class="box-color"></div>
+                <span class="span-centered title-type ml-2">Seleccione un color <br>de fondo</span>
+            </span>
+            <span class="type d-flex justify-content-center align-items-center mt-1 py-3 rounded"
+                (click)="actionBack(2)" id="selectLoop{{indexInput}}" #selectLoop{{indexInput}} *ngIf="!edyting">
+                <div class="box-add-image icon-image"></div>
+                <span class="title-type ml-2">Cargue una imagen</span>
+            </span>
+            <input class="colorPickerInput" [(colorPicker)]="color" [style.background]="color" *ngIf="editorColor"
+                (colorPickerChange)="changeEventText(null,1)" />
+        </div>
+    </div>
+    <div class="mediaEditor shadow p-4 d-flex flex-column justify-content-center align-items-center fade-in"
+        *ngIf="editorOpen && configuration.editorImage && configuration.typeEditorText == 'video'"
+        id="windowmedia{{indexInput}}" #windowmedia{{indexInput}}>
+        <div class="col-sm-10 d-flex justify-content-center align-items-center">
+            <button class="col-sm-6 btn "
+                [ngClass]="{'buttonActive':sectionMediaUpload , 'buttonInactive':!sectionMediaUpload}"
+                (click)="sectionMediaUpload = true">Cargar archivo</button>
+            <button class="col-sm-6 btn ml-2"
+                [ngClass]="{'buttonActive':!sectionMediaUpload , 'buttonInactive':sectionMediaUpload}"
+                (click)="sectionMediaUpload = false">Cargar Url</button>
+        </div>
+        <div class="col-sm-12 d-flex justify-content-center align-items-center mt-2" *ngIf="sectionMediaUpload">
+            <div class="dropzone" movistarDnd (fileDropped)="onFileDropped($event.target.files)">
+                <input type="file" #fileDropRef id="fileDropRef" multiple
+                    (change)="onFileDropped($event.target.files)" />
+                <!-- <h3>Arrastre archivos a esta sección para cargarlos</h3> -->
+                <h3>Arrastre el archivo a esta sección para cargarlo</h3>
+                <label class="btnUpload mt-2" for="fileDropRef">BUSCAR EN MI PC</label>
+            </div>
+            <div class="viewimageZone">
+                <video *ngIf="imgURL" [src]="imgURL" id="my-video" class="video-js vjs-default-skin mb-4" controls
+                    preload="auto" data-setup="{'controls':true}">
+                </video>
+            </div>
+        </div>
+        <div class="col-sm-12 d-flex justify-content-center align-items-center" *ngIf="!sectionMediaUpload">
+            <form [formGroup]="form" class="col-sm-12 d-flex flex-column justify-content-center align-items-center">
+                <div class="form-input mt-2">
+                    <label class="label">
+                        <span class="label px-4 d-flex justify-content-start align-items-center">
+                            URL del video
+                        </span>
+                    </label>
+                    <div class="content-asterisk">
+                        <input class="input-asterisk px-2" id="name" #name autocomplete="off"
+                            formControlName="mediaData" (input)="changeEventText(null,6)" />
+                    </div>
+                </div>
+                <div class="form-group text-center submit-rol-button mt-4" *ngIf="!adminView">
+                    <!-- [disabled]="form.invalid" [ngClass]="{ disabled: form.invalid }" -->
+                    <button class="btn_third px-4" type="submit" (click)="addUrlMedia()">
+                        Agregar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="mediaEditor shadow  pb-4 d-flex flex-column justify-content-center align-items-center fade-in"
+        [ngClass]="{'pt-2':configuration.editorImageSize , 'pt-4':!configuration.editorImageSize}"
+        *ngIf="editorOpen && configuration.editorImage && (configuration.typeEditorText == 'imagen' || configuration.typeEditorText == 'imagen_link') || mediaActionBackground"
+        id="windowmedia{{indexInput}}" #windowmedia{{indexInput}}>
+        <form [formGroup]="form" class="col-sm-12 d-flex flex-column justify-content-center align-items-center"
+            *ngIf="configuration.editorImageSize">
+            <div class="container-image-size col-sm-11 d-flex justify-content-center align-items-center mb-2 px-2">
+                <span class="text-color-blue p-0 text-medium title-image-size">Tamaño de la imagen</span>
+                <div class="option-image-size d-flex justify-content-start align-items-center">
+                    <label class="containerLabel">
+                        <span
+                            class="label col-sm-10 px-0 pl-2 d-flex flex-column justify-content-start align-items-center text-medium">
+                            Grande
+                        </span>
+                        <input type="radio" checked value="big" formControlName="size_img"
+                            (change)="changeImageStyle()">
+                        <span class="checkmarkSmall"></span>
+                    </label>
+                </div>
+                <div class="option-image-size d-flex justify-content-start align-items-center">
+                    <label class="containerLabel">
+                        <span
+                            class="label col-sm-10 px-0 pl-2 d-flex flex-column justify-content-start align-items-center text-medium">
+                            Mediana
+                        </span>
+                        <input type="radio" value="medium" formControlName="size_img" (change)="changeImageStyle()">
+                        <span class="checkmarkSmall"></span>
+                    </label>
+                </div>
+                <div class="option-image-size d-flex justify-content-start align-items-center">
+                    <label class="containerLabel">
+                        <span
+                            class="label col-sm-10 px-0 pl-2 d-flex flex-column justify-content-start align-items-center text-medium">
+                            Pequeña
+                        </span>
+                        <input type="radio" value="small" formControlName="size_img" (change)="changeImageStyle()">
+                        <span class="checkmarkSmall"></span>
+                    </label>
+                </div>
+            </div>
+        </form>
+        <div class="col-sm-10 d-flex justify-content-center align-items-center mb-2" *ngIf="configuration.typeEditorText == 'imagen_link'">
+            <button class="col-sm-6 btn "
+                [ngClass]="{'buttonActive':sectionMediaUpload , 'buttonInactive':!sectionMediaUpload}"
+                (click)="sectionMediaUpload = true">Cargar archivo</button>
+            <button class="col-sm-6 btn ml-2"
+                [ngClass]="{'buttonActive':!sectionMediaUpload , 'buttonInactive':sectionMediaUpload}"
+                (click)="sectionMediaUpload = false">Añadir enlace</button>
+        </div>
+        <div class="col-sm-12 d-flex justify-content-center align-items-center" *ngIf="sectionMediaUpload">
+            <div class="dropzone" movistarDnd (fileDropped)="onFileDropped($event.target.files)">
+                <input type="file" #fileDropRef id="fileDropRef" multiple
+                    (change)="onFileDropped($event.target.files)" />
+                <!-- <h3>Arrastre archivos a esta sección para cargarlos</h3> -->
+                <h3>Arrastre el archivo a esta sección para cargarlo</h3>
+                <label class="btnUpload mt-2" for="fileDropRef">BUSCAR EN MI PC</label>
+            </div>
+            <div class="viewimageZone">
+                <img [src]="imgURL" *ngIf="imgURL">
+            </div>
+        </div>
+        <div class="col-sm-10 d-flex justify-content-center align-items-center" *ngIf="!sectionMediaUpload">
+            <form [formGroup]="form" class="col-sm-12 d-flex flex-column justify-content-center align-items-center">
+                <div class="form-input mt-2">
+                    <label class="label">
+                        <span class="label px-4 d-flex justify-content-start align-items-center">
+                            Enlace de la imagen
+                        </span>
+                    </label>
+                    <div class="content-asterisk">
+                        <input class="input-asterisk px-2" id="name" #name autocomplete="off"
+                            formControlName="image_link" (input)="changeEventText(null,13)" />
+                     <!--    <input class="input-asterisk px-2" maxlength="50" id="name" #name autocomplete="off"
+                            formControlName="image_link" (input)="changeEventText(null,13)" /> -->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

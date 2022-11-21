@@ -1,0 +1,57 @@
+.logoEscuelaSecretarias{
+    display: block;
+    height: 30%;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    background-color: #6699FF;
+    background-image:url("../../../../../../src/assets/iconos/1.1/Icono menu/1.svg");
+    background-repeat: no-repeat;
+    background-position: 50% 20%;
+    background-size: 50% 50%;
+
+}
+
+.title{
+    text-align: center;
+    font-family: workSans_bold;
+    font-size: 21pt;
+    padding:3rem;
+}
+
+.bandera {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    display: block;
+    width: 7px;
+    height: 100%;
+    background-image: linear-gradient(180deg, #f42f63 0%, #f42f63 50%, #36c 50%, #36c 100%);
+    padding: 0;
+    margin: 0;
+}
+.subTitulo {
+    font-family: 'Work Sans', sans-serif;
+    color: #36c;
+    font-size: 13pt;
+    font-weight: lighter;
+    margin: auto 0px auto 0px;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.gracias{
+    font-family: workSans_ligth;
+    font-size: 16pt;
+    font-weight: bold;
+    text-align: center;
+    padding: 1.5em;
+}
+
+.RedLine {
+    border-style: dashed;
+    border-color: #f42f63;
+    border-width: 1px;
+}
+.logo_men{
+    background-position: 50%;
+}

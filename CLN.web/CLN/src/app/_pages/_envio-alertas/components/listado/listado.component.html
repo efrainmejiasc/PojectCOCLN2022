@@ -1,0 +1,75 @@
+<div class="listado">
+
+  <!-- regresar -->
+  <app-regresar [linkTo]="linkTo"></app-regresar>
+  <!-- fin regresar -->
+
+  <!-- Boton Programar Alertas -->
+  <div class="products-buttom">
+    <div></div>
+    <div style="cursor:pointer;" (click)="nuevaAlerta()">
+      <div>
+        <img src="assets/imgs/iconos/programar.svg" />
+      </div>
+      <p>
+          PROGRAMAR ALERTA
+      </p>
+    </div>
+    <div></div>
+  </div>
+  <!-- Fin Boton Programar Alertas -->
+  <div style="margin-left: 10%; margin-right: 10%; text-align: center;" *ngIf="totalAlertas > 0">
+    <table>
+        <thead>
+            <tr>
+              <th style="font-size: 17px" width="200px">Nombre de la alerta</th>
+              <th style="font-size: 17px" width="20%">Fecha último envío</th>
+              <th style="font-size: 17px" width="20%">Tipo de notificación</th>
+              <th style="font-size: 17px" width="20%">Estado</th>
+              <th style="font-size: 17px" width="20%">Gestión</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of alertas | async">
+              <td>{{ item.nombre }}</td>
+              <td>{{ construirFecha(item.fechaUltimoEnvio) }}</td>
+              <td>{{ item.tipoNotificacion }}</td>
+              <td>{{ item.isActive ? 'Activa' : 'Inactiva' }}</td>
+              <td>
+                <app-button
+                  text="Editar"
+                  width="150px"
+                  (onClick)="actualizarAlerta(item)">
+                </app-button>
+                <app-button
+                  text="Eliminar"
+                  width="150px"
+                  (onClick)="eliminar(item)">
+                </app-button>
+                <app-button
+                  text="{{ !item.isActive ? 'Activar' : 'Inactivar' }}"
+                  width="150px"
+                  (onClick)="cambiarEstado(item)">
+                </app-button>
+              </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+  <div style="margin-left: 18%; margin-top: 2%; margin-left: 25%; margin-right: 30%" [ngStyle]="totalAlertas > 0 ? {'display': 'block'} : {'display': 'none'}">
+    <mat-paginator 
+        [pageSizeOptions]="[3]"
+        hidePageSize="true"
+        showFirstLastButtons="true">
+    </mat-paginator>
+  </div>
+</div>
+<app-popup-cambios *ngIf="showAlerta"
+  [message] = "notificationMessage"
+  (close)="gestion($event)">
+</app-popup-cambios>
+<app-popup-confirmation *ngIf="showConfirmAlerta"
+  [message] = "notificationConfirmMessage"
+  [title]="'CERRAR'"
+  (close)="closePopup($event)">
+</app-popup-confirmation>

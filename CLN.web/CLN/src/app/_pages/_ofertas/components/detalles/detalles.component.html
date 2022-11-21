@@ -1,0 +1,66 @@
+<!-- <h1 mat-dialog-title>Hi {{data.name}}</h1> -->
+<div style="text-align:center;">
+    <span style="color: #4169af; font-size: 26px; font-weight: 800;">{{ data.entityName }}</span>
+</div>
+<div style="margin: 30px;">
+    <p> 
+        <span style="font-weight: 800;">Número de proceso:</span> {{ data.processNumber || ' ' }}
+    </p>
+    <p>
+        <span style="font-weight: 800;">Fase/Estado:</span>{{ data.phase || '' }}
+    </p>
+    <p>
+        <span style="font-weight: 800;">Fecha de publicación del proceso:</span> {{ data.dateLoadSecop ? data.dateLoadSecop.split('T')[0] : '' }}
+    </p>
+    <p>
+        <span style="font-weight: 800;">Fecha de última publicación:</span> {{ data.lastPublicationDate ? data.lastPublicationDate.split('T')[0] : '' }}
+    </p>
+    <p>
+        <span style="font-weight: 800;">Cuantía del proceso:</span> $ {{ data.basePrice ? formatearPrecio(data.basePrice) : '' }}
+    </p>
+    <p>
+        <span style="font-weight: 800;">Modalidad de contratación:</span> {{ data.contractingModality || '' }}
+    </p>
+    <p>
+        <span style="font-weight: 800;">Fecha de recepción de respuestas:</span> {{ data.dateReceiptResponses ? data.dateReceiptResponses.split('T')[0] : '' }}
+    </p>
+    <p>
+        <span style="font-weight: 800;">Duración:</span> {{ data.duration }} {{ data.unitDuration }}
+    </p>
+    <p>
+        <span style="font-weight: 800;">Ciudad:</span> {{ data.city || '' }}
+    </p>
+    <p>
+        <span style="font-weight: 800;">Producto o servicio asociado:</span> {{ data.mainCategoryCode || '' }}
+    </p>
+    <p>
+        <span style="font-weight: 800;">Producto o servicio adicional asociado:</span> {{ data.additionalCategories || '' }}
+    </p>
+    <p>
+        <span style="font-weight: 800;">Tipo de contrato:</span> {{ data.typeContract || '' }}
+    </p>
+    <div style="margin-top: 15px">
+        <p>
+            <img src="assets/imgs/iconos/alerta.svg" style="width: 20px; height: 20px">
+            Ir a SECOP
+        </p>
+        <div style="border-style: solid;">
+            <p style="margin: 10px; justify-content: left;">
+                <a href="javascript:void(0)" (click)="openUrl()" target="_blank">{{ data.urlProcess }}</a>
+            </p>
+        </div>
+    </div>
+    <div style="margin-top: 15px">
+        <p>
+            Objeto del proceso
+        </p>
+        <div style="border-style: solid;">
+            <p style="margin: 10px">
+                {{ data.detailObjectToHired || '' }}
+            </p>
+        </div>
+    </div>
+    <div class="btn-container">
+        <span (click)="closeDialog()"class="general-btn">CERRAR</span>
+    </div>
+</div>

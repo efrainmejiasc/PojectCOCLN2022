@@ -1,0 +1,21 @@
+$color-red: #f42f63;
+
+.buttonSvg {
+  width: 100%;
+  height: 50px;
+  background-color: $color-red;
+  display: block;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.nuevo-integrante {
+  -webkit-mask: url(src\assets\iconos\nuevo-integrante.svg) no-repeat center;
+  mask: url(src\assets\iconos\nuevo-integrante.svg) no-repeat center;
+}
+
+.gestiona-integrantes {
+  color: #f42f63;
+  font-size: 14px;
+  margin-top:10px;
+}

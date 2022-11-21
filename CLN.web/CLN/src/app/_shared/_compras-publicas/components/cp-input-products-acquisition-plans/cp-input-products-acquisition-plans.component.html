@@ -1,0 +1,46 @@
+<div class="wrapper">
+    <div class="select-btn">
+        <div class="content-box">
+            <ul>
+                <li *ngFor="let item of selectedItems">
+                    <p>{{item.name}}</p>
+                    <span (click)="removeProduct(item)">X</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="products-buttom" (click)="toogleModal()">
+        <div>
+            <img src="assets/imgs/iconos/producto.svg" />
+        </div>
+        <p>AGREGAR PRODUCTOS</p>
+    </div>
+</div>
+
+<div id="modal" class="products-modal">
+    <div class="products-modal-content">
+        
+        <p>Productos y servicios UNSPSC</p>
+        <div class="select-btn">
+            <div class="content-box">
+                <ul>
+                    <li *ngFor="let item of selectedItems">
+                        <p>{{item.name}}</p>
+                        <span (click)="removeProduct(item)">X</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- <div class="products-modal-input-container">
+            <input type="text" placeholder="Ingrese una palabra clave">
+            <img src="assets/imgs/iconos/lupa-azul.svg" />
+        </div> -->
+        <div id="results" class="products-modal-results">
+
+        </div>
+        <div class="modal-btn-container">
+            <button class="modal-btn" (click)="closeModal()">ACEPTAR</button>
+        </div>
+    </div>
+</div>

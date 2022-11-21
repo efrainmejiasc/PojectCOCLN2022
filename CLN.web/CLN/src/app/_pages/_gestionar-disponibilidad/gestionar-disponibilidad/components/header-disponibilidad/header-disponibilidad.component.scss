@@ -1,0 +1,111 @@
+$mainColor: #3c64b0;
+
+.sLogistico {
+  background-image: url(src/assets/imgs/citas/header-gestionar-citas.png);
+  background-size:  100%;
+  background-position: top center;
+  color: #fff;
+
+  border-bottom: solid 3px #b1bcdc;
+
+  &--container {
+    padding: 6.6em 10.8em 7.4em;
+
+    @media only screen and (max-width: 48em) {
+      padding: 6.6em 1em 8.4em;
+    }
+  }
+
+  &--h1 {
+    font-size: 1.4em;
+    display: inline-block;
+    border-bottom: 1px solid;
+    padding-bottom: 0.5em;
+    padding-right: 2.5em;
+    margin-bottom: 0;
+  }
+
+  &--p {
+    font-size: 1.7em;
+    line-height: 1.2;
+    margin-bottom: 0.4em;
+    margin-top: 0.1em;
+    max-width: 28em;
+  }
+
+  &--a {
+    color: #fcd200;
+    font-size: 1.1em;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &--tab-container {
+    margin-top: -5.6em;
+    @media only screen and (min-width: 48em) {
+      padding: 0 5em;
+    }
+  }
+
+  &--tab {
+    background-color: #fff;
+    padding-top: 2em;
+    // box-shadow: 0 0 1em -0.1em;
+    margin-bottom: 2em;
+  }
+
+  &--video {
+    @media only screen and (max-width: 48em) {
+      margin: 0 1em;
+    }
+    @media only screen and (min-width: 48em) {
+      margin: 0 12em;
+    }
+  }
+
+  &--h2 {
+    line-height: 1;
+    font-size: 1.5em;
+    text-align: center;
+    color: $mainColor;
+    font-weight: 600;
+  }
+
+  &--paragraph {
+    font-size: 0.9em;
+    line-height: 1.2;
+    margin: 2em 6em;
+
+    @media only screen and (max-width: 48em) {
+      margin: 2em 1em;
+    }
+  }
+}
+
+.section-cln {
+  background-image: url(src/assets/imgs/citas/header-gestionar-citas.png);
+  color: #fff;
+  padding: 3.6em 18em;
+  text-align: center;
+
+  @media only screen and (max-width: 48em) {
+    padding: 3.6em 1em;
+  }
+
+  &--h2 {
+    font-weight: 700;
+    margin-bottom: 0.6em;
+  }
+
+  &--p {
+    line-height: 1.9;
+    font-weight: 600;
+    font-size: 0.96em;
+    margin-bottom: 1.8em;
+  }
+}
+
+// mat-tab-label mat-ripple ng-star-inserted
+// mat-tab-label mat-ripple ng-star-inserted mat-tab-label-active

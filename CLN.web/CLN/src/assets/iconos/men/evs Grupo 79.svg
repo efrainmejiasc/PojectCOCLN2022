@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26.888" height="29.794" viewBox="0 0 26.888 29.794">
+  <g id="Grupo_79" data-name="Grupo 79" transform="translate(-277.75 -654.297)">
+    <g id="enlace_web" data-name="enlace web" transform="translate(278 655)">
+      <g id="Grupo_73" data-name="Grupo 73" transform="translate(-79.561 -487.955)">
+        <path id="Trazado_144" data-name="Trazado 144" d="M98.756,488.211l5,5h-5.01v-5" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.356"/>
+        <g id="Grupo_72" data-name="Grupo 72">
+          <path id="Trazado_145" data-name="Trazado 145" d="M98.479,488.067l-14.08-.112a2.621,2.621,0,0,0-2.642,2.624l.022,23.113a2.621,2.621,0,0,0,2.612,2.618l16.667.058a2.621,2.621,0,0,0,2.63-2.613l.066-20.451" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.356"/>
+          <rect id="Rectángulo_62" data-name="Rectángulo 62" width="26.388" height="8.627" rx="2.159" transform="translate(79.561 503.7)" fill="#e6effd" stroke="#36c" stroke-miterlimit="10" stroke-width="0.5"/>
+          <text id="WEB" transform="translate(92.755 511.434)" fill="#36c" font-size="10.382" font-family="AntipastoPro, Antipasto Pro"><tspan x="-9.352" y="0">WEB</tspan></text>
+        </g>
+      </g>
+      <g id="Grupo_77" data-name="Grupo 77" transform="translate(-79.561 -487.955)">
+        <g id="Grupo_76" data-name="Grupo 76">
+          <g id="Grupo_75" data-name="Grupo 75">
+            <g id="Grupo_74" data-name="Grupo 74">
+              <path id="Trazado_146" data-name="Trazado 146" d="M90.823,501.416a1.918,1.918,0,0,1-1.358-.561l-.429-.429a1.924,1.924,0,0,1,0-2.717l1.5-1.5a1.925,1.925,0,0,1,2.717,0,.4.4,0,0,1-.57.571,1.116,1.116,0,0,0-1.576,0l-1.5,1.5a1.115,1.115,0,0,0,0,1.576l.429.43a1.118,1.118,0,0,0,1.576,0l.859-.859a.4.4,0,0,1,.57.57l-.858.859A1.919,1.919,0,0,1,90.823,501.416Z" fill="#36c"/>
+            </g>
+            <path id="Trazado_147" data-name="Trazado 147" d="M93.614,499.056a1.909,1.909,0,0,1-1.359-.562.4.4,0,1,1,.571-.57,1.141,1.141,0,0,0,1.576,0l1.5-1.5a1.115,1.115,0,0,0,0-1.576l-.429-.429a1.115,1.115,0,0,0-1.576,0l-1.066,1.065a.4.4,0,0,1-.57-.57l1.066-1.066a1.924,1.924,0,0,1,2.716,0l.429.43a1.921,1.921,0,0,1,0,2.717l-1.5,1.5A1.905,1.905,0,0,1,93.614,499.056Z" fill="#36c"/>
+          </g>
+        </g>
+        <rect id="Rectángulo_63" data-name="Rectángulo 63" width="0.589" height="2.508" rx="0.295" transform="matrix(0.605, -0.796, 0.796, 0.605, 89.067, 494.005)" fill="#36c"/>
+        <rect id="Rectángulo_64" data-name="Rectángulo 64" width="0.589" height="2.508" rx="0.295" transform="translate(90.396 492.757) rotate(-25.399)" fill="#36c"/>
+      </g>
+    </g>
+  </g>
+</svg>

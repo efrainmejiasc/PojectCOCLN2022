@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26.888" height="29.794" viewBox="0 0 26.888 29.794">
+  <g id="mpeg" transform="translate(0.25 0.702)">
+    <path id="Trazado_122" data-name="Trazado 122" d="M66.217,338.7l-14.081-.112a2.621,2.621,0,0,0-2.642,2.624l.022,23.113a2.622,2.622,0,0,0,2.612,2.619L68.795,367a2.62,2.62,0,0,0,2.63-2.612l.067-20.452" transform="translate(-47.299 -338.589)" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.356"/>
+    <path id="Trazado_123" data-name="Trazado 123" d="M66.493,338.845l5,5h-5.01v-5" transform="translate(-47.299 -338.589)" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.356"/>
+    <rect id="Rectángulo_38" data-name="Rectángulo 38" width="26.388" height="8.627" rx="2.159" transform="translate(0 15.746)" fill="#e6effd" stroke="#36c" stroke-miterlimit="10" stroke-width="0.5"/>
+    <text id="MPEG-2" data-name="MPEG" transform="translate(13.195 23.479)" fill="#36c" font-size="10.382" font-family="AntipastoPro, Antipasto Pro"><tspan x="-11.761" y="0">MPEG</tspan></text>
+    <rect id="Rectángulo_39" data-name="Rectángulo 39" width="9.294" height="7.057" rx="1.036" transform="translate(8.547 6.559)" fill="none" stroke="#36c" stroke-miterlimit="10" stroke-width="0.5"/>
+    <path id="Trazado_124" data-name="Trazado 124" d="M58.322,346.487v4.378l4.341-2.189-4.341-2.189" transform="translate(-47.299 -338.589)" fill="#36c"/>
+  </g>
+</svg>

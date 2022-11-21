@@ -1,0 +1,82 @@
+.fade-right {
+    position: relative;
+    animation-name: fadeRight;
+    animation-duration: 1s;
+    opacity: 1;
+}
+@keyframes fadeRight {
+    0% {
+        position: absolute;
+        left: 100px;
+        opacity: 0;
+    }
+    100% {
+        position: absolute;
+        left: 0px;
+        opacity: 1;
+    }
+}
+.fade-left {
+    position: relative;
+    animation-name: fadeLeft;
+    animation-duration: 1s;
+    opacity: 1;
+}
+@keyframes fadeLeft {
+    0% {
+        position: absolute;
+        right: 100px;
+        opacity: 0;
+    }
+    100% {
+        position: absolute;
+        right: 0px;
+        opacity: 1;
+    }
+}
+.fade-top {
+    position: relative;
+    animation-name: fadeTop;
+    animation-duration: 1s;
+    opacity: 1;
+}
+@keyframes fadeTop {
+    0% {
+        position: absolute;
+        top: -100px;
+    }
+    100% {
+        position: absolute;
+        top: 0px;
+    }
+}
+.fade-bottom {
+    position: relative;
+    animation-name: fadeBottom;
+    animation-duration: 1s;
+    opacity: 1;
+}
+@keyframes fadeBottom {
+    0% {
+        position: absolute;
+        top: 100px;
+    }
+    100% {
+        position: absolute;
+        top: 0px;
+    }
+}
+.fade-in {
+    padding: 0px 0px 0px 0px;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    opacity: 1;
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

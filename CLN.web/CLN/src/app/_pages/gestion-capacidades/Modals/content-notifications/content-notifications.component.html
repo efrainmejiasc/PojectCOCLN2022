@@ -1,0 +1,25 @@
+<div class="container container-relative d-flex flex-column justify-content-center align-items-center" *ngIf="news.length > 0">
+    <div class="box-notification d-flex justify-content-center align-items-center">
+        <div class="notification-alerts d-flex flex-column justify-content-center align-items-center">
+            <span class="name mt-2 text-color-red">Notificaciones</span>
+            <div class="bellContent d-flex justify-content-center align-items-center">
+                <span class="amount d-flex justify-content-center align-items-center">{{news.length}}</span>
+                <span class="bellIcon"></span>
+            </div>
+        </div>
+        <div class="loop-notifications d-flex flex-column justify-content-start align-items-center">
+            <div class="content-notification d-flex justify-content-center align-items-center"
+                *ngFor="let noticias of news">
+                <div class="notification-title d-flex flex-column justify-content-center align-items-center">
+                    <span
+                        [ngClass]="{'icon-notification' : noticias.indexNovedad == 1 , 'table-circle-green' : noticias.indexNovedad == 2,'table-circle-red' : noticias.indexNovedad == 3}"></span>
+                    <span class="name text-color-blue">{{noticias.novedad}}</span>
+                </div>
+                <span class="result-first-word"
+                    [style.background-color]="noticias.tipoCapacidad[0].color">{{noticias.tipoCapacidad[0].abreviatura}}</span>
+                <span class="text-notification text-color-blue">{{noticias.nombre}}</span>
+            </div>
+        </div>
+    </div>
+    <hr class="RedLine" />
+</div>

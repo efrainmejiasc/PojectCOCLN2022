@@ -1,0 +1,148 @@
+.wrapper{
+  width: 100%;
+  position: relative;
+}
+
+.select-btn, li{
+  display: flex;
+  /* align-items: center; */
+}
+
+.select-btn{
+  min-height: 30px;
+  padding: 0px;
+  font-size: 22px;
+  background: #ececec;
+  border-radius: 7px;
+  display: flex;
+  justify-content: space-between;
+};
+
+.content-box p{
+  font-size: 14px;
+  cursor: auto;
+};
+
+.content-box span{
+  font-size: 13px;
+  cursor: pointer;
+  margin-left: 4px;
+  font-weight: bold;
+};
+
+.content-box ul{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2px;
+  margin: 0px 0px;
+  border-radius: 5px;
+};
+
+.content-box ul li{
+  color: #333;
+  height: 24px;
+  margin: 2px 3px 2px 0px;
+  padding: 2px 0px;
+  list-style: none;
+  border-radius: 5px;
+  background: #bcbcbc;
+  color:#333333;
+  display: flex;
+  align-items: center;
+};
+
+.content-box ul li p{
+  font-size: bold;
+  margin:0px 4px 0 6px;
+}
+
+.products-buttom{
+  text-align: center;
+  cursor:pointer;
+};
+
+.products-buttom img{
+  width:70px;
+  margin-top: 15px;
+};
+
+.products-buttom p{
+  font-size: 16px;
+  color:#3366ff;
+  font-weight: 700;
+};
+
+#modal{
+  left:0px;
+  top:0px;
+  position:fixed;
+  width:100%;
+  height:100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 100;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  display:none;
+}
+
+.products-modal-content{
+  margin-left: 15%;
+  margin-top: 5%;
+  width:70%;
+  height: 80%;
+  min-height: 500px;
+  padding: 40px;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+};
+
+.products-modal-content>p{
+  font-weight: 700;
+  color:#333;
+  margin: 0 0 4px 0;
+};
+
+.products-modal-input-container{
+  display:flex;
+  justify-content: left;
+  margin: 10px 0 0 0;
+}
+
+.products-modal-input-container input{
+  width:30%;
+  border:0px;
+  background-color: transparent;
+  border-bottom: 1px solid #003595;
+};
+
+.products-modal-input-container img{
+  width:20px;
+  cursor: pointer;
+}
+
+.products-modal-results{
+  margin-top: 25px;
+  background-color: #fff;
+  max-height: 300px;
+  overflow: scroll;
+};
+
+#results{
+  min-height: 200px;
+};
+
+.modal-btn-container{
+  text-align: center;
+  margin-top: 15px;
+};
+
+.modal-btn{
+  width:120px;
+  padding: 10px;
+  background-color: #003595;
+  color:#fff;
+  font-size: 16px;
+  border:none;
+  border-radius: 20px;
+};

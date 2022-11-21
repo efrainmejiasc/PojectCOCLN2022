@@ -1,0 +1,47 @@
+.sLogistico--tab {
+  .mat-tab-label {
+    opacity: 1;
+    border: solid 1px #686868;
+    color: $mainColor;
+
+    .sLogistico--tab-icon {
+      margin-right: 0.4em;
+      width: 1.5em;
+
+      .background-mainColor {
+        transition: fill 0.3s;
+        fill: $mainColor;
+      }
+
+      .background-secondaryColor {
+        transition: fill 0.3s;
+        fill: #fff;
+      }
+    }
+
+    &-active {
+      background-color: $mainColor;
+      color: #fff;
+      border: none;
+
+      .sLogistico--tab-icon {
+        .background-mainColor {
+          fill: #fff;
+        }
+        .background-secondaryColor {
+          fill: $mainColor;
+        }
+      }
+    }
+  }
+
+  .mat-tab-group.mat-primary .mat-ink-bar,
+  .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: $mainColor;
+  }
+
+  .mat-tab-header,
+  .mat-tab-nav-bar {
+    border-bottom: none;
+  }
+}

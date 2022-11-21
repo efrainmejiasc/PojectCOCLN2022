@@ -1,0 +1,81 @@
+h1, h2, p{
+    margin: 0px;
+    padding: 0px;
+}
+
+#admin-top{
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 30px;
+}
+
+.bienvenido{
+    color:#4169af;
+    font-size: 26px;
+    font-weight: 800;
+    border-bottom: 1px solid #666;   
+}
+
+
+h2{
+    color:#111;
+    font-weight:400;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+p{
+    color:#999;
+    font-size: 14px;
+    margin-top: 30px;
+}
+
+#empresa-bottom>div{
+    width:70%;
+    margin-left:15%;
+    background-color: burlywood;
+    color:#999;
+    line-height: 14px;
+    font-size: 12px;
+}
+
+#empresa-bottom>div>div{
+    float:left;
+    width:22%;
+    text-align: center;
+    padding: 15px 0px;
+    cursor: pointer;
+}
+
+#empresa-bottom>div>div:hover{
+
+    border-bottom: 5px solid #3366ff;
+    color:#3366ff;
+}
+
+#empresa-bottom>div>div:first-child{
+    border-left:3px solid #efefef;
+}
+
+#empresa-bottom>div>div:nth-child(2){
+    border-left:3px solid #efefef;
+    border-right:3px solid #efefef;
+}
+
+#empresa-bottom>div>div:nth-child(3){
+    border-right:3px solid #efefef;
+}
+
+#empresa-bottom>div>div:last-child{
+    border-right:3px solid #efefef;
+}
+
+.icono-opciones{
+    height: 40px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.icono-opciones img{
+    height: 40px;
+}

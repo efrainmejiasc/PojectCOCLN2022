@@ -1,0 +1,22 @@
+/*.calendario {
+  margin-top: 10px;
+}
+
+.bg-blueSecondary {
+  background-color: #e6effd;
+}
+*/
+
+.bg-blueSecondary {
+  background-color: #e6effd;
+}
+
+.btn-calendar:not(:disabled):not(.disabled).active {
+  background-color: #23478e;
+  border-color: #23478e;
+}
+
+.btn-calendar {
+  background-color: #3366cc;
+  border-color: #3366cc;
+}

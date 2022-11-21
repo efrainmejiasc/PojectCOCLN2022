@@ -1,0 +1,19 @@
+<div class="modal-body position-relative">
+    <p class="message text-secondary" [innerHTML]="message"></p>
+    <form [formGroup]="form" class="col-sm-12 d-flex flex-column justify-content-center align-items-center">
+        <textarea formControlName="correos" class="md-textarea form-control" (input)="validatingEmail()"></textarea>
+
+        <div class=" col-sm-12 form-group text-center mt-4 pt-4  d-flex justify-content-center align-items-center">
+            <span class="btn_third col-sm-2 d-flex justify-content-center align-items-center"
+                [ngClass]="{ 'disabled': !activeEmailData }" (click)="send()" type="submit">
+                Enviar
+            </span>
+            <span class="btn_third ml-2 col-sm-2 d-flex justify-content-center align-items-center" [ngClass]="{ 'disabled': activeEmailData }" (click)="continue()">
+                Continuar
+            </span>
+        </div>
+    </form>
+    <button type="button" class="close closeIn" aria-label="Close" (click)="closeAction()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>

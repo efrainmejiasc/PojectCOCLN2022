@@ -1,0 +1,10 @@
+<div class="content-calification" (click)="identifyClickOutSide($event)">
+    <button class="viewCalificationValue" id="selectLoop{{indexInput}}" #selectLoop{{indexInput}}
+        (click)="(calificationAction) ? calificationAction = false : calificationAction = true">
+        {{valorNota}} <span class="arrow-down"></span>
+    </button>
+    <div class="loopCalification shadow-sm" *ngIf="calificationAction">
+        <button *ngFor="let cal of listCalifications" [value]="cal" [ngClass]="{'selected': cal == valorNota}"
+            (click)="selectValue(cal)">{{cal}}</button>
+    </div>
+</div>

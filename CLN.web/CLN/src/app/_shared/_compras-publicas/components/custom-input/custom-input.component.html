@@ -1,0 +1,23 @@
+<div class="wrapper">
+    <div class="select-btn">
+        <input class="recuperar-input" 
+            [(ngModel)]="text"
+            [type]="type" 
+            style="font-style: italic;font-size: 15px;" 
+            [id]="placeholder"
+            [placeholder]="placeholder"
+            autocomplete="off"
+            (ngModelChange)="typeText()"
+            [maxlength]="maxLength"
+            [disabled]="maxLength === 0"
+        >
+      <div class="arrow-right" *ngIf="icon || textIcon">
+        <img *ngIf="icon" [src]="icon" />
+        <span *ngIf="textIcon" style="font-size: .7vw;">
+            <b>
+                {{ textIcon }}
+            </b>
+        </span>
+      </div>
+    </div>
+</div>

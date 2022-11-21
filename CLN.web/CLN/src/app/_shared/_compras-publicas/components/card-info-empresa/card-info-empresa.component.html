@@ -1,0 +1,19 @@
+<div class="empresa-info-container">
+    <h2>PERFIL DE LA EMPRESA</h2>
+    <p><span>Nombre de la empresa: </span> <span>{{empresa.companyName}}</span></p>
+    <p><span>Número de identificación: </span> <span>{{empresa.companyId}}</span></p>
+    <p><span>País: </span> <span>{{empresa.country}}</span></p>
+    <p><span>Ciudad: </span> <span>{{empresa.city}}</span></p>
+    <p><span>Industria/ Sector principal de la empresa: </span> <span>{{empresa.industryMainSector ? empresa.industryMainSector[0].value : ''}}</span></p>
+    <div style="margin-top: 10px; color: #376bfb" *ngIf="empresa.women_President == 1 || empresa.women51p == 1">
+        <b>Criterios de calificación especiales:</b>
+        <ul>
+            <li *ngIf="empresa.women_President == 1">La empresa es liderada por mujeres</li>
+            <li *ngIf="empresa.women51p == 1">En la empresa más del 50% de la planta de personal son mujeres</li>
+        </ul>
+    </div>
+    <br>
+    <p>
+        Recuerda que, dependiendo del tamaño de tu empresa, o si tu empresa es liderada por una mujer o el 50% de la planta de personal de tu empresa está conformada por mujeres, podrás acceder a puntajes adicionales y cumplir con requisitos diferenciales en los procesos adelantados por las Entidades Estatales. Para mayor información consulta <a href="https://fiducoldexsa-my.sharepoint.com/:b:/g/personal/natalia_escobar_colombiaproductiva_com/EeLvk5iaoOlHjgJUU8j4Dr8BZgwn4QDUq5BYufkXn8VCpQ?e=1lMPxT" target="_blank">aquí</a> el paso a paso de los Procesos de Contratación Pública.
+    </p>
+</div>

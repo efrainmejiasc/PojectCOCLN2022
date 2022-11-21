@@ -1,0 +1,81 @@
+section{
+    margin: auto;
+    width:100%;
+  }
+
+  h2{
+    text-align: center;
+    color:#4169af;
+    font-size: 26px;
+    font-weight: bold;
+    margin: 20px 0px;
+  }
+
+  p{
+    color:#333;
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .procesos-card{
+    border:1px solid #757575;
+    border-radius: 4px;
+    padding: 20px 34px 20px 30px;
+  }
+
+  .procesos-card h2{
+    font-size: 19px;
+    margin: 0px 0px 20px 0px;
+  }
+
+  .list-item{
+    font-weight: bold;
+  }
+
+  .indication{
+    color:#757575;
+  }
+
+  .input-container{
+    margin-bottom: 15px;
+  }
+
+  .alert-container{
+    display: flex;
+  }
+
+  .alert-container img{
+    width:15px;
+    margin-right: 6px;
+  }
+
+  .btn-container{
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .general-btn{
+    background-color: #003595;
+    border: 0px;
+    border-radius: 16px;
+    padding: 4px 16px;
+    margin: 0px 20px;
+    color:#fff;
+    cursor:pointer;
+  };
+
+  .guardar-on{
+    opacity:1;
+    cursor: pointer;
+  }
+
+  .guardar-off{
+    opacity:0.3;
+    cursor:not-allowed;
+  }
+
+  .guardar-off button{
+    cursor:not-allowed;
+  }

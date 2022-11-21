@@ -1,0 +1,16 @@
+@import '../../../../_shared/styles/variables.scss';
+.inputInvalid {
+    border: solid 1px $color-red !important;
+    border-right: none !important;
+    font-size: 14px;
+    font-weight: 500 !important;
+}
+.inputInvalid::-webkit-input-placeholder {
+    color: $color-red;
+}
+.inputInvalid :-ms-input-placeholder {
+    color: $color-red;
+}
+.inputInvalid ::placeholder {
+    color: $color-red;
+}

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="159.434" height="184.585" viewBox="0 0 159.434 184.585">
+  <defs>
+    <filter id="Rectángulo_46" x="0" y="0" width="159.434" height="184.585" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood flood-opacity="0.149"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="plantilla_1" data-name="plantilla 1" transform="translate(7.625 7.625)">
+    <g transform="matrix(1, 0, 0, 1, -7.63, -7.63)" filter="url(#Rectángulo_46)">
+      <rect id="Rectángulo_46-2" data-name="Rectángulo 46" width="144.184" height="169.335" rx="9.273" transform="translate(7.63 7.63)" fill="#fff" stroke="#000" stroke-miterlimit="10" stroke-width="0.25"/>
+    </g>
+    <text id="Encabezado" transform="translate(72.092 75.983)" fill="#36c" font-size="11" font-family="WorkSans-SemiBold, Work Sans" font-weight="600"><tspan x="-32.543" y="0">Encabezado</tspan></text>
+    <text id="Opciones" transform="translate(72.092 94.624)" fill="#9dbeff" font-size="11" font-family="WorkSans-Medium, Work Sans" font-weight="500"><tspan x="-24.915" y="0">Opciones</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,43 @@
+.productos-servicios {
+  align-items: center;
+  display: flex;
+  height: 60px;
+  justify-content: center;
+  width: 100%;
+}
+.title-productos-servicios {
+  color: #4b68ae;
+  font-family: sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  // margin: 0;
+}
+.contenedor-noticias-tendencias {
+  padding: 3rem;
+}
+
+.componente-hijo {
+  margin: 1rem 0;
+}
+
+.centeringBtn {
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  // margin-top: 2em;
+  // margin-bottom: 2em;
+}
+.btn-submit-wine2 {
+  background-color: #003595;
+  border-radius: 6mm;
+  border-style: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: opensans_semibold;
+  font-size: 12px;
+  height: 40px;
+  margin-top: 0em !important;
+  max-width: 230px;
+  width: 200px;
+}

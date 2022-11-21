@@ -1,0 +1,399 @@
+<section class="consultar-planes-section">
+  <!-- regresar -->
+  <app-regresar [linkTo]="linkTo"></app-regresar>
+  <!-- fin regresar -->
+
+  <!-- titulo -->
+  <app-top-section [titulo]="titulo" [icono]="icono" [alertaIcono]="alertaIcono" [infoAyuda]="infoAyuda">
+  </app-top-section>
+  <!-- fin titulo -->
+
+  <div class="info-ayuda-contenedor" style="margin-top: 2em;">
+    <p class="info-ayuda">En este momento existen <b>{{ totalProcesosContratacion }}</b> procesos de Compras Públicas
+      disponibles para tu
+      consulta por un valor de <b>${{ sumaProcesosContratacion }}</b>. Consultalos aquí.</p>
+  </div>
+  
+  <div class="info-ayuda-contenedor" style="margin-top: 2em; margin-bottom: 2em;">
+    <p class="info-ayuda">
+      La información disponible corresponde a los Procesos de Contratación Pública abiertos en los últimos 4 meses de acuerdo con la información de Datos Abiertos del Sistema Electrónico para la Contratación Pública -SECOP-. Es por esta razón que los filtros y los resultados son actualizados con base en los datos allí contenidos.
+    </p>
+  </div>
+
+  <div class="info-ayuda-contenedor">
+    <table style=" border: 1px solid #7d7d7d;">
+      <tr style=" border: 1px solid #7d7d7d;">
+        <td style=" border: 1px solid #7d7d7d;">
+          <img src="assets/imgs/iconos/admiracion.svg" style="width: 0.5em; margin: 1em;">
+        </td>
+        <td style=" border: 1px solid #7d7d7d;">
+          <div style="margin: 1em;">
+            <div style="color: #7d7d7d; font-size: 16px; font-weight: 400">
+              Los filtros de búsqueda que encontrarás a continuación, están asociados al clasificador de bienes y
+              servicios de las Naciones Unidas.
+              <b>{{ !busquedaPorSectores ? mensajeInformativo.sectores : mensajeInformativo.bienes }}</b> haz
+              <a (click)="cambiarBusqueda()" style="text-decoration: none; cursor:pointer; color: #3366ff">
+                <b> Clic Aquí</b>
+              </a>.
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <form>
+    <div class="info-ayuda-contenedor">
+      <div
+        style="margin: 1em; text-align: center; color: #4169af; font-size: 16px; font-family: 'Open Sans'; font-weight: 600">
+        <b>{{ !busquedaPorSectores ? 'BÚSQUEDA A PARTIR DE LA CLASIFICACIÓN DE NACIONES UNIDAS - UNSPSC' : 'BÚSQUEDA A PARTIR DE LA
+          CLASIFICACIÓN DE SECTORES DE COMPRA LO NUESTRO' }}</b>
+      </div>
+      <div style="padding: 2em; border: 1px solid #7d7d7d; height: auto; border-radius: 0.5em;">
+        <div title="Digita y selecciona el número del proceso de contratación sobre el cual estás interesado.">
+          <b>Número del proceso</b>
+          <div style="margin-top: 1em;">
+
+            <div class="wrapper">
+              <div class="select-btn">
+                <input class="recuperar-input" [(ngModel)]="listas.proceso" [ngModelOptions]="{standalone: true}"
+                  type="text" style="font-size: 16px; font-family: 'Open Sans'" id="input"
+                  placeholder="Ingresa el número del proceso de tu interés" autocomplete="off" name="proceso"
+                  (ngModelChange)="limpiarProceso()">
+                <div class="arrow-right" (click)="searchValue()">
+                  <img src="assets/imgs/iconos/lupitaformulario.svg" />
+                </div>
+              </div>
+              <div class="content" *ngIf="mostrarListaProceso">
+                <ul class="options">
+                  <li *ngFor="let item of lista" (click)="selectValue(item.value)">
+                    {{item.value}}
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div style="width: 100%; margin-top: 5px">
+              <span style="width:10%;">
+                <img src="assets/imgs/iconos/alerta.svg" style="width: 15px; padding-bottom: 3px;">
+              </span>
+              <span style="width:90%; font-size: 16px;" class="descriptionField">
+                Digita el número del proceso (completo o parcial) que deseas consultar y presiona <b><img style="width: 20px; height: 20px" src="assets/imgs/iconos/lupitaformulario.svg" /></b> y selecciona el número que coincida con tu búsqueda.
+              </span>
+            </div>
+
+          </div>
+        </div>
+
+        <div style="border-top: 1px solid; margin-top: 25px; margin-bottom: 25px;"></div>
+
+        <div *ngIf="!busquedaPorSectores"
+          title="Selecciona los códigos de clasificación de Naciones Unidas que te interesan o que guardan relación con la línea de negocio de tu empresa.">
+          <b>Productos y/o servicios de la Clasificación de Naciones Unidas-UNSPSC</b>
+          <div style="width: 100%;">
+            <span style="width:10%;">
+              <img src="assets/imgs/iconos/alerta.svg" style="width: 15px; padding-bottom: 3px;">
+            </span>
+            <span style="width:90%; font-size: 16px;" class="descriptionField">
+              A continuación, encontrarás la clasificación de Naciones Unidas - UNSPSC. Selecciona los productos y
+              servicios que estén alineados con los intereses de tu empresas
+            </span>
+          </div>
+          <div style="margin-top: 1em;">
+            <app-cp-input-products [selectedItems]="productosSelected" (productsSelectedEmmiter)="setProducts($event)">
+            </app-cp-input-products>
+          </div>
+        </div>
+
+        <div *ngIf="busquedaPorSectores">
+          <div style="margin-top: 25px;"
+            title="Selecciona el sector al cual pertenece tu empresa esto facilitará la búsqueda de procesos de tu interés.">
+            <b>Sector / Industria Compra Lo Nuestro</b>
+            <div class="input-container">
+              <app-cp-input-boxes [wrapperActive]="wrapperActiveSector" (show)="show('sector')"
+                [lista]="listas.sectoresVisibles" [itemsS]="listas.sectoresSeleccionados"
+                (idValueEvent)="agregarSector($event)" (idRemoveEvent)="removerSector($event)">
+              </app-cp-input-boxes>
+            </div>
+          </div>
+
+          <div style="margin-top: 25px;"
+            title="Selecciona los productos sobre los cuales tienes interés y con base en los cuales realizarás la búsqueda de ofertas de contratación.">
+            <b>Productos y/o servicios de la Clasificación de Naciones Unidas-UNSPSC {{
+              listas.sectoresSeleccionados.length > 0 ? '*' : '' }}</b>
+            <div class="input-container">
+              <app-cp-input-boxes [wrapperActive]="wrapperActiveProducto" (show)="show('producto')"
+                [lista]="listas.productosVisibles" [itemsS]="listas.productosSeleccionados"
+                (idValueEvent)="agregarProducto($event)" (idRemoveEvent)="removerProducto($event)"
+                [showAlert]="listas.sectoresSeleccionados.length > 0 && listas.productosSeleccionados.length === 0 ? true : false"
+                [showId]="'true'">
+              </app-cp-input-boxes>
+            </div>
+          </div>
+        </div>
+
+        <div style="border-top: 1px solid; margin-top: 25px; margin-bottom: 25px;"></div>
+
+        <div
+          title="Digita y selecciona una, varias o todas las entidades en las que estás interesado y de las cuales quieres conocer ofertas de contratación.">
+          <b>Entidad</b>
+          <div style="margin-top: 1em;">
+
+            <div class="wrapper">
+              <div class="select-btn">
+                <input class="recuperar-input" [(ngModel)]="listas.entidad" [ngModelOptions]="{standalone: true}"
+                  type="text" style="font-size: 16px; font-family: 'Open Sans'" id="input"
+                  placeholder="Ingresa una palabra o frase clave" autocomplete="off" name="entidad"
+                  (ngModelChange)="limpiarEntidad()">
+                <div class="arrow-right" (click)="searchValueEntidad()">
+                  <img src="assets/imgs/iconos/lupitaformulario.svg" />
+                </div>
+              </div>
+              <div class="content" *ngIf="mostrarListaEntidad">
+                <ul class="options">
+                  <li *ngFor="let item of listaEntidad" (click)="selectValueEntidad(item.value)">
+                    {{item.value}}
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div style="margin-top: 25px;"
+          title="Indica alguna palabra clave que guarde relación con los Procesos de Contratación Pública sobre los cuales estás interesado y quieres conocer ofertas de contratación.">
+          <b>Objeto del proceso</b>
+          <div style="margin-top: 1em;">
+
+            <div class="wrapper">
+              <div class="select-btn">
+                <input class="recuperar-input" [(ngModel)]="listas.objetoProceso" [ngModelOptions]="{standalone: true}"
+                  type="text" style="font-size: 16px; font-family: 'Open Sans'" id="input"
+                  placeholder="Ingresa una palabra o frase clave" autocomplete="off" name="entidad"
+                  (ngModelChange)="limpiarObjeto()">
+                <div class="arrow-right" (click)="searchValueObjetoProceso()">
+                  <img src="assets/imgs/iconos/lupitaformulario.svg" />
+                </div>
+              </div>
+              <div class="content" *ngIf="mostrarListaObjeto">
+                <ul class="options">
+                  <li *ngFor="let item of listaObjetoProceso" (click)="selectValueObjetoProceso(item.value)">
+                    {{item.value}}
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div style="margin-top: 25px;"
+          title="Selecciona una, varias o todas, las fases de los Procesos de Contratación Pública en los cuales quieres participar o de los cuales quieres conocer ofertas de contratación. ">
+          <b>Fase / Estado</b>
+          <div class="input-container">
+            <app-cp-input-boxes [wrapperActive]="wrapperActiveFase" (show)="show('fase')"
+              [lista]="listas.fasesEstadosVisibles" [itemsS]="listas.fasesEstadosSeleccionados"
+              (idValueEvent)="agregarFase($event)" (idRemoveEvent)="removerFase($event)">
+            </app-cp-input-boxes>
+          </div>
+        </div>
+
+        <div style="margin-top: 25px;"
+          title="Selecciona una, varias o todas las modalidades de contratación en las que tienes interés y sobre la cual quieres conocer ofertas de contratación.">
+          <b>Modalidad de contratación</b>
+          <div class="input-container">
+            <app-cp-input-boxes [wrapperActive]="wrapperActiveModalidad" (show)="show('modalidad')"
+              [lista]="listas.modalidadesVisibles" [itemsS]="listas.modalidadesSeleccionadas"
+              (idValueEvent)="agregarModalidad($event)" (idRemoveEvent)="removerModalidad($event)">
+            </app-cp-input-boxes>
+          </div>
+        </div>
+
+        <div style="margin-top: 25px;"
+          title="Indica el rango de precios de los Procesos de Contratación Pública en los cuales estás interesado.">
+          <div>
+            <b>Rango de precio</b>
+            <div>
+              <span>
+                <img src="assets/imgs/iconos/alerta.svg" style="width: 15px; padding-bottom: 3px;">
+              </span>
+              <span class="descriptionField" style="font-size: 16px;">
+                Te mostraremos por defecto el valor mínimo y el valor máximo de las oportunidades de los procesos de
+                contratación disponibles para tu consulta.
+              </span>
+            </div>
+          </div>
+          <div style="display: flex; margin-top: 1em;">
+            <div style="width: 50%;" title="Ingresa el valor mínimo de los procesos de contratación.">
+              <b>Desde</b>
+              <div style="display:flex; width: 25vw;">
+                <input (ngModelChange)="onChange('valorMin')" (blur) = 'onBlur()' maxlength="25" currencyMask
+                  class="recuperar-input" autocomplete="off" [(ngModel)]="listas.valorMin"
+                  [ngModelOptions]="{standalone: true}" type="text" id="min" placeholder="$ 0">
+                <span class="contador"> {{ longitud.valorMin < 0 ? 0 : longitud.valorMin }} </span>
+              </div>
+            </div>
+            <div style="width: 50%;" title="Ingresa el valor máximo de los procesos de contratación.">
+              <b>Hasta</b>
+              <div style="display:flex;">
+                <input (ngModelChange)="onChange('valorMax')" (blur)='onBlur()' maxlength="25" currencyMask
+                  class="recuperar-input" autocomplete="off" [(ngModel)]="listas.valorMax"
+                  [ngModelOptions]="{standalone: true}" type="text" id="max" placeholder="$ 0">
+                <span class="contador"> {{ longitud.valorMax < 0 ? 0 : longitud.valorMax }} </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 25px;"
+          title="Selecciona uno, varios o todos los departamentos en los cuales estás interesado y quieres conocer ofertas de contratación.">
+          <b>Departamento</b>
+          <div class="input-container">
+            <app-cp-input-boxes [wrapperActive]="wrapperActiveDepartamento" (show)="show('departamento')"
+              [lista]="listas.departamentosVisibles" [itemsS]="listas.departamentosSeleccionados"
+              (idValueEvent)="agregarDepartamento($event)" (idRemoveEvent)="removerDepartamento($event)">
+            </app-cp-input-boxes>
+          </div>
+        </div>
+
+        <div style="margin-top: 25px;"
+          title="Selecciona una, varias o todas las ciudades que se encuentren dentro del departamento seleccionado y sobre las cuales tienes interés.">
+          <b>Ciudad / Municipio</b>
+          <div class="input-container">
+            <app-cp-input-boxes [wrapperActive]="wrapperActiveMunicipio" (show)="show('municipio')"
+              [lista]="listas.municipiosVisibles" [itemsS]="listas.municipiosSeleccionados"
+              (idValueEvent)="agregarMunicipio($event)" (idRemoveEvent)="removerMunicipio($event)">
+            </app-cp-input-boxes>
+          </div>
+        </div>
+
+        <div style="border-top: 1px solid; margin-top: 25px; margin-bottom: 25px;"></div>
+
+        <div style="margin-bottom: 40px"
+          title="Selecciona los sistemas electrónicos en los cuales quieres realizar la búsqueda.">
+          <div style="float: left; width: 40%; text-align: center;">
+            <b>Sistema electrónico de contratación pública</b>
+          </div>
+          <div style="float: left; width: 20%;">
+            <input type="radio" [(ngModel)]="listas.secopOne" [ngModelOptions]="{standalone: true}" value="true"
+              id="html" name="fav_language" style="margin-right: 5px; margin-top: 2px">
+            <label for="SECOPI">SECOP I</label>
+          </div>
+          <div style="float: left; width: 20%;">
+            <input type="radio" [(ngModel)]="listas.secopOne" [ngModelOptions]="{standalone: true}" value="false"
+              id="html" name="fav_language" style="margin-right: 5px; margin-top: 2px">
+            <label for="SECOPII">SECOP II</label>
+          </div>
+          <div style="float: left; width: 20%;">
+            <input type="radio" [(ngModel)]="listas.secopOne" [ngModelOptions]="{standalone: true}" value="" id="html"
+              name="fav_language" style="margin-right: 5px; margin-top: 2px">
+            <label for="SECOPII">AMBOS</label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="centeringBtn" style="margin-top: 2em;">
+      <app-button text="BUSCAR" width="250px"
+        [disabled]="listas.sectoresSeleccionados.length > 0 && listas.productosSeleccionados.length === 0"
+        (onClick)="buscar()">
+      </app-button>
+      <app-button text="LIMPIAR" width="250px" (onClick)="limpiar()">
+      </app-button>
+    </div>
+  </form>
+
+  <!-- mensaje sin resultados -->
+  <div style="margin-top: 50px; margin-bottom: 10%; margin-left: 20%; margin-right: 20%;" *ngIf="vacio">
+    <div style="display: grid;grid-template-columns: 5% 95%;">
+      <div
+        style=" border: 1px solid #7d7d7d; height: 5em; border-top-left-radius: 5px; border-bottom-left-radius: 5px;">
+        <img src="assets/imgs/iconos/admiracion.svg" style="width: 0.5em; margin: 1em;">
+      </div>
+      <div
+        style=" border: 1px solid #7d7d7d; height: 5em; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
+        <div style="margin-top: 1em;">
+          <span style="color: #7d7d7d; font-size: 16px; margin: 1.5em; font-family: opensans_bold;">En este momento no
+            hay ofertas que coincidan con tu búsqueda.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin mensaje sin resultados -->
+
+  <div style="text-align: center; margin-bottom: 30px; margin-top: 50px" *ngIf="consultado && !vacio">
+    <div style="display: grid;grid-template-columns: 40% 20% 40%;">
+      <div></div>
+      <div>
+        <p style="margin: 0;" (click)="descargarExcel()" style="cursor: pointer">
+          <img src="assets/imgs/iconos/descargarplantilla.svg" style="width: 50px; height: 50px">
+        </p>
+        <p style="margin: 0;" (click)="descargarExcel()" style="cursor: pointer">
+          <span style="color: #3366ff; font-family: opensans_bold;">DESCARGAR OFERTAS</span>
+        </p>
+      </div>
+      <div></div>
+    </div>
+  </div>
+
+  <div class="info-ayuda-contenedor">
+    <div class="card--grid">
+      <mat-card *ngFor="let card of obs | async"
+        style="margin-top: 2em; margin-right: 0.5em; max-height: 600px; min-height: 600px; word-break: break-word;"
+        [ngStyle]="{'overflow': 'scroll', 'max-height': '600px', 'min-height': '600px', 'overflow-x': 'hidden', 'word-break': 'break-word'}">
+        <div>
+          <div style="text-align: center; background-color: #f5f5f5; ">
+            <span style="font-size: 13px; color: #3366ff; font-family: opensans_bold; padding: 0.2em 1em;">
+              PROCESO DE CONTRATACIÓN
+            </span>
+          </div>
+          <div style="font-size: 13px; color: #b2b2b2;">Entidad</div>
+          <div
+            style="font-size: 16px; color: #333333; font-family: opensans_semibold;word-break: break-word; text-align: center;">
+            {{ card.entityName }}</div>
+          <div style="font-size: 13px; color: #b2b2b2; text-align: center;">Numero de Proceso</div>
+          <div
+            style="font-size: 12px; color: #515151; font-family: opensans_regular;word-break: break-word; text-align: center;">
+            {{ card.processNumber }}</div>
+          <div style="font-size: 13px; color: #b2b2b2; text-align: center;">Objeto de Proceso</div>
+          <div style="font-size: 16px; color: #333333; text-align: center; font-family: opensans_regular;">
+            <div>
+              {{ card.processObject }}
+            </div>
+          </div>
+          <div style="font-size: 13px; color: #b2b2b2; text-align: center;">Fecha de publicación</div>
+          <div
+            style="font-size: 16px; color: #333333; text-align: center; font-family: opensans_regular;word-break: break-word;">
+            {{ formatearFecha(card.dateLoad) }}</div>
+          <div style="font-size: 13px; color: #b2b2b2; text-align: center;">Cuantía del proceso</div>
+          <div
+            style="font-size: 16px; color: #333333; text-align: center; font-family: opensans_regular;word-break: break-word;">
+            $ {{ formaterarPrecio(card.basePrice) }}</div>
+          <div style="font-size: 13px; color: #b2b2b2; text-align: center;">Modalidad de contratación</div>
+          <div
+            style="font-size: 16px; color: #333333; text-align: center; font-family: opensans_regular;word-break: break-word;">
+            {{ card.processMode }}</div>
+          <div style="border-top: 3em #686868; margin: 1em 0; text-align: center;">
+            <span>
+              <img src="assets/imgs/iconos/ubicacion.svg" style="width: 15px;"></span>
+            <span style="font-size: 15px; color: #333333; font-family: opensans_semibold; margin-left: 0.5em;">
+              {{ card.processLocation }}
+            </span>
+          </div>
+          <div class="centeringBtn" style="margin-top: 1em; margin-bottom: 1em;">
+            <button class="btn-submit-wine2" style="max-width: 150px;" (click)="verDetalles(card)">
+              VER DETALLE
+            </button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div style="margin-top: 2%; margin-right: 2%;"
+      [ngStyle]="consultado && !vacio && resultados > 8 ? { 'display': 'block' } : { 'display': 'none'}">
+      <mat-paginator [pageSizeOptions]="[8]" hidePageSize="true" showFirstLastButtons="true">
+        ></mat-paginator>
+    </div>
+  </div>
+</section>
+
+<app-popup-confirmation *ngIf="showAlerta" [message]="notificationMessage" (close)="closePopup($event)">
+</app-popup-confirmation>

@@ -1,0 +1,163 @@
+$color-blanco: rgba(255, 255, 255, 1);
+$color-blue: #003595;
+$color-red: #f42f63;
+$color-red-oscuro: #d6184b;
+$line-height-paragraph: 18px;
+$font-size-paragraph: 16px;
+
+.background-gris-claro {
+    background-color: rgba($color: $color-blue, $alpha: 0.2);
+}
+.borde-gris-claro {
+    border-left: solid 7px rgba($color: $color-blue, $alpha: 0.2);
+}
+.background-rojo-claro {
+    background-color: rgba($color: $color-red, $alpha: 0.2);
+}
+.borde-rojo-claro {
+    border-left: solid 7px rgba($color: $color-red, $alpha: 0.2);
+}
+.background-rojo-oscuro {
+    background-color: rgba($color: $color-red-oscuro, $alpha: 0.2);
+}
+.borde-rojo-oscuro {
+    border-left: solid 7px rgba($color: $color-red-oscuro, $alpha: 0.2);
+}
+
+.container-relative {
+    position: relative;
+    padding: 0px 0px 40px 0px;
+}
+.RedLine {
+    margin: 0px 0px 0px 0px;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    border-style: dashed;
+    border-color: $color-red;
+    border-width: 1px;
+}
+.box-notification {
+    width: 90%;
+    margin: 20px 0px 0px 0px;
+}
+
+.box-notification .notification-alerts {
+    width: 300px;
+    padding: 5px;
+}
+.box-notification .notification-alerts .name {
+    width: 100%;
+    text-align: center;
+    font-size: $font-size-paragraph;
+    line-height: 15px;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 900;
+}
+.box-notification .notification-alerts .bellContent {
+    width: 100%;
+    padding: 15px 0px;
+    position: relative;
+}
+.box-notification .notification-alerts .bellContent .amount {
+    width: 25px;
+    height: 25px;
+    background-color: $color-red;
+    position: absolute;
+    top: 5px;
+    right: 10%;
+    border-radius: 100%;
+    padding: 3px 0px 0px 0px;
+    margin: 0px;
+    color: $color-blanco;
+}
+.box-notification .notification-alerts .bellContent .bellIcon {
+    width: 100%;
+    height: 70px;
+    background-color: $color-red;
+    display: block;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask: url(src\assets\img\capacidades\bell.svg) no-repeat center;
+    mask: url(src\assets\img\capacidades\bell.svg) no-repeat center;
+}
+.box-notification .loop-notifications {
+    min-width: 900px;
+    max-height: 290px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.box-notification .loop-notifications .content-notification {
+    width: 90%;
+    margin: 10px 0px 0px 0px;
+    min-height: 90px;
+    max-height: 90px;
+    border: solid 1px $color-blue;
+    border-radius: 10px;
+}
+.box-notification .loop-notifications .content-notification:first-child {
+    margin: 0px;
+}
+.box-notification .loop-notifications .content-notification .notification-title {
+    width: 100px;
+    padding: 5px;
+}
+.box-notification .loop-notifications .content-notification .notification-title .icon-notification {
+    width: 100%;
+    height: 40px;
+    background-color: $color-blue;
+    display: block;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask: url(src\assets\img\capacidades\alertNew.svg) no-repeat center;
+    mask: url(src\assets\img\capacidades\alertNew.svg) no-repeat center;
+}
+.table-circle-green,
+.table-circle-red {
+    display: flex;
+    width: 0.7em;
+    height: 0.7em;
+    border-radius: 100%;
+    margin: 0px 0px 10px 0px;
+}
+
+.table-circle-green {
+    background-color: rgb(86, 188, 89) !important;
+    max-height: 0.7em;
+}
+
+.table-circle-red {
+    background-color: #f42f63 !important;
+    max-height: 0.7em;
+}
+.box-notification .loop-notifications .content-notification .notification-title .name {
+    width: 90%;
+    text-align: center;
+    font-size: 14px;
+    line-height: 16px;
+    font-family: "Work Sans", sans-serif;
+}
+.box-notification .loop-notifications .content-notification .result-first-word {
+    width: 30px;
+    height: 30px;
+    color: $color-blanco;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    line-height: 16px;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 900;
+    border-radius: 3px;
+}
+.box-notification .loop-notifications .content-notification .text-notification {
+    padding: 0px 0px 0px 20px;
+    width: 555px;
+    text-align: left;
+    font-size: $font-size-paragraph;
+    line-height: $line-height-paragraph;
+    font-family: "Work Sans", sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

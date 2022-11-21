@@ -1,0 +1,13 @@
+<div class="modal-body">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="container">
+        <ul *ngFor="let tipo of tipoEventos">
+            <li>
+                <label class="vinieta" [style.background]="tipo.color"></label>
+                <label class="nombre">{{ tipo.nombre }}</label>
+            </li>
+        </ul>
+    </div>
+</div>

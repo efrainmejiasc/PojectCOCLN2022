@@ -1,0 +1,45 @@
+
+td.deprueba {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+td.table-body-td-lastchild-temas :nth-child(2) {
+  top: 50%;
+}
+td.table-body-td-lastchild-temas :first-child {
+  top: 0;
+}
+td.table-body-td-lastchild-temas {
+  position: relative;
+  min-width: 120px;;
+  span {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: hsla(0,0%,0%,0%) !important;
+    height: 50%;
+    width: 100%;
+    left: 0;
+    &:hover{
+      color: #f42f63 !important;
+      cursor: pointer;
+    }
+  }
+  & :nth-child(2){
+    border-top: 1px solid #36c;
+  }
+}
+
+tr{
+  td:first-child {
+    border: none;
+    border-top: 1px solid #36c;
+  }
+  &:first-child td:first-child {
+    border: none !important;
+  }
+} 
+

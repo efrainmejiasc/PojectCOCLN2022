@@ -1,0 +1,499 @@
+<div class="empresa-container" style="margin-bottom: 20%">
+
+    <app-popup-confirmation
+        *ngIf="showPopUp"
+        message="Recuerda que aquí solo encontrarás los filtros que seleccionaste cuando gestionaste tus intereses."
+        (close)="closeInitPopup()"
+    >
+    </app-popup-confirmation>
+
+    <!-- boton de regresar -->
+    <app-regresar [linkTo]="linkTo"></app-regresar>
+    <!-- fin boton de regresar -->
+
+    <!-- titulo de la pagina -->
+    <app-top-section 
+        [titulo]="titulo" 
+        [icono]="icono" 
+        [alertaIcono]="alertaIcono" 
+        [buttonText]="buttonText"
+        [infoAyuda]="infoAyuda"
+    >
+    </app-top-section>
+    <!-- Fin titulo de la pagina -->
+    
+    <div style="margin-left: 20%; margin-right: 20%;">
+        <!-- Select de la empresa -->
+        <h6>Selecciona la empresa*</h6>
+        <app-cp-select-empresas
+            [lista]="empresas"
+            [itemS]="empresaSelected"
+            (idValueEvent)="idSelected($event)"
+        >   
+        </app-cp-select-empresas>
+        <!-- Fin select de la empresa -->
+
+        <!-- Tarjeta de informacion de la empresa -->
+        <app-card-info-empresa *ngIf="showEmpresaSelected" [empresa]="empresaSelected"></app-card-info-empresa>
+        <!-- Fin tarjeta de informacion de la empresa -->
+
+        <!-- menu de ofertas -->
+        <app-offer-options *ngIf="showEmpresaSelected" [opciones]="opciones" [selectedOption]="selectedOption"></app-offer-options>
+        <!-- Fin menu de ofertas -->
+
+        <div style="text-align: center; margin-top: 20px; cursor: pointer" *ngIf="data.length > 0" (click)="descargarOfertas()">
+            <div class="info-ayuda-contenedor">
+                <p class="info-ayuda" [innerHTML]="infoAyudaSecundaria"></p>
+            </div>
+            
+            <p style="margin: 0;">
+                <img src="assets/imgs/iconos/descargarplantilla.svg" style="width: 40px; height: 40px">
+            </p>
+            <p style="margin: 0;">
+                <span style="color: #3366ff; font-family: opensans_bold;">Descargar Ofertas</span>
+            </p>
+        </div>
+
+    </div>
+
+    <div style="margin-top: 50px; margin-bottom: 10%; margin-left: 20%; margin-right: 20%;" *ngIf="!dataEmpresa && selectedOption !== ''">
+        <div style="display: grid;grid-template-columns: 5% 95%;">
+            <div style=" border: 1px solid #7d7d7d; height: 7em; border-top-left-radius: 5px; border-bottom-left-radius: 5px; text-align: center">
+              <img src="assets/imgs/iconos/admiracion.svg" style="width: 0.5em; margin-top: 30px;">
+            </div>
+            <div style=" border: 1px solid #7d7d7d; height: 7em; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
+              <div style="margin-top: 1em;padding: 5px;">
+                <span style="color: #7d7d7d; font-size: .8vw; font-family: opensans_bold;">
+                    Lo sentimos, actualmente no hay oportunidades de compra pública acorde a los intereses y perfil de tu empresa. Puedes consultar frecuentemente el sitio, mientras se actualizan los procesos o ajustar tus intereses en la funcionalidad <b>GESTIONAR MIS INTERESES EN COMPRAS PÚBLICAS</b>.
+                </span>
+              </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Menu de filtro -->
+    <div *ngIf="dataEmpresa && selectedOption !== ''" style="float: left; padding-left: 8%; width: 26%; padding-top: 10px; padding-right: 10px;">
+        <mat-card class="filter-card" style="background-color: #ebebeb; margin-top: 2em; margin-right: 0.5em;">
+            
+            <div style="font-size: 16px; color: #959595; font-family: opensans_semibold; text-align: left;font-size: 1vw;">
+                Filtros
+                <button (click)="limpiar()" style="max-width: 50px; background-color: #386bf9;
+                    width: 50%;
+                    color: #ffffff;
+                    cursor: pointer;
+                    max-width: 230px;
+                    font-size: 16px;
+                    border-radius: 6mm;
+                    border-style: none;
+                    height: 30px;
+                    margin-top: 0em !important;
+                    margin-left: 1em !important;font-size: 1vw;"
+                >
+                    LIMPIAR
+                </button>
+            </div>
+
+            <hr style="border-width: 1px; margin-top: 0.5em; margin-bottom: 0.5em;" *ngIf="selectedOption === 'PROCESOS DE COMPRAS PÚBLICAS'">
+                <div class="wrapper" 
+                    [ngClass]="listas.fecha.visible ? 'active' : 'inactive'" 
+                    *ngIf="selectedOption === 'PROCESOS DE COMPRAS PÚBLICAS'"
+                    title="Indica el rango de tiempo sobre el cual quieres conocer los últimos Procesos de Contratación Pública publicados. Recuerda que solo tendrás resultados de procesos de contratación que coincidan con los intereses gestionados.">
+                    <div class="select-btn" (click)="showOptions('fecha')">
+                      <div class="content-box">
+                        <div style="font-size: 16px; color: #959595; font-family: opensans_semibold; text-align: left;font-size: 1vw;">
+                            Fecha de publicación
+                        </div>
+                      </div>
+                      <div class="calendar-img">
+                        <img src="assets/imgs/iconos/calendario.svg" style="width: 20px; height: 20px" />
+                      </div>
+                    </div>
+                    <div class="content">
+                        <div class="options">
+                            <div>
+                                <div>
+                                    <label style="margin-bottom: 0.5em; font-size: 12px; color: #959595; font-family: opensans_semibold; text-align: left;">Desde</label>
+                                    <input type="date" [max]="todaysdate" style="width: 100%; border:none;" [(ngModel)]="filtro.fechaInicial">
+                                </div>
+                                <div>
+                                    <label style="margin-bottom: 0.5em; font-size: 12px; color: #959595; font-family: opensans_semibold; text-align: left;">Hasta</label>
+                                    <input type="date" [value]="dateReceived" [disabled]="!filtro.fechaInicial"  [min]="filtro.fechaInicial" [max]="todaysdate" style="width: 100%; border:none;" [(ngModel)]="filtro.fechaFinal">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <hr style="border-width: 1px; margin-top: 0.5em; margin-bottom: 0.5em;">
+                <div class="wrapper" 
+                    [ngClass]="listas.entidad.visible ? 'active' : 'inactive'"
+                    title="Selecciona la entidad sobre la cual estas interesado y de la cual quieres conocer sus ofertas de contratación. Recuerda que solo tendrás resultados de Procesos de Contratación Pública que coincidan con los intereses gestionados.">
+                    <div class="select-btn" (click)="showOptions('entidad')">
+                      <div class="content-box">
+                        <div style="font-size: 16px; color: #959595; font-family: opensans_semibold; text-align: left;font-size: 1vw;">
+                            Entidad
+                        </div>
+                      </div>
+                      <div class="arrow-right">
+                        <img src="assets/imgs/iconos/arrow-down.svg" />
+                      </div>
+                    </div>
+                    <div class="content">
+                        <div class="options">
+                            <div *ngFor="let entidad of listas.entidad.limitedValues" class="grid-check-list">
+                                <div>
+                                    <input style="margin-left: 5px; border:none;" (change)="addFilter('entidad', entidad)" type="checkbox">
+                                </div>
+                                <div style="text-align: left; margin-left: 5px;">
+                                    <label style="padding-left: 5px; color: #959595; font-size: 12px">{{entidad.entityName}}</label>
+                                </div>
+                            </div>
+                            <div style="text-align: center;" *ngIf="listas.entidad.limitedValues.length < listas.entidad.values.length">
+                                <button (click)="aumentarLista('entidad')" style="max-width: 50px; background-color: #dbdbdb;
+                                    width: 50%;
+                                    color: #959595;
+                                    cursor: pointer;
+                                    max-width: 230px;
+                                    font-size: 12px;
+                                    border-radius: 6mm;
+                                    border-style: none;
+                                    height: 30px;
+                                    margin-top: 0em !important;
+                                    margin-left: 1em !important;font-size: .7vw;display: inline-block;"
+                                >
+                                    VER 10 MÁS...
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <hr style="border-width: 1px; margin-top: 0.5em; margin-bottom: 0.5em;">
+                <div class="wrapper" 
+                    [ngClass]="listas.modalidad.visible ? 'active' : 'inactive'"
+                    title="Selecciona una, varias o todas las modalidades de contratación en las que tienes interés y sobre la cual quieres conocer ofertas de contratación. Recuerda que solo tendrás resultados de Procesos de Contratación Pública que coincidan con los intereses gestionados.">
+                    <div class="select-btn" (click)="showOptions('modalidad')">
+                      <div class="content-box">
+                        <div style="font-size: 16px; color: #959595; font-family: opensans_semibold; text-align: left;font-size: 1vw;">
+                            Modalidad
+                        </div>
+                      </div>
+                      <div class="arrow-right">
+                        <img src="assets/imgs/iconos/arrow-down.svg" />
+                      </div>
+                    </div>
+                    <div class="content">
+                        <div class="options">
+                            <div *ngFor="let modalidad of listas.modalidad.limitedValues" class="grid-check-list">
+                                <div>
+                                    <input style="margin-left: 5px; border:none;" (change)="addFilter('modalidad', modalidad)" type="checkbox">
+                                </div>
+                                <div style="text-align: left; margin-left: 5px;">
+                                    <label style="padding-left: 5px; color: #959595; font-size: 12px">{{modalidad.modality}}</label>
+                                </div>
+                            </div>
+                            <div style="text-align: center;" *ngIf="listas.modalidad.limitedValues.length < listas.modalidad.values.length">
+                                <button (click)="aumentarLista('modalidad')" style="max-width: 50px; background-color: #dbdbdb;
+                                    width: 50%;
+                                    color: #959595;
+                                    cursor: pointer;
+                                    max-width: 230px;
+                                    font-size: 12px;
+                                    border-radius: 6mm;
+                                    border-style: none;
+                                    height: 30px;
+                                    margin-top: 0em !important;
+                                    margin-left: 1em !important;font-size: .7vw;display: inline-block;"
+                                >
+                                    VER 10 MÁS...
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <hr style="border-width: 1px; margin-top: 0.5em; margin-bottom: 0.5em;">
+                <div class="wrapper" 
+                    [ngClass]="listas.departamento.visible ? 'active' : 'inactive'"
+                    title="Selecciona uno, varios o todos los departamentos en los cuales quieres conocer ofertas de contratación. Recuerda que solo tendrás resultados de Procesos de Contratación Pública que coincidan con los intereses gestionados.">
+                    <div class="select-btn" (click)="showOptions('departamento')">
+                      <div class="content-box">
+                        <div style="font-size: 16px; color: #959595; font-family: opensans_semibold; text-align: left;font-size: 1vw;">
+                            Departamento
+                        </div>
+                      </div>
+                      <div class="arrow-right">
+                        <img src="assets/imgs/iconos/arrow-down.svg" />
+                      </div>
+                    </div>
+                    <div class="content">
+                        <div class="options">
+                            <div *ngFor="let item of listas.departamento.limitedValues" class="grid-check-list">
+                                <div>
+                                    <input style="margin-left: 5px; border:none;" (change)="filtrarMunicipios(item)" type="checkbox">
+                                </div>
+                                <div style="text-align: left; margin-left: 5px;">
+                                    <label style="padding-left: 5px; color: #959595; font-size: 12px">{{item.territorialEntity}}</label>
+                                </div>
+                            </div>
+                            <div style="text-align: center;" *ngIf="listas.departamento.limitedValues.length < listas.departamento.values.length">
+                                <button (click)="aumentarLista('departamento')" style="max-width: 50px; background-color: #dbdbdb;
+                                    width: 50%;
+                                    color: #959595;
+                                    cursor: pointer;
+                                    max-width: 230px;
+                                    font-size: 12px;
+                                    border-radius: 6mm;
+                                    border-style: none;
+                                    height: 30px;
+                                    margin-top: 0em !important;
+                                    margin-left: 1em !important;font-size: .7vw;display: inline-block;"
+                                >
+                                    VER 10 MÁS...
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <hr style="border-width: 1px; margin-top: 0.5em; margin-bottom: 0.5em;">
+                <div class="wrapper" 
+                    [ngClass]="listas.ciudad.visible ? 'active' : 'inactive'"
+                    title="Selecciona una, varias o todas las ciudades que se encuentren dentro del departamento seleccionado y sobre las cuales tienes interés. Recuerda que solo tendrás resultados de Procesos de Contratación Pública que coincidan con los intereses gestionados.">
+                    <div class="select-btn" (click)="showOptions('ciudad')">
+                      <div class="content-box">
+                        <div style="font-size: 16px; color: #959595; font-family: opensans_semibold; text-align: left;font-size: 1vw;">
+                            Ciudad
+                        </div>
+                      </div>
+                      <div class="arrow-right">
+                        <img src="assets/imgs/iconos/arrow-down.svg" />
+                      </div>
+                    </div>
+                    <div class="content">
+                        <div class="options">
+                            <div *ngFor="let item of listas.ciudad.limitedValues" class="grid-check-list">
+                                <div>
+                                    <input style="margin-left: 5px; border:none;" id="{{item.territorialEntity}}" (change)="addFilter('ciudad', item)"  type="checkbox">
+                                </div>
+                                <div style="text-align: left; margin-left: 5px;">
+                                    <label style="padding-left: 5px; color: #959595; font-size: 12px">{{item.territorialEntity}}</label>
+                                </div>
+                            </div>
+                            <div style="text-align: center;" *ngIf="listas.ciudad.limitedValues && listas.ciudad.limitedValues.length < listas.ciudad.values.length">
+                                <button (click)="aumentarLista('ciudad')" style="max-width: 50px; background-color: #dbdbdb;
+                                    width: 50%;
+                                    color: #959595;
+                                    cursor: pointer;
+                                    max-width: 230px;
+                                    font-size: 12px;
+                                    border-radius: 6mm;
+                                    border-style: none;
+                                    height: 30px;
+                                    margin-top: 0em !important;
+                                    margin-left: 1em !important;font-size: .7vw;display: inline-block;"
+                                >
+                                    VER 10 MÁS...
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <hr style="border-width: 1px; margin-top: 0.5em; margin-bottom: 0.5em;">
+                <div class="wrapper" 
+                    [ngClass]="listas.rangoPrecio.visible ? 'active' : 'inactive'"
+                    title="Indica el rango de precios de los Procesos de Contratación Pública en los cuales estás interesado. Recuerda que solo tendrás resultados de Procesos de Contratación Pública que coincidan con los intereses gestionados.">
+                    <div class="select-btn" (click)="showOptions('rangoPrecio')">
+                        <div class="content-box">
+                            <div style="font-size: 16px; color: #959595; font-family: opensans_semibold; text-align: left;font-size: 1vw;">
+                                Rango de precios
+                                <img 
+                                    title="Te mostraremos por defecto el valor mínimo y el valor máximo de las oportunidades de compra pública que encontramos para tu empresa, de acuerdo a tus intereses registrados previamente." 
+                                    style="margin-left: 10px; margin-top: 5px; width: 7%; height: 7%;" 
+                                    src="assets/imgs/iconos/alerta.svg" 
+                                />
+                            </div>
+                        </div>
+                        <div class="arrow-right">
+                            <img src="assets/imgs/iconos/arrow-down.svg" />
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="options">
+                            <div>
+                                <div>
+                                    <label style="margin-bottom: 0.5em; font-size: 12px; color: #959595; font-family: opensans_semibold; text-align: left;">Desde</label>
+                                    <input maxlength="25" currencyMask type="text" (blur) = 'onBlur()' id="min" style="width: 100%; border:none;" [(ngModel)]="filtro.precioMenor">
+                                </div>
+                                <div>
+                                    <label style="margin-bottom: 0.5em; font-size: 12px; color: #959595; font-family: opensans_semibold; text-align: left;">Hasta</label>
+                                    <input maxlength="25" currencyMask type="text" (blur) = 'onBlur()' id="max" style="width: 100%; border:none;" [(ngModel)]="filtro.precioMayor">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <hr style="border-width: 1px; margin-top: 0.5em; margin-bottom: 0.5em;">
+                <div title="Digita palabras claves de los Procesos de Contratación Pública sobre los cuales estas interesado. Recuerda que solo tendrás resultados de Procesos de Contratación Pública que coincidan con los intereses gestionados.">
+                    <div style="margin-bottom: 0.5em; font-size: 16px; color: #959595; font-family: opensans_semibold; text-align: left;font-size: 1vw;">
+                        Objeto del proceso
+                    </div>
+                    <input type="text" style="width: 100%; border:none;" [(ngModel)]="filtro.objeto">
+                </div>
+
+            <div *ngIf="selectedOption === 'PROCESOS DE COMPRAS PÚBLICAS'"
+                title="Digita el número del proceso de contratación sobre el cual estás interesado. Recuerda que solo tendrás resultados de Procesos de Contratación Pública que coincidan con los intereses gestionados.">
+                <hr style="border-width: 1px; margin-top: 0.5em; margin-bottom: 0.5em;">
+                <div style="margin-bottom: 0.5em; font-size: 16px; color: #959595; font-family: opensans_semibold; text-align: left;font-size: 1vw;">
+                    Número de proceso
+                </div>
+                <input type="text" style="width: 100%; border:none;" [(ngModel)]="filtro.numeroProceso">
+            </div>
+
+            <div class="centeringBtn" style="margin-top: 1em; margin-bottom: 1em;">
+                <button (click)="filtrarOfertas()" style="max-width: 50px; background-color: #386bf9;
+                    width: 50%;
+                    color: #ffffff;
+                    cursor: pointer;
+                    max-width: 230px;
+                    font-size: 16px;
+                    border-radius: 6mm;
+                    border-style: none;
+                    height: 30px;
+                    margin-top: 0em !important;font-size: 1vw;"
+                >
+                    BUSCAR
+                </button>
+            </div>
+        </mat-card>
+    </div>
+    <!-- Fin menu de filtros -->
+
+    <!-- mensaje sin resultados -->
+    <div style="width: 80%; margin-top: 50px;" *ngIf="mostrarAlert">
+        <div style="display: grid;grid-template-columns: 5% 95%;">
+            <div style=" border: 1px solid #7d7d7d; height: 5em; border-top-left-radius: 5px; border-bottom-left-radius: 5px;">
+              <img src="assets/imgs/iconos/admiracion.svg" style="width: 0.5em; margin: 1em;">
+            </div>
+            <div style=" border: 1px solid #7d7d7d; height: 5em; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
+              <div style="margin-top: 1em;">
+                <span style="color: #7d7d7d; font-size: 16px; margin: 1.5em; font-family: opensans_bold;">No se encontraron resultados para esta búsqueda.</span>
+              </div>
+            </div>
+        </div>
+    </div>
+    <!-- fin mensaje sin resultados -->
+    <div style="width: 100%; margin-bottom: 10%"> 
+        <!-- tarjetas de ofertas -->
+        <div>
+            <div class="card--grid">
+                <mat-card *ngFor="let oferta of ofertas | async" class="example-card" style="margin-top: 2em; margin-right: 0.5em;word-break: break-word;">
+                    <span style="background-color: #f5f5f5; font-size: 13px; color: #3366ff; font-family: opensans_bold; padding: 0.2em 1em;">
+                        {{ selectedOption == 'PROCESOS DE COMPRAS PÚBLICAS' ? 'PROCESOS DE COMPRA' : 'PLANES ANUALES' }}
+                    </span>
+                    <div style="font-size: 13px; color: #b2b2b2; margin-top: 5px">
+                        Entidad
+                    </div>
+                    <div style="font-size: 16px; color: #333333; font-family: opensans_semibold; text-align: center;">
+                        {{ oferta.entityName }}
+                    </div>
+                    <div style="font-size: 13px; color: #b2b2b2; text-align: center;" *ngIf="selectedOption === 'PROCESOS DE COMPRAS PÚBLICAS'">
+                        Numero del Proceso
+                    </div>
+                    <div style="font-size: 16px; color: #515151; font-family: opensans_regular; text-align: center;" *ngIf="selectedOption === 'PROCESOS DE COMPRAS PÚBLICAS'">
+                        {{ oferta.processNumber }}
+                    </div>
+                    <div style="font-size: 13px; color: #b2b2b2; text-align: center;" *ngIf="selectedOption === 'PROCESOS DE COMPRAS PÚBLICAS'">
+                        Objeto del contrato
+                    </div>
+                    <div style="font-size: 13px; color: #333333; font-family: opensans_regular; text-align: left;" *ngIf="selectedOption === 'PROCESOS DE COMPRAS PÚBLICAS'">
+                        <p style="margin: 0">
+                            {{ oferta.detailObjectToHired }}
+                        </p>
+                    </div>
+    
+                    <div style="font-size: 13px; color: #b2b2b2; text-align: center;" *ngIf="selectedOption === 'PLANES ANUALES DE ADQUISICIONES'">
+                        Productos o servicios asociados
+                    </div>
+                    <div style="font-size: 13px; color: #333333; font-family: opensans_regular; text-align: center;" *ngIf="selectedOption === 'PLANES ANUALES DE ADQUISICIONES'">
+                        <p style="margin: 0">
+                            {{ oferta.product }}
+                        </p>
+                    </div>
+    
+                    <div style="font-size: 13px; color: #b2b2b2; text-align: center; margin: 0">
+                        {{ selectedOption === 'PLANES ANUALES DE ADQUISICIONES' ? 'Valor de aquisicion' : 'Cuantía del proceso' }}
+                    </div>
+                    <div style="font-size: 16px; color: #333333; text-align: center; font-family: opensans_regular;">
+                        $ {{ oferta.basePrice.replace('COP', '') }}
+                    </div>
+    
+                    <div style="font-size: 13px; color: #b2b2b2; text-align: center;" *ngIf="selectedOption === 'PROCESOS DE COMPRAS PÚBLICAS'">
+                        Modalidad de contratación
+                    </div>
+                    <div style="font-size: 16px; color: #333333; text-align: center; font-family: opensans_regular;" *ngIf="selectedOption === 'PROCESOS DE COMPRAS PÚBLICAS'">
+                        {{ oferta.contractingModality }}
+                    </div>
+    
+                    <div style="font-size: 13px; color: #b2b2b2; text-align: center;" *ngIf="selectedOption === 'PLANES ANUALES DE ADQUISICIONES'">
+                        Contacto de la entidad
+                    </div>
+                    <div style="font-size: 13px; color: #333333; font-family: opensans_regular; text-align: left;" *ngIf="selectedOption === 'PLANES ANUALES DE ADQUISICIONES'">
+                        <p style="margin: 0; text-align: center">
+                            <b>{{ oferta.contactInfo }}</b>
+                            {{ oferta.contactEmail }}
+                        </p>
+                    </div>
+                    <hr style="border-width: 2px; margin: 3px;" *ngIf="selectedOption === 'PLANES ANUALES DE ADQUISICIONES'">
+                    <div style=" margin: 0; text-align: center;">
+                        <span>
+                            <img src="assets/imgs/iconos/ubicacion.svg" style="width: 15px;">
+                        </span>
+                        <span style="font-size: 15px; color: #333333; font-family: opensans_semibold; margin-left: 0.1em;">
+                            {{ oferta.municipio }}
+                        </span>
+                    </div>
+                    <hr style="border-width: 2px; margin: 3px;" *ngIf="selectedOption === 'PROCESOS DE COMPRAS PÚBLICAS'">
+                    <div style="font-size: 13px; color: #b2b2b2; text-align: center;" *ngIf="selectedOption === 'PROCESOS DE COMPRAS PÚBLICAS'">
+                        Fecha de cargue
+                    </div>
+                    <div style="font-size: 12px; color: #333333; text-align: center; font-family: opensans_semibold;" *ngIf="selectedOption === 'PROCESOS DE COMPRAS PÚBLICAS'">
+                        {{ oferta.dateLoadSecop }}
+                    </div>
+                    
+                
+                    <div class="centeringBtn" style="margin-top: 1em; margin-bottom: 1em;">
+                        <app-button
+                            *ngIf="selectedOption === 'PLANES ANUALES DE ADQUISICIONES'"
+                            text="VER DETALLE"
+                            width="150px"
+                            (onClick)="openAdquisitionDialog(oferta)">
+                        </app-button>
+
+                        <app-button
+                            *ngIf="selectedOption !== 'PLANES ANUALES DE ADQUISICIONES'"
+                            text="VER DETALLE"
+                            width="150px"
+                            (onClick)="openDialog(oferta)">
+                        </app-button>
+                    </div>
+                </mat-card>
+            </div>
+            <div style="margin-left: 18%; margin-top: 2%" [ngStyle]="data.length > 8 ? {'display': 'block'} : {'display': 'none'}">
+                <mat-paginator 
+                    [pageSizeOptions]="[8]"
+                    hidePageSize="true"
+                    showFirstLastButtons="true">
+                </mat-paginator>
+            </div>
+        </div>
+        <!-- fin tarjetas de ofertas -->
+    </div>
+</div>
+<app-popup-confirmation *ngIf="showAlerta"
+  [message] = "notificationMessage"
+  (close)="closePopup($event)">
+</app-popup-confirmation>

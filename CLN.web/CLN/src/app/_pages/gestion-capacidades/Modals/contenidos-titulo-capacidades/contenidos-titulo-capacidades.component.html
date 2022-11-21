@@ -1,0 +1,71 @@
+<section *ngIf="titulo">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2 class="font_title text-color-red">{{ titulo[0] }}</h2>
+            <br />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center" style="display: flex">
+            <span class="title_decorator_dynamic" [style.height]="heightText">
+                <div class="boxTop"></div>
+                <div class="boxDown"></div>
+            </span>
+            <div class="subTitulo">
+                <p class="text-color-gray" [innerHTML]="titulo[2]" id="contentText" #contentText></p>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="permitsUser.canCreate">
+        <div class="col-12 d-flex flex-column align-items-center" style="text-align: center">
+            <a class="cargar-contenido-link" (click)="openDialog(titulo[1])">
+                <div class="buttonSvg" [ngClass]="titulo[3]"></div>
+                <div class="col-12 py-0 text-color-blue">
+                    {{ titulo[1] }}
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="row bg-danger" *ngIf="titulo[4] != undefined && titulo[4].buttons != undefined">
+        <div *ngFor="let button of titulo[4].buttons" class="buttons-flex-group">
+            <button class="buttons-flex-item" [ngClass]="button.class" (click)="actionRouterButton(button.action)">
+                <!-- routerLink="./{{button.action}}" -->
+                {{ button.messsage }}
+            </button>
+        </div>
+    </div>
+</section>
+<div class="guias d-flex flex-column justify-content-center align-items-center pb-4" *ngIf="titulo[5]">
+    <h5 class="text-color-blue font-weight-bold pt-3 mt-3">{{titulo[6]}}</h5>
+    <div class="content-guias d-flex justify-content-center align-items-center mt-4">
+        <a class="box-iconos" [href]="" (click)="getGuia()" *ngIf="filesData.archivoGuia != ''">
+            <span class="icon-guia"></span>
+            <span class="name-box text-color-blue">Descargar guía</span>
+        </a>
+        <div class="box-iconos" (click)="openVideo()" *ngIf="filesData.videoGuia != ''">
+            <span class="icon-video"></span>
+            <span class="name-box text-color-blue">Ver video</span>
+        </div>
+        <div class="box-iconos" (click)="showCapacidad()" *ngIf="capacidadesClose">
+            <span class="icon-download"></span>
+            <span class="name-box text-color-blue">Conozca aquí los tipos de capacidades</span>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12 d-flex justify-content-center align-items-center" *ngIf="titulo[7]">
+    <div class="col-sm-10 d-flex justify-content-center align-items-center mt-4">
+        <div class="col-sm-4 d-flex justify-content-center align-items-center">
+            <span class="box-lila rounded p-0 m-0 ">E</span>
+            <h5 class="name-box p-0 px-2 m-0 ml-2">Capacidades estratégicas</h5>
+        </div>
+        <div class="col-sm-4 d-flex justify-content-center align-items-center">
+            <span class="box-naranja rounded p-0 m-0 ">T</span>
+            <h5 class="name-box p-0 px-2 m-0 ml-2">Capacidades técnicas</h5>
+        </div>
+        <div class="col-sm-4 d-flex justify-content-center align-items-center">
+            <span class="box-fucsia rounded p-0 m-0 ">P</span>
+            <h5 class="name-box p-0 px-2 m-0 ml-2">Capacidades personales</h5>
+        </div>
+    </div>
+</div>
+<hr class="RedLine" />

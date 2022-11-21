@@ -1,0 +1,84 @@
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/worksans/v9/QGY_z_wNahGAdqQ43RhVcIgYT2Xz5u32KxfXNig.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/worksans/v9/QGY_z_wNahGAdqQ43RhVcIgYT2Xz5u32K0nXNig.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/worksans/v9/QGY_z_wNahGAdqQ43RhVcIgYT2Xz5u32K5fQNig.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/worksans/v9/QGY_z_wNahGAdqQ43RhVcIgYT2Xz5u32K67QNig.ttf) format('truetype');
+}
+
+.all {
+padding-left: 130px;
+padding-right: 130px;
+}
+
+.tittle {
+font-family: "Work Sans", sans-serif;
+font-size: 32px;
+font-weight: 600;
+color: #F42F63;
+padding-bottom:20px;
+padding-top:20px;
+text-align: center;
+}
+
+.text1 {
+font-family: "Work Sans", sans-serif;
+font-size: 18px;
+font-weight: 300;
+color: #6d6e71;
+padding-bottom:20px;
+text-align: center;
+}
+
+.text2 {
+font-family: "Work Sans", sans-serif;
+font-size: 18px;
+font-weight: 300;
+color: #6d6e71;
+padding-bottom:20px;
+padding-right:50px;
+}
+
+.text3 {
+font-family: "Work Sans", sans-serif;
+font-size: 18px;
+font-style:italic;
+color: #6d6e71;
+text-align:center;
+padding-bottom:20px;
+}
+
+.footer {	
+height: auto;
+border-top: 2px dashed #F42F63;
+text-align: center; 
+padding-top:32px;
+} 
+
+.header {
+height: auto; 
+border-bottom: 4px solid #3366CC;
+text-align: center; 
+padding-bottom:10px;
+}

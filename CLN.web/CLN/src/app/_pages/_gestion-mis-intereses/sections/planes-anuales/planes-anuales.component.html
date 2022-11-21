@@ -1,0 +1,117 @@
+<section>
+  <app-popup-confirmation *ngIf="showNotification"
+    [message] = "notificationMessage"
+    (close)="closePopup($event)">
+  </app-popup-confirmation>
+
+  <h2>INTERESES DE TU EMPRESA</h2>
+  <div class="procesos-card">
+    <h2>PLANES ANUALES DE ADQUISICIÓN</h2>
+
+    <p class="list-item">1. Estoy interesado en Planes Anuales de Adquisición ubicados en:</p>
+    <p class="indication">Departamento *</p>
+    <div class="input-container">
+      <app-cp-input-boxes
+        [wrapperActive]="wrapperActiveDepartamento"
+        (show)="show('departamento')"
+        [lista]="interestObj.departamentosNoSelected"
+        [itemsS]="interestObj.departamentosSelected"
+        [showAlert] = "showAlertDepartamentos"
+        (idValueEvent)="idDepSelected($event)"
+        (idRemoveEvent)="idDepRemove($event)">
+      </app-cp-input-boxes>
+    </div>
+
+    <p class="list-item">2. Estoy interesado en Planes Anuales de Adquisición ubicados en:</p>
+    <p class="indication">Ciudad *</p>
+    <div class="input-container">
+      <app-cp-input-boxes
+        [wrapperActive]="wrapperActiveMunicipio"
+        (show)="show('municipio')"
+        [lista]="interestObj.municipalitiesNoSelected"
+        [itemsS]="interestObj.municipalitiesSelected"
+        [showAlert] = "showAlertMunicipalities"
+        (idValueEvent)="idCiudadSelected($event)"
+        (idRemoveEvent)="idCiudadRemove($event)">
+      </app-cp-input-boxes>
+    </div>
+
+    <p class="list-item">3. Estoy interesado en Planes Anuales de Adquisición cuya entidad contratante sea: </p>
+    <div class="alert-container">
+      <img src="assets/img/others/alerta.svg" alt="ver ayuda" />
+      <p class="indication">Sí estás interesado en incluir más de una entidad debes separarlas mediante una coma (,)</p>
+    </div>
+    <div class="input-container">
+      <app-cp-input-search
+        [lista]="entidadesFoundList"
+        [itemsS]="entidadesSelected"
+        [listResult]="entidadesFoundList"
+        (idValueEvent)="idEntidadSelected($event)"
+        (idRemoveEvent)="idEntidadRemove($event)"
+        (stringValueEvent)="stringEntidad($event)"
+        (itemsSValueEvent)="handleEntidadesList($event)">
+      </app-cp-input-search>
+    </div>
+
+    <p class="list-item">4. Estoy interesado en adquisiciones en las que la fecha de inicio de contratación se encuentra en los meses:</p>
+    <div class="input-container">
+      <app-cp-input-boxes
+        [wrapperActive]="wrapperActiveProcesosPorFecha"
+        (show)="show('porFecha')"
+        [lista]="monthsNoSelected"
+        [itemsS]="monthsSelected"
+        [showAlert] = "showAlertMonths"
+        (idValueEvent)="idMonthSelected($event)"
+        (idRemoveEvent)="idMonthRemove($event)">
+      </app-cp-input-boxes>
+    </div>
+
+    <p class="list-item">5. Estoy interesado en adquisiciones, cuya modalidad de selección del contratista sea *</p>
+    <div class="input-container">
+      <app-cp-input-boxes
+        [wrapperActive]="wrapperActiveProcesosPorModalidad"
+        (show)="show('porModalidad')"
+        [lista]="modesNoSelected"
+        [itemsS]="modesSelected"
+        [showAlert] = "showAlertModes"
+        (idValueEvent)="idModeSelected($event)"
+        (idRemoveEvent)="idModeRemove($event)">
+      </app-cp-input-boxes>
+    </div>
+
+    <p class="list-item">6. Estoy interesado en adquisiciones, cuyo rango de precio base se encuentra:</p>
+    <div class="input-container">
+      <app-cp-values
+        [minValue] = "companyInterest.minimumValues"
+        [maxValue] = "companyInterest.maximumValues"
+        [maxValuePossible] = "maximunValuePossible"
+        [allValues] = "companyInterest.allValues"
+        [includeValues] = "companyInterest.includeValues"
+        [showIncludeValues] = true
+        (minimunValueS) = "setMinValue($event)"
+        (maximunValueS) = "setMaxValue($event)"
+        (allValueS) = "setAllValues($event)"
+        (includeValueS) = "setIncludeValues($event)">
+      </app-cp-values>
+    </div>
+
+    <p class="list-item">7. A continuación, encontrarás el clasificador de productos y servicios UNSPSC. Selecciona los productos y
+      servicios que esten alineados con los intereses de tu empresas*</p>
+    <div class="input-container">
+      <app-cp-input-products
+        [selectedItems] = "productosSelected"
+        [showAlert] = "showAlertProducts"
+        (productsSelectedEmmiter) = "setProducts($event)">
+      </app-cp-input-products>
+    </div>
+  </div>
+
+  <div [ngClass] = "guardarOn ? 'guardar-on' : 'guardar-off'" class="btn-container">
+    <button
+      [disabled] = "disabledButton"
+      (click)="saveCompanyInterest()"class="general-btn">GUARDAR
+  </button>
+  </div>
+</section>
+
+

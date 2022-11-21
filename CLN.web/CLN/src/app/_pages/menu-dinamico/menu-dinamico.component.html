@@ -1,0 +1,36 @@
+<div (click)="identifyClickOutSide($event)">
+  <app-bannersup></app-bannersup>
+  <app-menu (evento)="backTo($event)" [childData]="activeReturn"
+    [closeActionByOutsideClickPattern]="closeActionByOutsideClick"></app-menu>
+  <!--app-barra-nombre-usuario ></app-barra-nombre-usuario-->
+  <div class="fake-body">
+    <div class="container">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-sm-8 pt-4 d-flex justify-content-center align-items-center" style="display: flex">
+          <span class="title_decorator"></span>
+          <p class="font_p text-color-gray" style="margin-top: calc(2%); text-align: center">
+            {{textDescription}}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="my-5 container pb-4">
+      <div *ngIf="displayedMenu; else cargando">
+        <div class="d-flex flex-column align-items-center">
+          <div class="menu-item" *ngFor="let item of displayedMenu" (click)="redirect(item)">
+            {{ item.nombre }}
+          </div>
+        </div>
+      </div>
+      <ng-template #cargando>
+        <div class="d-flex justify-content-center flex-column align-items-center">
+          <h2 style="text-align: center" class="text-color-blue">{{ LoadOrError.message }}</h2>
+          <div class="spinner-border text-primary cargando-Spinner" role="status" *ngIf="LoadOrError.loadbutton">
+            <span class="sr-only text-color-blue">Loading...</span>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<section class="values-section">
+
+  <app-popup-confirmation *ngIf="showAlerta"
+    [message] = "notificationMessage"
+    (close)="closePopup($event)">
+  </app-popup-confirmation>
+
+  <div class="values-check">
+    <input #allValuesInput type="checkbox"
+      [checked]="allValues"
+      (change)="handlerCheck(allValuesInput.checked)">
+    <p>Todos los valores</p>
+  </div>
+  <div [ngClass]="allValues ? 'values-off' : 'values-on'">
+    <div class="values-info">
+      <img src="assets/img/others/alerta.svg" alt="ver ayuda" />
+      <p>Adicional al rango de precio que selecciones, te enviaremos los procesos con precio base igual a ($0), asociados a la modalidad de selección de contratista que elegiste para que no pierdas ninguna oportunidad</p>
+    </div>
+    <div class="values-range">
+      <div class="values-range-container">
+        <p>Desde</p>
+        <input #inputMin
+          class="input-value"
+          placeholder="$1"
+          [disabled] = "allValues"
+          value="{{minValue}}"
+          maxlength="34"
+          type="text"
+          min="0"
+          (keyup) = "updateNumberOfCharateres(inputMin, minNumberSpan, 'minValueType')"
+          (change)="sendMinValue(inputMin.value, inputMin)" />
+        <div class="arrow-right">
+          <span #minNumberSpan>{{minValueLength}} </span>
+        </div>
+      </div>
+      <div>
+        <p>Hasta</p>
+        <input #inputMax
+          class="input-value"
+          placeholder="{{maxValue}}"
+          [disabled] = "allValues"
+          maxlength="34"
+          type="text"
+          min="0"
+          value="{{maxValue}}"
+          (keyup) = "updateNumberOfCharateres(inputMax, maxNumberSpan, 'maxValueType')"
+          (change)="sendMaxValue(inputMax.value, inputMax)" />
+        <div class="arrow-right">
+          <span #maxNumberSpan>{{maxValueLength}} </span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showIncludeValues" class="values-check">
+      <input #includeValuesInput type="checkbox"
+      [disabled] = "allValues"
+      [checked]="includeValues"
+      (change)="handlerCheckInclude(includeValuesInput.checked)">
+      <p>E incluya valores mayores a {{maxValue}} </p>
+    </div>
+  </div>
+</section>
+

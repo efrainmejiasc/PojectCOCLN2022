@@ -1,0 +1,155 @@
+h1, h2, p{
+    margin: 0px;
+    padding: 0px;
+}
+
+section{
+  height: 100%;
+  padding-bottom: 100px;
+  background-color: #f8f8f8;
+}
+
+#admin-top{
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 30px;
+}
+
+.bienvenido{
+    color:#4169af;
+    font-size: 26px;
+    font-weight: 800;
+    border-bottom: 1px solid #666;
+}
+
+h2{
+    color:#111;
+    font-weight:400;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+p{
+    color:#333333;
+    font-size: 14px;
+    margin-top: 30px;
+    font-size:18px;
+}
+
+ul {
+  list-style: none;
+  width: 800px;
+  margin: 20px auto 200px;
+  padding: 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  background-color: #fff;
+}
+
+ul li:last-child{
+  border-right:3px solid #efefef;
+}
+
+.ul-tresCol{
+  width: 600px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.ul-tresCol li:nth-child(3n){
+  border-right:3px solid #efefef;
+}
+
+.ul-cuatroCol li:nth-child(4n){
+  border-right:3px solid #efefef;
+}
+
+li {
+  text-align: center;
+  width: 200px;
+  margin: 0px auto;
+  padding: 15px 5px 5px 5px;
+  cursor: pointer;
+  color:#999 !important;
+  line-height: 14px;
+  font-size: 12px;
+  border-left:3px solid #efefef;
+  border-bottom: 5px solid transparent;
+};
+
+li:hover{
+  border-bottom: 5px solid #3366ff;
+};
+
+li:hover span{
+  color:#3366ff;
+};
+
+li:hover img{
+  filter: hue-rotate(90deg);
+};
+
+.icono-opciones{
+  height: 40px;
+  overflow: hidden;
+  margin-bottom: 10px;
+};
+
+.icono-opciones img{
+  height: 40px;
+};
+
+.titulo-menu{
+  padding: 10px;
+  font-size:15px;
+  line-height: 18px;
+  font-weight: 700;
+  color:#999 !important;
+}
+
+.div-ul {
+  margin: 20px auto 200px;
+  width: 800px;
+  padding: 0px;
+  // background-color: #fff;
+}
+
+// .ul-cuatroCol li:nth-child(4n){
+//   border-right:3px solid #efefef;
+// }
+
+.borde-derecho{
+  border-right:3px solid #efefef
+}
+
+.borde-arriba{
+  border-top: 3px solid #efefef;
+  width: 750px;
+}
+
+.menu{
+  display: flex;
+  justify-content: center;
+}
+
+.item-li:hover span{
+  color:#3366ff;
+};
+
+.div-li {
+  // background-color: #fff;
+  text-align: center;
+  width: 200px;
+  // margin: 0px auto;
+  padding: 15px 5px 5px 5px;
+  cursor: pointer;
+  color:#999 !important;
+  line-height: 14px;
+  font-size: 12px;
+  border-left:3px solid #efefef;
+  background-color: #fff;
+  border-bottom: 5px solid transparent;
+};
+
+.div-li:hover {
+  border-bottom: 5px solid #3366ff;
+};

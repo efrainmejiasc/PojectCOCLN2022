@@ -1,0 +1,106 @@
+<section>
+
+  <div *ngIf="showAlertModal" class="grs-modal">
+    <div>
+      <p class="grs-modal-info">El archivo que estas intentando cargar no es válido</p>
+      <button class="grs-btn" (click)="closeAlert()">ACEPTAR</button>
+    </div>
+  </div>
+
+  <div *ngIf="showGrsModal" class="grs-modal">
+
+    <div *ngIf="fileDataResponse.failedRecordsNumber >0">
+      <p><b>Número de registros: </b>{{fileDataResponse.recordsNumber}}</p>
+      <p><b>Número de registros válidos: </b>{{fileDataResponse.succeedRecordsNumber}}</p>
+      <p><b>Número de registro inválidos: </b>{{fileDataResponse.failedRecordsNumber}}</p>
+      <p class="grs-modal-info">Para realizar el cargue, el número de registros inválidos debe ser igual a cero. Revisa el archivo e inténtalo de nuevo</p>
+      <button class="grs-btn" (click)="downloadReport()">OBTENER EL REPORTE DE ERRORES</button>
+    </div>
+
+    <div *ngIf="fileDataResponse.failedRecordsNumber === 0 && !fileUploadedSuccessful">
+      <p><b>Número de registros: </b>{{fileDataResponse.recordsNumber}}</p>
+      <p class="grs-modal-info">¿Deseas realizar el cargue masivo?</p>
+      <div class="grs-modal-success-btn-container">
+        <button class="grs-btn" (click)="uploadFileToServer()">SI</button>
+        <button class="grs-btn" (click)="exitUploadFileToServer()">NO</button>
+      </div>
+    </div>
+
+    <div *ngIf="fileUploadedSuccessful">
+      <p class="grs-modal-info">El cargue fue realizado exitosamente</p>
+      <button class="grs-btn" (click)="onAfterUpload()">ACEPTAR</button>
+    </div>
+
+  </div>
+
+  <div class="grs-header">
+    <div (click)= "showCorrelativa()" id="g-correlativa">
+      <div class="grs-icon-container">
+        <img *ngIf="!correlativaSelected" src="assets/imgs/iconos/gestionarcorrelativa.svg" />
+        <img *ngIf="correlativaSelected" src="assets/imgs/iconos/iconoblancocorrelativa.svg" />
+      </div>
+      <div class="grs-titlem-container">
+        <p>GESTIONAR CORRELATIVA</p>
+      </div>
+    </div>
+    <div (click)= "showUnspsc()" id="g-unspsc">
+      <div class="grs-icon-container">
+        <img *ngIf="!unspscSelected" src="assets/imgs/iconos/clasificacionunspc.svg" />
+        <img *ngIf="unspscSelected" src="assets/imgs/iconos/iconoblancoUNSPSC.svg" />
+      </div>
+      <div class="grs-titlem-container">
+        <p>GESTIONAR CLASIFICACIÓN UNSPSC</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grs-info-selected">
+    <div *ngIf="correlativaSelected || unspscSelected" >
+      <div class="grs-descargar">
+        <img (click) ="downloadTemplate()" src="assets/imgs/iconos/descargarplantilla.svg" />
+        <p (click) ="downloadTemplate()">DESCARGAR PLANTILLA</p>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="grs-cargar">
+        <p class="cargar-titulo">CARGUE DE ARCHIVOS</p>
+        <div class="grs-cargar-input-component">
+          <img (click)= "toogleHelpArchivos()" src="assets/imgs/home-editor/alerta.svg" />
+          <input type="text" formControlName="fileName"/>
+            <button type="button" (click)="filePicker.click()">SUBIR</button>
+          <input class="grs-file-input" type="file" #filePicker (change)="onFilePicked($event)">
+        </div>
+        <div class="grs-iniciar-carga">
+          <button type="submit" [disabled]="!form.valid" [ngClass]="form.valid ? 'btn-on' : 'btn-off'"> INICIAR CARGA</button>
+        </div>
+        <div *ngIf="showHelpArchivos" class="info-ayuda-container">
+          <div class="close-info"><span (click)= "toogleHelpArchivos()">X</span></div>
+          <div class="info-ayuda">
+            <ul>
+              <li>Sólo se permite subir un archivo por carga</li>
+              <li>Sólo se permite subir archivos con formato .xlsx y .csv</li>
+              <li>El sistema validará las características del archivo. En caso de encontrar registros inconsistentes, el sistema te lo hará saber y no permitirá la carga</li>
+            </ul>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div *ngIf="showLastVersionSection">
+      <div class="grs-descargar-info">
+        <img src="assets/imgs/home-editor/alerta.svg" />
+        <p>Aquí podras descargar la última versión del archivo que fue subido al sistema para realizar el proceso de cargue masivo</p>
+      </div>
+
+      <div class="grs-descargar-container">
+        <p>{{fileUploadedName}}</p>
+        <div class="grs-descargar-btn-container">
+          <button (click) = "downloadUploadedRecords()" class="btn-on">DESCARGAR ARCHIVO</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!--
+[ngClass]="grsSelected ? 'grs-selected' : 'grs-normal' -->

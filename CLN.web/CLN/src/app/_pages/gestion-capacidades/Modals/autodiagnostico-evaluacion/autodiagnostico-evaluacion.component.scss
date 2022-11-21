@@ -1,0 +1,210 @@
+$color-blanco: rgba(255, 255, 255, 1);
+$color-blue: #36c;
+$color-red: #f42f63;
+$color-red-oscuro: #d6184b;
+$color-gray-font: rgba(0, 0, 0, 0.7);
+$line-height-paragraph: 18px;
+$font-size-paragraph: 16px;
+@import "../../../../_shared/styles/variables.scss";
+
+.background-gris-claro {
+    background-color: rgba($color: $color-blue, $alpha: 0.2);
+}
+.background-estrategias {
+    background-color: rgb(91, 139, 255)
+}
+.background-tecnicas {
+    background-color: rgb(247, 103, 141);
+}
+.background-personales {
+    background-color: rgb(248, 198, 104);
+}
+.borde-gris-claro {
+    border-left: solid 7px rgba($color: $color-blue, $alpha: 0.2);
+}
+.background-rojo-claro {
+    background-color: rgba($color: $color-red, $alpha: 0.2);
+}
+.borde-rojo-claro {
+    border-left: solid 7px rgba($color: $color-red, $alpha: 0.2);
+}
+.background-rojo-oscuro {
+    background-color: rgba($color: $color-red-oscuro, $alpha: 0.2);
+}
+.borde-rojo-oscuro {
+    border-left: solid 7px rgba($color: $color-red-oscuro, $alpha: 0.2);
+}
+.backgro .container-relative {
+    position: relative;
+    padding: 40px 0px 40px 0px;
+}
+.box-alert {
+    width: 90%;
+    height: 90px;
+    border: solid 1px $color-red;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+.box-alert .alert-icon {
+    width: 40px;
+    height: 50px;
+    background-image: url("../../../../../assets/img/capacidades/alertCaution.svg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.box-alert p {
+    width: 700px;
+    text-align: justify;
+    font-size: $font-size-paragraph;
+    line-height: $line-height-paragraph;
+}
+.evaluacion-content {
+    width: 90%;
+    transition: ease all 1s;
+}
+.evaluacion-content .instruction {
+    background-color: $color-blue;
+    padding: 20px 30px;
+    text-align: center;
+    font-style: italic;
+    font-size: $font-size-paragraph;
+    line-height: $line-height-paragraph;
+    color: $color-blanco;
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+}
+.evaluacion-content .title-data {
+    width: 100%;
+    background-color: $color-blue;
+}
+.evaluacion-content .title-data .afirmationContent {
+    width: 70%;
+    height: 40px;
+    text-align: center;
+    color: $color-blanco;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 700;
+}
+.evaluacion-content .title-data .calificationContent {
+    width: 30%;
+    height: 40px;
+    text-align: center;
+    color: $color-blanco;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 700;
+}
+
+.evaluacion-content .content-data {
+    width: 100%;
+    border-bottom: solid 1px $color-blue;
+    border-right: solid 1px $color-blue;
+}
+.evaluacion-content .content-data .afirmationContent {
+    width: 70%;
+    padding: 20px 10px;
+    height: auto;
+    border-left: solid 1px $color-blue;
+    border-right: solid 1px $color-blue;
+}
+.evaluacion-content .content-data .afirmationContent .result-first-word {
+    width: 30px;
+    height: 30px;
+    color: $color-blanco;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $font-size-paragraph;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 900;
+    border-radius: 3px;
+}
+.evaluacion-content .content-data .afirmationContent p {
+    width: 85%;
+    text-align: justify;
+    color: $color-gray-font;
+    font-size: $font-size-paragraph;
+    line-height: $line-height-paragraph;
+}
+.evaluacion-content .content-data .calificationContent {
+    width: 30%;
+    height: 40px;
+    text-align: center;
+    color: $color-blanco;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 700;
+    border-right: solid 1px $color-blue;
+}
+.navigation {
+    width: 100%;
+    padding: 20px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navigation button {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    font-size: $font-size-paragraph;
+    color: $color-blue;
+}
+.navigation button .beforeIcon {
+    width: 100%;
+    height: 30px;
+    background-color: #36c;
+    display: block;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask: url(src\assets\img\capacidades\before.svg) no-repeat center;
+    mask: url(src\assets\img\capacidades\before.svg) no-repeat center;
+}
+.navigation button .beforeIconDisabled {
+    width: 100%;
+    height: 30px;
+    background-color: #36c;
+    display: block;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask: url(src\assets\img\capacidades\beforeDisabled.svg) no-repeat center;
+    mask: url(src\assets\img\capacidades\beforeDisabled.svg) no-repeat center;
+}
+.navigation button .nextIcon {
+    width: 100%;
+    height: 30px;
+    background-color: #36c;
+    display: block;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask: url(src\assets\img\capacidades\next.svg) no-repeat center;
+    mask: url(src\assets\img\capacidades\next.svg) no-repeat center;
+}
+.navigation button .nextIconDisabled {
+    width: 100%;
+    height: 30px;
+    background-color: #36c;
+    display: block;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask: url(src\assets\img\capacidades\nextDisabled.svg) no-repeat center;
+    mask: url(src\assets\img\capacidades\nextDisabled.svg) no-repeat center;
+}
+.navigation .buttonFinal {
+    width: 250px;
+    height: 30px;
+    color: $color-blanco;
+    font-size: $font-size-paragraph;
+    border-radius: 10px;
+}
+.active {
+    background-color: $color-blue !important;
+}
+
+.disabled {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+}

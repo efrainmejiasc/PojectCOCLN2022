@@ -1,0 +1,108 @@
+<div class="modal-header d-flex justify-content-center align-items-center">
+  <h2 class="modal-title font_title p-0 m-0 text-color-red">{{ sendedData }}</h2>
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form novalidate [formGroup]="form" (ngSubmit)="save($event)">
+    <div class="container">
+      <!-- Campo nombre -->
+      <div class="form-input">
+        <label class="label">
+          <!-- [ngClass]="{ 'label-incorrecto': form['titulo'] }" -->
+          <span class="label px-4">
+            Nombre |
+            <span class="text-color-red">
+              {{
+                form.get("nombre").value
+                  | conteoCaracteres: formProperties.nombre.maxCaracteres
+              }}
+            </span>
+          </span>
+          <div class="content-asterisk">
+            <input class="input-asterisk px-2" [ngClass]="{'inputInvalid': form.get('nombre').invalid && activeValidator}" maxlength="50" id="name" #name
+              formControlName="nombre" (input)="validationOut(2)" (keypress)="patternValidation($event)"
+              (paste)="patternValidationPaste($event)" autocomplete="off" />
+            <span class="asterisk" [ngClass]="{'asteriskInvalid': form.get('nombre').invalid && activeValidator}">*</span>
+          </div>
+        </label>
+      </div>
+      <!-- campos seleccionable grupos -->
+      <label class="label">
+        <span class="label px-4"> Grupos </span>
+        <div class="input-container">
+          <select class="select px-2" [ngClass]="{'selectInvalid': form.get('grupos').invalid && activeValidator}" formControlName="grupos" id="group"
+            #group (change)="validationOut(3)">
+            <option [ngValue]="null" disabled>Seleccione una opción</option>
+            <option *ngFor="let grupo of listGroupsBackup" [label]="grupo.nombre" [ngValue]="grupo.id"></option>
+          </select>
+          <span class="arrow-down"></span>
+        </div>
+      </label>
+      <!-- Campo descripción -->
+      <div class="form-input">
+        <label class="label">
+          <!-- [ngClass]="{ 'label-incorrecto': form['titulo'] }" -->
+          <span class="label px-4">
+            Descripción |
+            <span class="text-color-red">
+              {{
+                form.get("descripcion").value
+                  | conteoCaracteres: formProperties.descripcion.maxCaracteres
+              }}
+            </span>
+          </span>
+          <div class="content-asterisk">
+            <input class="input-asterisk px-2" [ngClass]="{'inputInvalid': form.get('descripcion').invalid && activeValidator}"
+              formControlName="descripcion" id="description" #description maxlength="100"
+              (keypress)="patternValidation($event)" (paste)="patternValidationPaste($event)" (input)="validationOut(1)"
+              autocomplete="off" />
+            <span class="asterisk" [ngClass]="{'asteriskInvalid': form.get('descripcion').invalid && activeValidator}">*</span>
+          </div>
+        </label>
+      </div>
+      <div class="col-sm-12 d-flex justify-content-center align-content-center permits-content">
+        <h1 class="titlePermitsBold">Permisos</h1>
+      </div>
+      <div class="row content-permits">
+        <div class="box-parent">
+          <div class="content-grid" *ngFor="let permiso of listPermits; index as i">
+            <div class="input_container">
+              <label class="actionCheck">
+                <h1 class="bodyPermitsBold">{{ permiso.nombre }}</h1>
+                <img
+                  *ngIf="permiso.id == 5 && listGroupsSelected.length > 0 || permiso.id == 5 && form.get('grupos').valid"
+                  class="iconView" src="../../../../../assets/iconos/GestionarUsuarios/ver rol.svg"
+                  (click)="openGestionUsers()" />
+                <input type="checkbox" formControlName="master{{permiso.id}}"
+                  (change)="activatePermitsByGroup(permiso)">
+                <span class=" checkmark"></span>
+              </label>
+            </div>
+            <div class="content-grid-body" *ngFor="let content of permiso.hijos">
+              <div class="lines-connector"></div>
+              <div class="input_container">
+                <label class="actionCheck">
+                  <h4>{{ content.nombre }}</h4>
+                  <input type="checkbox" formControlName="body{{content.id}}"
+                    (change)="verifyPermitsByGroup(permiso,content)">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 d-flex justify-content-center align-content-center permits-content min-height">
+        <p class="text-color-red" *ngIf="arrayReader.length == 0 && activeValidator">{{ alertPermits }}</p>
+      </div>
+    </div>
+    <div class="form-group text-center submit-rol-button" *ngIf="!adminView">
+      <!-- [disabled]="form.invalid" [ngClass]="{ disabled: form.invalid }" -->
+      <button class="btn_third" [ngClass]="{ disabled: form.invalid || arrayReader.length == 0}" type="submit">
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,51 @@
+<div id="container-upload-img">
+    <div class="containerActions" id="selectLoop{{indexInput}}" #selectLoop{{indexInput}}>
+        <button class="edit" (click)="actionBuild(2)"></button>
+    </div>
+    <div class="mediaEditor shadow  pb-4 d-flex flex-column justify-content-center align-items-center fade-in"
+        [ngClass]="{'pt-2':configuration.editorImageSize , 'pt-4':!configuration.editorImageSize}"
+        id="windowmedia{{indexInput}}" #windowmedia{{indexInput}}
+        *ngIf="showPanel"
+        style="float: right;
+        top: 10;
+        left: 50;
+        z-index: 120;"
+        >
+        <div class="col-sm-10 d-flex justify-content-center align-items-center mb-2">
+            <button class="col-sm-6 btn"
+                [ngClass]="{'buttonActive':sectionMediaUpload , 'buttonInactive':!sectionMediaUpload}"
+                (click)="sectionMediaUpload = true">Cargar archivo</button>
+            <button class="col-sm-6 btn ml-2"
+                [ngClass]="{'buttonActive':!sectionMediaUpload , 'buttonInactive':sectionMediaUpload}"
+                (click)="sectionMediaUpload = false">Añadir enlace</button>
+        </div>
+        <div class="col-sm-12 d-flex justify-content-center align-items-center" *ngIf="sectionMediaUpload">
+            <div class="dropzone" movistarDnd (fileDropped)="onFileDropped($event.target.files)" style="cursor: pointer;">
+                <input type="file" #fileDropRef id="fileDropRef" multiple
+                    (change)="onFileDropped($event.target.files)" />
+                <h3>Arrastre archivos a esta sección para cargarlos</h3>
+                <label class="btnUpload mt-2" for="fileDropRef">BUSCAR EN MI PC</label>
+            </div>
+            <div class="viewimageZone">
+                <img [src]="imgURL" *ngIf="imgURL" style="width: 100%;height: 150px;">
+            </div>
+        </div>
+        <div class="col-sm-10 d-flex justify-content-center align-items-center" *ngIf="!sectionMediaUpload">
+            <form class="col-sm-12 d-flex flex-column justify-content-center align-items-center">
+                <div class="form-input mt-2">
+                    <label class="label">
+                        <span class="label px-4 d-flex justify-content-start align-items-center">
+                            Enlace de la imagen
+                        </span>
+                    </label>
+                    <div class="content-asterisk">
+                        <input class="input-asterisk px-2" id="name" autocomplete="off" type="text" placeholder=""
+                            [(ngModel)]="enlace" (ngModelChange)="changeEnlace()" [ngModelOptions]="{standalone: true}" />
+                     <!--    <input class="input-asterisk px-2" maxlength="50" id="name" #name autocomplete="off"
+                            formControlName="image_link" (input)="changeEventText(null,13)" /> -->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

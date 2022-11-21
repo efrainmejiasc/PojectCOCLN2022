@@ -1,0 +1,324 @@
+<div>
+    <div style="text-align: center;margin-left: 20px; margin-right: 20px; margin-top: 10px; margin-bottom: 10px;">
+        <p> <b>{{ data.opcion }}</b> </p>
+    </div>
+
+    <div class="bodyPopup grid-container" style="width: 100%;">
+        <div
+            style=" font-size: 12px;width: 50%; height: 450px;  margin-right: 10px; margin-block-end: auto; overflow: scroll;">
+            <div style="width: 100%;margin-right: 10px; margin-top: 20px;">
+                <div style="margin-bottom: 10px;">
+                    <h6>
+                        <b>
+                            {{
+                            data.opcion === 'VER CONSOLIDADO POR PRODUCTOS Y SERVICIOS DE NACIONES UNIDAS UNSPSC' ?
+                            'Productos y Servicios Naciones Unidas UNSPSC'
+                            : 'Sectores Productivos - Productos y Servicios Naciones Unidas UNSPSC'
+                            }}
+                        </b>
+                    </h6>
+                </div>
+
+                <div *ngIf="data.opcion === 'VER CONSOLIDADO POR PRODUCTOS Y SERVICIOS DE NACIONES UNIDAS UNSPSC'">
+
+                    <div *ngFor="let zeroNivel of arbol; let index0=index;">
+                        <div style="float: left; margin-right: 5px; cursor:pointer"
+                            (click)="mostrar(zeroNivel, 'zeroNivel', [index0])">
+                            <img style="width: 18px; margin-left: 5px;"
+                                src="{{ zeroNivel.show ? 'assets/imgs/iconos/carpeta-open.svg' : 'assets/imgs/iconos/carpeta.svg' }}">
+                        </div>
+                        <div style="padding-top: 2px;width: 90rem;">
+                            <input type="checkbox" id="{{zeroNivel.id}}" style="margin-right: 5px"
+                                (click)="add(zeroNivel, zeroNivel)">
+                            <label>{{zeroNivel.id}} {{zeroNivel.description}}</label>
+                        </div>
+
+                        <div *ngIf="zeroNivel.show">
+                            <div *ngFor="let primerNivel of zeroNivel.nivel; let index1=index;"
+                                style="margin-left: 20px;">
+                                <div style="float: left; margin-right: 5px; cursor:pointer"
+                                    (click)="mostrar(primerNivel, 'primerNivel', [index0, index1])">
+                                    <img style="width: 18px; margin-left: 5px;"
+                                        src="{{ primerNivel.show ? 'assets/imgs/iconos/carpeta-open.svg' : 'assets/imgs/iconos/carpeta.svg' }}">
+                                </div>
+                                <div style="padding-top: 2px;width: 90rem;">
+                                    <input type="checkbox" id="{{primerNivel.id}}" style="margin-right: 5px"
+                                        (click)="add(primerNivel, zeroNivel)">
+                                    <label>{{primerNivel.id}} {{primerNivel.description}}</label>
+                                </div>
+
+                                <div *ngIf="primerNivel.show">
+                                    <div *ngFor="let segundoNivel of primerNivel.nivel; let index2=index;"
+                                        style="margin-left: 20px;">
+                                        <div style="float: left; margin-right: 5px; cursor:pointer"
+                                            (click)="mostrar(segundoNivel, 'segundoNivel', [index0, index1, index2])">
+                                            <img style="width: 18px; margin-left: 5px;"
+                                                src="{{ segundoNivel.show ? 'assets/imgs/iconos/carpeta-open.svg' : 'assets/imgs/iconos/carpeta.svg' }}">
+                                        </div>
+                                        <div style="margin-left: 3px;padding-top: 2px;width: 90rem;">
+                                            <input type="checkbox" [checked]="segundoNivel.check"
+                                                id="{{segundoNivel.id}}" style="margin-right: 5px"
+                                                (click)="add(segundoNivel, zeroNivel)">
+                                            <label>{{segundoNivel.id}} {{segundoNivel.description}}</label>
+                                        </div>
+
+                                        <div *ngIf="segundoNivel.show">
+                                            <div *ngFor="let tercerNivel of segundoNivel.nivel; let index3=index;"
+                                                style="margin-left: 20px;">
+                                                <div style="float: left; margin-right: 5px; cursor:pointer"
+                                                    (click)="mostrar(tercerNivel, 'tercerNivel', [index0, index1, index2, index3])">
+                                                    <img style="width: 18px; margin-left: 5px;"
+                                                        src="{{ tercerNivel.show ? 'assets/imgs/iconos/carpeta-open.svg' : 'assets/imgs/iconos/carpeta.svg' }}">
+                                                </div>
+                                                <div style="padding-top: 2px;width: 90rem;">
+                                                    <input type="checkbox" [checked]="tercerNivel.check"
+                                                        id="{{tercerNivel.id}}" style="margin-right: 5px"
+                                                        (click)="add(tercerNivel, zeroNivel)">
+                                                    <label>{{tercerNivel.id}} {{tercerNivel.description}}</label>
+                                                </div>
+
+                                                <div *ngIf="tercerNivel.show">
+                                                    <div *ngFor="let cuartoNivel of tercerNivel.nivel; let index4=index;"
+                                                        style="margin-left: 20px;">
+                                                        <div *ngIf="data.esColombiaProductiva"
+                                                            style="float: left; margin-right: 5px; cursor:pointer"
+                                                            (click)="mostrar(cuartoNivel, 'cuartoNivel', [index0, index1, index2, index3, index4])">
+                                                            <img style="width: 18px; margin-left: 5px;"
+                                                                src="{{ cuartoNivel.show ? 'assets/imgs/iconos/carpeta-open.svg' : 'assets/imgs/iconos/carpeta.svg' }}">
+                                                        </div>
+                                                        <div style="padding-top: 2px;width: 90rem;">
+                                                            <input type="checkbox" [checked]="cuartoNivel.check"
+                                                                id="{{cuartoNivel.id}}" style="margin-right: 5px"
+                                                                (click)="add(cuartoNivel, zeroNivel)">
+                                                            <label>{{cuartoNivel.id}}
+                                                                {{cuartoNivel.description}}</label>
+                                                        </div>
+
+                                                        <div *ngIf="cuartoNivel.show">
+                                                            <div *ngFor="let quintoNivel of cuartoNivel.nivel; let index4=index;"
+                                                                style="margin-left: 20px;">
+                                                                <div style="padding-top: 2px;width: 90rem;">
+                                                                    <input type="checkbox" [checked]="quintoNivel.check"
+                                                                        id="{{quintoNivel.id}}"
+                                                                        style="margin-right: 5px"
+                                                                        (click)="add(quintoNivel, zeroNivel)">
+                                                                    <label>{{quintoNivel.id}}
+                                                                        {{quintoNivel.description}}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div *ngIf="arbol.length === 0">
+                        <br>
+                        <h6>Cargando vista ...</h6>
+                    </div>
+
+                </div>
+
+                <div *ngIf="data.opcion !== 'VER CONSOLIDADO POR PRODUCTOS Y SERVICIOS DE NACIONES UNIDAS UNSPSC'">
+                    <div style="margin-bottom: 15px;">
+                        <div style="margin-top: 15px">
+                            <p>
+                                Para consultar el consolidado de los Procesos de Contratación Pública disponibles para los sectores definidos en la Política de Desarrollo Productivo, da click aquí:
+                            </p>
+                            <div style="display: flex; margin-top: 5px;">
+                                <div>
+                                    <input style="border:none; cursor:pointer; margin-right: 10px; margin-top: 2px;" [(ngModel)]="isPdpSelected" [checked]="isPdpSelected"
+                                        (change)="obtenerPrimerNivel()" type="checkbox">
+                                </div>
+                                <span> 
+                                   <b>Sectores de la Política de Desarrollo Productivo</b>
+                                </span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 15px">
+                            <p>
+                                Para consultar el consolidado de los Procesos de Contratación Pública disponibles para los sectores atendidos por Colombia Productiva, da click aquí:
+                            </p>
+                            <div style="display: flex; margin-top: 5px;">
+                                <div>
+                                    <input style="border:none; cursor:pointer; margin-right: 10px; margin-top: 2px;" [(ngModel)]="isCpSelected" [checked]="isCpSelected"
+                                    (change)="obtenerPrimerNivel()" type="checkbox">
+                                </div>
+                                <span>
+                                    <b>Sectores Colombia Productiva</b>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="loading animate-flicker" *ngIf="showLoading">
+                        <b>
+                            Cargando ...
+                        </b>
+                    </div>
+
+                    <hr>
+
+                    <div *ngFor="let zeroNivel of arbol; let index0=index;">
+                        <div style="float: left; margin-right: 5px; cursor:pointer"
+                            (click)="mostrar(zeroNivel, 'zeroNivel', [index0])">
+                            <img style="width: 18px; margin-left: 5px;"
+                                src="{{ zeroNivel.show ? 'assets/imgs/iconos/carpeta-open.svg' : 'assets/imgs/iconos/carpeta.svg' }}">
+                        </div>
+                        <div style="padding-top: 2px;width: 90rem;">
+                            <input type="checkbox" id="{{zeroNivel.id}}" style="margin-right: 5px"
+                                (click)="addCP(zeroNivel, zeroNivel)">
+                            <label>{{zeroNivel.id}} {{zeroNivel.description}}</label>
+                        </div>
+
+                        <div *ngIf="zeroNivel.show">
+                            <div *ngFor="let primerNivel of zeroNivel.nivel; let index1=index;"
+                                style="margin-left: 20px;">
+                                <div style="float: left; margin-right: 5px; cursor:pointer"
+                                    (click)="mostrar(primerNivel, 'primerNivel', [index0, index1])">
+                                    <img style="width: 18px; margin-left: 5px;"
+                                        src="{{ primerNivel.show ? 'assets/imgs/iconos/carpeta-open.svg' : 'assets/imgs/iconos/carpeta.svg' }}">
+                                </div>
+                                <div style="padding-top: 2px;width: 90rem;">
+                                    <input type="checkbox" id="{{primerNivel.id}}" style="margin-right: 5px"
+                                        (click)="addCP(primerNivel, zeroNivel)">
+                                    <label>{{primerNivel.id}} {{primerNivel.description}}</label>
+                                </div>
+
+                                <div *ngIf="primerNivel.show">
+                                    <div *ngFor="let segundoNivel of primerNivel.nivel; let index2=index;"
+                                        style="margin-left: 20px;">
+                                        <!-- <div style="float: left; margin-right: 5px; cursor:pointer" (click)="mostrar(segundoNivel, 'segundoNivel', [index0, index1, index2])">
+                                                    <img style="width: 18px; margin-left: 5px;" src="{{ segundoNivel.show ? 'assets/imgs/iconos/carpeta-open.svg' : 'assets/imgs/iconos/carpeta.svg' }}">
+                                                </div> -->
+                                        <div style="margin-left: 3px;padding-top: 2px;width: 90rem;">
+                                            <input type="checkbox" [checked]="segundoNivel.check"
+                                                id="{{segundoNivel.id}}" style="margin-right: 5px"
+                                                (click)="addCP(segundoNivel, zeroNivel)">
+                                            <label>{{segundoNivel.id}} {{segundoNivel.description}}</label>
+                                        </div>
+
+                                        <div *ngIf="segundoNivel.show">
+                                            <div *ngFor="let tercerNivel of segundoNivel.nivel; let index3=index;"
+                                                style="margin-left: 20px;">
+                                                <div style="float: left; margin-right: 5px; cursor:pointer"
+                                                    (click)="mostrar(tercerNivel, 'tercerNivel', [index0, index1, index2, index3])">
+                                                    <img style="width: 18px; margin-left: 5px;"
+                                                        src="{{ tercerNivel.show ? 'assets/imgs/iconos/carpeta-open.svg' : 'assets/imgs/iconos/carpeta.svg' }}">
+                                                </div>
+                                                <div style="padding-top: 2px;width: 90rem;">
+                                                    <input type="checkbox" [checked]="tercerNivel.check"
+                                                        id="{{tercerNivel.id}}" style="margin-right: 5px"
+                                                        (click)="add(tercerNivel)">
+                                                    <label>{{tercerNivel.id}} {{tercerNivel.description}}</label>
+                                                </div>
+
+                                                <div *ngIf="tercerNivel.show">
+                                                    <div *ngFor="let cuartoNivel of tercerNivel.nivel; let index4=index;"
+                                                        style="margin-left: 20px;">
+                                                        <div *ngIf="data.esColombiaProductiva"
+                                                            style="float: left; margin-right: 5px; cursor:pointer"
+                                                            (click)="mostrar(cuartoNivel, 'cuartoNivel', [index0, index1, index2, index3, index4])">
+                                                            <img style="width: 18px; margin-left: 5px;"
+                                                                src="{{ cuartoNivel.show ? 'assets/imgs/iconos/carpeta-open.svg' : 'assets/imgs/iconos/carpeta.svg' }}">
+                                                        </div>
+                                                        <div style="padding-top: 2px;width: 90rem;">
+                                                            <input type="checkbox" [checked]="cuartoNivel.check"
+                                                                id="{{cuartoNivel.id}}" style="margin-right: 5px"
+                                                                (click)="add(cuartoNivel)">
+                                                            <label>{{cuartoNivel.id}}
+                                                                {{cuartoNivel.description}}</label>
+                                                        </div>
+
+                                                        <div *ngIf="cuartoNivel.show">
+                                                            <div *ngFor="let quintoNivel of cuartoNivel.nivel; let index4=index;"
+                                                                style="margin-left: 20px;">
+                                                                <div style="padding-top: 2px;width: 90rem;">
+                                                                    <input type="checkbox" [checked]="quintoNivel.check"
+                                                                        id="{{quintoNivel.id}}"
+                                                                        style="margin-right: 5px"
+                                                                        (click)="add(quintoNivel)">
+                                                                    <label>{{quintoNivel.id}}
+                                                                        {{quintoNivel.description}}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+        <div style="width: 50%; height: 450px; margin-block-end: auto; overflow: scroll;">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="120px"
+                                style="background-color: #e1e1e1; font-size: 12px; color: #696969; border: 1px solid #757575;">
+                                Código</th>
+                            <th
+                                style="background-color: #e1e1e1; font-size: 12px; color: #696969; border: 1px solid #757575;">
+                                Valor de contrato</th>
+                            <th
+                                style="background-color: #e1e1e1; font-size: 12px; color: #696969; border: 1px solid #757575;">
+                                Cantidad de contratos</th>
+                        </tr>
+                    </thead>
+                    <tbody style="border: 1px solid #757575;">
+                        <tr *ngFor="let item of element_data">
+                            <td style="border: 1px solid #757575;">{{ item.id }}</td>
+                            <td style="border: 1px solid #757575;">$ {{ formatearPrecio(item.value) }}</td>
+                            <td style="border: 1px solid #757575;">{{ item.quantity }}</td>
+                        </tr>
+                        <tr *ngIf="element_data.length === 0">
+                            <td colspan="3">
+                                No existen registros seleccionados.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="loading">
+            <b>
+                ¡Recuerda que aquí solo encontrarás habilitados los sectores que actualmente tienen Procesos de Contratación Pública vigentes!
+            </b>
+        </div>
+        <div class="grid-container-botton" style="margin-top: 10px;">
+            <div></div>
+            <div class="positionBtn">
+                <button (click)="closeDialog()" style="float: center; margin-top: 10px"
+                    class="desingbtn">ACEPTAR</button>
+            </div>
+            <div style="text-align: center; cursor: pointer; float: right; margin-right: 10%; margin-bottom: 20px;"
+                (click)="data.opcion === 'VER CONSOLIDADO POR PRODUCTOS Y SERVICIOS DE NACIONES UNIDAS UNSPSC' ? generarExcel() : generarExcelCP()">
+                <p style="margin: 0;">
+                    <img src="assets/imgs/iconos/descargarplantilla.svg" style="width: 40px; height: 40px">
+                </p>
+                <p style="margin: 0;">
+                    <span style="color: #3366ff; font-family: opensans_bold;">DESCARGAR CONSOLIDADO</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

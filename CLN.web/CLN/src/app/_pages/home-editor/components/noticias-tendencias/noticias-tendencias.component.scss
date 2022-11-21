@@ -1,0 +1,273 @@
+@import "../../../../_shared/styles/variables.scss";
+// @import "../../../../../_shared/styles/variables.scss";
+
+
+
+.banner-container{
+// background-color: #ffca00;
+  width:100%;
+  height:450px;
+  // position: initial;
+}
+
+.banner-bg{
+  // width:90%;
+  height:100%;
+  // margin-left:5%;
+//   padding-right: 10%;
+  background-image: url(src\assets\imgs\home-editor\encabezado_tendencias_Mesadetrabajo1.png);
+  background-size: cover;
+  background-position: center;
+  display:flex;
+  flex-direction: column;
+//   align-items: center;
+  justify-content: center;
+}
+
+.banner-elements{
+//   width:30%;
+  width:20rem;
+  display:flex;
+  flex-direction: column;
+  // align-items: center;
+  justify-content: center;
+  margin-left: 12%;
+}
+
+.banner-elements h2{
+  border-bottom: 1px solid;
+  color:#fff;
+  font-size: 20px;
+//   font-weight: bold;
+  // margin-bottom: 20px;
+  padding-bottom: 5px;
+  text-align: left;
+  width: fit-content;
+  // width: 60%;
+}
+.banner-elements h3{
+  color:#fff;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.container {
+  width: 100%;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+
+.goTop {
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    background-color: transparent;
+    border: none;
+    z-index: 100;
+}
+.goTop .icon-goTop {
+    width: 100%;
+    height: 40px;
+    background-color: #757575;
+    display: block;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask: url(src\assets\imgs\iconos\subir.svg) no-repeat center;
+    mask: url(src\assets\imgs\iconos\subir.svg) no-repeat center;
+}
+.editor-content {
+    min-height: calc(100vh - 190px);
+    z-index: 15;
+}
+.editor-section {
+    min-height: 140px;
+}
+.head-name {
+    height: 40px;
+    position: relative;
+}
+.heightprobe {
+    height: 500px !important;
+}
+.editor-section-content {
+    min-height: 100px;
+}
+.editor-flags {
+    background-color: #eef1f0;
+    z-index: 11 !important;
+}
+.section-title {
+    width: 120px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: $color-blue;
+    padding: 5px 15px;
+    font-family: $font-family-medium;
+}
+.save {
+    border: none;
+    background-color: transparent;
+}
+.buttonSvgGray {
+    width: 200px;
+    height: 170px;
+    background-color: transparent;
+    border: none;
+    cursor: move;
+}
+.buttonSvgBlue {
+    width: 40px;
+    height: 40px;
+    background-color: $color-blue;
+    display: block;
+    -webkit-mask-position: center;
+    mask-position: center;
+    border: none;
+}
+.buttonSvgRedSmall {
+    width: 30px;
+    height: 30px;
+    background-color: $color-red;
+    display: block;
+    -webkit-mask-position: center;
+    mask-position: center;
+    border: none;
+}
+.button-save {
+    -webkit-mask: url(src\assets\iconos\edit_home\guardar.svg) no-repeat center;
+    mask: url(src\assets\iconos\edit_home\guardar.svg) no-repeat center;
+}
+.button-post {
+    -webkit-mask: url(src\assets\iconos\edit_home\alerta_publicar.svg) no-repeat center;
+    mask: url(src\assets\iconos\edit_home\alerta_publicar.svg) no-repeat center;
+}
+.plantilla-1 {
+    background-image: url(src\assets\iconos\edit_home\plantilla.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+    height: 170px;
+}
+.plantilla-2 {
+    background-image: url(src\assets\iconos\edit_home\plantilla2.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+    height: 170px;
+}
+.plantilla-3 {
+    background-image: url(src\assets\iconos\edit_home\plantilla3.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+    height: 170px;
+}
+.plantilla-4 {
+    background-image: url(src\assets\iconos\edit_home\plantilla4.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+    height: 170px;
+}
+.plantilla-5 {
+    background-image: url(src\assets\iconos\edit_home\plantilla5.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+    height: 170px;
+}
+.accordion {
+    width: 100%;
+}
+.action-accordion {
+    width: 100%;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: solid 1px rgba(0, 0, 0, 0.3);
+    position: relative;
+    padding: 0px 0px 0px 30px;
+    cursor: pointer;
+}
+.arrow-down-editor {
+    width: 0.7em;
+    height: 0.7em;
+    background: #36c;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+.content-accordion {
+    width: 100%;
+    padding: 20px;
+}
+.plantilla {
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button-red {
+    padding: 3px 25px;
+    border-radius: 10px;
+    border: none;
+    background-color: $color-red;
+    color: $color-blanco;
+    font-family: $font-family-light;
+}
+.button-blue {
+    padding: 3px 25px;
+    border-radius: 10px;
+    border: none;
+    background-color: $color-blue;
+    color: $color-blanco;
+    font-family: $font-family-light;
+}
+.overflow-hidden {
+    overflow: hidden;
+}
+.content-footer {
+    //min-height: 140px !important;
+    margin-top: 60px;
+}
+
+.seccion-fija-noticias-tendendias{
+  align-items: center;
+  display:flex;
+  height: 60px;
+  justify-content: center;
+  width: 100%;
+  & h2{
+    color: #4b68ae;
+    font-family: sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+  }
+}
+::ng-deep {
+  .linkVinculo{
+    cursor: pointer;
+  }
+}
+
+.tooltipAct {
+    min-width: 100px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: #a8a9aa;
+    color: #ffffff;
+    position: absolute;
+    top: 115%;
+    z-index: 1;
+}
+.tooltipAct p {
+    padding: 0px !important;
+    margin: 0px !important;
+}

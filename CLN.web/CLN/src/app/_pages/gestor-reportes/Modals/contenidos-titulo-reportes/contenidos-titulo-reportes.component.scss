@@ -1,0 +1,101 @@
+.TituloPrincipal {
+    text-align: center;
+    padding-top: 12px;
+    font-size: 16pt;
+    font-family: "Work Sans", sans-serif;
+    color: #36c;
+    font-weight: bold;
+}
+
+.subTitulo {
+    font-family: "Work Sans", sans-serif;
+    font-size: 13pt;
+    font-weight: lighter;
+    margin: auto 0px auto 0px;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+}
+
+.text-center {
+    justify-content: center;
+}
+
+.bandera {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    display: block;
+    width: 7px;
+    height: 100%;
+    background-image: linear-gradient(180deg, #f42f63 0%, #f42f63 50%, #36c 50%, #36c 100%);
+    padding: 0;
+    margin: 0;
+}
+
+.RedLine {
+    border-style: dashed;
+    border-color: #f42f63;
+    border-width: 1px;
+}
+
+.cargar-contenido-link:hover {
+    .buttonSvg {
+        background-color: #f42f63;
+    }
+    color: #f42f63 !important;
+    cursor: pointer;
+}
+
+.contenidos-form {
+    border-radius: 23px;
+}
+
+// *********************Posibles Botones**********************************************
+.buttonSvg {
+    width: 100%;
+    height: 50px;
+    background-color: #36c;
+    display: block;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+.button-Agregar {
+    -webkit-mask: url(src\assets\img\Acciones\Agregar.svg) no-repeat center;
+    mask: url(src\assets\img\Acciones\Agregar.svg) no-repeat center;
+}
+.button-Agregar {
+    -webkit-mask: url(src\assets\img\Acciones\Agregar.svg) no-repeat center;
+    mask: url(src\assets\img\Acciones\Agregar.svg) no-repeat center;
+}
+.button-rol {
+    -webkit-mask: url(src\assets\img\Acciones\AgregarRol.svg) no-repeat center;
+    mask: url(src\assets\img\Acciones\AgregarRol.svg) no-repeat center;
+}
+.button-group-rol {
+    -webkit-mask: url(src\assets\img\Acciones\AgregarGrupoRol.svg) no-repeat center;
+    mask: url(src\assets\img\Acciones\AgregarGrupoRol.svg) no-repeat center;
+}
+.button-reports {
+    -webkit-mask: url(src\assets\img\Acciones\gestionar_reportes.png) no-repeat center;
+    mask: url(src\assets\img\Acciones\gestionar_reportes.png) no-repeat center;
+}
+//**************************** Grupos de botones ***********************************
+
+.buttons-flex-group {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+}
+.buttons-flex-item {
+    margin: 2em 0.5em 1em 0.5em;
+}
+.buttons-flex-item {
+    padding: 0.2em 1em;
+    border-radius: 50vmin;
+    color: white;
+    background-color: #36c;
+    border: none;
+    font-weight: bold;
+}

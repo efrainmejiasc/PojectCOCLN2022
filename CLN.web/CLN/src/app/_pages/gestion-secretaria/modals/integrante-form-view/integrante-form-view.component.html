@@ -1,0 +1,109 @@
+<div class="modal-body">
+    <!-- Titulo -->
+    <button type="button" class="close" aria-label="Close" (click)="guardar()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h2 class="modal-title font_title text-center">{{ titulo }}</h2>
+    <!-- Fin Titulo-->
+
+    <div class="integrantes-secretaria p-2">
+        <div class="text-center">
+            <span class="recordatorio">Recuerde que puede crear hasta 3 integrantes por secretaría</span>
+        </div>
+        <form [formGroup]="formTeam" (ngSubmit)="saveTeam($event)">
+            <div class="form-group row mx-2">
+                <label class="label">
+                    Nombres integrante |
+                    <span class="text-color-red">
+                        {{ nombre.value | conteoCaracteres: formProperties.nombre.maxCaracteres }}
+                    </span>
+                </label>
+                <div class="content-asterisk">
+                    <input type="text" autocomplete="off" class="input-asterisk px-2" id="nombre" #nombre
+                        [ngClass]="{'inputInvalid': formTeam.get('nombre').invalid == true && activeValidator == true}"
+                        [maxlength]="formProperties.nombre.maxCaracteres" required
+                        formControlName="nombre" (keypress)="patternValidation($event)"
+                        (paste)="patternValidationPaste($event)" />
+                    <span class="asterisk"
+                        [ngClass]="{'asteriskInvalid': formTeam.get('nombre').invalid == true && activeValidator == true}">*</span>
+                </div>
+            </div>
+            <div class="form-group row mx-2">
+                <label class="label">
+                    Apellidos integrante |
+                    <span class="text-color-red">
+                        {{ apellido.value | conteoCaracteres: formProperties.apellido.maxCaracteres }}
+                    </span>
+                </label>
+                <div class="content-asterisk">
+                    <input type="text" autocomplete="off" class="input-asterisk px-2" id="apellido" #apellido
+                        [ngClass]="{'inputInvalid': formTeam.get('apellido').invalid == true && activeValidator == true}"
+                        [maxlength]="formProperties.apellido.maxCaracteres" required
+                        formControlName="apellido" (keypress)="patternValidation($event)"
+                        (paste)="patternValidationPaste($event)" />
+                    <span class="asterisk"
+                        [ngClass]="{'asteriskInvalid': formTeam.get('apellido').invalid == true && activeValidator == true}">*</span>
+                </div>
+            </div>
+            <div class="form-group row mx-2">
+                <label class="label">
+                    Cargo |
+                    <span class="text-color-red">
+                        {{ cargo.value | conteoCaracteres: formProperties.cargo.maxCaracteres }}
+                    </span>
+                </label>
+                <div class="content-asterisk">
+                    <input type="text" autocomplete="off" class="input-asterisk px-2" id="cargo" #cargo
+                        [ngClass]="{'inputInvalid': formTeam.get('cargo').invalid == true && activeValidator == true}"
+                        [maxlength]="formProperties.cargo.maxCaracteres" required
+                        formControlName="cargo" (keypress)="patternValidation($event)"
+                        (paste)="patternValidationPaste($event)" />
+                    <span class="asterisk"
+                        [ngClass]="{'asteriskInvalid': formTeam.get('cargo').invalid == true && activeValidator == true}">*</span>
+                </div>
+            </div>
+            <div class="row mx-0">
+                <div class="col-12 form-group text-center pt-3">
+                    <button class="submitbutton" [ngClass]="{disabled: formTeam.invalid }" type="submit">
+                        Guardar
+                      </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row p-2">
+        <div class="col-lg-12 col-md-12">
+            <section class="tbl-team">
+                <!-- Tabla de integrantes de equipo -->
+                <table class="table-table" id="table">
+                    <thead class="table-head">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Cargo</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let integrante of integrantes; let i=index">
+                            <td>{{ integrante.nombre }}</td>
+                            <td>{{ integrante.apellido }}</td>
+                            <td>{{ integrante.cargo }}</td>
+                            <td class="acciones">
+                                <button class="btn-table d-flex justify-content-center align-items-center" style="height: 50%;" (click)="editar(i)">Editar</button>
+                                <button class="btn-table d-flex justify-content-center align-items-center" style="height: 50%;" (click)="eliminar(i)">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 form-group text-center pt-3">
+            <button class="submitbutton" type="button" (click)="guardar()">
+                Cancelar
+            </button>
+        </div>
+    </div>
+</div>

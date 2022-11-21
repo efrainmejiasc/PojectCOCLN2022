@@ -1,0 +1,220 @@
+@import "../../../../_shared/styles/variables.scss";
+.content_sectionFour {
+    height: 500px;
+    max-width: 2880px;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% !important;
+}
+.contentTextEffect p {
+    min-height: 30px;
+    margin-bottom: 10px !important;
+}
+.contentTextEffect p:last-child {
+    margin: 0px !important;
+    padding: 0px !important;
+}
+.container_title p {
+    width: 100%;
+    margin: 0px 0px 10px 0px !important;
+    padding: 0px !important;
+}
+.container_title p:last-child {
+    margin: 0px 0px 0px 0px !important;
+}
+.titleContent {
+    min-height: 35px;
+}
+.linkContent {
+    min-height: 35px;
+    min-width: 150px;
+}
+.frameMedia {
+    width: 100%;
+    height: 300px;
+}
+.linkVinculo {
+    min-width: 100px;
+    min-height: 30px;
+    border: none;
+    background-color: transparent;
+    color: $color-blue;
+    padding: 5px 20px;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.linkVinculo p {
+    width: 100%;
+    margin-bottom: 0px;
+}
+.linkButton {
+    min-width: 100px;
+    min-height: 30px;
+    border: none;
+    background-color: $color-blue;
+    color: $color-blanco;
+    padding: 5px 20px;
+    border-radius: 20px;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.linkButton p {
+    width: 100%;
+    margin-bottom: 0px;
+}
+.container-dashFour {
+
+    background-color: #f1f1f1;
+    transition: ease all 0.2s;
+    min-height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.container-dashFour:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.loadingMedia {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0px;
+}
+.editor-media {
+    height: 400px;
+}
+.bigImage {
+    width: 100% !important;
+}
+.mediumImage {
+    width: 75% !important;
+}
+.smallImage {
+    width: 50% !important;
+}
+.editor-media .imageContainer {
+    width: 100%;
+    overflow: hidden;
+}
+.contentImageFather {
+    height: 400px;
+    width: 100%;
+}
+.contentImageFour {
+    height: 400px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.imageFour {
+    width: 100%;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.titleSection {
+    margin: 0px;
+    padding: 0px;
+}
+.titleSection p {
+    margin: 0px;
+    padding: 0px;
+}
+.container_title {
+    width: 100%;
+}
+.container_paragraph {
+    min-height: 50px;
+}
+.container_link {
+    min-height: 40px;
+}
+.cuerpoContent {
+    width: 100%;
+    max-height: 200px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+//Quilleditor
+.cuerpo {
+    width: 100%;
+    max-height: 200px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+.ql-align-justify {
+    text-align: justify !important;
+}
+.ql-align-center {
+    text-align: center !important;
+}
+.ql-align-right {
+    text-align: right !important;
+}
+
+.ql-font-serif {
+    font-family: Georgia, Times New Roman, serif !important;
+}
+.ql-font-monospace {
+    font-family: Monaco, Courier New, monospace !important;
+}
+
+.ql-size-small {
+    font-size: 0.75em !important;
+}
+.ql-size-large {
+    font-size: 1.5em !important;
+}
+.ql-size-huge {
+    font-size: 2.5em !important;
+}
+.ql-font-worksans {
+    font-family: $font-family-light;
+}
+.ql-font-worksansmedium {
+    font-family: $font-family-medium;
+}
+.ql-font-worksanssemibold {
+    font-family: $font-family-semi-bold;
+}
+.ql-font-worksansextrabold {
+    font-family: $font-family-extra-bold;
+}
+.ql-font-bitterbold {
+    font-family: $font-family-bitter-bold;
+}
+.ql-font-bittermedium {
+    font-family: $font-family-bitter-medium;
+}
+.ql-font-bitterregular {
+    font-family: $font-family-bitter-regular;
+}
+.ql-font-firesansbold {
+    font-family: $font-family-firasans-bold;
+}
+.ql-font-firesanslight {
+    font-family: $font-family-firasans-light;
+}
+.ql-font-firesansregular {
+    font-family: $font-family-firasans-regular;
+}
+.ql-font-opensansbold {
+    font-family: $font-family-opensans-bold;
+}
+.ql-font-opensansmedium {
+    font-family: $font-family-opensans-medium;
+}
+.ql-font-opensansregular {
+    font-family: $font-family-opensans-regular;
+}
+.ql-font-opensanslight {
+    font-family: $font-family-opensans-light;
+}

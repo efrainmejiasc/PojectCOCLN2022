@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <!-- @@titulo@@ -->
+    </title>
+
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+        <link rel="stylesheet" href="src/assets/micrositios/css/style.css" type="text/css" />
+
+        <style>
+            .hover:hover {
+                cursor: pointer;
+                color: blue !important;
+                text-decoration-line: underline !important;
+            }
+            .carousel{
+                min-height: 500px;
+                width: 100%;
+                background-color: hsl(255,0%,90%) !important;
+            }
+            .carousel .carousel-item{
+                display: flex !important;
+                justify-content: center;
+                user-select: none;
+                min-width: 100%;
+                max-height: 100%;
+                margin:0px !important;
+            }
+            .pagination :nth-child(n){
+                font-size: 16pt;
+                color:#36c;
+                margin: 0px 1em;
+            }
+            .pagination :nth-child(n).current{
+                background:radial-gradient(hsl(0,0%,70%) 10%, transparent);
+            }
+            .pagination :nth-child(n):hover {
+                color: red;
+                cursor: pointer;
+            }
+            .card-columns{
+                display:flex;
+            }
+            .pagination {
+                display: flex;
+                justify-content: space-between;
+                background: hsla(50,0%,0%,10%);
+                border-radius: 50vmin;
+            }
+
+            /* --- css microsite --- */
+
+            /**** @@css@@ ****/
+
+            /* --- css microsite --- */
+        </style>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+        <script type="text/javascript" src="assets/micrositios/js/gestorcontenidos.js"></script>
+</head>
+<body>
+
+    <!-- @@html@@  -->
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript" src="assets/micrositios/js/scriptsCarouselMaterial.js"></script>
+    <script type="text/javascript" src="assets/micrositios/js/paginador.js"></script>
+    <script type="text/javascript" src="assets/micrositios/js/scripts.js"></script>
+</body>
+</html>

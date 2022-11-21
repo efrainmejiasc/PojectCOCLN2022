@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26.888" height="29.793" viewBox="0 0 26.888 29.793">
+  <g id="rtf" transform="translate(0.25 0.702)">
+    <g id="Grupo_55" data-name="Grupo 55" transform="translate(-47.299 -438.872)">
+      <path id="Trazado_109" data-name="Trazado 109" d="M66.217,438.984l-14.081-.112a2.621,2.621,0,0,0-2.642,2.624l.022,23.113a2.622,2.622,0,0,0,2.612,2.619l16.667.057a2.62,2.62,0,0,0,2.63-2.612l.067-20.452" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.356"/>
+      <path id="Trazado_110" data-name="Trazado 110" d="M66.493,439.128l5,5h-5.01v-5" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.356"/>
+    </g>
+    <rect id="Rectángulo_32" data-name="Rectángulo 32" width="26.388" height="8.627" rx="2.159" transform="translate(0 15.746)" fill="#fff" stroke="#36c" stroke-miterlimit="10" stroke-width="0.5"/>
+    <text id="RTF-2" data-name="RTF" transform="translate(13.194 23.479)" fill="#36c" font-size="10.382" font-family="AntipastoPro, Antipasto Pro"><tspan x="-7.153" y="0">RTF</tspan></text>
+    <path id="Trazado_111" data-name="Trazado 111" d="M53.812,439.577v4.341l1.382-1.382,1.547,1.381v-4.788" transform="translate(-47.299 -438.872)" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.356"/>
+    <line id="Línea_17" data-name="Línea 17" x2="14.063" transform="translate(6.163 8.292)" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.356"/>
+    <line id="Línea_18" data-name="Línea 18" x2="14.063" transform="translate(6.163 11.056)" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.356"/>
+    <line id="Línea_19" data-name="Línea 19" x2="14.063" transform="translate(6.163 13.701)" fill="none" stroke="#36c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.356"/>
+  </g>
+</svg>

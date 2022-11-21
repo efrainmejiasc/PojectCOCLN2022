@@ -1,0 +1,14 @@
+<div class="container-max contenedor d-flex flex-column justify-content-center align-items-center">
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-fall" [fullScreen]="true">
+        <p style="color: white">Cargando...</p>
+    </ngx-spinner>
+    <div class="container">
+        <app-contenidos-titulo-preguntas (evento)="reloadtable($event)" [titulo]="titulo" [permitsUser]="permitsUser">
+        </app-contenidos-titulo-preguntas>
+    </div>
+    <div class="col-sm-8">
+        <app-table-dynamic-preguntas (buildAction)="buildAction($event)" [dataRow]="configuration.rowOrderData"
+            [dataToPrint]="configuration.dataToPrint" [permitsUser]="permitsUser"
+            [emptyConfiguration]="emptyConfiguration" [searchConfig]="searchConfig"></app-table-dynamic-preguntas>
+    </div>
+</div>

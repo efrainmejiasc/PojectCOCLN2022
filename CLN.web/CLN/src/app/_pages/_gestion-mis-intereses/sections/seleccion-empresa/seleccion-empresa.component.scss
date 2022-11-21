@@ -1,0 +1,96 @@
+.empresa-container{
+  min-height: 100px;
+}
+
+.empresa-container>p{
+  color:#333333;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.empresa-info-container{
+  border:1px solid #7d7d7d;
+  margin-top: 30px;
+  padding: 12px 15px;
+}
+
+.empresa-info-container h2{
+  text-align: center;
+  font-size: 19px;
+  font-weight: 700;
+  color:#4169af;
+  margin-bottom: 15px;
+}
+
+.empresa-info-container p{
+  font-size: 16px;
+  color:#333333;
+  margin: 0px;
+};
+
+.empresa-info-container p span:first-child{
+  font-weight: bold;
+};
+
+.menu-empresas{
+  border:1px solid red;
+  margin-top: 30px;
+};
+
+.gi-header{
+  display: flex;
+  margin-top: 30px;
+};
+
+.gi-header>div{
+  width:35%;
+  border:1px solid #7d7d7d;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  cursor: pointer;
+};
+
+.gi-header>div:nth-child(2){
+  width:42%;
+};
+
+.gi-header>div:last-child{
+  width:23%;
+};
+
+.gi-header div img{
+  height:20px;
+};
+
+.gi-header div p{
+  height:20px;
+  padding: 8px 0px 0px 6px;
+  line-height: 20px;
+  color:#4169af;
+  font-weight:700;
+  font-size: 15px;
+};
+
+.menu-selected{
+  background-color: #4169af;
+}
+
+.menu-selected p{
+  color:#fff!important;
+}
+
+.menu-normal{
+  background-color: transparent;
+}
+
+.gestion-options-container{
+  padding-top: 10px;
+  min-height: 500px;
+}
+
+.company-interest-options-container{
+  min-height: 200px;
+}
+
+

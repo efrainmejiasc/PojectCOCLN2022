@@ -1,0 +1,39 @@
+<div class="container py-4 col-sm-12">
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-fall" [fullScreen]="true">
+        <p style="color: white">Cargando...</p>
+    </ngx-spinner>
+    <div class="row mt-4">
+        <div class="offset-md-3 col-md-6 text-center">
+            <h2 class="font_title text-color-red">
+                Gestionar usuarios
+            </h2>
+        </div>
+        <div class="col-sm-12 d-flex justify-content-center align-items-center">
+            <span class="title_decorator"></span>
+            <p class="ml-4 text-color-gray">
+                Aquí podrá crear, activar e inactivar, actualizar y eliminar los usuarios de la plataforma.
+            </p>
+        </div>
+        <div class="offset-md-3 col-md-6 text-center" *ngIf="permitsUser.canCreate == true">
+            <div class="form-group">
+                <span class="icon createuser" (click)="do_createUserForm()"> </span>
+            </div>
+        </div>
+
+        <hr class="RedLine" />
+    </div>
+</div>
+<!--app-create-user (close)="closeCreate()" [userToEdit]="userToEdit" *ngIf="is_createuser"></app-create-user-->
+<div class="container-table py-4 d-flex flex-column justify-content-center align-items-center col-sm-12">
+    <div class="col-sm-10 row mt-4 d-flex justify-content-center align-items-center">
+        <div class="col-sm-10 text-center">
+            <h3 class="font_title text-color-red">
+                Tabla de control de usuarios
+            </h3>
+        </div>
+    </div>
+    <app-table-dynamic class="col-sm-12" (buildAction)="buildAction($event)" [dataRow]="configuration.rowOrderData"
+        [dataToPrint]="configuration.dataToPrint" [permitsUser]="permitsUser" [searchConfig]="searchConfig"
+        [emptyConfiguration]="emptyConfiguration">
+    </app-table-dynamic>
+</div>

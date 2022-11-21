@@ -1,0 +1,55 @@
+<section>
+    <div id="admin-top" *ngIf="!isServicios">
+        <div><span class="bienvenido">BIENVENIDO(A) A LA RED DE COMPRAS PÚBLICAS</span></div>
+        <h2>COMPRAS PÚBLICAS</h2>
+        <div style="margin-left: 10%; margin-right: 10%">
+          <p>Una plataforma integrada de consulta en donde encontrarás toda la información necesaria para participar en el mercado de Compras Públicas, fortalecer tus actividades económicas, ampliar tus líneas de negocio y convertirte en un aliado estratégico del Estado.</p>
+          <p>Desde este panel podrás gestionar tus intereses en el mercado de Compras Públicas y consultar el estado de los Procesos de Contratación Pública y las ofertas en las que podrás participar.</p>
+          <p>Para conocer cómo gestionar las funcionalidades del panel, consulta el instructivo de la plataforma <a target="_blank" href="assets/files/instructivo/Instructivo micrositio.pdf">aquí</a>.</p>
+        </div>
+    </div>
+    <div id="admin-top" *ngIf="isServicios">
+      <div><span class="bienvenido">BIENVENIDO(A)</span></div>
+      <h2>ADMINISTRACIÓN DE SERVICIOS</h2>
+      <div style="margin-left: 10%; margin-right: 10%">
+        <p>
+          Desde este panel podrás gestionar los contenidos de la plataforma especializada en Compras Públicas y el micrositio de noticias y tendencias de Compra Lo Nuestro. Adicionalmente, programar envió de alertas vía correo electrónico y/o mensajes de texto a las empresas registradas, gestionar las relaciones sectoriales, gestionar el formulario de conclusiones de las citas de negocios virtuales y generar sus reportes. 
+          <!-- Finalmente, generar los reportes asociados a la plataforma especializada en Compras Públicas. -->
+        </p>
+        <p>Para conocer cómo gestionar las funcionalidades del panel, consulta el instructivo de la plataforma <a target="_blank" href="assets/files/instructivo/Instructivo_servicios_administrador.pdf">aquí</a>.</p>
+      </div>
+  </div>
+    <div id="admin-bottom">
+      <!-- <ul
+        *ngIf="menusUsuario.length>0"
+        [ngClass]="menusUsuario.length <4 ? 'ul-tresCol' : 'ul-cuatroCol'">
+        <li *ngFor="let menuObj of menusUsuario" (click)="goToSection(menuObj.url)">
+          <div class="icono-opciones">
+            <img src="{{menuObj.logo}}" alt="">
+          </div>
+          <div class="titulo-menu">
+              <span>{{menuObj.name}}</span>
+          </div>
+        </li>
+      </ul> -->
+
+      <div class="div-ul">
+        <div class="" *ngFor="let menus of arrayMenus; index as j">
+          <hr class="borde-arriba" *ngIf="j >= 1">
+          <div class="menu">
+            <div class="div-li" *ngFor="let item of menus; index as i"
+              [ngClass]="menus.length == i+1 ? 'borde-derecho' : ''">
+              <div class="item-li" (click)="goToSection(item.url)">
+                <div class="icono-opciones">
+                  <img src="{{item.logo}}" alt="">
+                </div>
+                <div class="titulo-menu">
+                  <span>{{item.name}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>

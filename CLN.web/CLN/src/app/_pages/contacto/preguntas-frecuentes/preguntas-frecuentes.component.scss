@@ -1,0 +1,49 @@
+.title_decorator {
+  display: block;
+  position: absolute;
+  height: 100%;
+  background-size: auto;
+  margin-left: -10px;
+}
+.card-header:first-child {
+  background-color: white;
+  border: 0px;
+}
+
+.card {
+  border: 0px;
+}
+.card-body{
+  margin-left: 30px;
+}
+.mb-0{
+  border-bottom: 1px solid #3366cc !important;
+}
+.mb-0:hover {
+  background: #ebebff;
+}
+
+.btn-link:hover {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+.navbar {
+  padding: 0 !important;
+  background-color: #f2f2f2 !important;
+}
+.li_border {
+  border-right: 1px solid #3366cc;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-light .navbar-nav .active > .nav-link,
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .show > .nav-link {
+  color: #6699ff !important;
+}
+.navbar-expand-lg .navbar-nav .nav-link {
+  color: #6699ff !important;
+}

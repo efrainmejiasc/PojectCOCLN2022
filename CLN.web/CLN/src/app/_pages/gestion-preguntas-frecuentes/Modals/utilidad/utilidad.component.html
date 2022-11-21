@@ -1,0 +1,41 @@
+<div class="modal-header d-flex justify-content-center align-items-center">
+    <h2 class="modal-title font_title p-0 m-0 text-color-red">{{ sendedData }}</h2>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form novalidate [formGroup]="form" (ngSubmit)="save($event)">
+        <div class="container">
+            <!-- Campo nombre -->
+            <div class="form-input">
+                <label class="label">
+                    <!-- [ngClass]="{ 'label-incorrecto': form['titulo'] }" -->
+                    <span class="label px-4">
+                        Utilidad |
+                        <span class="text-color-red">
+                            {{
+                  form.get("nombre").value
+                    | conteoCaracteres: formProperties.nombre.maxCaracteres
+                }}
+                        </span>
+                    </span>
+                    <div class="content-asterisk">
+                        <input class="input-asterisk px-2" [ngClass]="{'inputInvalid': form.get('nombre').invalid && activeValidator}"
+                            formControlName="nombre" maxlength="150" id="name" #name (input)="validationOut(1)"
+                            (keypress)="patternValidation($event)" (paste)="patternValidationPaste($event)"
+                            autocomplete="off" />
+                        <span class="asterisk" [ngClass]="{'asteriskInvalid': form.get('nombre').invalid && activeValidator}">*</span>
+                    </div>
+
+                </label>
+            </div>
+        </div>
+        <div class="form-group text-center submit-rol-button" *ngIf="!adminView">
+            <!-- [disabled]="form.invalid" [ngClass]="{ disabled: form.invalid }" -->
+            <button class="btn_third" [ngClass]="{ disabled: disabledButton }" type="submit">
+                Guardar
+            </button>
+        </div>
+    </form>
+</div>

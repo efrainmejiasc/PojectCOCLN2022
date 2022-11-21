@@ -1,0 +1,544 @@
+<div class="modal-body">
+  <!-- Titulo -->
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h2 class="modal-title font_title text-center">{{ id == '0' ? 'Crear' : 'Editar' }} Evento</h2>
+  <!-- Fin Titulo -->
+
+  <!-- Formulario -->
+  <form novalidate [formGroup]="form" (ngSubmit)="save($event)">
+    <div class="form-group">
+      <label for="nombre" class="campo">
+        <span class="text-color-blue">Nombre del evento |</span>
+        <span class="text-color-red">
+          {{ nombre.value | conteoCaracteres: formProperties.nombre.maxCaracteres }}
+        </span>
+      </label>
+      <input #nombre type="text" class="form-control" [ngClass]="[ validarCampo('nombre') ? 'is-invalid' : '' ]"
+        formControlName="nombre" [maxlength]="formProperties.nombre.maxCaracteres" required>
+      <span *ngIf="validarCampo('nombre')" class="invalid-feedback">
+        {{ validar("nombre") }}
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="descripcion" class="campo">
+        <span class="text-color-blue">Descripción del evento |</span>
+        <span class="text-color-red">
+          {{ descripcion.value | conteoCaracteres: formProperties.descripcion.maxCaracteres }}
+        </span>
+      </label>
+      <textarea #descripcion type="text" class="form-control"
+        [ngClass]="[ validarCampo('descripcion') ? 'is-invalid' : '' ]" formControlName="descripcion"
+        [maxlength]="formProperties.descripcion.maxCaracteres" required>
+          </textarea>
+      <span *ngIf="validarCampo('descripcion')" class="invalid-feedback">
+        {{ validar("descripcion") }}
+      </span>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="campo text-color-blue" for="fechaEvento">Fecha del evento</label>
+          <div class="input-group">
+            <input matInput [matDatepicker]="picker" class="form-control"
+              [ngClass]="[ validarCampo('fechaEvento') ? 'is-invalid' : '' ]" name="fechaEvento"
+              formControlName="fechaEvento">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <span *ngIf="validarCampo('fechaEvento')" class="invalid-feedback">
+              {{ validar("fechaEvento") }}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group text-center">
+          <label class="bold text-color-blue">Duración del evento</label>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <ngx-timepicker-field [defaultTime]="horamin" [min]="horamin" [max]="horamax" class="form-control"
+                  [ngClass]="[ validarCampo('horaInicio') ? 'is-invalid' : '' ]" formControlName="horaInicio"
+                  name="horaInicio" required>
+                </ngx-timepicker-field>
+                <span *ngIf="validarCampo('horaInicio')" class="invalid-feedback">
+                  {{ validar("horaInicio") }}
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <ngx-timepicker-field [defaultTime]="horamax" [min]="horamin" [max]="horamax" class="form-control"
+                  [ngClass]="[ validarCampo('horaFin') ? 'is-invalid' : '' ]" formControlName="horaFin" name="horaFin"
+                  required>
+                </ngx-timepicker-field>
+                <span *ngIf="validarCampo('horaFin')" class="invalid-feedback">
+                  {{ validar("horaFin") }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-md-center text-center">
+      <div class="col col-lg-3">
+        <div class="form-group">
+          <label class="bold text-color-blue">Todo el día</label>
+          <br />
+          <mat-slide-toggle [(ngModel)]="todoeldia" [ngModelOptions]="{standalone: true}" (change)="setTodoElDia()">
+          </mat-slide-toggle>
+        </div>
+      </div>
+      <div class="col col-lg-3">
+        <label class="bold text-color-blue">Privado</label>
+        <br />
+        <mat-slide-toggle [(ngModel)]="privado" [ngModelOptions]="{standalone: true}" (change)="setPrivado($event)">
+        </mat-slide-toggle>
+      </div>
+      <div class="col col-lg-3">
+        <label class="bold text-color-blue">Repetir evento</label>
+        <br />
+        <mat-slide-toggle [(ngModel)]="repetir" [ngModelOptions]="{standalone: true}" (change)="setRepetir($event)">
+        </mat-slide-toggle>
+      </div>
+    </div>
+
+    <!-- Privado -->
+    <div *ngIf="privado">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="campo text-color-blue">Secretarías invitadas</label>
+            <ng-multiselect-dropdown [placeholder]="'Selección multiple'" [data]="secretarias"
+              [(ngModel)]="secretariasSelected" [settings]="ddSecretariasSettings"
+              (onDeSelect)="onDeSelectSecretaria($event)" formControlName="secretarias" [disabled]="secretariaDisabled">
+            </ng-multiselect-dropdown>
+            <span *ngIf="validarCampo('secretarias')" class="invalid-feedback">
+              {{ validar("secretarias") }}
+            </span>
+            <span *ngIf="msgSecretarias" class="invalid-feedback private-error">
+              Al deseleccionar una secretaría que ya ha sido invitada, esta no sera desinvitada
+            </span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label class="campo text-color-blue">Usuarios invitados por secretarias</label>
+            <ng-multiselect-dropdown [placeholder]="'Selección multiple'" [data]="roles" [(ngModel)]="rolesSelected"
+              [settings]="ddRolesSettings" (onDeSelect)="onDeSelectRol($event)" formControlName="usuariosInvitados"
+              [disabled]="rolDisabled">
+            </ng-multiselect-dropdown>
+            <span *ngIf="validarCampo('usuariosInvitados')" class="invalid-feedback">
+              {{ validar("usuariosInvitados") }}
+            </span>
+            <span *ngIf="msgRoles" class="invalid-feedback private-error">
+              Al deseleccionar un rol que ya ha sido invitado, este no sera desinvitado
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="campo text-color-blue">Notificación para los asistentes</label>
+        <textarea type="text" class="form-control" formControlName="notificacion"></textarea>
+      </div>
+    </div>
+    <!-- Fin Privado -->
+
+    <!-- Repetir evento -->
+    <div class="row justify-content-md-center" *ngIf="repetir">
+      <div class="col col-lg-3">
+        <div class="form-group">
+          <label class="campo text-color-blue">Frecuencia</label>
+          <div class="input-container">
+            <select class="input" name="frecuencia" formControlName="frecuencia" (change)="setFrecuencia()">
+              <option value="0" disabled>Seleccione una opción</option>
+              <option *ngFor="let frecuencia of frecuencias" [label]="frecuencia" [value]="frecuencia">
+            </select>
+            <span class="arrow-down"></span>
+          </div>
+        </div>
+      </div>
+      <!-- Fechas para repetir evento-->
+      <div class="col col-lg-5 text-center" *ngIf="isPersonalizada()">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="bold text-color-blue">Fecha inicial</label>
+              <div class="input-group">
+                <input matInput [matDatepicker]="fechaInicioRepetir" class="form-control"
+                  [ngClass]="[ validarCampo('fechaInicioRepetir') ? 'is-invalid' : '' ]" name="fechaInicioRepetir"
+                  formControlName="fechaInicioRepetir" readonly>
+                <mat-datepicker-toggle matSuffix [for]="fechaInicioRepetir"></mat-datepicker-toggle>
+                <mat-datepicker #fechaInicioRepetir></mat-datepicker>
+                <span *ngIf="validarCampo('fechaInicioRepetir')" class="invalid-feedback">
+                  {{ validar("fechaInicioRepetir") }}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="bold text-color-blue">Fecha final</label>
+              <div class="input-group">
+                <input matInput [matDatepicker]="fechaFinRepetir" class="form-control"
+                  [ngClass]="[ validarCampo('fechaFinRepetir') ? 'is-invalid' : '' ]" name="fechaInicioRepetir"
+                  formControlName="fechaFinRepetir" readonly>
+                <mat-datepicker-toggle matSuffix [for]="fechaFinRepetir"></mat-datepicker-toggle>
+                <mat-datepicker #fechaFinRepetir></mat-datepicker>
+                <span *ngIf="validarCampo('fechaFinRepetir')" class="invalid-feedback">
+                  {{ validar("fechaFinRepetir") }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Fin Fechas para repetir evento-->
+      <div class="col col-lg-4" *ngIf="isPersonalizada()">
+        <div class="form-group text-center">
+          <label class="bold text-color-blue">Días</label>
+          <div class="row form-group">
+            <div class="col text-center" *ngFor="let dia of dias">
+              <label>{{ dia.codigo }}</label>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="diasRepetir" [value]="dia.value"
+                  [checked]="dia.isChecked" (change)="onCheckboxChange($event)">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Fin Repetir evento -->
+
+    <!-- Enlace -->
+    <div class="form-group">
+      <label for="direccion" class="campo text-color-blue">Enlace o dirección del evento</label>
+      <input type="text" class="form-control" [ngClass]="[ validarCampo('direccion') ? 'is-invalid' : '' ]"
+        formControlName="direccion" required>
+      <span *ngIf="validarCampo('direccion')" class="invalid-feedback">
+        {{ validar("direccion") }}
+      </span>
+    </div>
+    <!-- Enlace -->
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="campo">
+            <span class="text-color-blue">Tipo evento |</span>
+            <a href="javascript:void(0)" class="text-color-red" (click)="nuevoTipoEvento()">
+              Nuevo
+            </a>
+          </div>
+          <div class="input-container" [ngClass]="[ formProperties.idTipoEvento.error ? 'is-invalid' : '' ]">
+            <select class="input" name="tipoEvento" formControlName="idTipoEvento" (change)="changeTipoEvento()">
+              <option *ngFor="let tipo of tipoEventos" [value]="tipo.id" [disabled]="tipo.id === 0">
+                {{ tipo.nombre }}
+                <span class="box-color" [style.background]="tipo.color"></span>
+              </option>
+            </select>
+            <span class="arrow-down"></span>
+          </div>
+          <span *ngIf="formProperties.idTipoEvento.error" class="invalid-feedback">
+            {{ formProperties.idTipoEvento.validationMessages.required }}
+          </span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="campo text-color-blue">Temas del evento</label>
+          <ng-multiselect-dropdown [placeholder]="'Selección multiple'" [data]="temas" [(ngModel)]="temasSelected"
+            [settings]="ddTemasSettings" formControlName="temas">
+          </ng-multiselect-dropdown>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nuevo tipo de evento -->
+    <div class="row align-items-center" id="nuevotipoevento" *ngIf="esTipoEventoNuevo">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="text-color-blue">Nuevo tipo de evento | </label>
+          <input [(ngModel)]="tipoEventoNombre" [ngModelOptions]="{ standalone: true }" type="text" class="form-control"
+            [ngClass]="[ tipoEventoError ? 'is-invalid' : '' ]">
+          <span *ngIf="tipoEventoError" class="invalid-feedback">
+            Debe ingresar el nombre para el nuevo tipo de evento
+          </span>
+        </div>
+      </div>
+      <div class="col-md-1 align-self-center">
+        <div class="form-group">
+          <label class="text-center text-color-blue">Color</label>
+          <label class="form-control box-color" [(colorPicker)]="tipoEventoColor" [style.background]="tipoEventoColor"
+            (colorPickerChange)="onChangeColor($event)"></label>
+        </div>
+      </div>
+      <div class="col-md-5 align-self-center">
+        <div class="row justify-content-md-center text-center">
+          <div class="col col-lg-4">
+            <div class="form-group">
+              <button [disabled]="btnTipoEvento" class="btn_third" type="button" (click)="crearNuevoTipoEvento()">
+                Guardar
+              </button>
+            </div>
+          </div>
+          <div class="col col-lg-4">
+            <div class="form-group">
+              <span class="btn_third" (click)="cancelarNuevoTipoEvento()">
+                Cancelar
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Fin Nuevo tipo de evento -->
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="campo text-color-blue">Publicar en micrositios</label>
+          <ng-multiselect-dropdown [ngClass]="[ micrositios.length === 0 ? 'is-invalid' : '' ]"
+            [placeholder]="'Selección múltiple'" [data]="micrositios" [(ngModel)]="micrositiosSelected"
+            [settings]="ddMicrositiosSettings" formControlName="micrositios" (change)="changeMicrositios()">
+          </ng-multiselect-dropdown>
+          <span *ngIf="micrositios.length === 0" class="invalid-feedback">
+            {{ formProperties.micrositios.validationMessages.required }}
+          </span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row justify-content-md-center text-center">
+          <div class="col col-lg-4">
+            <a href="javascript:void(0)" (click)="addNewContenido()">
+              <img src="./../../../../../assets/iconos/men/evs-btn-add.svg">
+              <label>Agregar contenidos desde la biblioteca</label>
+            </a>
+          </div>
+          <div class="col col-lg-4">
+            <a href="javascript:void(0)" (click)="addNewContenidoExterno()">
+              <img src="./../../../../../assets/iconos/men/evs-btn-add.svg">
+              <label>Agregar contenidos desde otra fuente</label>
+            </a>
+          </div>
+          <div *ngIf="showFormContenido || showOtraFuente || hayContenidos" class="col col-lg-4">
+            <span class="text-color-red">
+              <label class="cantidad-contenidos">{{ contenidosSelected.length }}</label>
+              <label>Contenidos agregados</label>
+            </span>
+          </div>
+        </div>
+        <div *ngIf="showFormContenido || showOtraFuente || hayContenidos"
+          class="row justify-content-md-center text-center">
+          <div class="col col-lg-6">
+            <a href="javascript:void(0)" class="label-file" (click)="openModalContenidos()">
+              Ver/editar contenido
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenidos desde la biblioteca -->
+    <section *ngIf="showFormContenido">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="campo">Temas</label>
+            <ul class="input select-contenidos instead-option">
+              <li *ngFor="let tema of temas" [id]="tema.idTema">
+                <a href="javascript:void(0)" (click)="chooseTema(tema.idTema)">
+                  <img src="assets/iconos/men/evs-descargar.svg">
+                  <span class="pull-right">{{ tema.descripcion }}</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="campo">Contenidos</label>
+            <ul class="input select-contenidos instead-option">
+              <li *ngFor="let contenido of contenidos" class="extension">
+                <a href="javascript:void(0)" (click)="chooseContenido(contenido)">
+                  <img *ngIf="contenido.tipoContenido === 'ENLACE'" src="assets/img/Tipos_De_Archivos/enlace web.svg"
+                    alt="enlace web">
+                  <img *ngIf="contenido.tipoContenido === 'ARCHIVO'"
+                    [src]="['assets/img/Tipos_De_Archivos/' + (contenido.ruta | extensionArchivo) + '.svg']"
+                    [alt]="[contenido.ruta | extensionArchivo]">
+                  <span class="pull-right">{{ contenido.nombre }}</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="showContenido">
+        <div class="row">
+          <div class="col-md-6">
+            <label class="bold">Desde la biblioteca</label>
+          </div>
+          <div class="col-md-6">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="bold">Nombre del contenido</label>
+              <br />
+              {{ contenido.nombre }}
+            </div>
+            <div class="form-group">
+              <label class="bold" *ngIf="contenido.tipoContenido === 'ENLACE'">Enlace</label>
+              <label class="bold" *ngIf="contenido.tipoContenido === 'ARCHIVO'">Archivo</label>
+              <br />
+              {{ contenido.ruta }}
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-md-center text-center">
+          <div class="col col-lg-6">
+            <a href="javascript:void(0)" class="label-file" (click)="addContenido()">
+              Adicionar contenido
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Fin Contenidos desde la biblioteca -->
+
+    <!-- Contenidos desde otra fuente -->
+    <section *ngIf="showOtraFuente">
+      <div class="row">
+        <div class="col-md-6">
+          <label class="bold">Desde otra fuente</label>
+        </div>
+        <div class="col-md-6">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="nombre" class="campo">
+              Nombre del contenido |
+              <span class="text-color-red">
+                {{ contenido_titulo.value | conteoCaracteres: formProperties.nombre.maxCaracteres }}
+              </span>
+            </label>
+            <input #contenido_titulo [(ngModel)]="contenidoTitulo" [ngClass]="[ contenidoError ? 'is-invalid' : '' ]"
+              [ngModelOptions]="{standalone: true}" type="text" class="form-control" maxlength="100">
+            <span *ngIf="contenidoError" class="invalid-feedback">
+              No se puede agregar un nuevo contenido sin titulo
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- Cargar archivo -->
+      <div class="row">
+        <div class="col-12 py-3">
+          <span class="campo relative" [ngClass]="{ disabled: !file.fileenabled && file.firstloadfile }">
+            Cargar archivo
+          </span>
+          <label class="cargarArchivos input" (click)="file.active('file')"
+            [ngClass]="{ disabled: !file.fileenabled && file.firstloadfile }">
+            <input type="file" name="file" id="file" (change)="handleFileInput($event.target.files)"
+              [disabled]="!file.fileenabled && file.firstloadfile" />
+            <span class="name-file" *ngIf="file.namesfiles != ''">
+              {{ file.namesfiles }}
+            </span>
+            <span class="label-file">
+              Cargar archivo
+              <span class="tooltip-label-file">
+                Podrá cargar
+                <span *ngFor="let kind of file.acceptedFiles">
+                  <strong>{{kind.kind}}</strong>
+                  <span *ngFor="let exts of kind.exts">
+                    {{exts}},
+                  </span>
+                  máximo hasta
+                  <strong>
+                    {{kind.maxSize}} MB.
+                  </strong>
+                </span>
+              </span>
+            </span>
+          </label>
+          <div class="formerror text-color-red" *ngIf="file.FileNotAllow">
+            {{ file.errorMessage }}
+          </div>
+          <div class="d-flex justify-content-center">
+            <div id="progress-Bar" class="progress-Bar hidden"></div>
+            <span id="progress-Bar-number" class="quantity_load"></span>
+          </div>
+          <span class="input-file-borrar" *ngIf="file.fileenabled && file.firstloadfile"
+            (click)="file.eliminarArchivo('file')">
+            <span class="equis equis-borrar-input"> &#10006; </span>
+            Eliminar Archivo
+          </span>
+        </div>
+      </div>
+      <!-- Fin Cargar archivo -->
+      <!-- Cargar Enlace -->
+      <div class="row">
+        <div class="col-12 py-3">
+          <span class="campo relative" [ngClass]="{ disabled: file.fileenabled && file.firstloadfile }">
+            Cargar enlace
+          </span>
+          <label class="cargarUrl" (click)="file.active('link')"
+            [ngClass]="{ disabled: file.fileenabled && file.firstloadfile }">
+            <input class="inputUrl" type="url" id="link" [disabled]="file.fileenabled && file.firstloadfile" />
+            <span class="label-file url">Cargar enlace</span>
+          </label>
+          <span class="input-file-borrar" *ngIf="!file.fileenabled && file.firstloadfile"
+            (click)="file.eliminarArchivo('link')">
+            <span class="equis equis-borrar-input"> &#10006; </span>
+            Eliminar enlace
+          </span>
+        </div>
+      </div>
+      <!-- Fin Cargar Enlace -->
+      <div class="row justify-content-md-center text-center">
+        <div class="col col-lg-5">
+          <button [disabled]="btnContenido" class="label-file" type="button" (click)="createContentLite()">
+            Adicionar contenido
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Fin Contenidos desde otra fuente -->
+    <br><br>
+    <!-- {{disabledByOptions + " - " + disabledWhenSubmit}}
+    {{form.value | json}}
+    [disabled]="form.invalid || disabledWhenSubmit || disabledByOptions"-->
+    <div class="form-group text-center">
+      <button class="submitbutton" [ngClass]="{disabled: form.invalid || disabledWhenSubmit || disabledByOptions }"
+        type="submit">
+        Guardar
+      </button>
+    </div>
+  </form>
+  <!-- Fin Formulario -->
+</div>
+
+<script>
+  var textarea = document.querySelector('#mensajeNotificacion');
+  textarea.addEventListener('keydown', autosize);
+
+  function autosize() {
+    var el = this;
+    setTimeout(function () {
+      el.style.cssText = 'height:auto; padding:0';
+      // for box-sizing other than "content-box" use:
+      // el.style.cssText = '-moz-box-sizing:content-box';
+      el.style.cssText = 'height:' + el.scrollHeight + 'px';
+    }, 0);
+  }
+</script>

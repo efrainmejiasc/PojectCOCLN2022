@@ -1,0 +1,144 @@
+$color-blanco: rgba(255, 255, 255, 1);
+$color-blue: #003595;
+$color-red: #f42f63;
+$color-red-oscuro: #d6184b;
+$color-gray-font: rgba(0, 0, 0, 0.7);
+$line-height-paragraph: 18px;
+$font-size-paragraph: 16px;
+$font-family-light: workSans_ligth;
+$font-family-medium: worksans_medium;
+$font-family-bold: workSans_bold;
+.background-gris-claro {
+    background-color: rgba($color: $color-blue, $alpha: 0.2);
+}
+
+.resultado-content {
+    width: 1000px;
+    max-height: 500px;
+    transition: ease all 1s;
+    overflow: hidden;
+    overflow: auto;
+}
+.resultado-content .title-data {
+    width: auto;
+}
+.resultado-content .title-data .afirmationContent {
+    min-width: 700px;
+    border-radius: 20px 0px 0px 0px;
+    width: 700px;
+    height: 70px;
+    text-align: center;
+    color: $color-blanco;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 700;
+    background-color: $color-blue;
+}
+.resultado-content .title-data .downloadContent {
+    min-width: 150px;
+    width: 150px;
+    height: 70px;
+    border: solid 1px rgb(255, 255, 255);
+    border-top: none;
+    border-bottom: none;
+    background-color: $color-blue;
+}
+.resultado-content .title-data .downloadContent:last-child {
+    //border-radius: 0px 20px 0px 0px;
+}
+.resultado-content .title-data .downloadContent .date {
+    width: 100%;
+    height: 35px;
+    padding: 0px;
+    margin: 0px;
+    color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: solid 1px rgb(255, 255, 255);
+    font-size: $font-size-paragraph;
+    font-family: $font-family-bold !important;
+}
+.resultado-content .title-data .downloadContent .action {
+    width: 100%;
+    height: 35px;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.resultado-content .title-data .downloadContent .action button {
+    width: 90%;
+    background-color: rgb(255, 255, 255);
+    color: $color-blue;
+    border-radius: 10px;
+    border: none;
+    font-size: $font-size-paragraph;
+    font-family: $font-family-medium !important;
+    transition: ease all 0.2s;
+}
+.resultado-content .title-data .downloadContent .action button:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.resultado-content .content-data-y {
+    width: auto;
+    max-height: 500px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.resultado-content .content-data {
+    width: auto;
+    height: auto;
+    border-bottom: solid 1px $color-blue;
+    border-right: solid 1px $color-blue;
+}
+.resultado-content .content-data .afirmationContent {
+    width: 700px;
+    height: 100px;
+    height: auto;
+    border-left: solid 1px $color-blue;
+    border-right: solid 1px $color-blue;
+}
+.resultado-content .content-data .afirmationContent .result-first-word {
+    width: 30px;
+    height: 30px;
+    color: $color-blanco;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $font-size-paragraph;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 900;
+    border-radius: 3px;
+}
+.resultado-content .content-data .afirmationContent p {
+    width: 85%;
+    padding: 0px;
+    margin: 0px;
+    height: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+    color: $color-gray-font;
+    font-size: $font-size-paragraph;
+    line-height: $line-height-paragraph;
+}
+.resultado-content .content-data .calificationContent {
+    width: 150px;
+    height: 100px;
+    padding: 20px 10px;
+    text-align: center;
+    color: $color-blue;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 700;
+    border-right: solid 1px $color-blue;
+}
+.resultado-content .content-data .calificationContent:last-child {
+    border-right: none;
+}

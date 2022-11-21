@@ -1,0 +1,156 @@
+<div class="container-max contenedor">
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-fall" [fullScreen]="true">
+        <p style="color: white">Cargando...</p>
+    </ngx-spinner>
+    <div class="container">
+        <app-contenidos-titulo-capacidades (evento)="reloadtable($event)" [titulo]="titulo" [permitsUser]="permitsUser">
+        </app-contenidos-titulo-capacidades>
+    </div>
+    <div class="container">
+        <form novalidate [formGroup]="form" (ngSubmit)="save($event)">
+            <div class="container d-flex flex-column justify-content-center align-items-center">
+                <div class="form-input" style="z-index:10;">
+                    <label class="label">
+                        <!-- [ngClass]="{ 'label-incorrecto': form['titulo'] }" -->
+                        <span class="label px-4">
+                            Texto de bienvenida |
+                            <span class="text-color-red">
+                                {{descripcionlenght}}
+                            </span>
+                        </span>
+                        <div class="content-asterisk">
+                            <ckeditor style="width: 100%;min-height:150px" [editor]="Editor" formControlName="bienvenida"
+                                [config]="{ toolbar: ['bold', 'italic' ,'link'] }"
+                                [(ngModel)]="model.editorData" (change)="maxlengthdescripcion($event)"></ckeditor>
+                            <!--quill-editor style="width:100%" id="descripcion" [modules]="modules"
+                            (onContentChanged)="maxlengthdescripcion($event)">
+                          </quill-editor-->
+                            <!--textarea class="textarea-asterisk textarea-big px-2"
+                                [ngClass]="{'inputInvalid': form.get('bienvenida').invalid == true && activeValidator == true}"
+                                formControlName="bienvenida" id="bienvenida" #bienvenida maxlength="1000"></textarea-->
+                            <!--span class="asterisk-textarea textarea-big"
+                                [ngClass]="{'asterisk-textarea-invalid': form.get('bienvenida').invalid == true && activeValidator == true}">*</span-->
+                        </div>
+                    </label>
+                </div>
+                <div class="form-input">
+                    <label class="label">
+                        <!-- [ngClass]="{ 'label-incorrecto': form['titulo'] }" -->
+                        <span class="label px-4">
+                            Mensaje de ayuda |
+                            <span class="text-color-red">
+                                {{
+                                form.get("ayuda").value
+                                | conteoCaracteres: formProperties.ayuda.maxCaracteres
+                                }}
+                            </span>
+                        </span>
+                        <div class="content-asterisk">
+                            <input class="input-asterisk px-2"
+                                [ngClass]="{'inputInvalid': form.get('ayuda').invalid && activeValidator}"
+                                maxlength="100" id="ayuda" #ayuda formControlName="ayuda" autocomplete="off" />
+                            <span class="asterisk"
+                                [ngClass]="{'asteriskInvalid': form.get('ayuda').invalid && activeValidator}">*</span>
+                        </div>
+                    </label>
+                </div>
+
+                <!-------------------->
+                <div class="row col-sm-12 p-0">
+                    <div class="col-sm-12 p-0">
+                        <span
+                            class="pl-4 py-0 m-0 label relative rounded-0 d-flex justify-content-between align-items-end"
+                            [ngClass]="{ disabled: !file.fileenabled && file.firstloadfile }">
+                            Cargar archivo
+                            <span class="text-center text-danger" *ngIf="alertDocument != ''">{{alertDocument}}
+                            </span>
+                            <span class="btn d-flex justify-content-center align-items-center text-center text-danger"
+                                (click)="eliminarArchivo(0)" *ngIf="namesfiles != null">
+                                <span class="equis equis-borrar-input-small"> &#10006; </span>
+                                Eliminar Archivo
+                            </span>
+                        </span>
+
+                        <label class="cargarArchivos input rounded col-sm-12" (click)="file.active('file')">
+                            <input type="file" name="file" id="file" (change)="handleFileInput($event.target.files)"
+                                [disabled]="!file.fileenabled && file.firstloadfile" />
+                            <span class="name-file" *ngIf="namesfiles != null">{{namesfiles}}</span>
+
+                            <span class="label-file">
+                                Seleccionar
+                                <span class="tooltip-label-file">
+                                    Podrá cargar
+                                    <span>
+                                        <strong>Documentos</strong>
+                                        <span>
+                                            {{exts}},
+                                        </span>
+                                        máximo hasta
+                                        <strong>
+                                            {{maxSize[0]}} MB.
+                                        </strong>
+                                    </span>
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center position-relative">
+                    <div id="progress-Bar0" class="progress-Bar hidden"></div>
+                    <span id="progress-Bar-number0" class="quantity_load"></span>
+                </div>
+
+
+
+                <!-----          -->
+                <div class="row col-sm-12 p-0">
+                    <div class="col-sm-12 p-0">
+                        <span
+                            class="pl-4 py-0 m-0 label relative rounded-0 d-flex justify-content-between align-items-end"
+                            [ngClass]="{ disabled: !file.fileenabled && file.firstloadfile }">
+                            Cargar video
+                            <span class="text-center text-danger" *ngIf="alertVideo != ''">{{alertVideo}}
+                            </span>
+                            <span class="btn d-flex justify-content-center align-items-center text-center text-danger"
+                                (click)="eliminarArchivo(1)" *ngIf="namesvideos != null">
+                                <span class="equis equis-borrar-input-small"> &#10006; </span>
+                                Eliminar video
+                            </span>
+                        </span>
+
+                        <label class="cargarArchivos input rounded" (click)="fileTwo.active('file')" [ngClass]="{
+                            disabled: !fileTwo.fileenabled && fileTwo.firstloadfile
+                          }">
+                            <input type="file" name="file" id="file" (change)="handleVideoInput($event.target.files)"
+                                [disabled]="!fileTwo.fileenabled && fileTwo.firstloadfile" />
+                            <span class="name-file" *ngIf="namesvideos != null">{{namesvideos}}</span>
+
+                            <span class="label-file">
+                                Seleccionar
+                                <span class="tooltip-label-file">
+                                    Podrá cargar
+                                    <span>
+                                        <strong>Videos</strong>
+                                        <span *ngFor="let exts of extsmedia"> {{ exts }}, </span>
+                                        máximo hasta
+                                        <strong> {{ maxSize[1] }} MB. </strong>
+                                    </span>
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center position-relative">
+                    <div id="progress-Bar1" class="progress-Bar hidden"></div>
+                    <span id="progress-Bar-number1" class="quantity_load"></span>
+                </div>
+                <div class="form-group text-center submit-rol-button mt-4" *ngIf="!adminView">
+                    <!-- [disabled]="form.invalid" [ngClass]="{ disabled: form.invalid }" -->
+                    <button class="btn_third" [ngClass]="{ disabled: validButton() }" type="submit">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

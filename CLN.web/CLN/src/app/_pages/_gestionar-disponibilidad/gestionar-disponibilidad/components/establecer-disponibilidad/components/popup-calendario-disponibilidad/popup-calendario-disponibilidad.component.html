@@ -1,0 +1,179 @@
+<div class="popup-bg">
+    <div class="popup-container">
+      <div class="message-container">
+
+        <div class="title">
+          <span>
+            {{ nombreEmpresa }}
+          </span>
+        </div>
+        <div class="subtitle">
+          <span>
+            {{ sector }}
+          </span>
+        </div>
+        
+        <div class="calendario">
+
+          <div class="title">
+            <img 
+              *ngIf="ocultarRegresarMes" 
+              src="assets/imgs/iconos/flecha_izquierda.svg" 
+              style="width: 12px; cursor: pointer;"
+              (click)="lastMounth()"
+            >
+            <span>
+              {{ mes }} {{ ano }}
+            </span>
+            <img 
+              src="assets/imgs/iconos/flecha_derecha.svg" 
+              style="width: 12px; cursor: pointer;"
+              (click)="nextMounth()"
+            >
+          </div>
+
+          <table>
+              <tr>
+                  <th *ngFor="let dia of semana; let index = index">
+                    <div style="width: 5px; float: left; cursor: pointer;" *ngIf="index===0 && ocultarRegresarSemana" (click)="lastWeek()">
+                      <img 
+                        src="assets/imgs/iconos/flecha_izquierda.svg" 
+                        style="width: 10px; margin-right: 3px;"
+                      >
+                    </div>
+                    <div [ngStyle]="index===6 ? {'float': 'left'}: {} ">
+                      {{ dia.name }} 
+                      <br>
+                      {{ dia.dia }} / {{ convertirMes(dia.mes) }}
+                    </div>
+                    <div *ngIf="index===6" (click)="nextWeek()" style="cursor: pointer;">
+                      <img 
+                        src="assets/imgs/iconos/flecha_derecha.svg" 
+                        style="width: 10px; margin-left: 3px"
+                      >
+                    </div>
+                  </th>
+              </tr>
+              <tr *ngFor="let hour of hours; let index = index">
+                <td *ngIf="mounth.currentWeek[0].times[index].visible">
+                    <span *ngIf="mounth.currentWeek[0].selected && mounth.currentWeek[0].times[index].selected" [ngClass]=" mounth.currentWeek[0].times[index].selected ? 'active-time': 'inactive-time' ">
+                        {{ mounth.currentWeek[0].times[index].text }}
+                    </span>
+                    <span style="background-color: rgba(255, 255, 255, 0);" *ngIf="!mounth.currentWeek[0].selected" class="inactive-time">
+                        {{ index == horaMedia( mounth.currentWeek[0].times ) ? 'No' : '' }}
+                    </span>
+                    <span style="background-color: rgba(255, 255, 255, 0);" *ngIf="!mounth.currentWeek[0].selected" class="inactive-time">
+                        {{ index == horaMedia( mounth.currentWeek[0].times ) + 1 ? 'Disponible' : '' }}
+                    </span>
+                </td>
+                <td *ngIf="mounth.currentWeek[1].times[index].visible">
+                    <span *ngIf="mounth.currentWeek[1].selected && mounth.currentWeek[1].times[index].selected" [ngClass]=" mounth.currentWeek[1].times[index].selected ? 'active-time': 'inactive-time' ">
+                        {{ mounth.currentWeek[1].times[index].text }}
+                    </span>
+                    <span style="background-color: rgba(255, 255, 255, 0);" *ngIf="!mounth.currentWeek[1].selected" class="inactive-time">
+                        {{ index == horaMedia( mounth.currentWeek[1].times ) ? 'No' : '' }}
+                    </span>
+                    <span style="background-color: rgba(255, 255, 255, 0);" *ngIf="!mounth.currentWeek[1].selected" class="inactive-time">
+                        {{ index == horaMedia( mounth.currentWeek[1].times ) + 1 ? 'Disponible' : '' }}
+                    </span>
+                </td>
+                <td *ngIf="mounth.currentWeek[2].times[index].visible">
+                    <span *ngIf="mounth.currentWeek[2].selected && mounth.currentWeek[2].times[index].selected" [ngClass]=" mounth.currentWeek[2].times[index].selected ? 'active-time': 'inactive-time' ">
+                        {{ mounth.currentWeek[2].times[index].text }}
+                    </span>
+                    <span style="background-color: rgba(255, 255, 255, 0);" *ngIf="!mounth.currentWeek[2].selected" class="inactive-time">
+                        {{ index == horaMedia( mounth.currentWeek[2].times ) ? 'No' : '' }}
+                    </span>
+                    <span style="background-color: rgba(255, 255, 255, 0);" *ngIf="!mounth.currentWeek[2].selected" class="inactive-time">
+                        {{ index == horaMedia( mounth.currentWeek[2].times ) + 1 ? 'Disponible' : '' }}
+                    </span>
+                </td>
+                <td *ngIf="mounth.currentWeek[3].times[index].visible">
+                    <span *ngIf="mounth.currentWeek[3].selected && mounth.currentWeek[3].times[index].selected" [ngClass]=" mounth.currentWeek[3].times[index].selected ? 'active-time': 'inactive-time' ">
+                        {{ mounth.currentWeek[3].times[index].text }}
+                    </span>
+                    <span style="background-color: rgba(255, 255, 255, 0);" *ngIf="!mounth.currentWeek[3].selected" class="inactive-time">
+                        {{ index == horaMedia( mounth.currentWeek[3].times ) ? 'No' : '' }}
+                    </span>
+                    <span style="background-color: rgba(255, 255, 255, 0);" *ngIf="!mounth.currentWeek[3].selected" class="inactive-time">
+                        {{ index == horaMedia( mounth.currentWeek[3].times ) + 1 ? 'Disponible' : '' }}
+                    </span>
+                </td>
+                <td *ngIf="mounth.currentWeek[4].times[index].visible">
+                    <span *ngIf="mounth.currentWeek[4].selected && mounth.currentWeek[4].times[index].selected" [ngClass]=" mounth.currentWeek[4].times[index].selected ? 'active-time': 'inactive-time' ">
+                        {{ mounth.currentWeek[4].times[index].text }}
+                    </span>
+                    <span style="background-color: rgba(255, 255, 255, 0);" *ngIf="!mounth.currentWeek[4].selected" class="inactive-time">
+                        {{ index == horaMedia( mounth.currentWeek[4].times ) ? 'No' : '' }}
+                    </span>
+                    <span style="background-color: rgba(255, 255, 255, 0);" *ngIf="!mounth.currentWeek[4].selected" class="inactive-time">
+                        {{ index == horaMedia( mounth.currentWeek[4].times ) + 1 ? 'Disponible' : '' }}
+                    </span>
+                </td>
+                <td *ngIf="mounth.currentWeek[5].times[index].visible">
+                    <span *ngIf="mounth.currentWeek[5].selected && mounth.currentWeek[5].times[index].selected" [ngClass]=" mounth.currentWeek[5].times[index].selected ? 'active-time': 'inactive-time' ">
+                        {{ mounth.currentWeek[5].times[index].text }}
+                    </span>
+                    <span style="background-color: rgba(255, 255, 255, 0);" *ngIf="!mounth.currentWeek[5].selected" class="inactive-time">
+                        {{ index == horaMedia( mounth.currentWeek[5].times ) ? 'No' : '' }}
+                    </span>
+                    <span style="background-color: rgba(255, 255, 255, 0);" *ngIf="!mounth.currentWeek[5].selected" class="inactive-time">
+                        {{ index == horaMedia( mounth.currentWeek[5].times ) + 1 ? 'Disponible' : '' }}
+                    </span>
+                </td>
+                <td *ngIf="mounth.currentWeek[6].times[index].visible">
+                    <span *ngIf="mounth.currentWeek[6].selected && mounth.currentWeek[6].times[index].selected" [ngClass]=" mounth.currentWeek[6].times[index].selected ? 'active-time': 'inactive-time' ">
+                        {{ mounth.currentWeek[6].times[index].text }}
+                    </span>
+                    <span style="background-color: rgba(255, 255, 255, 0);" *ngIf="!mounth.currentWeek[6].selected" class="inactive-time">
+                        {{ index == horaMedia( mounth.currentWeek[6].times ) ? 'No' : '' }}
+                    </span>
+                    <span style="background-color: rgba(255, 255, 255, 0);" *ngIf="!mounth.currentWeek[6].selected" class="inactive-time">
+                        {{ index == horaMedia( mounth.currentWeek[6].times ) + 1 ? 'Disponible' : '' }}
+                    </span>
+                </td>
+            </tr>
+          </table>
+
+          <div class="footer">
+            <div class="top-footer">
+              <div class="alert-info" *ngIf="showAlertInfo">
+                Confirme la hora de la cita de acuerdo a su zona horaria
+              </div>
+              <div class="left-footer">
+                <span>
+                  <b>Zona horaria Colombia</b> UTC-5
+                </span>
+                <img 
+                  src="assets/imgs/iconos/alerta.svg" 
+                  style="width: 12px;"
+                  (mouseover)="showAlertInfo = true"
+                  (mouseout)="showAlertInfo = false"
+                >
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="btn-container">
+        <!-- <app-button
+          text="APLICAR"
+          width="130px"
+          (onClick)="aplicarHorarioEspecifico()">
+        </app-button> -->
+        <app-button
+            text="REGRESAR"
+            width="130px"
+            (onClick)="closePopupCancelar()">
+        </app-button>
+      </div>
+    </div>
+</div>
+
+<app-popup-confirmation 
+  *ngIf="showAlerta" 
+  [message]="confirmMessage" 
+  (close)="closeAlert($event)"
+></app-popup-confirmation>

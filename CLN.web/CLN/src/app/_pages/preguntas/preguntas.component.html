@@ -1,0 +1,166 @@
+<div class="content fit" *ngIf="preguntas.length > 0">
+  <div class="row">
+    <div class="form-group col-lg-12" style="text-align: center">
+      <p class="font_worksans_ligth">
+        <b> Buscar por</b>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-lg-12">
+      <div style="width: 80%; margin-left: auto; margin-right: auto">
+        <input
+          name=""
+          (change)="buscarpor()"
+          style="
+            width: 100%;
+            margin-right: 2em;
+            display: block;
+            border-color: #3366cc;
+            border-radius: 50vmin;
+          "
+          [(ngModel)]="buscar"
+          id=""
+          maxlength="150"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <ngb-accordion [closeOthers]="true" *ngIf="acordeon.length > 0">
+      <ngb-panel id="static-{{ a }}" *ngFor="let tema of acordeon; index as a">
+        <ng-template ngbPanelTitle
+          >{{ tema.tema }}
+          <span class="circulo">{{ tema.preguntas.length }}</span></ng-template
+        >
+        <ng-template ngbPanelContent>
+          <ngb-accordion [closeOthers]="true">
+            <ngb-panel
+              id="static-{{ ab }}"
+              title="{{ pregunta.pregunta }} "
+              *ngFor="let pregunta of tema.preguntas; index as ab"
+            >
+              <ng-template ngbPanelContent>
+                {{ pregunta.respuesta }}<br />
+                <div style="text-align: center">
+                  {{ pregunta.likes }}
+                  <a
+                    href="javascript:;"
+                    (click)="megusta(1, pregunta.idPregunta)"
+                  >
+                    <img src="assets/iconos/preguntas/megusta.png" /> Me gusta</a
+                  >
+                  {{ pregunta.nolikes }}
+                  <a
+                    href="javascript:;"
+                    (click)="megusta(2, pregunta.idPregunta)"
+                  >
+                    <img src="assets/iconos/preguntas/nomegusta.png" /> No me
+                    gusta</a
+                  >
+                </div>
+              </ng-template>
+            </ngb-panel>
+          </ngb-accordion>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+</div>
+<div
+  class="content fit"
+  style="margin-top: 2em"
+  *ngIf="preguntasfav.length > 0"
+>
+  <div class="row">
+    <div
+      class="form-group col-lg-12"
+      style="text-align: left; background-color: #0056b3; color: white"
+    >
+      <p style="margin-top: 1em; margin-bottom: 1em; margin-left: 1em">
+        <b> Las más consultadas</b>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div
+      class="form-group col-lg-10"
+      style="margin-left: auto; margin-right: auto; background: #e6effdff"
+      *ngFor="let pregunta of preguntasfav; index as a"
+    >
+      <div style="text-align: center">
+        <b>{{ pregunta.pregunta }}</b
+        ><br />
+        {{ pregunta.respuesta }}<br />
+        <div style="text-align: center">
+          {{ pregunta.likes }}
+          <a
+            href="javascript:;"
+            style="margin-right: 4em"
+            (click)="megusta(1, pregunta.idPregunta)"
+          >
+            <img src="assets/iconos/preguntas/megusta.png" /> Me gusta</a
+          >
+          {{ pregunta.nolikes }}
+          <a href="javascript:;" (click)="megusta(2, pregunta.idPregunta)">
+            <img src="assets/iconos/preguntas/nomegusta.png" /> No me gusta</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #modalaccion id="modalaccion" let-c="close" let-d="dismiss">
+  <div class="modal-body">
+    <div class="form-group text-center">
+      Por favor califique la respuesta recibida<br />¿Fue útil la respuesta?<br />
+      <div style="margin-left: auto; margin-right: auto; width: 50%">
+        <mat-radio-group
+          aria-label="Select an option"
+          [(ngModel)]="utilidad"
+          style="display: flex; flex-direction: column; margin: 15px 0"
+        >
+          <mat-radio-button
+            [value]="utilidad.idUtilidad"
+            style="margin: 5px"
+            *ngFor="let utilidad of utilidades"
+            >{{ utilidad.descripcion }}</mat-radio-button
+          >
+        </mat-radio-group>
+        <!--<span class="btn_third" (click)="votaUtilidad(utilidad.idUtilidad)">{{utilidad.descripcion}}</span><br>-->
+      </div>
+    </div>
+    <div class="col text-center">
+      <span style="cursor: pointer" class="btn_third" (click)="votaUtilidad2()"
+        >Aceptar</span
+      >
+    </div>
+  </div>
+</ng-template>
+<ng-template #modalok id="modalok" let-c="close" let-d="dismiss">
+  <div class="modal-body">
+    <div class="form-group text-center">
+      {{ mensaje }}
+    </div>
+    <div class="col text-center">
+      <span style="cursor: pointer" class="btn_third" (click)="closeModal()"
+        >Aceptar</span
+      >
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #noexiste id="noexiste" let-c="close" let-d="dismiss">
+  <div class="modal-body">
+    <div class="form-group text-center">
+      No existen preguntas frecuentes para este sitio.
+    </div>
+    <div class="col text-center">
+      <span style="cursor: pointer" class="btn_third" (click)="closeModal()"
+        >Aceptar</span
+      >
+    </div>
+  </div>
+</ng-template>

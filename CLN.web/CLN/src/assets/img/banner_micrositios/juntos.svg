@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="237.388" height="41.866" viewBox="0 0 237.388 41.866">
+  <defs>
+    <filter id="Rectángulo_1" x="0" y="0" width="237.388" height="41.866" filterUnits="userSpaceOnUse">
+      <feOffset dx="7" dy="7" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood flood-opacity="0.149"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="juntos" transform="translate(0.5 0.5)">
+    <g transform="matrix(1, 0, 0, 1, -0.5, -0.5)" filter="url(#Rectángulo_1)">
+      <rect id="Rectángulo_1-2" data-name="Rectángulo 1" width="222.388" height="26.866" rx="12.644" transform="translate(0.5 0.5)" fill="#69f"/>
+    </g>
+    <text id="Juntos_los_vamos_a_lograr_" data-name="Juntos los vamos a lograr " transform="translate(110.212 18.131)" fill="#f2f2f2" font-size="15" font-family="WorkSans-Medium, Work Sans" font-weight="500"><tspan x="-97.02" y="0">Juntos los vamos a lograr </tspan></text>
+    <path id="Trazado_1" data-name="Trazado 1" d="M842.268,213.42a.711.711,0,0,1-.563-1.145l2.485-3.232a1.218,1.218,0,0,0-.1-1.6l-2.445-2.446a.711.711,0,1,1,1.006-1.006l2.888,2.887a1.931,1.931,0,0,1,.165,2.542l-2.867,3.727A.711.711,0,0,1,842.268,213.42Z" transform="translate(-633.822 -193.801)" fill="#fff"/>
+  </g>
+</svg>

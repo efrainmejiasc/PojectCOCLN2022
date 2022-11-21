@@ -1,0 +1,27 @@
+
+<app-header-cadena></app-header-cadena>
+
+<section class="sLogistico--tab-container container">
+  <div class="sLogistico--tab mat-elevation-z12" style="padding: 2rem .5rem;">
+    <!-- menu de ofertas -->
+    <app-offer-options 
+      [opciones]="opciones" 
+      [selectedOption]="selectedOption"
+    ></app-offer-options>
+    <!-- Fin menu de ofertas -->
+
+    <app-como-crear 
+      *ngIf="selectedOption === opciones[0].title"
+    ></app-como-crear>
+    <app-simulador 
+      *ngIf="selectedOption === opciones[1].title"
+    ></app-simulador>
+    <app-crear-editar-cadena 
+      *ngIf="selectedOption === opciones[2].title"
+    ></app-crear-editar-cadena>
+  </div>
+</section>
+
+<app-footer-cadena></app-footer-cadena>
+
+

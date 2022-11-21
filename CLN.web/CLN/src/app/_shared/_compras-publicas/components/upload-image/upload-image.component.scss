@@ -1,0 +1,550 @@
+@import "../../../styles/variables.scss";
+.containerActions {
+    // position: absolute;
+    top: 0px;
+    right: 0px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    z-index: 1;
+}
+button {
+    width: 22px;
+    height: 22px;
+    border: none;
+    /* background-color: $color-blue-light !important; */
+    background-color:#a8a9aa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button:hover {
+    background-color: $color-blue !important;
+}
+.buttonActive {
+    background-color: $color-blue !important;
+    color: $color-blanco;
+    padding: 14px !important;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+.buttonInactive {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    color: $color-blanco;
+    padding: 14px !important;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+.btn_third{
+    width: 200px;
+    padding: 14px !important;
+    background-color: #003595;
+    text-transform: uppercase;
+}
+h6 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: $font-family-medium;
+}
+.delete {
+    background-image: url(src\assets\iconos\edit_home\eliminar.svg);
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 5 !important;
+}
+
+.edit {
+    background-image: url(src\assets\iconos\edit_home\editar.svg);
+    background-size: 40%;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 5 !important;
+}
+.config {
+    background-image: url(src\assets\iconos\edit_home\ajustes.svg);
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 5 !important;
+}
+.background {
+    background-image: url(src\assets\iconos\edit_home\fondo.svg);
+    background-size: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 5 !important;
+}
+.efect {
+    background-image: url(src\assets\iconos\edit_home\efecto.svg);
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 5 !important;
+}
+.textEditor {
+    width: 555px;
+    max-width: 555px;
+    min-height: 150px;
+    background-color: #f2f3f4;
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    z-index: 1202 !important;
+}
+.configurationEditor {
+    width: 333px;
+    min-height: 70px;
+    background-color: #f2f3f4;
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    z-index: 1200 !important;
+}
+.backgroundEditor {
+    width: 280px;
+    min-height: 150px;
+    background-color: #f2f3f4;
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1201 !important;
+    font-size: 15px;
+    color:#7d7d7d;
+}
+
+#background-editor-x{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: #d8d8d8;
+  z-index: 1202;
+  padding: 0px 12px;
+  font-size: 14px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.background-editor-titulo{
+
+  color:#333333;
+  font-size: 15px;
+  font-weight: 500;
+
+}
+
+.backgroundEditor input {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 100%;
+    cursor: pointer;
+}
+.container-image-size {
+    width: 100%;
+    overflow: hidden;
+}
+.option-image-size {
+    width: 23%;
+    padding: 0px 10px;
+}
+.title-image-size {
+    width: 31%;
+}
+.text-medium {
+    font-size: 14px !important;
+}
+.text-small {
+    font-size: 10px !important;
+    white-space: nowrap;
+}
+.mediaEditor {
+    width: 555px;
+    min-height: 150px;
+    background-color: #f2f3f4;
+    // position: absolute;
+    top: 30px;
+    left: 0px;
+    z-index: 105 !important;
+}
+.input-asterisk {
+    border: solid 1px rgba(0, 0, 0, 0.2) !important;
+    background-color: #ebebeb !important;
+}
+.type {
+    width: 100%;
+    background-color: transparent !important;
+    border: none;
+}
+.type:hover {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.span-centered{
+  text-align: center;
+  line-height: 16px;
+}
+
+.box-add-image {
+    width: 20px !important;
+    height: 20px !important;
+    background-color: transparent !important;
+}
+.box-color {
+    width: 20px !important;
+    min-width: 20px !important;
+    height: 20px !important;
+    background-color: transparent !important;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+}
+.icon-image {
+    background-image: url(src\assets\iconos\edit_home\add_image.svg);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.colorPickerInput {
+    z-index: 200 !important;
+}
+
+.viewimageZone {
+    width: 300px;
+    height: 200px;
+    background-color: rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.viewimageZone img {
+    width: 90%;
+}
+.viewimageZone video {
+    width: 90%;
+    height: 200px;
+}
+
+//DropZone
+
+.dropzone {
+    width: 200px;
+    height: 200px;
+    padding: 40px 10px;
+    text-align: center;
+    border: dashed 1px rgba(0, 0, 0, 0.5);
+    position: relative;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.dropzone:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dropzone img {
+    width: 70px;
+}
+
+.dropzone input {
+    opacity: 0;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+}
+
+.dropzone h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.btnUpload {
+    padding: 5px 8px;
+    background-color: #3366ff;
+    color: $color-blanco;
+    border: none;
+    border-radius: 20px;
+    line-height: 15px;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.contentFile {
+    width: 100%;
+    background-color: transparent;
+    padding: 0px 35px 0px 5px;
+    height: 40px;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: dashed 1px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contentFile button {
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    position: absolute;
+    right: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    color: $color-blanco;
+    font-size: $font-size-paragraph;
+    background-color: $color-blue;
+    color: $color-blanco;
+}
+
+//radio button
+
+.containerLabel {
+    width: 150px !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    display: flex;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.containerLabel label {
+    font-size: 15px;
+}
+/* Hide the browser's default checkbox */
+.containerLabel input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 26px;
+    width: 26px;
+    background-color: #fff;
+    border-radius: 100%;
+    border: solid 1px $color-blue;
+}
+.checkmarkSmall {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #fff;
+    border-radius: 100%;
+    border: solid 1px $color-blue;
+}
+
+/* On mouse-over, add a grey background color */
+.containerLabel:hover input ~ .checkmark {
+    border-radius: 100%;
+    background-color: #ccc;
+}
+
+.containerLabel:hover input ~ .checkmarkSmall {
+    border-radius: 100%;
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.containerLabel input:checked ~ .checkmark {
+    border-radius: 100%;
+    background-color: #ccc;
+}
+
+.containerLabel input:checked ~ .checkmarkSmall {
+    border-radius: 100%;
+    background-color: #ccc;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkmarkSmall:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.containerLabel input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.containerLabel input:checked ~ .checkmarkSmall:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.containerLabel .checkmark:after {
+    top: 3px;
+    left: 3px;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background: $color-blue;
+}
+
+.containerLabel .checkmarkSmall:after {
+    top: 1.6px;
+    left: 1.6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: $color-blue;
+}
+
+//RANGE STYLES
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 25px;
+    border-radius: 20px;
+    background: #fff;
+    border: solid 1px $color-blue;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: $color-blue;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: $color-blue;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.color-picker {
+    top: 80px !important;
+    left: -80px !important;
+}
+
+.alertPage {
+    font-size: 12px;
+    color: $color-red;
+}
+
+.ql-bold {
+    background-color: transparent !important;
+}
+.ql-bold:hover {
+    background-color: transparent !important;
+}
+.ql-italic {
+    background-color: transparent !important;
+}
+.ql-italic:hover {
+    background-color: transparent !important;
+}
+.ql-underline {
+    background-color: transparent !important;
+}
+.ql-underline:hover {
+    background-color: transparent !important;
+}
+#qe_menu,
+#qe_title,
+#qe_sub_title,
+#qe_cuerpo,
+#qe_cuerpo_big #qe_link,
+#qe_roll {
+    width: 100%;
+}
+
+.ql-font-worksans {
+    font-family: $font-family-light;
+}
+.ql-font-worksansmedium {
+    font-family: $font-family-medium;
+}
+.ql-font-worksanssemibold {
+    font-family: $font-family-semi-bold;
+}
+.ql-font-worksansextrabold {
+    font-family: $font-family-extra-bold;
+}
+.ql-font-bitterbold {
+    font-family: $font-family-bitter-bold;
+}
+.ql-font-bittermedium {
+    font-family: $font-family-bitter-medium;
+}
+.ql-font-bitterregular {
+    font-family: $font-family-bitter-regular;
+}
+.ql-font-firesansbold {
+    font-family: $font-family-firasans-bold;
+}
+.ql-font-firesanslight {
+    font-family: $font-family-firasans-light;
+}
+.ql-font-firesansregular {
+    font-family: $font-family-firasans-regular;
+}
+.ql-font-opensansbold {
+    font-family: $font-family-opensans-bold;
+}
+.ql-font-opensansmedium {
+    font-family: $font-family-opensans-medium;
+}
+.ql-font-opensansregular {
+    font-family: $font-family-opensans-regular;
+}
+.ql-font-opensanslight {
+    font-family: $font-family-opensans-light;
+}
+
+.text-count{
+  background-color: #a8a9aa;
+  color:#fff !important;
+  padding: 1px 3px;
+  border-radius: 2px;
+}

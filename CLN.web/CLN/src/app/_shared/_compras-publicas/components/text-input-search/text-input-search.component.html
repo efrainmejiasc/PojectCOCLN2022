@@ -1,0 +1,26 @@
+
+<div class="wrapper">
+    <div class="select-btn">
+        <input class="recuperar-input" 
+            [(ngModel)]="proceso"
+            [formControl]="search"
+            type="text" 
+            style="font-style: italic;font-size: 16px; font-family: 'Open Sans'" 
+            id="input"
+            placeholder="Ingresa una palabra o frase clave"
+            autocomplete="off"
+            (ngModelChange)="limpiar()"
+            value="!mostrar ? '' : ''"
+        >
+      <div class="arrow-right" (click)="searchString()">
+        <img src="assets/imgs/iconos/lupitaformulario.svg" />
+      </div>
+    </div>
+    <div class="content" *ngIf="data !== '' && mostrarLista">
+      <ul class="options">
+        <li *ngFor="let item of lista" (click)="selectOption(item.value)" >
+          {{item.value}}
+        </li>
+      </ul>
+    </div>
+  </div>

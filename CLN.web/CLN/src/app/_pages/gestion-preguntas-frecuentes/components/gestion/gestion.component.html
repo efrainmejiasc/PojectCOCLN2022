@@ -1,0 +1,221 @@
+<div class="container" id="preguntasFrequentes">
+  <div class="col-sm-12 d-flex flex-column justify-content-center align-items-center">
+    <div class="container py-4">
+      <app-contenidos-titulo-preguntas (evento)="reloadtable($event)" [titulo]="titulo" [permitsUser]="permitsUser">
+      </app-contenidos-titulo-preguntas>
+    </div>
+    <!--div class="offset-3 col-lg-6 offset-3 text-center">
+      <br>
+      <br>
+      <h5 class="font_title">
+        Gestionar preguntas frecuentes
+      </h5>
+      <br>
+      <br>
+    </div-->
+    <!--div class="offset-1 col-lg-10 offset-1 d-flex justify-content-center align-items-center mb-2">
+      <span class="title_decorator"></span>
+      <p class="font_p m-0 p-0" style="margin: calc(3%) 0 auto;">
+        Aquí podrá gestionar las utilidades con las cuales, los usuarios podrán calificar la utilidad de cada una de las
+        preguntas frecuentes habilitadas en la Escuela y en los micrositios.
+      </p>
+      <br>
+      <br>
+    </div-->
+    <!--div class="col-lg-12" *ngIf="permitsUser.canCreate">
+      <div class="form-group text-center">
+        <span class="btn_third " (click)="crear()">
+          Crear Pregunta <b>+</b>
+        </span>
+      </div>
+    </div-->
+    <div class="col-lg-12">
+      <div class="form-group">
+        <p class="font_worksans_ligth" style="margin: 0;margin-left: 43.4%;margin-top: 3em;"
+          *ngIf="permitsUser.canEdit">
+          <span (click)="goTo('gestion_preguntas_frecuentes/gestionar')" class="btn_five" style="padding: 5px 9px;">Gestionar utilidad</span>
+        </p>
+        <!--div>
+          <div class="row">
+            <div class="form-group col-lg-12">
+              <p class="font_worksans_ligth" style="margin: 0;">
+                <b> Utilidad | <span style="color: #ff3466;">
+                    <span *ngIf="utilidad==null">150</span>
+                    <span *ngIf="utilidad != null "> {{150-(utilidad.length)}}</span>
+
+                  </span> </b>
+              </p>
+              <textarea name="" [(ngModel)]="utilidad" id="" maxlength="150" cols="100" style=" width: 100%"
+                rows="2"></textarea>
+              <span class="btn_third " (click)="saveUtilidad()" style="float: right;">{{botonutilidad}}</span>
+            </div>
+            <div class="col-lg-12">
+              Utilidades |
+              <table style=" width: 50%;margin-left: auto;margin-right: auto;" class="tablautilidad">
+                <tr *ngFor="let utilidad of utilidades;index as a">
+                  <td>{{utilidad.descripcion}}</td>
+                  <td style="width: 10em;">
+                    <img src="assets\iconos\preguntas\trash.png" (click)="eliminarUtilidad(utilidad)"
+                      style="margin-right: 1.6em;float: left;">
+                    <img src="assets\iconos\preguntas\pencil.png" (click)="editarUtilidad(utilidad)"
+                      style="float: left;">
+
+
+                    <div class="custom-control custom-switch" style="position: relative;
+                                  width: 19%;
+                                  float: left;
+                                  /* margin: 0.5em; */
+                                  margin-left: 1em;">
+                      <input type="checkbox" (change)="ActiveBanner($event,utilidad)" class="custom-control-input"
+                        [checked]="utilidad.estado==1" id="customSwitch{{a}}">
+                      < checked>
+                        <label *ngIf="utilidad.estado==2" class="custom-control-label font_p"
+                          style="display: inline-block; line-height: 26px;" for="customSwitch{{a}}"></label>
+                        <label *ngIf="utilidad.estado==1" class="custom-control-label font_p"
+                          style="display: inline-block;line-height: 26px;" for="customSwitch{{a}}"></label>
+                        <br>
+                        <br>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div-->
+      </div>
+    </div>
+
+    <div class="col-md-12" style="margin-bottom: 2rem;margin-top: 2em;">
+      <div class="row">
+        <div class="pr-1" style="width: 100%;text-align: center;">
+          <label class="label-left text-color-blue">Seleccione el sitio/micrositio</label>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-sm-6 input-container">
+          <select class="inputSelect col-sm-12" required [(ngModel)]="micrositio"
+            (change)="getFrequentQuestions($event)">
+            <option value="0"> Selecciona </option>
+            <option value="9999"> Todos </option>
+            <option *ngFor="let listado of micrositios" [value]="listado.idMicrositio">
+              {{ listado.nombre }}
+            </option>
+          </select>
+          <span _ngcontent-huh-c8="" class="arrow-down"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row " style="margin-bottom: 5rem;" *ngIf="preguntasresult.length==0">
+      {{resultadoConsulta}}
+    </div>
+    <div class="col-lg-12">
+      <div class="form-group text-center">
+        <span class="text-color-blue" (click)="crear()">
+          <b>Buscar por:</b>
+        </span>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group text-center">
+        <input name="" class="inputSelect" style="width: 37%;" [(ngModel)]="buscarPor" (change)="buscarpor()"
+          maxlength="150">
+      </div>
+    </div>
+    <div class="col-lg-12 col-md-12 " style="margin-bottom: 3rem;margin-top: 2em;">
+      <div class="result_table" style="height: auto; overflow: auto;">
+        <div cdkDropListGroup>
+          <div class="example-container">
+            <table class="table-table">
+              <thead class="table-head">
+                <tr>
+                  <th class="w20p">Habilitada en</th>
+                  <th class="w20p">Tema
+                    <select class="inputSelect slectentabla" *ngIf="temas.length>0" (change)="temachange()"
+                      [(ngModel)]="temaabuscar">
+                      <option>Todos los temas</option>
+                      <option *ngFor="let tema of temas">{{tema}}</option>
+                    </select>
+
+                  </th>
+                  <th class="w20p">Pregunta</th>
+                  <th class="w20p">Respuesta</th>
+                  <th class="w20p">Acción</th>
+                </tr>
+              </thead>
+            </table>
+
+            <div cdkDropList [cdkDropListData]="preguntasresult" class="example-list"
+              (cdkDropListDropped)="drop($event)">
+              <div class="example-box" *ngFor="let pregunta of preguntasresult;index as i" cdkDrag>
+                <table class="table-table"
+                  [ngClass]="{'paddingt1': i>0 && pregunta.micrositio!=preguntasresult[i-1].micrositio}">
+                  <tbody class="table-body" style="border:none" (cdkDropListDropped)="drop($event)">
+                    <tr>
+                      <td class="w20p text-color-gray">{{ pregunta.micrositio }}</td>
+                      <td class="w20p text-color-gray">{{ pregunta.tema }}</td>
+                      <td class="w20p text-color-gray">
+                        {{ pregunta.pregunta.length>15?pregunta.pregunta.substring(0, 15):pregunta.pregunta }}
+                        <b *ngIf="pregunta.pregunta.length>15" class="text-color-gray">...</b>
+                        <a href="javascript:;" *ngIf="pregunta.pregunta.length>15"
+                          style="position: relative;float: right; bottom: -1em;color:#3366c3" placement="bottom"
+                          popoverClass="popoverclassivo" ngbPopover="{{ pregunta.pregunta }}">ver más</a>
+                      </td>
+                      <td class="w20p text-color-gray">
+                        {{ pregunta.respuesta.length>15?pregunta.respuesta.substring(0, 15):pregunta.respuesta }}
+                        <b *ngIf="pregunta.respuesta.length>15" class="text-color-gray">...</b>
+                        <a href="javascript:;" *ngIf="pregunta.respuesta.length>15"
+                          style="position: relative;float: right; bottom: -1em;" placement="bottom"
+                          popoverClass="popoverclassivo" ngbPopover="{{ pregunta.respuesta }}">ver más</a>
+                      </td>
+                      <td class="table-body-lastchild w20p">
+                        <table class="table-table">
+                          <tbody class="table-interna">
+                            <tr>
+                              <td *ngIf="permitsUser.canEdit" class="text-color-blue" (click)="editar(pregunta)">Editar</td>
+                              <td *ngIf="permitsUser.canDelete" class="text-color-blue"
+                                (click)="eliminar(pregunta.idPregunta,pregunta.idMicrositio)">Eliminar</td>
+                              <td class="text-color-blue" *ngIf="permitsUser.canEdit" (click)="ver(pregunta)">Ver</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--ng-template #modaleliminar id="modaleliminar" let-c="close" let-d="dismiss">
+  <div class="modal-body">
+    <div class="form-group text-center">
+      <p>
+        La pregunta frecuente seleccionada y toda su información serán borradas completamente del sistema.<br>
+        Por lo tanto, esta pregunta ya no estará disponible en los micrositios donde se encontraba habilitada.
+      </p>
+    </div>
+    <div class="col text-center">
+      <span style="cursor:pointer; margin:2em;" class="btn_third" (click)="aceptarEliminar()">Aceptar</span>
+      <span style="cursor:pointer; margin:2em;" class="btn_third" (click)="closeModal()">Cancelar</span>
+    </div>
+  </div>
+</ng-template-->
+
+<ng-template #modalaccion id="modalaccion" let-c="close" let-d="dismiss">
+  <div class="modal-body">
+    <div class="form-group text-center">
+      <p>
+        {{accion}}
+      </p>
+    </div>
+    <div class="col text-center">
+      <span style="cursor:pointer" class="btn_third" (click)="closeModal()">Aceptar</span>
+    </div>
+  </div>
+</ng-template>

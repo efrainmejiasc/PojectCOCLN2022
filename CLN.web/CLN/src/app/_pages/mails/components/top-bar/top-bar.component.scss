@@ -1,0 +1,18 @@
+
+.topbar {
+    background-color: #ffffff;
+    overflow: hidden;
+    padding-top: 10px
+}
+
+.img--grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 15px;
+}
+
+img {
+    padding-right: 40px;
+    width: 90%;
+    height: 90%;
+}

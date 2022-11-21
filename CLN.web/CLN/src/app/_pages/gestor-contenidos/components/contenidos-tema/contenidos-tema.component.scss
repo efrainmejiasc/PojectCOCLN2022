@@ -1,0 +1,15 @@
+.table-body-lastchild{
+      width: 50%;
+}
+.table-body-lastchild span {
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: calc(50% - 1px) !important;
+    // outline: 1px solid #36c !important;
+    margin: 0 !important;
+    height: 100% !important;
+}
+.table-body-lastchild span:first-child {
+    border-right: 1px solid #36c;
+}

@@ -1,0 +1,19 @@
+.vinieta {
+    display: table-cell;
+    vertical-align: middle;
+    width: 10px;
+    height: 30px;
+    float: left;
+    margin-right: 10px;
+}
+
+ul {
+    list-style: none;
+}
+
+
+.nombre {
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+}
