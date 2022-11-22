@@ -1,0 +1,4 @@
+En esta carpeta se guardan las plantillas HTML para el envio de notificaciones acerca de citas de negocios virtuales 
+
+
+

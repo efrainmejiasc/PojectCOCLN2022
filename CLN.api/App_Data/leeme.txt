@@ -1,0 +1,1 @@
+﻿La Carpeta App_Data será donde se almacenen temporalmente los archivos de Excel generados.
